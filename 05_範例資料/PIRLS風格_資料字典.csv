@@ -1,0 +1,17 @@
+field,type,required,allowed_or_format,grain,notes
+student_id,string,yes,去識別唯一代碼,student,不可用姓名學號或信箱
+group,string,yes,工作坊示範組別,student,比較時必須報告樣本數
+Q1,string,no,A/B/C/D/blank,student-item,空白另列
+Q2,string,no,A/B/C/D/blank,student-item,空白另列
+Q3,string,no,A/B/C/D/blank,student-item,空白另列
+Q4,string,no,A/B/C/D/blank,student-item,空白另列
+Q5,string,no,A/B/C/D/blank,student-item,空白另列
+Q6,string,no,A/B/C/D/blank,student-item,空白另列
+CR1_response,string,no,去識別文字或blank,student-item,匯入前掃描身分線索
+ai_code,integer,no,0/1/2,student-item,AI初編不得覆寫人工碼
+evidence_excerpt,string,no,原回答短片段,student-item,不可補造證據
+ai_confidence,number,no,0到1,student-item,低信心送人工複核
+ai_needs_human_review,boolean,no,true/false,student-item,空白邊界極端碼建議true
+human_final_code,integer,no,0/1/2,student-item,由人工另欄確認
+review_status,string,no,pending/confirmed/unresolved,student-item,未確認不可包裝成完成
+reviewer_notes,string,no,人工理由或歧異說明,student-item,不填個資

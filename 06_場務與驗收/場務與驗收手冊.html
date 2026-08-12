@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>場務與驗收手冊</title><link rel="stylesheet" href="../assets/workshop.css"><style>
+.check-item{display:flex;align-items:flex-start;gap:.55rem;margin:.42rem 0;cursor:pointer;line-height:1.55}.check-item input,.check-cell{width:1.25rem;height:1.25rem;margin:.12rem 0 0;accent-color:#276749;cursor:pointer;flex:0 0 auto}.check-cell{display:block;margin:auto}.check-item:has(input:checked) span{text-decoration:line-through;color:#64748b}.check-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:0 auto 1.25rem}.check-status{font-weight:700;color:#276749}.note-input{width:100%;min-width:9rem;min-height:2.5rem;padding:.5rem;border:1px solid #94a3b8;border-radius:.5rem;background:#fff;color:#172033;resize:vertical}.field-input{width:12rem;max-width:100%;padding:.3rem .45rem;border:0;border-bottom:1px solid currentColor;background:transparent;color:inherit}@media print{.check-actions{display:none}.check-item input,.check-cell{appearance:auto;-webkit-appearance:checkbox}.note-input,.field-input{border-color:#64748b}}
+</style></head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar"><div class="brand">NCU AI 工作坊｜場務與驗收</div><nav><a href="#accounts">帳號</a><a href="#venue">場地</a><a href="#time">時間</a><a href="#release">封版</a></nav></header>
+<main id="main">
+<section class="hero wrap"><div class="eyebrow">P0 Operations</div><h1>先排除阻塞，<br>再把舞台交給學習。</h1><p class="lead">本手冊將帳號分流、技術彩排、時間備援、平台複核與 PowerPoint 驗收集中在同一份可勾選文件中。實際場測結果仍需由講師或主辦方填入。</p></section>
+<div class="wrap check-actions"><button id="clearChecks" class="button secondary" type="button">清除全部勾選</button><span id="checkStatus" class="check-status" aria-live="polite">已完成 0／36 項</span><span class="hint">勾選與備註會自動保存在這台電腦的瀏覽器中。</span></div>
+
+<section id="accounts" class="section wrap"><h2>P0-01｜帳號與替代路徑</h2><div class="table-wrap"><table><thead><tr><th>參與者</th><th>已知訂閱</th><th>上午主路徑</th><th>下午主路徑</th><th>權限不足時</th><th>現場確認</th></tr></thead><tbody>
+<tr><td>教授 A–E</td><td>ChatGPT＋Gemini</td><td>Gemini Notebook、Gem、Canvas</td><td>Antigravity＋Codex，擇一主做、另一個交叉測試</td><td>改用起始成果包與離線工具</td><td><input class="check-cell" type="checkbox" aria-label="教授 A 到 E 現場確認"></td></tr>
+<tr><td>教授 F</td><td>ChatGPT</td><td>完成範例觀察、共同備課、ChatGPT 指令與 Canvas 起始站改寫</td><td>Codex 主線；以 Antigravity 示範紀錄作比較</td><td>瀏覽器版工具＋人工任務簡報</td><td><input class="check-cell" type="checkbox" aria-label="教授 F 現場確認"></td></tr>
+</tbody></table></div><div class="callout warn" style="margin-top:1rem"><strong>禁止：</strong>共用個人帳號、代登入、投影金鑰、把學生可識別資料上傳到未核准服務。</div></section>
+
+<section id="venue" class="section wrap"><h2>P0-02｜場地技術彩排</h2><div class="grid grid-2">
+<article class="card"><h3>網路與平台</h3><label class="check-item"><input type="checkbox"><span>6 台裝置同時連線</span></label><label class="check-item"><input type="checkbox"><span>Google／OpenAI OAuth</span></label><label class="check-item"><input type="checkbox"><span>Gemini Notebook／Gem／Canvas</span></label><label class="check-item"><input type="checkbox"><span>Antigravity／Codex</span></label><label class="check-item"><input type="checkbox"><span>GitHub／Google Sites</span></label><label class="check-item"><input type="checkbox"><span>24 個案例入口</span></label><label class="check-item"><input type="checkbox"><span>下載與本機檔案開啟</span></label></article>
+<article class="card"><h3>設備與教室</h3><label class="check-item"><input type="checkbox"><span>16:9 投影與解析度</span></label><label class="check-item"><input type="checkbox"><span>HDMI／USB-C 轉接</span></label><label class="check-item"><input type="checkbox"><span>講者備註雙螢幕</span></label><label class="check-item"><input type="checkbox"><span>音訊與麥克風</span></label><label class="check-item"><input type="checkbox"><span>電源與延長線</span></label><label class="check-item"><input type="checkbox"><span>瀏覽器更新</span></label><label class="check-item"><input type="checkbox"><span>軟體安裝權限</span></label><label class="check-item"><input type="checkbox"><span>主辦方緊急聯絡人</span></label></article>
+</div><p class="callout danger"><strong>尚未完成的外部驗收：</strong>此文件已準備好，但必須在中央大學實際設備或等效環境勾選並留下日期、測試者與畫面，才可把 P0-02 標成完成。</p></section>
+
+<section id="time" class="section wrap"><h2>P0-05｜150 分鐘核心＋30 分鐘彈性</h2><div class="table-wrap"><table><thead><tr><th>場次</th><th>MUST 核心 150 分</th><th>SHOULD／BONUS 30 分</th><th>延誤時先刪</th></tr></thead><tbody>
+<tr><td>上午</td><td>開場與問題 15、Notebook 35、Gem 25、休息 10、Canvas 35、部署 20、成果收束 10</td><td>案例導航 10、Notebook 延伸 5、Canvas 迭代 10、同儕回饋 5</td><td>完整案例導覽、第二輪 Canvas 美化、兩種部署並做</td></tr>
+<tr><td>下午</td><td>Agent 觀念 15、Antigravity／Codex 45、休息 10、Skill 35、PIRLS 30、證據打包 10、收束 5</td><td>跨平台比較 10、Skill 第二輪測試 10、進階統計 5、同儕回饋 5</td><td>雙平台完整重做、進階一致性、延伸案例介紹</td></tr>
+</tbody></table></div><p class="hint">講師每 30 分鐘檢查一次進度；落後 10 分鐘立即切換延誤版，不等到最後才刪內容。</p></section>
+
+<section class="section wrap"><h2>P0-07｜雙階段平台複核</h2><div class="grid grid-2"><article class="card"><h3>T-7 天</h3><label class="check-item"><input type="checkbox"><span>平台名稱與入口</span></label><label class="check-item"><input type="checkbox"><span>按鈕與操作畫面</span></label><label class="check-item"><input type="checkbox"><span>訂閱與功能權限</span></label><label class="check-item"><input type="checkbox"><span>教材截圖</span></label><label class="check-item"><input type="checkbox"><span>講者備註</span></label><label class="check-item"><input type="checkbox"><span>起始包版本</span></label></article><article class="card"><h3>T-24 小時</h3><label class="check-item"><input type="checkbox"><span>所有外部網址</span></label><label class="check-item"><input type="checkbox"><span>24 個案例雙入口</span></label><label class="check-item"><input type="checkbox"><span>檔案下載</span></label><label class="check-item"><input type="checkbox"><span>離線工具</span></label><label class="check-item"><input type="checkbox"><span>範例資料</span></label><label class="check-item"><input type="checkbox"><span>正式版檔案雜湊</span></label></article></div></section>
+
+<section id="release" class="section wrap"><h2>P0-06／P0-08｜正式封版與實機驗收</h2><div class="table-wrap"><table><thead><tr><th>檢查</th><th>驗收標準</th><th>結果</th><th>證據／備註</th></tr></thead><tbody>
+<tr><td>正式檔案</td><td>正式包根目錄只有 START_HERE 與兩份正式簡報入口</td><td><input class="check-cell" type="checkbox" aria-label="正式檔案驗收"></td><td><textarea class="note-input" aria-label="正式檔案證據或備註"></textarea></td></tr>
+<tr><td>舊版封存</td><td>舊簡報移入可復原 ARCHIVE，不刪除</td><td><input class="check-cell" type="checkbox" aria-label="舊版封存驗收"></td><td><textarea class="note-input" aria-label="舊版封存證據或備註"></textarea></td></tr>
+<tr><td>PowerPoint</td><td>無缺字、無溢位、備註正常、雙螢幕正常</td><td><input class="check-cell" type="checkbox" aria-label="PowerPoint 驗收"></td><td><textarea class="note-input" aria-label="PowerPoint 證據或備註"></textarea></td></tr>
+<tr><td>投影可讀性</td><td>後排可辨識最小正文與表格，不以顏色作唯一訊息</td><td><input class="check-cell" type="checkbox" aria-label="投影可讀性驗收"></td><td><textarea class="note-input" aria-label="投影可讀性證據或備註"></textarea></td></tr>
+<tr><td>超連結</td><td>24 個案例按鈕及核心平台逐一實際點擊</td><td><input class="check-cell" type="checkbox" aria-label="超連結驗收"></td><td><textarea class="note-input" aria-label="超連結證據或備註"></textarea></td></tr>
+<tr><td>離線備援</td><td>簡報 PDF、講義 PDF、起始包與工具可在斷網時開啟</td><td><input class="check-cell" type="checkbox" aria-label="離線備援驗收"></td><td><textarea class="note-input" aria-label="離線備援證據或備註"></textarea></td></tr>
+<tr><td>資料安全</td><td>無個資、密碼、API key、未公開研究資料</td><td><input class="check-cell" type="checkbox" aria-label="資料安全驗收"></td><td><textarea class="note-input" aria-label="資料安全證據或備註"></textarea></td></tr>
+</tbody></table></div></section>
+</main><footer><div class="wrap">測試者：<input class="field-input" data-field="tester" aria-label="測試者">　日期：<input class="field-input" data-field="date" type="date" aria-label="日期">　場地／裝置：<input class="field-input" data-field="venue" aria-label="場地或裝置"></div></footer>
+<script>
+(() => {
+  const storageKey = 'ncu-ops-checklist-v1';
+  const checks = [...document.querySelectorAll('input[type="checkbox"]')];
+  const notes = [...document.querySelectorAll('.note-input')];
+  const fields = [...document.querySelectorAll('[data-field]')];
+  const status = document.querySelector('#checkStatus');
+  const read = () => { try { return JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch { return {}; } };
+  const saved = read();
+  checks.forEach((box, index) => { box.checked = Boolean(saved.checks?.[index]); });
+  notes.forEach((note, index) => { note.value = saved.notes?.[index] || ''; });
+  fields.forEach(field => { field.value = saved.fields?.[field.dataset.field] || ''; });
+  const updateStatus = () => { const done = checks.filter(box => box.checked).length; status.textContent = `已完成 ${done}／${checks.length} 項`; };
+  const save = () => {
+    const data = { checks: checks.map(box => box.checked), notes: notes.map(note => note.value), fields: Object.fromEntries(fields.map(field => [field.dataset.field, field.value])) };
+    try { localStorage.setItem(storageKey, JSON.stringify(data)); } catch {}
+    updateStatus();
+  };
+  checks.forEach(box => box.addEventListener('change', save));
+  notes.forEach(note => note.addEventListener('input', save));
+  fields.forEach(field => field.addEventListener('input', save));
+  document.querySelector('#clearChecks').addEventListener('click', () => { checks.forEach(box => { box.checked = false; }); save(); });
+  updateStatus();
+})();
+</script>
+</body></html>

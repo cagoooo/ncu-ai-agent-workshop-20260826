@@ -1,0 +1,15 @@
+timing,resource,url,check,status,last_checked,evidence_or_fallback
+T-7,Gemini Notebook,https://notebook.google.com/,名稱+登入+建立筆記本,待執行,,離線來源包
+T-7,Gem,https://gemini.google.com/gems/create,建立+預覽+儲存,待執行,,Gem指令模板
+T-7,Gemini Canvas,https://gemini.google.com/app,建立單檔網站+預覽,待執行,,Canvas起始站
+T-7,Google Sites,https://sites.google.com/new,建立+預覽+發布權限,待執行,,部署計畫
+T-7,GitHub Pages,https://pages.github.com/,登入+發布文件,待執行,,本機HTML成果
+T-7,Antigravity,https://antigravity.google/,登入+工作區+Skill,待執行,,Codex主線
+T-7,Codex,https://chatgpt.com/codex/,登入+工作區+檔案操作,待執行,,人工任務簡報
+T-24h,Akai案例總入口,https://cagoooo.github.io/Akai/,開啟+搜尋,待執行,,簡報內案例截圖
+T-24h,點亮詩意Pro卡片,https://cagoooo.github.io/Akai/tool/91/,卡片介紹,待執行,,本機來源稽核
+T-24h,點亮詩意Pro應用,https://cagoooo.github.io/PhotoPoet/,主要流程,待執行,,Canvas起始站
+T-24h,提示詞面板,local:04_實作工具/提示詞快捷面板_研習用.html,本機開啟+搜尋+複製,待執行,,Skill產生器內建範例
+T-24h,PIRLS工作台,local:04_實作工具/01_PIRLS資料分析工作台.html,範例+匯入+匯出,待執行,,CSV+SOP人工流程
+T-24h,Skill產生器,local:04_實作工具/02_提示詞升級Skill產生器.html,預覽+ZIP下載,待執行,,完成Skill骨架
+T-24h,證據打包器,local:04_實作工具/03_Agent完成證據打包器.html,預覽+ZIP下載,待執行,,Markdown模板

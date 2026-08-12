@@ -1,0 +1,4 @@
+interface:
+  display_name: "課程與研究工作流"
+  short_description: "將課程與研究來源轉成具證據、安全護欄與人工複核的可驗證成果"
+  default_prompt: "Use $ncu-course-research-workflow to turn my source materials into a verifiable teaching or research workflow."

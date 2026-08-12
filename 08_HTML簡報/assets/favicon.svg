@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AI 教學與研究工作坊</title>
+  <desc id="desc">深藍背景上的發光書本、橋接光帶與 AI 節點</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131f"/>
+      <stop offset="1" stop-color="#102438"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2cd2c7"/>
+      <stop offset=".6" stop-color="#55a7ff"/>
+      <stop offset="1" stop-color="#ff806d"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M74 342 C167 342 185 248 271 248 C350 248 361 183 442 164" fill="none" stroke="url(#beam)" stroke-width="24" stroke-linecap="round" opacity=".94" filter="url(#glow)"/>
+  <path d="M77 342 C167 342 185 248 271 248 C350 248 361 183 442 164" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  <circle cx="442" cy="164" r="34" fill="#102438" stroke="#ff806d" stroke-width="6" filter="url(#glow)"/>
+  <circle cx="442" cy="164" r="10" fill="#ff806d"/>
+  <path d="M112 370 L220 337 L266 363 L157 398 Z" fill="#122d47" stroke="#55a7ff" stroke-width="5"/>
+  <path d="M112 370 L158 402 L266 368 L220 337 Z" fill="#0b1c2e" stroke="#2cd2c7" stroke-width="5"/>
+  <path d="M158 402 V357 L220 337 V382" fill="none" stroke="#55a7ff" stroke-width="5"/>
+  <path d="M274 248 L307 274 L339 241" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  <circle cx="274" cy="248" r="8" fill="#2cd2c7"/>
+  <circle cx="307" cy="274" r="8" fill="#55a7ff"/>
+  <circle cx="339" cy="241" r="8" fill="#ff806d"/>
+</svg>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PIRLS 風格學生資料分析工作台</title>
+  <link rel="stylesheet" href="../assets/workshop.css">
+  <style>
+    .app-hero{padding-bottom:1.2rem}.workspace{padding-bottom:4rem}.panel{display:none}.panel.active{display:block}.answer-key{display:grid;grid-template-columns:repeat(6,minmax(80px,1fr));gap:.7rem}.scroll-note{display:none}.code-0{border-left:4px solid #c43d3d}.code-1{border-left:4px solid #d97706}.code-2{border-left:4px solid #16834a}.review-row textarea{min-height:4.5rem}.mono{font-family:ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}.sticky-actions{position:sticky;bottom:0;padding:.8rem;background:rgba(247,243,235,.94);border-top:1px solid var(--line);backdrop-filter:blur(10px);z-index:10}
+    @media(max-width:720px){.answer-key{grid-template-columns:repeat(2,1fr)}.scroll-note{display:block}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar"><div class="brand">PIRLS 風格資料分析工作台</div><nav><a href="#load">匯入</a><a href="#quality">品質</a><a href="#mc">選擇題</a><a href="#cr">簡答題</a><a href="#review">複核</a></nav></header>
+<main id="main" class="workspace">
+  <section class="hero app-hero wrap"><div class="eyebrow">Offline-first · Human in the loop</div><h1>先把資料看清楚，<br>再請 AI 協助判讀。</h1><p class="lead">本工具在瀏覽器記憶體中處理 CSV，不連接任何 AI API、不保存資料。AI 初編透過「複製提示詞 → 使用自己的 ChatGPT／Gemini → 貼回 JSON」完成，人工最終碼永遠另欄保存。</p><div class="callout danger"><strong>僅供教學與研究練習：</strong>內建資料為工作坊合成案例，不是正式 PIRLS 題目。請勿匯入姓名、學號、信箱或其他可識別學生資料。</div></section>
+
+  <section class="wrap">
+    <div class="tabs no-print" role="tablist" aria-label="工作流程">
+      <button class="tab active" data-panel="load">1 匯入</button><button class="tab" data-panel="quality">2 品質</button><button class="tab" data-panel="mc">3 選擇題</button><button class="tab" data-panel="cr">4 AI 初編</button><button class="tab" data-panel="review">5 人工複核</button><button class="tab" data-panel="export">6 匯出</button>
+    </div>
+
+    <section id="load" class="panel active">
+      <div class="section-head"><div><div class="eyebrow">Step 1</div><h2>匯入去識別 CSV</h2></div><p>每列一位學習者；必要欄位：student_id、group、Q1–Q6、CR1_response。</p></div>
+      <div class="grid grid-2">
+        <article class="card"><h3>使用工作坊範例</h3><p>18 筆合成學生資料，可完整操作全部流程。</p><button class="btn" id="loadSample">載入合成資料</button></article>
+        <article class="card"><h3>匯入自己的去識別資料</h3><label class="field"><span>選擇 CSV</span><input id="csvFile" type="file" accept=".csv,text/csv"></label><p class="hint">資料只存在本頁記憶體；重新整理後即清除。</p></article>
+      </div>
+      <div id="loadStatus" class="callout" style="margin-top:1rem" aria-live="polite">尚未載入資料。</div>
+      <div class="section" id="previewArea" hidden><h3>資料預覽</h3><p class="scroll-note hint">表格可左右捲動。</p><div class="table-wrap"><table id="previewTable"></table></div></div>
+    </section>
+
+    <section id="quality" class="panel">
+      <div class="section-head"><div><div class="eyebrow">Step 2</div><h2>資料品質檢查</h2></div><p>先確認分析單位、唯一鍵、完整性與允許值。警告不等於資料必然錯誤，但必須先說明。</p></div>
+      <div id="qualityMetrics" class="grid grid-4"></div>
+      <div class="section"><div class="table-wrap"><table><thead><tr><th>嚴重度</th><th>檢查</th><th>證據</th><th>分析風險</th><th>建議處理</th></tr></thead><tbody id="qualityBody"></tbody></table></div></div>
+    </section>
+
+    <section id="mc" class="panel">
+      <div class="section-head"><div><div class="eyebrow">Step 3</div><h2>選擇題表現分析</h2></div><p>答案鍵可修改。百分比以有效答案為分母，空白另列，不會默默排除。</p></div>
+      <div class="card"><h3>答案鍵</h3><div class="answer-key" id="answerKey"></div><button class="btn" id="scoreBtn">重新計算</button></div>
+      <div class="section"><h3>整體摘要</h3><div id="mcMetrics" class="grid grid-4"></div></div>
+      <div class="section"><h3>逐題答對率與作答分布</h3><div class="table-wrap"><table><thead><tr><th>題目</th><th>答案</th><th>有效／空白</th><th>答對率</th><th>A／B／C／D</th></tr></thead><tbody id="itemBody"></tbody></table></div></div>
+      <div class="section"><h3>分組摘要</h3><div class="table-wrap"><table><thead><tr><th>組別</th><th>樣本數</th><th>平均答對題數</th><th>平均答對率</th><th>提醒</th></tr></thead><tbody id="groupBody"></tbody></table></div></div>
+    </section>
+
+    <section id="cr" class="panel">
+      <div class="section-head"><div><div class="eyebrow">Step 4</div><h2>產生 AI 初編提示詞</h2></div><p>先固定規準，再讓 AI 對每筆回答輸出結構化 JSON。空白回答可直接標 0 分並進入人工複核。</p></div>
+      <div class="grid grid-2">
+        <label class="field"><span>題目</span><textarea id="crQuestion">為什麼作者說共享花園改變的不只是風景？請根據文章說明兩個理由。</textarea></label>
+        <label class="field"><span>編碼規準</span><textarea id="rubric">2 分：同時指出環境／空間改善，以及社會／社群關係改變。
+1 分：只提出一個有效面向，或第二個理由過度籠統。
+0 分：無關、重述、只表達喜好、無法判斷或空白。</textarea></label>
+      </div>
+      <div class="toolbar no-print"><button class="btn" id="makePrompt">產生提示詞</button><button class="btn secondary" id="copyPrompt">複製提示詞</button></div>
+      <label class="field"><span>可貼入 ChatGPT／Gemini 的完整提示詞</span><textarea id="aiPrompt" class="mono" rows="18" readonly></textarea></label>
+      <div class="callout safe"><strong>資料安全：</strong>本工具不呼叫 AI。請先確認貼出的資料完全去識別；正式研究另需遵守研究倫理與校內規範。</div>
+      <div class="section"><h3>貼回 AI 的 JSON</h3><p class="hint">接受 JSON 陣列，欄位為 student_id、ai_code、evidence_excerpt、rationale、confidence、needs_human_review。</p><textarea id="aiJson" class="mono" placeholder='[{"student_id":"S001","ai_code":2,"evidence_excerpt":"...","rationale":"...","confidence":0.9,"needs_human_review":false}]'></textarea><div class="toolbar no-print"><button class="btn teal" id="importAi">匯入 AI 初編</button><button class="btn secondary" id="loadDemoAi">載入示範初編</button></div><div id="aiStatus" class="callout">尚未匯入 AI 初編。</div></div>
+    </section>
+
+    <section id="review" class="panel">
+      <div class="section-head"><div><div class="eyebrow">Step 5</div><h2>人工複核</h2></div><p>預設把空白、低信心、AI 自行標記及極端分數送入人工檢查；正式研究可依規準擴大抽查。</p></div>
+      <div id="reviewMetrics" class="grid grid-4"></div>
+      <div class="toolbar no-print"><label><input type="checkbox" id="showAll"> 顯示全部，不只待複核</label><button class="btn secondary" id="confirmVisible">將可見列標為已複核</button></div>
+      <div class="table-wrap"><table><thead><tr><th>ID／組別</th><th>學生回答</th><th>AI 初編與證據</th><th>人工最終碼</th><th>複核狀態與備註</th></tr></thead><tbody id="reviewBody"></tbody></table></div>
+    </section>
+
+    <section id="export" class="panel">
+      <div class="section-head"><div><div class="eyebrow">Step 6</div><h2>匯出可追溯成果</h2></div><p>原始答案、AI 初編與人工最終碼分欄保存。未複核者不會被偽裝成完成。</p></div>
+      <div class="grid grid-3">
+        <article class="card"><h3>完整分析 CSV</h3><p>包含選擇題得分、AI 初編、證據、人工最終碼與複核狀態。</p><button class="btn" id="exportCsv">下載 CSV</button></article>
+        <article class="card"><h3>資料品質報告</h3><p>輸出檢查項目、嚴重度、證據、風險與建議處理。</p><button class="btn secondary" id="exportQuality">下載報告</button></article>
+        <article class="card"><h3>清除工作資料</h3><p>清除本頁記憶體中的匯入資料與複核狀態。</p><button class="btn coral" id="clearData">清除資料</button></article>
+      </div>
+    </section>
+  </section>
+</main>
+<footer><div class="wrap">工作坊合成案例｜AI 初編不得取代人工正式評分｜阿凱老師・桃園市龍潭區石門國民小學</div></footer>
+<script src="../assets/common.js"></script>
+<script>
+const SAMPLE=`student_id,group,Q1,Q2,Q3,Q4,Q5,Q6,CR1_response
+S001,A,A,C,B,D,B,A,因為花園讓空地變漂亮，也讓原本不熟的居民一起種菜和聊天。
+S002,A,A,C,B,C,B,A,大家可以一起種植物，所以社區的人更認識彼此。
+S003,A,B,C,B,D,B,A,空地不再髒亂，大家也有地方一起活動。
+S004,A,A,C,A,D,B,A,因為有很多花。
+S005,A,A,B,B,D,C,A,居民一起照顧花園，還把收成分享給需要的人。
+S006,A,A,C,B,D,B,B,風景變漂亮，社區也變得比較熱鬧。
+S007,A,C,C,B,D,B,A,作者喜歡花園。
+S008,A,A,C,B,D,A,A,
+S009,A,A,C,B,D,B,A,除了改善環境，花園讓不同年齡的人合作並建立關係。
+S010,B,A,C,B,D,B,A,大家把垃圾清掉，並且一起討論要種什麼和怎麼分工。
+S011,B,A,C,D,D,B,A,它讓社區有新的地方。
+S012,B,A,B,B,D,B,A,居民可以種菜，孩子也能學習植物知識。
+S013,B,B,C,B,A,B,A,因為本來是空地，後來變花園。
+S014,B,A,C,B,D,B,A,環境改善之外，居民共同維護花園，形成互助和分享。
+S015,B,A,C,B,D,C,A,花園裡有菜和花，大家看了很開心。
+S016,B,A,A,B,D,B,A,它讓人們一起工作，也把收成送給社區長者。
+S017,B,A,C,B,D,B,A,風景更好，而且居民有共同目標，會互相幫忙。
+S018,B,D,C,B,D,B,A,因為共享花園很重要。`;
+const DEMO_AI=[
+{student_id:"S001",ai_code:2,evidence_excerpt:"空地變漂亮；居民一起種菜和聊天",rationale:"同時包含環境與社群面向",confidence:.95,needs_human_review:false},
+{student_id:"S002",ai_code:1,evidence_excerpt:"一起種植物；更認識彼此",rationale:"只有社群面向",confidence:.88,needs_human_review:false},
+{student_id:"S003",ai_code:2,evidence_excerpt:"不再髒亂；一起活動",rationale:"環境與社群面向",confidence:.92,needs_human_review:false},
+{student_id:"S004",ai_code:1,evidence_excerpt:"有很多花",rationale:"只有景觀描述",confidence:.86,needs_human_review:false},
+{student_id:"S005",ai_code:1,evidence_excerpt:"一起照顧；分享收成",rationale:"社群面向清楚，但環境改善不明確",confidence:.72,needs_human_review:true},
+{student_id:"S006",ai_code:2,evidence_excerpt:"風景變漂亮；社區熱鬧",rationale:"兩面向可辨識",confidence:.84,needs_human_review:false},
+{student_id:"S007",ai_code:0,evidence_excerpt:"作者喜歡花園",rationale:"與兩類改變無關",confidence:.94,needs_human_review:true},
+{student_id:"S008",ai_code:0,evidence_excerpt:"",rationale:"空白",confidence:1,needs_human_review:true},
+{student_id:"S009",ai_code:2,evidence_excerpt:"改善環境；跨年齡合作",rationale:"完整兩面向",confidence:.98,needs_human_review:false},
+{student_id:"S010",ai_code:2,evidence_excerpt:"清理環境；討論分工",rationale:"完整兩面向",confidence:.91,needs_human_review:false},
+{student_id:"S011",ai_code:0,evidence_excerpt:"有新的地方",rationale:"過度籠統",confidence:.68,needs_human_review:true},
+{student_id:"S012",ai_code:1,evidence_excerpt:"種菜；學習植物知識",rationale:"有效用途但未清楚說明環境改善",confidence:.75,needs_human_review:true},
+{student_id:"S013",ai_code:1,evidence_excerpt:"空地變花園",rationale:"只有環境面向",confidence:.9,needs_human_review:false},
+{student_id:"S014",ai_code:2,evidence_excerpt:"環境改善；互助分享",rationale:"完整兩面向",confidence:.97,needs_human_review:false},
+{student_id:"S015",ai_code:1,evidence_excerpt:"菜和花；很開心",rationale:"主要是景觀與情緒",confidence:.63,needs_human_review:true},
+{student_id:"S016",ai_code:1,evidence_excerpt:"一起工作；送給長者",rationale:"社群面向，環境改善未明確",confidence:.82,needs_human_review:false},
+{student_id:"S017",ai_code:2,evidence_excerpt:"風景更好；共同目標互助",rationale:"完整兩面向",confidence:.96,needs_human_review:false},
+{student_id:"S018",ai_code:0,evidence_excerpt:"很重要",rationale:"未提供理由",confidence:.95,needs_human_review:true}
+];
+const QCOLS=["Q1","Q2","Q3","Q4","Q5","Q6"], DEFAULT_KEY={Q1:"A",Q2:"C",Q3:"B",Q4:"D",Q5:"B",Q6:"A"};
+let rows=[], quality=[], aiMap=new Map(), reviewMap=new Map();
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+function switchPanel(id){$$('.panel').forEach(p=>p.classList.toggle('active',p.id===id));$$('.tab').forEach(b=>b.classList.toggle('active',b.dataset.panel===id));location.hash=id; if(id==='quality')renderQuality(); if(id==='mc')score(); if(id==='review')renderReview();}
+$$('.tab').forEach(b=>b.addEventListener('click',()=>switchPanel(b.dataset.panel)));
+
+function loadText(text,label){try{const parsed=Workshop.parseCsv(text);if(!parsed.length)throw new Error('沒有可讀取的資料列');rows=parsed.map(r=>({...r}));aiMap.clear();reviewMap.clear();$('#loadStatus').className='callout safe';$('#loadStatus').innerHTML=`已載入 <strong>${rows.length}</strong> 列：${Workshop.esc(label)}。資料只保留於本頁記憶體。`;renderPreview();runQuality();score();makePrompt();renderReview();}catch(e){$('#loadStatus').className='callout danger';$('#loadStatus').textContent='載入失敗：'+e.message;}}
+$('#loadSample').addEventListener('click',()=>loadText(SAMPLE,'工作坊合成資料'));
+$('#csvFile').addEventListener('change',async e=>{const f=e.target.files[0];if(f)loadText(await f.text(),f.name)});
+
+function renderPreview(){const area=$('#previewArea');area.hidden=!rows.length;if(!rows.length)return;const cols=Object.keys(rows[0]);$('#previewTable').innerHTML=`<thead><tr>${cols.map(c=>`<th>${Workshop.esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.slice(0,8).map(r=>`<tr>${cols.map(c=>`<td>${Workshop.esc(r[c])}</td>`).join('')}</tr>`).join('')}</tbody>`;}
+function issue(sev,check,evidence,risk,fix){quality.push({severity:sev,check,evidence,risk,fix});}
+function runQuality(){quality=[];if(!rows.length){renderQuality();return}const required=['student_id','group',...QCOLS,'CR1_response'];const cols=Object.keys(rows[0]);const missing=required.filter(c=>!cols.includes(c));if(missing.length)issue('Critical','必要欄位',`缺少：${missing.join('、')}`,'無法執行指定分析','補齊欄位或建立欄位映射');else issue('OK','必要欄位','必要欄位完整','可進入後續檢查','無');const ids=rows.map(r=>(r.student_id||'').trim());const blankIds=ids.filter(x=>!x).length;const dup=[...new Set(ids.filter((x,i)=>x&&ids.indexOf(x)!==i))];issue(blankIds?'Critical':'OK','student_id 完整性',`空白 ${blankIds} 筆`,blankIds?'紀錄無法追溯':'無明顯風險',blankIds?'補上唯一去識別代碼':'無');issue(dup.length?'Critical':'OK','student_id 唯一性',dup.length?`重複：${dup.join('、')}`:'無重複',dup.length?'可能重複計算或覆蓋複核':'無明顯風險',dup.length?'查明重複來源後去重':'無');const invalid=[];rows.forEach(r=>QCOLS.forEach(q=>{const v=(r[q]||'').trim().toUpperCase();if(v&&!['A','B','C','D'].includes(v))invalid.push(`${r.student_id}/${q}=${v}`)}));issue(invalid.length?'High':'OK','選擇題允許值',invalid.length?invalid.slice(0,8).join('、')+(invalid.length>8?'…':''):'全部為 A–D 或空白',invalid.length?'答對率分母與選項分布失真':'無明顯風險',invalid.length?'修正輸入或標記缺失':'無');const blanks=rows.filter(r=>!(r.CR1_response||'').trim()).length;issue(blanks?'Medium':'OK','簡答題完整性',`空白 ${blanks} 筆`,blanks?'需區分未作答與匯入遺失':'無明顯風險',blanks?'送人工確認並保留空白狀態':'無');const groups={};rows.forEach(r=>groups[r.group||'(空白)']=(groups[r.group||'(空白)']||0)+1);issue(Object.values(groups).some(n=>n<5)?'Medium':'OK','分組樣本數',Object.entries(groups).map(([g,n])=>`${g}:${n}`).join('、'),'小樣本差異容易被誇大','報告樣本數並避免因果語言');renderQuality();}
+function badge(sev){const cls=sev==='OK'?'ok':sev==='Medium'?'warn':'bad';return `<span class="status ${cls}">${sev}</span>`}
+function renderQuality(){const crit=quality.filter(x=>x.severity==='Critical').length, high=quality.filter(x=>x.severity==='High').length, med=quality.filter(x=>x.severity==='Medium').length;$('#qualityMetrics').innerHTML=[['資料列',rows.length],['Critical',crit],['High',high],['Medium',med]].map(([k,v])=>`<article class="card"><div class="kicker">${k}</div><div class="metric">${v}</div></article>`).join('');$('#qualityBody').innerHTML=quality.length?quality.map(x=>`<tr><td>${badge(x.severity)}</td><td>${Workshop.esc(x.check)}</td><td>${Workshop.esc(x.evidence)}</td><td>${Workshop.esc(x.risk)}</td><td>${Workshop.esc(x.fix)}</td></tr>`).join(''):'<tr><td colspan="5">請先載入資料。</td></tr>';}
+
+function initKey(){$('#answerKey').innerHTML=QCOLS.map(q=>`<label class="field"><span>${q}</span><select data-key="${q}">${['A','B','C','D'].map(v=>`<option ${DEFAULT_KEY[q]===v?'selected':''}>${v}</option>`).join('')}</select></label>`).join('')}
+function key(){return Object.fromEntries($$('[data-key]').map(s=>[s.dataset.key,s.value]))}
+function score(){if(!rows.length){$('#mcMetrics').innerHTML='';$('#itemBody').innerHTML='<tr><td colspan="5">請先載入資料。</td></tr>';$('#groupBody').innerHTML='<tr><td colspan="5">請先載入資料。</td></tr>';return}const k=key();rows.forEach(r=>{r._correct=QCOLS.reduce((n,q)=>n+(((r[q]||'').trim().toUpperCase()===k[q])?1:0),0)});const overall=rows.reduce((n,r)=>n+r._correct,0)/(rows.length*QCOLS.length);const blank=rows.reduce((n,r)=>n+QCOLS.filter(q=>!(r[q]||'').trim()).length,0);$('#mcMetrics').innerHTML=[['樣本數',rows.length],['總題數',QCOLS.length],['平均答對',`${(overall*QCOLS.length).toFixed(2)} 題`],['整體答對率',`${(overall*100).toFixed(1)}%`]].map(([k,v])=>`<article class="card"><div class="kicker">${k}</div><div class="metric">${v}</div></article>`).join('');$('#itemBody').innerHTML=QCOLS.map(q=>{const vals=rows.map(r=>(r[q]||'').trim().toUpperCase()),valid=vals.filter(v=>['A','B','C','D'].includes(v)),correct=valid.filter(v=>v===k[q]).length,counts=Object.fromEntries(['A','B','C','D'].map(v=>[v,valid.filter(x=>x===v).length]));const pct=valid.length?correct/valid.length:0;return `<tr><td>${q}</td><td>${k[q]}</td><td>${valid.length}／${rows.length-valid.length}</td><td><strong>${(pct*100).toFixed(1)}%</strong><div class="bar"><span style="width:${pct*100}%"></span></div></td><td>${['A','B','C','D'].map(v=>`${v}:${counts[v]}`).join('　')}</td></tr>`}).join('');const groups=[...new Set(rows.map(r=>r.group||'(空白)'))];$('#groupBody').innerHTML=groups.map(g=>{const rs=rows.filter(r=>(r.group||'(空白)')===g),avg=rs.reduce((n,r)=>n+r._correct,0)/rs.length;return `<tr><td>${Workshop.esc(g)}</td><td>${rs.length}</td><td>${avg.toFixed(2)}</td><td>${(avg/QCOLS.length*100).toFixed(1)}%</td><td>${rs.length<5?'<span class="status warn">小樣本，謹慎解讀</span>':'描述性比較，不宣稱因果'}</td></tr>`}).join('');}
+$('#scoreBtn').addEventListener('click',score);initKey();
+
+function makePrompt(){if(!rows.length){$('#aiPrompt').value='請先載入資料。';return}const records=rows.map(r=>({student_id:r.student_id,response:r.CR1_response||''}));$('#aiPrompt').value=`你是教育研究的簡答題初步編碼助理。請嚴格依據題目與規準逐筆初編，不得參考未提供的答案，不得把初編視為正式評分。\n\n題目：\n${$('#crQuestion').value.trim()}\n\n編碼規準：\n${$('#rubric').value.trim()}\n\n規則：\n1. ai_code 只能是 0、1、2。\n2. evidence_excerpt 只能摘錄該生回答中的短片段；空白則為空字串。\n3. confidence 為 0 到 1。\n4. 空白、低信心、邊界或理由不足時，needs_human_review 必須為 true。\n5. 只輸出合法 JSON 陣列，不要 Markdown code fence 或額外說明。\n6. 每個物件欄位固定為 student_id、ai_code、evidence_excerpt、rationale、confidence、needs_human_review。\n\n資料：\n${JSON.stringify(records,null,2)}`;}
+$('#makePrompt').addEventListener('click',makePrompt);$('#copyPrompt').addEventListener('click',()=>Workshop.copy($('#aiPrompt').value,$('#copyPrompt')));$('#loadDemoAi').addEventListener('click',()=>{$('#aiJson').value=JSON.stringify(DEMO_AI,null,2)});
+function importAi(){try{const raw=$('#aiJson').value.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/,'');const data=JSON.parse(raw);if(!Array.isArray(data))throw new Error('最外層必須是 JSON 陣列');const ids=new Set(rows.map(r=>r.student_id));const errors=[];data.forEach((x,i)=>{if(!ids.has(String(x.student_id)))errors.push(`第 ${i+1} 筆 student_id 不存在`);if(![0,1,2].includes(Number(x.ai_code)))errors.push(`第 ${i+1} 筆 ai_code 不合法`);const conf=Number(x.confidence);if(!Number.isFinite(conf)||conf<0||conf>1)errors.push(`第 ${i+1} 筆 confidence 不合法`)});if(errors.length)throw new Error(errors.slice(0,5).join('；'));aiMap=new Map(data.map(x=>[String(x.student_id),{student_id:String(x.student_id),ai_code:Number(x.ai_code),evidence_excerpt:String(x.evidence_excerpt||''),rationale:String(x.rationale||''),confidence:Number(x.confidence),needs_human_review:Boolean(x.needs_human_review)}]));rows.forEach(r=>{if(!reviewMap.has(r.student_id))reviewMap.set(r.student_id,{final_code:'',review_status:'pending',reviewer_notes:''})});$('#aiStatus').className='callout safe';$('#aiStatus').innerHTML=`已匯入 <strong>${aiMap.size}</strong> 筆 AI 初編；缺少 ${rows.length-aiMap.size} 筆。請進入人工複核。`;renderReview();}catch(e){$('#aiStatus').className='callout danger';$('#aiStatus').textContent='匯入失敗：'+e.message;}}
+$('#importAi').addEventListener('click',importAi);
+function needsReview(r,a){return !a||!(r.CR1_response||'').trim()||a.needs_human_review||a.confidence<.8||a.ai_code===0||a.ai_code===2}
+function renderReview(){const all=$('#showAll').checked;const list=rows.filter(r=>all||needsReview(r,aiMap.get(r.student_id)));const pending=rows.filter(r=>needsReview(r,aiMap.get(r.student_id))&&(reviewMap.get(r.student_id)?.review_status!=='confirmed')).length;const confirmed=[...reviewMap.values()].filter(x=>x.review_status==='confirmed').length;$('#reviewMetrics').innerHTML=[['總資料',rows.length],['AI 初編',aiMap.size],['待人工複核',pending],['已人工確認',confirmed]].map(([k,v])=>`<article class="card"><div class="kicker">${k}</div><div class="metric">${v}</div></article>`).join('');$('#reviewBody').innerHTML=list.length?list.map(r=>{const a=aiMap.get(r.student_id),rv=reviewMap.get(r.student_id)||{final_code:'',review_status:'pending',reviewer_notes:''};const cls=a?`code-${a.ai_code}`:'';return `<tr class="review-row ${cls}" data-id="${Workshop.esc(r.student_id)}"><td><strong>${Workshop.esc(r.student_id)}</strong><br><span class="muted">組別 ${Workshop.esc(r.group)}</span></td><td>${Workshop.esc(r.CR1_response||'(空白)')}</td><td>${a?`<strong>${a.ai_code} 分</strong>／信心 ${(a.confidence*100).toFixed(0)}%<br><span class="small">證據：${Workshop.esc(a.evidence_excerpt||'(無)')}<br>理由：${Workshop.esc(a.rationale)}<br>${a.needs_human_review?'<span class="status warn">AI 建議複核</span>':''}</span>`:'<span class="status bad">尚無 AI 初編</span>'}</td><td><select class="final-code"><option value="" ${rv.final_code===''?'selected':''}>未判定</option><option value="0" ${rv.final_code==='0'?'selected':''}>0</option><option value="1" ${rv.final_code==='1'?'selected':''}>1</option><option value="2" ${rv.final_code==='2'?'selected':''}>2</option></select></td><td><select class="review-status"><option value="pending" ${rv.review_status==='pending'?'selected':''}>待複核</option><option value="confirmed" ${rv.review_status==='confirmed'?'selected':''}>已人工確認</option><option value="unresolved" ${rv.review_status==='unresolved'?'selected':''}>歧異未解</option></select><textarea class="review-notes" placeholder="人工理由／歧異說明">${Workshop.esc(rv.reviewer_notes)}</textarea></td></tr>`}).join(''):'<tr><td colspan="5">目前沒有符合篩選條件的資料。</td></tr>';$$('.review-row').forEach(tr=>{const id=tr.dataset.id;const save=()=>{reviewMap.set(id,{final_code:tr.querySelector('.final-code').value,review_status:tr.querySelector('.review-status').value,reviewer_notes:tr.querySelector('.review-notes').value})};tr.querySelectorAll('select,textarea').forEach(el=>el.addEventListener('change',save))});}
+$('#showAll').addEventListener('change',renderReview);$('#confirmVisible').addEventListener('click',()=>{$$('.review-row').forEach(tr=>{const id=tr.dataset.id,rv=reviewMap.get(id)||{};const final=tr.querySelector('.final-code');if(final.value===''){const a=aiMap.get(id);if(a)final.value=String(a.ai_code)}tr.querySelector('.review-status').value='confirmed';reviewMap.set(id,{final_code:final.value,review_status:'confirmed',reviewer_notes:tr.querySelector('.review-notes').value||'工作坊人工複核'})});renderReview()});
+
+function exportRows(){const k=key();return rows.map(r=>{const a=aiMap.get(r.student_id)||{},rv=reviewMap.get(r.student_id)||{};const out={student_id:r.student_id,group:r.group};QCOLS.forEach(q=>{out[q]=r[q];out[`${q}_correct`]=(r[q]||'').trim().toUpperCase()===k[q]?1:0});return {...out,mc_total:r._correct??'',CR1_response:r.CR1_response,ai_code:a.ai_code??'',evidence_excerpt:a.evidence_excerpt??'',ai_rationale:a.rationale??'',ai_confidence:a.confidence??'',ai_needs_human_review:a.needs_human_review??'',human_final_code:rv.final_code??'',review_status:rv.review_status??'pending',reviewer_notes:rv.reviewer_notes??''}})}
+$('#exportCsv').addEventListener('click',()=>{if(!rows.length)return alert('請先載入資料');Workshop.download('PIRLS風格_分析與人工複核成果.csv',Workshop.toCsv(exportRows()),'text/csv;charset=utf-8')});
+$('#exportQuality').addEventListener('click',()=>{if(!quality.length)return alert('請先載入資料');const text=['PIRLS 風格資料品質報告','產生時間：'+new Date().toLocaleString('zh-TW'),'分析單位：每列一位去識別學習者','',...quality.map((x,i)=>`${i+1}. [${x.severity}] ${x.check}\n證據：${x.evidence}\n風險：${x.risk}\n建議：${x.fix}\n`)].join('\n');Workshop.download('PIRLS風格_資料品質報告.txt',text)});
+$('#clearData').addEventListener('click',()=>{if(!confirm('確定清除本頁記憶體中的資料與複核狀態？'))return;rows=[];quality=[];aiMap.clear();reviewMap.clear();$('#csvFile').value='';$('#aiJson').value='';$('#aiPrompt').value='';$('#loadStatus').className='callout';$('#loadStatus').textContent='資料已清除。';$('#previewArea').hidden=true;renderQuality();score();renderReview();});
+makePrompt();renderQuality();score();renderReview();
+if(location.hash&&$(location.hash))switchPanel(location.hash.slice(1));
+</script>
+</body></html>

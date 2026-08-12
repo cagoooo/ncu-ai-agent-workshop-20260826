@@ -1,0 +1,13 @@
+category,check_item,expected,actual,status,tester,date,evidence_or_fallback
+網路,六台裝置同時連線,皆能穩定開啟核心平台,,待場測,,,
+登入,Google OAuth,可登入且無組織封鎖,,待場測,,,
+登入,OpenAI ChatGPT與Codex,可登入且功能可用,,待場測,,,
+平台,Gemini Notebook+Gem+Canvas,可建立與儲存成果,,待場測,,,
+平台,Antigravity,依訂閱與管理政策可使用,,待場測,,,
+部署,Google Sites,可建立或至少可預覽分享流程,,待場測,,,
+部署,GitHub Pages,可登入GitHub並查看發布設定,,待場測,,,
+設備,16比9投影與後排可讀性,無裁切且最小字可辨識,,待場測,,,
+設備,HDMI或USB-C轉接,講師裝置可輸出,,待場測,,,
+設備,雙螢幕講者備註,投影與講者畫面正確,,待場測,,,
+權限,安裝與下載,能開啟HTML及下載CSV/ZIP,,待場測,,,
+備援,斷網模式,可開啟簡報PDF/講義/離線工具,,待場測,,,

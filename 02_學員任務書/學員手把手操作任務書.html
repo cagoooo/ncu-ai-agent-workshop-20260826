@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>學員手把手操作任務書｜中央大學 AI 教學與研究工作坊</title>
+  <link rel="stylesheet" href="../assets/workshop.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar">
+  <div class="brand">NCU × 阿凱老師｜操作任務書</div>
+  <nav aria-label="頁面導覽"><a href="#morning">上午</a><a href="#afternoon">下午</a><a href="#fallback">備援</a><a href="#evidence">成果證據</a></nav>
+</header>
+<main id="main">
+  <section class="hero wrap">
+    <div class="eyebrow">2026.08.26 · Hands-on Workbook</div>
+    <h1>從 AI 教學與研究助理<br>到會做事的 AI Agent</h1>
+    <p class="lead">本任務書不是工具說明書，而是一條可完成、可檢核、可帶走的實作路線。請沿用同一門課程、同一份研究素材或同一個真實問題完成全天任務。</p>
+    <div class="meta"><span class="pill">上午 3 小時</span><span class="pill">下午 3 小時</span><span class="pill">6 位教授小班共作</span><span class="pill">合成／去識別資料</span></div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head"><div><div class="eyebrow">Before class</div><h2>開始前 5 分鐘</h2></div><p>先完成環境確認，再進入實作。若某平台無權限，請直接切換替代路徑，不要共用帳號。</p></div>
+    <div class="grid grid-3">
+      <article class="card"><div class="kicker">01 · 問題</div><h3>選定一個真實情境</h3><p>用一句話寫下：我要幫助誰，在什麼情境下，完成什麼任務。</p></article>
+      <article class="card"><div class="kicker">02 · 素材</div><h3>準備 3–5 份來源</h3><p>課程大綱、研究摘要、評量規準、教學文件或合成資料；不要上傳可識別學生資料。</p></article>
+      <article class="card"><div class="kicker">03 · 成果資料夾</div><h3>集中保存證據</h3><p>建立一個專案資料夾，保存提示詞、輸出、截圖、測試紀錄、已知限制與分享連結。</p></article>
+    </div>
+    <div class="callout warn" style="margin-top:1rem"><strong>帳號分流：</strong>同時有 Gemini 與 ChatGPT 者走完整 A 線；只有 ChatGPT 者上午採 B 線，使用完成範例觀察、共同備課及替代成果，下午以 Codex 為主。任何情況都不交換密碼。</div>
+  </section>
+
+  <section id="morning" class="section wrap">
+    <div class="section-head"><div><div class="eyebrow">Morning</div><h2>上午：打造 AI 教學與研究工作室</h2></div><p>完成一個來源型工作區、一個穩定角色、一個互動原型，以及一個可分享成果。</p></div>
+    <div class="steps">
+      <article class="step">
+        <h3>任務 M1｜建立 Gemini Notebook</h3>
+        <p><strong>目標：</strong>用自己的來源回答問題，並能回到引用位置核對。</p>
+        <ol><li>開啟 Gemini Notebook，建立新筆記本。</li><li>加入 3–5 份來源，確認檔名可辨識。</li><li>依序提出理解、比較、轉化三層問題。</li><li>故意問一個來源沒有答案的問題，記錄系統邊界。</li><li>選一項輸出轉成課程摘要、研究問題或教學活動。</li></ol>
+        <p><strong>完成證據：</strong>筆記本名稱、三個問題、至少一個可追溯引用、成品摘要。</p>
+        <div class="card-actions no-print"><a class="btn" href="https://notebook.google.com/" target="_blank" rel="noopener">開啟 Gemini Notebook</a><a class="btn secondary" href="../03_起始成果包/01_Gemini_Notebook來源包/來源包使用說明.txt">使用來源包</a></div>
+        <p class="callout"><strong>B 線：</strong>使用來源包閱讀講師完成範例，整理「來源、問題、引用、轉化」四欄觀察表；課後取得 Gemini 權限再補做。</p>
+      </article>
+      <article class="step">
+        <h3>任務 M2｜建立專屬 Gem</h3>
+        <p><strong>目標：</strong>把重複使用的教學或研究方法，保存成具有穩定角色與輸出格式的 Gem。</p>
+        <ol><li>先填角色、任務、背景、格式四格。</li><li>加入必要限制：來源不足時承認、不得虛構學生資料、輸出標示假設。</li><li>用一個正常案例與一個反例測試。</li><li>根據失敗結果修改指令，再測一次。</li></ol>
+        <p><strong>完成證據：</strong>Gem 名稱、完整指令、正常案例、反例、一次修改紀錄。</p>
+        <div class="card-actions no-print"><a class="btn" href="https://gemini.google.com/gems/create" target="_blank" rel="noopener">建立 Gem</a><a class="btn secondary" href="../03_起始成果包/02_Gem教學與研究助理/Gem指令模板.txt">開啟模板</a></div>
+        <p class="callout"><strong>B 線：</strong>將同一份四格指令放進 ChatGPT 自訂指令或專案對話，完成同樣的正常／反例測試。</p>
+      </article>
+      <article class="step">
+        <h3>任務 M3｜用 Gemini Canvas 建立互動原型</h3>
+        <p><strong>目標：</strong>把來源與教學方法轉成可操作的單頁網站。</p>
+        <ol><li>描述使用者、學習目標、輸入、互動、輸出與限制。</li><li>要求產出單檔 HTML／CSS／JavaScript。</li><li>預覽後測試空白、長文字、手機寬度及錯誤輸入。</li><li>修正一個可見問題，留下前後畫面。</li></ol>
+        <p><strong>完成證據：</strong>需求提示詞、可操作原型、至少一項測試與修正。</p>
+        <div class="card-actions no-print"><a class="btn" href="https://gemini.google.com/app" target="_blank" rel="noopener">開啟 Gemini Canvas</a><a class="btn secondary" href="../03_起始成果包/03_Canvas互動網站/index.html">開啟起始網站</a></div>
+        <p class="callout"><strong>B 線：</strong>使用 ChatGPT／Codex 修改起始網站，或以需求審查者身分完成測試清單與改版提示詞。</p>
+      </article>
+      <article class="step">
+        <h3>任務 M4｜分享或部署成果</h3>
+        <p><strong>目標：</strong>依作品型態選擇 Google Sites、GitHub Pages 或直接分享連結。</p>
+        <ol><li>若是課程入口與多人協作，優先評估 Google Sites。</li><li>若是 HTML／CSS／JavaScript，優先評估 GitHub Pages。</li><li>實際開啟公開網址，走完主要流程。</li><li>檢查個資、著作權、鍵盤操作、手機版與錯誤訊息。</li></ol>
+        <p><strong>完成證據：</strong>公開／分享連結，或一份包含平台、步驟與限制的部署計畫。</p>
+        <div class="card-actions no-print"><a class="btn" href="https://sites.google.com/new" target="_blank" rel="noopener">Google Sites</a><a class="btn secondary" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="afternoon" class="section wrap">
+    <div class="section-head"><div><div class="eyebrow">Afternoon</div><h2>下午：打造會做事的 AI 教學與研究夥伴</h2></div><p>把上午成果放入工作區，讓 Agent 在限制內修改、測試、提供證據，再把成功流程封裝成 Skill。</p></div>
+    <div class="steps">
+      <article class="step"><h3>任務 A1｜撰寫可驗收的 Agent 任務簡報</h3><p>填寫目標、素材、範圍、限制、交付物與驗收條件六欄。先要求 Agent 提出計畫，再授權安全且可逆的操作。</p><p><strong>完成證據：</strong>任務簡報、Agent 計畫、修改摘要、測試結果、未確認項目。</p><div class="card-actions no-print"><a class="btn" href="https://antigravity.google/" target="_blank" rel="noopener">Antigravity</a><a class="btn secondary" href="https://chatgpt.com/codex/" target="_blank" rel="noopener">Codex</a></div></article>
+      <article class="step"><h3>任務 A2｜把提示詞升級成 Agent Skill</h3><p>挑選一個會重複使用、具有固定步驟與驗收方法的提示詞，補上觸發情境、輸入、工作流程、限制、輸出及驗證。</p><p><strong>完成證據：</strong>只含 `name` 與 `description` 的 YAML frontmatter、命令式流程、人工授權邊界、三個測試提示。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/02_提示詞升級Skill產生器.html">開啟 Skill 產生器</a><a class="btn secondary" href="../03_起始成果包/04_Agent_Skill骨架/SKILL.md">查看骨架</a></div></article>
+      <article class="step"><h3>任務 A3｜PIRLS 風格資料分析與簡答題初編</h3><p>匯入合成資料，先做欄位、缺漏、重複與答案有效性檢查，再分析選擇題；簡答題先建立編碼規準，再交給 AI 初編並由人工覆核。</p><p><strong>完成證據：</strong>資料品質摘要、題目答對率、AI 初編 JSON、人工最終碼與匯出 CSV。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/01_PIRLS資料分析工作台.html">開啟資料工作台</a><a class="btn secondary" href="../06_場務與驗收/PIRLS資料治理與人工複核SOP.md">查看治理 SOP</a></div></article>
+      <article class="step"><h3>任務 A4｜打包 Agent 完成證據</h3><p>把需求、變更、測試、畫面、已知限制與下一步整理成可交接報告。無法驗證的內容必須標示「未確認」。</p><p><strong>完成證據：</strong>一份可下載的 Markdown／HTML 報告與附件清單。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/03_Agent完成證據打包器.html">開啟證據打包器</a></div></article>
+    </div>
+  </section>
+
+  <section id="fallback" class="section wrap">
+    <div class="section-head"><div><div class="eyebrow">Fallback</div><h2>卡關時不要停在原地</h2></div><p>依序從「重試」切換到「替代路徑」，並把原因記錄為完成證據的一部分。</p></div>
+    <div class="grid grid-3">
+      <article class="card"><h3>無法登入</h3><p>改用講師完成範例、共作觀察表或同功能的另一平台；不借用他人帳號。</p></article>
+      <article class="card"><h3>網路不穩</h3><p>開啟本機起始包與離線工具，先完成需求、規準、測試與人工複核。</p></article>
+      <article class="card"><h3>Agent 無法執行</h3><p>把任務縮小成單檔、單功能、單次驗收；若仍失敗，保存錯誤與未確認狀態。</p></article>
+    </div>
+  </section>
+
+  <section id="evidence" class="section wrap">
+    <div class="section-head"><div><div class="eyebrow">Definition of done</div><h2>真正的完成，不是「AI 說完成」</h2></div></div>
+    <div class="callout safe"><strong>最小證據組：</strong>需求簡報＋輸出檔案＋至少一項測試＋實際畫面或網址＋已知限制＋下一步。涉及學生資料時，另加去識別化與人工複核紀錄。</div>
+  </section>
+</main>
+<footer><div class="wrap">黃凱揚（阿凱老師）｜桃園市龍潭區石門國民小學｜教學年資第 11 年</div></footer>
+</body>
+</html>

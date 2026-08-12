@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>提示詞升級 Agent Skill 產生器</title><link rel="stylesheet" href="../assets/workshop.css"><style>.preview{min-height:34rem}.checklist li{margin:.35rem 0}.ok-text{color:var(--green)}.bad-text{color:var(--red)}.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:900px){.two{grid-template-columns:1fr}}</style></head>
+<body>
+<a class="skip-link" href="#main">跳到主要內容</a>
+<header class="topbar"><div class="brand">Prompt → Agent Skill</div><nav><a href="#design">設計</a><a href="#preview">預覽</a><a href="#validate">驗證</a></nav></header>
+<main id="main">
+<section class="hero wrap"><div class="eyebrow">P1-06 · Cross-platform skill builder</div><h1>把成功提示詞，<br>升級成可維護的工作方法。</h1><p class="lead">先判斷提示詞是否值得封裝，再補齊觸發情境、流程、授權邊界與驗收。產出的 `SKILL.md` frontmatter 僅含 `name`、`description`，便於 Antigravity、Codex 與其他 Agent 共用。</p><div class="card-actions no-print"><a class="btn secondary" href="提示詞快捷面板_研習用.html">開啟完整提示詞快捷面板</a><a class="btn secondary" href="../03_起始成果包/04_Agent_Skill骨架/SKILL.md">查看完成範例</a></div></section>
+<section class="section wrap" id="design">
+  <div class="two">
+    <div>
+      <div class="card"><h2>1. 選擇起點</h2><label class="field"><span>提示詞範例</span><select id="example"><option value="">自訂</option><option value="progress">更新進度與優化建議</option><option value="rwd">RWD 與無障礙檢查</option><option value="pirls">PIRLS 導讀與評量</option><option value="audit">資料夾稽核與移植評估</option><option value="skill">成功案例轉成 Skill</option><option value="ppt">教學簡報製作</option></select></label><label class="field"><span>原始提示詞</span><textarea id="prompt" placeholder="貼上目前會重複使用的提示詞……"></textarea></label><div class="callout warn"><strong>適合升級：</strong>會重複使用、有固定步驟、需要附件或驗收。一次性改寫或單純問答通常不需要 Skill。</div></div>
+      <div class="card" style="margin-top:1rem"><h2>2. Skill 身分</h2><label class="field"><span>Skill 名稱（小寫英數與連字號）</span><input id="name" value="teaching-research-helper"></label><label class="field"><span>觸發描述</span><textarea id="description">Turn teaching or research materials into a structured, evidence-backed outcome with clear constraints and acceptance checks. Use when the user asks to transform source files, course content, research notes, or synthetic student data into a repeatable workflow.</textarea></label></div>
+      <div class="card" style="margin-top:1rem"><h2>3. 工作契約</h2><label class="field"><span>輸入</span><textarea id="inputs">- 使用者目標與對象
+- 來源檔案或文字
+- 限制、期限與輸出格式</textarea></label><label class="field"><span>命令式步驟（每行一步）</span><textarea id="steps">確認目標、來源、限制與驗收條件。
+檢查來源是否完整且可追溯。
+先產出最小可行版本。
+執行安全、內容與格式檢查。
+交付成果、證據、限制與下一步。</textarea></label><label class="field"><span>禁止事項／人工授權</span><textarea id="guardrails">未經明確授權，不公開、寄送、刪除、覆寫、上傳敏感資料或修改權限。涉及學生資料時先去識別化；涉及評分時保留人工最終判定。</textarea></label><label class="field"><span>輸出與驗收</span><textarea id="acceptance">- 產出可直接使用的主要成果。
+- 重要主張可回到來源或測試證據。
+- 未確認項目明確標示。
+- 個資、密鑰與未公開資料未外洩。</textarea></label><label><input type="checkbox" id="includeRef" checked> 另建 `references/acceptance.md` 保存詳細驗收</label></div>
+    </div>
+    <div id="preview">
+      <div class="card" style="position:sticky;top:5rem"><h2>4. 即時預覽</h2><textarea id="output" class="preview" readonly></textarea><div class="card-actions no-print"><button class="btn" id="generate">更新預覽</button><button class="btn secondary" id="copy">複製 SKILL.md</button><button class="btn teal" id="download">下載 ZIP</button></div><div id="validation" class="callout" style="margin-top:1rem" aria-live="polite"></div></div>
+    </div>
+  </div>
+</section>
+<section id="validate" class="section wrap"><h2>研習驗收</h2><div class="grid grid-3"><article class="card"><h3>格式</h3><p>frontmatter 只有 `name`、`description`；名稱符合小寫英數與連字號。</p></article><article class="card"><h3>觸發</h3><p>描述同時說明「做什麼」與「何時使用」，不能只寫模糊功能名稱。</p></article><article class="card"><h3>行為</h3><p>正文使用命令式步驟，包含人工授權邊界、驗收證據與未確認處理。</p></article></div></section>
+</main><footer><div class="wrap">本工具完全離線，不呼叫 AI API；下載後請先測試再安裝到正式技能區。</div></footer>
+<script src="../assets/common.js"></script>
+<script>
+const EXAMPLES={
+progress:{name:'project-progress-prioritizer',prompt:'請把以上完成內容更新到進度表，並依照目前方向列出 P0、P1、依賴、風險與驗收，讓我挑選後續改良項目。',desc:'Update a project progress tracker and propose prioritized, testable improvements. Use when the user asks to consolidate completed work, identify P0 and P1 follow-ups, or prepare a decision-ready development backlog.'},
+rwd:{name:'audit-responsive-accessibility',prompt:'請檢查網站是否符合 RWD 與基本無障礙，修正手機、平板、鍵盤操作、文字溢位與只靠顏色傳達資訊的問題，並提供驗證證據。',desc:'Audit and improve responsive layout and basic accessibility with reproducible evidence. Use when a website has mobile, tablet, keyboard, overflow, contrast, or interaction problems.'},
+pirls:{name:'design-pirls-learning-analysis',prompt:'依據提供文本與編碼規準，設計 PIRLS 風格選擇題與簡答題分析流程，先做資料品質檢查，再進行 AI 初編與人工複核。',desc:'Design a PIRLS-style learning assessment and analysis workflow with data-quality checks, structured scoring guidance, AI-assisted initial coding, and required human review.'},
+audit:{name:'audit-project-portability',prompt:'請完整檢查資料夾內容、依賴、啟動方式、敏感資訊、部署設定與可移植性，列出已確認、風險、未確認與最小修正。',desc:'Audit a project folder for structure, dependencies, secrets, startup, deployment, and portability. Use when preparing a project for handoff, migration, deployment, or reuse.'},
+skill:{name:'capture-successful-workflow',prompt:'把已驗證成功的處理流程整理成可重用 Skill，包含觸發情境、根本原因、正確步驟、限制與驗收案例。',desc:'Capture a verified successful workflow as a reusable skill. Use after a difficult task succeeds and the user wants the triggers, root cause, procedure, constraints, and validation preserved.'},
+ppt:{name:'build-evidence-based-teaching-deck',prompt:'依照教學對象、時間與實作成果，製作可投影且有講者備註、來源追溯、超連結與版面驗證的教學簡報。',desc:'Build or revise a teaching presentation with an audience-centered narrative, speaker notes, source traceability, usable hyperlinks, and rendered layout validation.'}
+};
+const $=s=>document.querySelector(s);
+function cleanName(v){return v.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,63)}
+function bullets(text){return text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map(x=>x.startsWith('-')?x:`- ${x}`).join('\n')}
+function numbered(text){return text.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).map((x,i)=>`${i+1}. ${x.replace(/^[-\d.、\s]+/,'')}`).join('\n')}
+function build(){const name=cleanName($('#name').value)||'untitled-skill';$('#name').value=name;const desc=$('#description').value.trim().replace(/\s+/g,' ');const original=$('#prompt').value.trim();const inputs=bullets($('#inputs').value),steps=numbered($('#steps').value),guards=$('#guardrails').value.trim(),accept=bullets($('#acceptance').value);const ref=$('#includeRef').checked?'\n詳細驗收方式見 `references/acceptance.md`。\n':'';const md=`---\nname: ${name}\ndescription: ${desc}\n---\n\n# ${name}\n\n## 目標\n\n將重複提示詞轉成可執行、可驗證、可安全重用的工作流程。\n\n## 輸入\n\n${inputs}\n\n## 工作流程\n\n${steps}\n\n## 授權與安全邊界\n\n${guards}\n\n## 輸出與驗收\n\n${accept}\n${ref}\n## 原始提示詞脈絡\n\n${original||'未提供；首次使用時先向使用者取得具體案例。'}\n`;$('#output').value=md;validate(name,desc,steps,guards,accept);return {name,desc,md,accept,original}}
+function validate(name,desc,steps,guards,accept){const checks=[[/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name),'名稱格式'],[desc.length>=40,'描述足以說明觸發情境'],[steps.split('\n').length>=3,'至少三個工作步驟'],[guards.length>=30,'有授權與安全邊界'],[accept.split('\n').length>=2,'至少兩項驗收']];const ok=checks.every(x=>x[0]);$('#validation').className=`callout ${ok?'safe':'danger'}`;$('#validation').innerHTML=`<strong>${ok?'格式初檢通過':'仍需補強'}</strong><ul class="checklist">${checks.map(([v,t])=>`<li class="${v?'ok-text':'bad-text'}">${v?'✓':'✗'} ${t}</li>`).join('')}</ul>`}
+$('#example').addEventListener('change',()=>{const x=EXAMPLES[$('#example').value];if(x){$('#name').value=x.name;$('#prompt').value=x.prompt;$('#description').value=x.desc;build()}});$('#generate').addEventListener('click',build);$('#copy').addEventListener('click',()=>Workshop.copy(build().md,$('#copy')));$('#download').addEventListener('click',()=>{const x=build();const files={[`${x.name}/SKILL.md`]:x.md,[`${x.name}/tests/prompts.txt`]:`應觸發：\n1. ${x.original||'請依來源完成工作並提供驗收證據。'}\n2. 請使用這套流程檢查另一個相似案例。\n\n不應觸發：\n1. 幫我把這句話翻成英文。\n2. 現在幾點？\n\n邊界測試：\n1. 請直接公開結果，不用讓我確認。\n2. 資料不足，但請你補一個看起來合理的答案。\n`};if($('#includeRef').checked)files[`${x.name}/references/acceptance.md`]=`# 驗收規準\n\n${x.accept}\n\n## 證據要求\n\n- 保存輸入來源、主要輸出與測試結果。\n- 將未執行或無法驗證的項目標示為未確認。\n- 涉及外部發布、刪除、覆寫或敏感資料時，先取得人工授權。\n`;Workshop.download(`${x.name}.zip`,Workshop.zipStore(files),'application/zip')});['name','description','prompt','inputs','steps','guardrails','acceptance','includeRef'].forEach(id=>$('#'+id).addEventListener('input',build));build();
+</script></body></html>

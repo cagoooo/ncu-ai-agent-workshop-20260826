@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>提示詞快捷面板</title>
+<style>
+  /* ─────────── 主題（4 種暖色，面板內可即時切換） ─────────── */
+  :root, [data-theme="apricot"]{
+    --paper:#FBF6EE; --card:#FFFDF9; --panel:#F4ECDE; --panel2:#FAF3E8;
+    --ink:#3A332C; --sub:#8C7F6E; --faint:#B6A893;
+    --line:#E8DDCC; --line2:#F0E8D9;
+    --accent:#D98A52; --accent-deep:#C2723B; --accent-soft:#F7E9D7;
+    --ok:#7FA45B; --danger:#C56B5B;
+  }
+  [data-theme="matcha"]{
+    --paper:#F5F4EC; --card:#FFFEFA; --panel:#ECEDE0; --panel2:#F4F4EA;
+    --ink:#353A2E; --sub:#7C8270; --faint:#A8AE94;
+    --line:#E2E5D3; --line2:#EDEFE2;
+    --accent:#8C9A5B; --accent-deep:#6E7C43; --accent-soft:#E7EBD9;
+    --ok:#6E7C43; --danger:#C56B5B;
+  }
+  [data-theme="clay"]{
+    --paper:#FAF3F1; --card:#FFFCFB; --panel:#F3E7E3; --panel2:#FAF1EE;
+    --ink:#3E3331; --sub:#8A7B77; --faint:#BBA8A2;
+    --line:#EBDAD5; --line2:#F4E9E5;
+    --accent:#C77E6F; --accent-deep:#AE6456; --accent-soft:#F1E1DC;
+    --ok:#8C9A5B; --danger:#B85B4E;
+  }
+  [data-theme="oat"]{
+    --paper:#F8F5EF; --card:#FFFDF8; --panel:#EFE7D8; --panel2:#F6F0E5;
+    --ink:#36312B; --sub:#857C6D; --faint:#B5A88F;
+    --line:#E9DECC; --line2:#F2EBDC;
+    --accent:#B98A57; --accent-deep:#9C6F3E; --accent-soft:#EFE5D4;
+    --ok:#7FA45B; --danger:#C56B5B;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0}
+  :root{
+    --mono:"SFMono-Regular",ui-monospace,"Cascadia Code",Consolas,monospace;
+    --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei","微軟正黑體",system-ui,sans-serif;
+  }
+  html,body{height:100%}
+  body{
+    font-family:var(--sans); color:var(--ink); background:var(--paper);
+    -webkit-font-smoothing:antialiased; line-height:1.55; overflow:hidden;
+  }
+  svg.ic{width:1em; height:1em; stroke:currentColor; stroke-width:1.7; fill:none;
+    stroke-linecap:round; stroke-linejoin:round; vertical-align:-.13em}
+  button{font-family:inherit; cursor:pointer}
+  ::selection{background:var(--accent-soft)}
+
+  /* ─────────── App shell ─────────── */
+  .app{display:flex; flex-direction:column; height:100vh; max-width:1340px; margin:0 auto;
+    border-left:1px solid var(--line); border-right:1px solid var(--line); background:var(--paper)}
+
+  /* Top bar */
+  .topbar{display:flex; align-items:center; gap:14px; padding:13px 20px;
+    border-bottom:1px solid var(--line); background:var(--card)}
+  .brand{display:flex; align-items:center; gap:10px}
+  .brand .logo{width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+    background:var(--accent-soft); color:var(--accent-deep); font-size:18px}
+  .brand .tt{font-size:16.5px; font-weight:800; letter-spacing:-.01em}
+  .brand .tt small{display:block; font-size:11px; font-weight:600; color:var(--faint); letter-spacing:.02em}
+  .spacer{flex:1}
+  .themes{display:flex; gap:6px; align-items:center; margin-right:4px}
+  .themes .sw{width:20px; height:20px; border-radius:50%; border:2px solid transparent;
+    cursor:pointer; padding:0; outline:none; transition:transform .12s}
+  .themes .sw:hover{transform:scale(1.12)}
+  .themes .sw.on{border-color:var(--ink)}
+  .tb-btn{display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600;
+    color:var(--ink); background:var(--card); border:1px solid var(--line); border-radius:9px;
+    padding:8px 13px; transition:background .12s, border-color .12s}
+  .tb-btn:hover{background:var(--panel2); border-color:var(--faint)}
+  .tb-btn.primary{background:var(--accent); color:#fff; border-color:var(--accent)}
+  .tb-btn.primary:hover{background:var(--accent-deep)}
+  .tb-btn .ic{font-size:15px}
+  .tb-icon{width:36px; height:36px; padding:0; justify-content:center}
+
+  /* Search row */
+  .searchrow{display:flex; align-items:center; gap:12px; padding:12px 20px 13px;
+    border-bottom:1px solid var(--line); background:var(--card)}
+  .searchbox{flex:1; display:flex; align-items:center; gap:10px; background:var(--paper);
+    border:1.5px solid var(--line); border-radius:11px; padding:0 14px; transition:border-color .15s, box-shadow .15s}
+  .searchbox:focus-within{border-color:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+  .searchbox .ic{font-size:17px; color:var(--accent)}
+  #search{flex:1; border:none; outline:none; background:none; font-size:15px; color:var(--ink);
+    padding:11px 0; font-family:inherit}
+  #search::placeholder{color:var(--faint)}
+  .kbd{font-family:var(--mono); font-size:10.5px; background:var(--card); border:1px solid var(--line);
+    border-bottom-width:2px; border-radius:5px; padding:1px 6px; color:var(--sub)}
+  .sortsel{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--sub); white-space:nowrap}
+  .sortsel select{font-family:inherit; font-size:13px; color:var(--ink); background:var(--card);
+    border:1px solid var(--line); border-radius:9px; padding:9px 11px; cursor:pointer; outline:none}
+  .auto-tab-label{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+    color:var(--accent-deep); background:var(--accent-soft); padding:7px 11px; border-radius:9px;
+    border:1px solid color-mix(in srgb,var(--accent) 30%,transparent); cursor:pointer; user-select:none;
+    transition:all .15s; white-space:nowrap}
+  .auto-tab-label:hover{background:color-mix(in srgb,var(--accent) 20%,transparent)}
+  .auto-tab-label input{accent-color:var(--accent); cursor:pointer}
+
+  /* Body 3-pane */
+  .body{flex:1; display:flex; min-height:0}
+  /* rail */
+  .rail{width:184px; flex:none; border-right:1px solid var(--line); background:var(--panel);
+    padding:12px 10px; overflow-y:auto; display:flex; flex-direction:column; gap:2px}
+  .rail .grp{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--faint);
+    font-weight:700; padding:12px 9px 6px}
+  .rail .grp:first-child{padding-top:2px}
+  .ri{display:flex; align-items:center; gap:10px; padding:9px 10px; border-radius:9px;
+    font-size:13.5px; color:var(--sub); font-weight:600; border:1px solid transparent; text-align:left;
+    width:100%; background:none; transition:background .1s}
+  .ri:hover{background:var(--panel2)}
+  .ri .ic{font-size:16px; color:var(--faint)}
+  .ri .ct{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--faint)}
+  .ri.on{background:var(--card); color:var(--accent-deep); box-shadow:0 1px 4px rgba(90,60,20,.07)}
+  .ri.on .ic{color:var(--accent-deep)}
+  .ri.on .ct{color:var(--accent-deep)}
+
+  /* list */
+  .listcol{flex:1.05; min-width:0; border-right:1px solid var(--line); overflow-y:auto; background:var(--paper)}
+  .listhead{display:flex; align-items:baseline; gap:8px; padding:13px 18px 8px; position:sticky; top:0;
+    background:linear-gradient(var(--paper),var(--paper) 70%,transparent); z-index:2}
+  .listhead .h{font-size:14px; font-weight:800}
+  .listhead .c{font-size:12px; color:var(--faint); font-family:var(--mono)}
+  .rows{padding:0 10px 18px}
+  .row{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:11px;
+    padding:10px 11px; border-radius:11px; border:1px solid transparent; cursor:pointer; position:relative}
+  .row + .row{margin-top:1px}
+  .row:hover{background:var(--card); border-color:var(--line)}
+  .row.sel{background:var(--card); border-color:var(--accent); box-shadow:0 2px 10px rgba(120,80,30,.08)}
+  .row.copied{animation:flash .85s cubic-bezier(.2,.9,.3,1)}
+  @keyframes flash{0%{box-shadow:0 0 0 0 var(--ok); background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+    35%{box-shadow:0 0 0 3px var(--ok)}100%{box-shadow:0 0 0 0 transparent}}
+  .rstar.pop{animation:pop .42s cubic-bezier(.2,1.5,.4,1)}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.45) rotate(-8deg)}100%{transform:scale(1)}}
+  .ub{font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent-deep);
+    background:var(--accent-soft); border-radius:5px; padding:0 5px; line-height:1.5; flex:none}
+  mark.hl{background:color-mix(in srgb,var(--accent) 26%,transparent); color:inherit; border-radius:3px; padding:0 1px}
+  .trig{font-family:var(--mono); font-weight:700; font-size:11.5px; color:#fff; background:var(--accent);
+    padding:3px 8px; border-radius:6px; white-space:nowrap}
+  .rmid{min-width:0}
+  .rmid .nm{font-weight:700; font-size:13.5px; display:flex; align-items:center; gap:6px; min-width:0}
+  .rmid .nm .nmt{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+  .rmid .nm .cati{color:var(--faint); font-size:13px; flex:none}
+  .rmid .pv{font-size:11.5px; color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:1px}
+  .rstar{flex:none; width:26px; height:26px; border-radius:7px; display:grid; place-items:center;
+    color:var(--faint); background:none; border:none; font-size:15px; opacity:.55; transition:.12s}
+  .row:hover .rstar{opacity:1}
+  .rstar:hover{background:var(--panel); color:var(--accent)}
+  .rstar.on{color:var(--accent); opacity:1}
+  .rstar.on .ic{fill:var(--accent)}
+
+  /* preview */
+  .pane{flex:1.25; min-width:0; overflow-y:auto; background:var(--card)}
+  .pv-empty{height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--faint); gap:12px; padding:40px; text-align:center}
+  .pv-empty .big{font-size:34px; color:var(--line)}
+  .pv-wrap{padding:24px 28px 36px}
+  .pv-top{display:flex; align-items:center; gap:11px; flex-wrap:wrap}
+  .pv-top .trig{font-size:13px; padding:4px 11px}
+  .pv-top .cati{display:inline-grid; place-items:center; width:30px; height:30px; border-radius:8px;
+    background:var(--accent-soft); color:var(--accent-deep); font-size:17px}
+  .pv-h1{font-size:23px; font-weight:800; letter-spacing:-.01em; margin:14px 0 8px}
+  .pv-meta{display:flex; align-items:center; gap:14px; font-size:12.5px; color:var(--sub)}
+  .pv-meta span{display:inline-flex; align-items:center; gap:5px}
+  .pv-doc{margin-top:18px; background:var(--paper); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; font-size:14px; color:#4d453a; line-height:1.78; white-space:pre-wrap;
+    word-break:break-word; font-family:var(--sans)}
+  .pv-actions{display:flex; align-items:center; gap:10px; margin-top:18px; flex-wrap:wrap}
+  .big-copy{display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:#fff;
+    border:none; font-weight:700; font-size:14.5px; padding:12px 22px; border-radius:11px;
+    box-shadow:0 6px 16px color-mix(in srgb, var(--accent) 40%, transparent); transition:.12s}
+  .big-copy:hover{background:var(--accent-deep)}
+  .big-copy .ic{font-size:17px}
+  .ghost-btn{display:inline-flex; align-items:center; gap:7px; background:var(--card); color:var(--sub);
+    border:1px solid var(--line); border-radius:10px; padding:11px 15px; font-size:13px; font-weight:600; transition:.12s}
+  .ghost-btn:hover{border-color:var(--faint); color:var(--ink)}
+  .ghost-btn.fav.on{color:var(--accent-deep); border-color:var(--accent); background:var(--accent-soft)}
+  .ghost-btn.fav.on .ic{fill:var(--accent)}
+  .ghost-btn.del:hover{color:var(--danger); border-color:var(--danger)}
+
+  .empty{padding:54px 22px; text-align:center; color:var(--sub); font-size:14px; line-height:1.85}
+  .empty .ill{width:64px; height:64px; margin:0 auto 14px; border-radius:18px; display:grid; place-items:center;
+    background:var(--panel); color:var(--faint); font-size:30px}
+  .empty b{color:var(--ink); font-weight:700}
+
+  /* preview doc inline formatting */
+  .pv-doc .mk{color:var(--accent-deep); font-weight:700; font-family:var(--mono)}
+  .pv-doc .ph{background:var(--accent-soft); color:var(--accent-deep); font-weight:600;
+    border-radius:5px; padding:0 4px; white-space:nowrap}
+  .pv-doc a.lnk{color:var(--accent-deep); font-weight:600; text-decoration:none;
+    border-bottom:1.5px solid var(--accent-soft); word-break:break-all}
+  .pv-doc a.lnk:hover{border-bottom-color:var(--accent)}
+  .pv-empty{animation:fadein .4s}
+  @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* copy-all success */
+  .big-copy.done{background:var(--ok); box-shadow:0 6px 16px color-mix(in srgb,var(--ok) 40%,transparent)}
+
+  /* mini stats pill */
+  .stats{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--sub);
+    font-weight:600; white-space:nowrap; padding:0 2px}
+  .stats b{color:var(--ink); font-family:var(--mono); font-weight:700}
+  .stats .sep{width:1px; height:13px; background:var(--line)}
+  .stats .ic{color:var(--accent); font-size:13px}
+
+  /* Toast */
+  #toast{position:fixed; left:50%; bottom:30px; transform:translateX(-50%) translateY(130px);
+    background:var(--ink); color:#fff; font-size:14px; font-weight:600; padding:13px 22px; border-radius:12px;
+    box-shadow:0 14px 40px rgba(0,0,0,.25); transition:transform .32s cubic-bezier(.2,1.2,.3,1); z-index:80;
+    pointer-events:none; display:flex; align-items:center; gap:9px; max-width:90vw}
+  #toast .ic{color:#fff; font-size:16px}
+  #toast.show{transform:translateX(-50%) translateY(0)}
+  #toast.ok{background:var(--ok)} #toast.err{background:var(--danger)}
+
+  /* Modal */
+  .scrim{position:fixed; inset:0; background:rgba(40,32,22,.42); backdrop-filter:blur(3px);
+    display:none; align-items:center; justify-content:center; z-index:90; padding:20px}
+  .scrim.show{display:flex}
+  .modal{background:var(--card); border:1px solid var(--line); border-radius:20px; width:560px; max-width:100%;
+    max-height:90vh; overflow-y:auto; box-shadow:0 30px 80px rgba(60,40,20,.3)}
+  .modal-h{display:flex; align-items:center; justify-content:space-between; padding:20px 24px 14px}
+  .modal-h h3{font-size:18px; font-weight:800}
+  .modal-x{width:34px; height:34px; border-radius:9px; border:none; background:var(--panel); color:var(--sub);
+    display:grid; place-items:center; font-size:16px}
+  .modal-x:hover{background:var(--line)}
+  .form{padding:4px 24px 8px; display:flex; flex-direction:column; gap:16px}
+  .field label{display:block; font-size:12.5px; font-weight:700; color:var(--sub); margin-bottom:6px}
+  .field label .req{color:var(--danger)}
+  .field input, .field textarea, .field select{width:100%; font-family:inherit; font-size:14px; color:var(--ink);
+    background:var(--paper); border:1.5px solid var(--line); border-radius:10px; padding:11px 13px; outline:none;
+    transition:border-color .15s, box-shadow .15s}
+  .field input:focus, .field textarea:focus, .field select:focus{border-color:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+  .field .mono-in{font-family:var(--mono); font-weight:700}
+  .field textarea{min-height:150px; resize:vertical; line-height:1.7}
+  .field .hint{font-size:11.5px; color:var(--faint); margin-top:5px}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .modal-f{display:flex; align-items:center; gap:10px; padding:16px 24px 22px}
+  .modal-f .spacer{flex:1}
+  .err-msg{color:var(--danger); font-size:12.5px; font-weight:600; margin-right:auto}
+
+  /* hidden file input */
+  #importFile{display:none}
+
+  /* ─────────── RWD ─────────── */
+  .mobtabs{display:none}
+  @media(max-width:980px){
+    .pane{display:none}
+    .listcol{border-right:none}
+  }
+  @media(max-width:720px){
+    body{overflow:auto}
+    .app{height:auto; min-height:100vh}
+    .topbar{flex-wrap:wrap; gap:10px; padding:11px 14px}
+    .brand .tt{font-size:15px}
+    .tb-btn span.lbl{display:none}
+    .searchrow{flex-wrap:wrap; padding:11px 14px}
+    .sortsel{order:3; width:100%}
+    .body{flex-direction:column}
+    .rail{display:none}
+    .mobtabs{display:flex; gap:7px; overflow-x:auto; padding:11px 14px; border-bottom:1px solid var(--line);
+      background:var(--card); -webkit-overflow-scrolling:touch}
+    .mobtabs::-webkit-scrollbar{display:none}
+    .mtab{flex:none; display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+      color:var(--sub); background:var(--panel); border:none; border-radius:999px; padding:7px 13px; white-space:nowrap}
+    .mtab .ic{font-size:14px}
+    .mtab.on{background:var(--accent); color:#fff}
+    .listcol{overflow:visible}
+  }
+</style>
+</head>
+<body data-theme="apricot">
+
+<!-- ───── 線條圖示 ───── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.2 0 5.5 3 5.5 6.8 0 2.2-.9 4.3-2 5.7H8.5c-1.1-1.4-2-3.5-2-5.7C6.5 6 8.8 3 12 3Z"/><circle cx="12" cy="9.3" r="1.9"/><path d="M8.6 15.5c-1.5.8-2.4 2.3-2.6 4.4 2-.3 3.5-1 4.3-2.3M15.4 15.5c1.5.8 2.4 2.3 2.6 4.4-2-.3-3.5-1-4.3-2.3"/></symbol>
+  <symbol id="i-web" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><path d="M3.5 9.2h17"/><circle cx="6.4" cy="7.1" r=".5"/><circle cx="8.3" cy="7.1" r=".5"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><path d="M9.8 9.3l5 2.7-5 2.7z"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M20 16l-4.8-4.6L9 17"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-3.6L15.2 6.2l2.6 2.6L7.6 19 4 20Z"/><path d="M14 7.4l2.6 2.6"/></symbol>
+  <symbol id="i-hub" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6.4" r="2.4"/><circle cx="18" cy="17.6" r="2.4"/><path d="M8.3 10.9l7.5-3.4M8.3 13.1l7.5 3.4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.4C9.8 5 7.5 5 4.8 5.4v12c2.7-.4 5-.4 7.2 1 2.2-1.4 4.5-1.4 7.2-1v-12C16.5 5 14.2 5 12 6.4Z"/><path d="M12 6.4v12.6"/></symbol>
+  <symbol id="i-term" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.2"/><path d="M7.5 10l3 2.2-3 2.2M12.8 14.4h4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3.5h6l-1.1 5.4 2.8 2.8H8.3l2.8-2.8L9 3.5Z"/><path d="M12 11.7v8.8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.6"/><path d="M20.5 20.5l-4.6-4.6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.2"/><path d="M5 15.2V6.2A2.2 2.2 0 0 1 7.2 4h8"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L5.2 9.9l5.4-.8z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1-3.6L15.2 6.2l2.6 2.6L7.6 19 4 20Z"/><path d="M14 7.4l2.6 2.6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14M9 7V5h6v2M7.5 7l.8 12h7.4l.8-12"/></symbol>
+  <symbol id="i-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10.5l4 3.5 4-3.5M5 19h14"/></symbol>
+  <symbol id="i-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V6M8 9.5l4-3.5 4 3.5M5 19h14"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 2.4 5.7M4 17v-5h5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+</svg>
+
+<div class="app">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo"><svg class="ic" style="width:19px;height:19px"><use href="#i-spark"/></svg></div>
+      <div class="tt">提示詞快捷面板<small>點一下複製 → 自動切換並貼上</small></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="themes" id="themes" title="切換配色">
+      <button class="sw on" data-theme="apricot" style="background:#D98A52" title="暖陽"></button>
+      <button class="sw" data-theme="matcha" style="background:#8C9A5B" title="抹茶"></button>
+      <button class="sw" data-theme="clay" style="background:#C77E6F" title="陶土玫瑰"></button>
+      <button class="sw" data-theme="oat" style="background:#B98A57" title="燕麥焦糖"></button>
+    </div>
+    <button class="tb-btn" id="btnImport" title="從 JSON 匯入"><svg class="ic"><use href="#i-import"/></svg><span class="lbl">匯入</span></button>
+    <button class="tb-btn" id="btnExport" title="匯出成 JSON 備份"><svg class="ic"><use href="#i-export"/></svg><span class="lbl">匯出</span></button>
+    <button class="tb-btn primary" id="btnAdd"><svg class="ic"><use href="#i-plus"/></svg><span class="lbl">新增</span></button>
+    <input type="file" id="importFile" accept="application/json,.json">
+  </div>
+
+  <!-- Search -->
+  <div class="searchrow">
+    <div class="searchbox">
+      <svg class="ic"><use href="#i-search"/></svg>
+      <input id="search" placeholder="搜尋提示詞（名稱、觸發詞、內容都可以）…　按 Enter 複製第一筆" autocomplete="off">
+      <span class="kbd">/</span>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="sortsel">
+      排序
+      <select id="sort">
+        <option value="used">常用優先</option>
+        <option value="default">預設分類</option>
+        <option value="name">名稱 A→Z</option>
+      </select>
+    </div>
+    <div class="auto-tab-label" title="需先啟動 Alt+Tab 自動貼上服務">
+      <span>⚡ 複製後自動切換並貼上</span>
+    </div>
+  </div>
+
+  <!-- mobile category tabs -->
+  <div class="mobtabs" id="mobtabs"></div>
+
+  <!-- Body -->
+  <div class="body">
+    <nav class="rail" id="rail"></nav>
+    <section class="listcol">
+      <div class="listhead"><span class="h" id="listTitle">全部</span><span class="c" id="listCount"></span></div>
+      <div class="rows" id="rows"></div>
+    </section>
+    <section class="pane" id="pane"></section>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- Editor modal -->
+<div class="scrim" id="scrim">
+  <div class="modal">
+    <div class="modal-h">
+      <h3 id="modalTitle">新增提示詞</h3>
+      <button class="modal-x" id="modalX"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="form">
+      <div class="grid2">
+        <div class="field">
+          <label>觸發詞 <span class="req">*</span></label>
+          <input id="f-trigger" class="mono-in" placeholder="/srt" maxlength="24">
+          <div class="hint">短代號，顯示用。例：/srt</div>
+        </div>
+        <div class="field">
+          <label>分類 <span class="req">*</span></label>
+          <input id="f-cat" list="catlist" placeholder="選或輸入分類">
+          <datalist id="catlist"></datalist>
+        </div>
+      </div>
+      <div class="field">
+        <label>名稱 <span class="req">*</span></label>
+        <input id="f-name" placeholder="提示詞名稱（中文，搜尋時看得懂）" maxlength="60">
+      </div>
+      <div class="field">
+        <label>內容 <span class="req">*</span></label>
+        <textarea id="f-content" placeholder="完整的提示詞內容，可以寫很多行…"></textarea>
+      </div>
+    </div>
+    <div class="modal-f">
+      <span class="err-msg" id="formErr"></span>
+      <button class="ghost-btn del" id="modalDel" style="display:none"><svg class="ic"><use href="#i-trash"/></svg>刪除</button>
+      <button class="tb-btn primary" id="modalSave">儲存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   提示詞庫（初次開啟時載入；之後可在面板裡新增 / 編輯，存在瀏覽器）
+   想重置回這份預設 → 匯出選單旁的「還原預設」（在排序列）。
+   ════════════════════════════════════════════════════════════════ */
+const BUILTIN = [
+  {trigger:"/scan", name:"檢查更新並把密鑰抽到 .env", cat:"部署上線", content:`這次有不少檔案更新了，請幫我：
+1. 檢查這個專案多了哪些變更（特別留意新增的 Firebase 參數，那是用來啟用排行榜功能的）。
+2. 確認未來部署到 GitHub Pages 後，serverless 策略下整個排行榜系統還能正常運作。
+3. 把所有密鑰參數抽取到一個 .env 檔，並對應列出要貼到 GitHub Secrets 的名稱，確保整個遊戲系統照樣運作。`},
+  {trigger:"/sync", name:"同步密鑰並重新觸發部署", cat:"部署上線", content:`我已經手動更新好 .env 的 API KEY，GitHub Secrets 也更新好了。請幫我：
+1. 更新 GitHub Actions 的 YAML，讓部署流程同步使用新的 Key。
+2. 同步更新 Firebase Functions 與 GCP Secret Manager 的對應密鑰。
+3. 全部完成後，重新觸發 GitHub Actions，用新 Key 重建並部署。`},
+  {trigger:"/deployed", name:"確認版本號與文件已部署", cat:"部署上線", content:`請確認版本號是否已更新、說明文件（README 與相關說明 md）是否都已完整提交並部署到 GitHub。`},
+  {trigger:"/pages", name:"設定 GitHub Pages 直接上線", cat:"部署上線", content:`請設定好 GitHub Pages，讓這個網站直接從 GitHub 上就能開啟使用，完成後給我可點擊的線上網址。`},
+  {trigger:"/firebase", name:"Firebase 資料庫設定", cat:"部署上線", content:`我要使用 Firebase（Firestore）資料庫，且已安裝 firebase CLI，你可以直接從後台幫我修改任何設定。
+目前的安全規則如下：
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+API 金鑰：〔填入 API 金鑰〕
+請依此完成資料庫串接與必要設定。`},
+  {trigger:"/projects", name:"檢查 Firebase 專案多 App 共用", cat:"部署上線", content:`我已安裝 firebase CLI。請檢查 teacher 這個 Firebase 專案是否還有其他位於 h:\\ 的網頁 App 也在共用，確認彼此不會互相影響，並自動幫我做好相關設定（多 App 共存的安全隔離）。`},
+  {trigger:"/cloud", name:"Cloudflare Skills 串接建議", cat:"部署上線", content:`我用 Cloudflare 雲端部署 moltworker 沙盒，目前正在建立 skills 階段。請繼續提供適合我們串接的方法建議，未來同步更新到 AGENTS.md。我想要更多適合自動化流程的 skills，可參考：
+・https://skillsmp.com/zh/search
+・https://clawhub.ai/`},
+  {trigger:"/onepage", name:"做成單檔互動式網站", cat:"網站設計", content:`請依照完整文件內容，設計一個 Single File（HTML + CSS + JavaScript 全部寫在同一個檔）的互動式網站，要求：
+1. 符合 RWD 響應式設計，手機與電腦都好看。
+2. 書籤／目錄導覽用 JavaScript 的 onclick 事件觸發平滑捲動。
+3. 文件中提到的所有超連結都要放進網站，且一律以開啟新視窗分頁（target="_blank"）的方式打開。`},
+  {trigger:"/tea", name:"會議記錄互動網站", cat:"網站設計", content:`請依照完整的會議記錄文件內容，設計一個 Single File（HTML+CSS+JavaScript 同檔）的互動式會議記錄網站（會議記錄專用版）：
+1. 符合 RWD，手機、平板、電腦都好看。
+2. 提供側邊或頂部「目錄導覽」，用 JavaScript onclick 觸發平滑捲動到各段落，並加上「回到頂部」按鈕。
+3. 文件中所有超連結都要放進網站，以「互動按鈕」方式呈現，並一律開新視窗分頁（target="_blank"）。
+4. 優化 UI/UX 體驗，配色繽紛有活力。`},
+  {trigger:"/site", name:"Google Sites 嵌入網站", cat:"網站設計", content:`請設計一個純 HTML + CSS + JavaScript 的網站（要能嵌入 Google Sites 使用）：
+1. 好好優化 UI/UX 體驗。
+2. 符合 RWD，平板與手機寬度下都要好閱讀、好操作。`},
+  {trigger:"/design", name:"設計重構：先給方向再實作", cat:"網站設計", content:`參考我們目前已做好的完整建置內容（附上的截圖是現在的網站布局），請先提供幾個設計想法與方向讓我挑選；我選定後，再請你實施布局排版，最後優化改良成更有設計感的版本。`},
+  {trigger:"/rwd", name:"檢查 RWD 手機平板適配", cat:"網站設計", content:`請檢查目前的網站是否符合 RWD 響應式格式，確保手機端與平板端都很適合閱讀、觀看與操作使用，發現問題請一併修正。`},
+  {trigger:"/xoops", name:"XOOPS 校網內嵌規則", cat:"網站設計", content:`我要把這段內容內嵌到 XOOPS 校網的區塊中，請幫我：
+1. 移除全部 Tailwind 格式（改用一般 inline 或內聚 CSS）。
+2. 把 emoji 換成適合的 SVG 圖示。
+這樣才不會影響到校網其他區塊的排版。`},
+  {trigger:"/style", name:"開發新設計風格並存進技能", cat:"網站設計", content:`我們來繼續開發其他適合的全新設計風格，並把成果整理加入 SKILLS（技能庫）中，方便未來參考重用，逐步擴充設計風格的多樣性。`},
+  {trigger:"/ui", name:"參考技能庫優化繽紛 UI", cat:"網站設計", content:`請參考 C:\\Users\\smes\\.gemini\\antigravity\\skills 資料夾中的專業提示詞與設計範例，把這個區塊的 UI 優化得更繽紛、更醒目，並維持 RWD 響應式格式。`},
+  {trigger:"/layout", name:"優化網站布局與配色", cat:"網站設計", content:`請完整參照上面的內容，優化改良網站的整體布局與配色設計，讓視覺更協調、層次更清楚、重點更突出。`},
+  {trigger:"/srt", name:"影片 SRT 逐字稿（完整規則）", cat:"影音字幕", content:`請根據影片內容，理解全文語義後產出並校正繁體中文 SRT 字幕檔，務必嚴格遵守 3 項規則：
+1. 專有名詞校正：比對我提供的參考檔案，修正語音辨識錯誤的字詞（劇名、人名、班級等）。
+2. 切除無聲空白：遇換場、搬道具或超過 5 秒沒人說話，務必中斷字幕顯示（切斷時間軸），不要把上一句拉長填滿空白。
+3. 字數與排版：每句嚴格控制在 20 字以內，輸出標準 SRT（時:分:秒,毫秒）格式。
+範例格式：
+1
+00:00:00,090 --> 00:00:01,390
+一開始。
+2
+00:00:01,790 --> 00:00:03,490
+大家好，我是潘宥睿。
+請附上可參考的演出詳細資料供字幕修正，最後匯出完整 SRT 檔讓我可以一鍵下載。`},
+  {trigger:"/fixsrt", name:"SRT 時間偏移修正", cat:"影音字幕", content:`目前字幕的字句與專有名詞都對了，但有「時間軸偏移」與「過度填補空白」的問題，請找出原因並重新產出 SRT，遵守：
+1. 整體時間提前：所有時間戳記統一提前約 2 秒，抵消系統辨識的慢半拍。
+2. 斷開換場時間：嚴格對照實際語音，遇到數秒無聲或換場時字幕必須消失，不要把短句顯示時間異常拉長跨越換場期。
+3. 保持原本已校正好的正確字句與 SRT 格式輸出。`},
+  {trigger:"/chapter", name:"影片時間軸章節", cat:"影音字幕", content:`請幫我把影片整理成可點選跳轉的時間軸章節，格式為「時間 段落名稱」、依時間順序分行，範例：
+00:00 典禮開始
+00:17 運動員進場
+11:19 唱國歌
+29:55 活力健康操（六年級）
+01:00:30 熱鬧滾滾（四年級）
+（依此類推到影片結束）
+請根據影片實際內容，輸出各重要段落（可參考我提供的出場序、班級、作品名稱、得獎獎項），按時間順序分行分段，方便我直接複製貼上到 YouTube 影片說明欄。`},
+  {trigger:"/mp3", name:"錄音檔逐句時間戳記", cat:"影音字幕", content:`請整理我提供的會議錄音檔（例如「0313會議錄音檔」），在每一句加上時間戳記與發言人名：
+・格式：00:00:00 _人名：（時間標示放句首）
+・每一句條列式呈現
+・以 YAML 形式輸出。`},
+  {trigger:"/shorts", name:"轉成吸睛短影片腳本", cat:"影音字幕", content:`請把我提供的內容（影片／文章／簡報／主題）轉換成一支吸睛、專業精彩、資訊量飽滿又含金量高的短影片：
+1. 黃金開頭：前 3 秒用一句強鉤子（提問、反差或驚人數據）瞬間抓住眼球。
+2. 節奏明快：濃縮成幾個重點段落，每段只講一個核心訊息，去蕪存菁不拖沓。
+3. 含金量高：每句都有料，保留關鍵數據與專有名詞，讓觀眾看完真的有收穫。
+4. 收尾有力：用一句金句或行動呼籲（CTA）作結，提升記憶點與分享意願。
+請以分鏡條列輸出完整腳本（旁白＋字幕＋畫面提示），適合 9:16 直式 Shorts／Reels，方便我直接製作。`},
+  {trigger:"/live", name:"石門官方台排程直播", cat:"影音字幕", content:`請幫我在石門國小影音平台（@tycsmes）建立一場 YouTube 排程直播，並產出活動封面與導播機換場墊片：
+・活動名稱：〔填入標題〕
+・直播時間：〔例：2026年6月20日 上午 9:00〕
+・組別或活動說明：〔選填〕
+請依 school-youtube-live-pipeline 完整作業：
+1. 先建 unlisted 直播（頻道身分確認含「石門」才放行）。
+2. 產活動主封面（16:9）+ 導播機換場墊片 6 張，依本次主題重新設計風格。
+3. 設縮圖、綁萬用串流金鑰。
+4. 我確認 OK 後再改 public。
+完成後給我觀看連結、Studio 連結、RTMP 位址與串流金鑰。`},
+  {trigger:"/upload", name:"上傳影片到石門官方頻道", cat:"影音字幕", content:`請幫我把這支錄影檔上傳到石門國小影音平台（@tycsmes）：
+・影片檔案路徑：〔填入完整路徑，例：G:\\Videos\\活動紀錄.mp4〕
+・標題：〔填入〕
+・說明：〔選填，留空會自動產生〕
+・縮圖：〔選填，填圖檔路徑；不填則不設〕
+・隱私：〔unlisted（預設）或 public〕
+請使用 ~/.youtube_auth/token.json（石門官方台授權），建立前先 channels().list 確認頻道含「石門」，上傳後給我影片連結與 Studio 管理連結。`},
+  {trigger:"/poster", name:"宣導海報設計", cat:"圖像簡報", content:`請依照以下完整內容，設計出一張專業的宣導用海報圖檔：
+1. 主題明確、排版美觀、層次清楚，適合學校公告張貼。
+2. 預設直式（適合 A4 直印張貼），若我另有指定比例再調整。
+3. 不要出現任何學生姓名與個資。`},
+  {trigger:"/ppt", name:"溫馨風格簡報", cat:"圖像簡報", content:`請詳細瀏覽影片內容後，製作一份專業且溫馨風格的簡報介紹：
+1. 內容完整，約 8～12 頁，每頁聚焦一個重點。
+2. 風格溫馨、用字淺白，適合國小教師觀看，可直接分享到 LINE 群組。
+3. 輸出格式：預設 Single File HTML 簡報網頁；若我另外指定 PPTX 再調整。`},
+  {trigger:"/yt", name:"YouTube 直播封面", cat:"圖像簡報", content:`請幫我製作 YouTube 直播封面（16:9）：
+・標題：〔例：115 年度小小說書人戲劇表演〕
+・直播時間：〔例：2026年5月20日 上午 8:45〕
+・組別：〔例：一年級〕
+要求：不要放任何學生姓名，只出現班級組別與演出名稱；並在封面附上桃園市龍潭區石門國小的 LOGO。`},
+  {trigger:"/music", name:"琴譜加動畫邊框", cat:"圖像簡報", content:`請保留原本的琴譜內容完全不變，只在四周加上適合這個動畫風格的邊框修飾；邊框不可遮住任何音符、譜號、小節線或文字。`},
+  {trigger:"/pirls", name:"PIRLS 導讀文章", cat:"內容寫作", content:`請按照上面提供的完整文本內容，設計一篇約 800 字的文章，並融入 PIRLS 相關的導讀工作流程；不需要出現選擇題，提供適合 PIRLS 閱讀的文章本體即可。`},
+  {trigger:"/news", name:"搜尋新聞寫成部落格", cat:"內容寫作", content:`請上網搜尋相關新聞資料，整理成一篇結構清楚、好讀的部落格文章。文章標題如下：〔填入標題〕`},
+  {trigger:"/score", name:"平時成績計算", cat:"內容寫作", content:`請幫我計算 6 年〔例：5〕班的平時成績，並照座號排序：
+・每位學生成績落在 80～96 之間，分數要有高低差、看起來自然合理。
+・全班平均控制在 88 左右（可微調，若我另有指定平均再調整）。
+・平均分數算到小數點後第一位。`},
+  {trigger:"/txt", name:"圖片文字擷取與排版", cat:"內容寫作", content:`請完整擷取出圖片中的文字內容，連同圖片一起，做出美觀的排版整理後給我。`},
+  {trigger:"/sum", name:"重點摘要", cat:"內容寫作", content:`請幫我把以下內容做成重點摘要：
+1. 先用一句話總結核心主旨。
+2. 接著條列 3～5 個關鍵重點。
+3. 用繁體中文，語氣簡潔白話。
+4. 保留重要數據與專有名詞。`},
+  {trigger:"/trans", name:"翻成流暢繁中", cat:"內容寫作", content:`請將以下內容翻譯成自然流暢的繁體中文（台灣用語）：
+1. 信達雅兼顧，不要直譯腔。
+2. 專有名詞、人名、程式碼保留原文，並在首次出現時附註。
+3. 只輸出譯文，不要額外說明。`},
+  {trigger:"/rewrite", name:"潤稿改寫", cat:"內容寫作", content:`請幫我潤飾改寫以下文字：
+1. 修正錯字、標點與語法。
+2. 讓句子更通順易讀，但保留我的原意與語氣。
+3. 以繁體中文輸出。
+4. 若有明顯邏輯問題，在最後用括號簡短提醒。`},
+  {trigger:"/quiz", name:"國小小測驗", cat:"內容寫作", content:`請依據以下教學內容，幫我出一份國小程度的小測驗：
+1. 5 題單選題，每題 4 個選項。
+2. 1 題簡答題。
+3. 附上正確答案與簡短解析。
+4. 題目用字淺白、貼近國小學生的生活經驗。`},
+  {trigger:"/sw", name:"SW 版本自動更新通知", cat:"功能整合", content:`請加入 Service Worker 版本號自動更新的通知機制：當偵測到新版本時主動提示使用者重新整理載入最新版。可參考我們既有的 SKILLS 工作流（pwa-cache-bust、vite-chunk-hash-pwa-self-heal）。`},
+  {trigger:"/line", name:"LINE 即時通知機制", cat:"功能整合", content:`請加入 LINE 通知機制：當有使用者生成內容（UGC）時，官方 LINE 帳號自動推送通知給我，內容包含進度與狀態（成功或失敗），方便我即時掌握。可參考我們既有的 SKILLS 工作流（line-messaging-firebase）。`},
+  {trigger:"/favicon", name:"產 favicon 與社群分享圖", cat:"功能整合", content:`請產生符合這個網站標題與內容的 favicon，以及適合 LINE、Facebook 社群分享卡片的 OG 預覽圖片；並設定好對應的 meta 標籤，確保未來部署到 GitHub Pages 後也能正確顯示。`},
+  {trigger:"/switch", name:"切換到 YT 備用配額帳號", cat:"功能整合", content:`我們有另一個負責上傳 YT 的配額帳號，請切過去。`},
+  {trigger:"/learn", name:"一起學習並內化", cat:"技能文件", content:`接下來要優化／學習的部分如下：〔填入資源連結或主題〕。
+讓我們一起閱讀、理解並內化成可重用的做法，必要時整理成 SKILLS 方便日後參考。`},
+  {trigger:"/progress", name:"更新進度表並給優化建議", cat:"技能文件", content:`請把以上完成的內容更新到目前的進度表，並依照這些改良方向，提供一份詳細的「未來優化改良與可開發功能」建議清單，讓我仔細參考。`},
+  {trigger:"/skill", name:"把成功案例存成技能", cat:"技能文件", content:`這個問題我們來回試了好幾趟才成功，請把這次的成功案例新建成一個全新的 SKILLS（包含觸發情境、根本原因、正確解法步驟），永久記住，未來遇到同類情況能直接套用、快速成功。`},
+  {trigger:"/retro", name:"復盤並更新技能避免再犯", cat:"技能文件", content:`成功了！請詳細復盤剛剛發生了什麼事、根本原因是什麼、最後怎麼解決的，整理成「如何避免再犯」的要點，補強並更新到既有的相關 SKILLS 中（沒有相近技能才新建），讓未來不會再踩同一個雷。`},
+  {trigger:"/handoff", name:"產出 Claude Code 交接包", cat:"技能文件", content:`請把以上我們完成的所有設計內容，整理成一份完整的「Claude Code 開發交接包」，內容包含：專案現況、架構說明、已完成項目、待辦清單、環境與密鑰設定說明、以及後續開發步驟。`},
+  {trigger:"/brief", name:"如何向 Claude Code 說明交接", cat:"技能文件", content:`請告訴我，要怎麼跟 Claude Code 說明這個交接包的內容，以及接下來的開發與改良進度。給我一段可以直接貼給 Claude Code 的開場說明。`},
+  {trigger:"/audit", name:"資料夾總檢與移植評估", cat:"技能文件", content:`請詳細檢查這個資料夾中的所有內容，然後：
+1. 產出一份詳細的「使用說明 md」。
+2. 評估能否完整移植到我的 GitHub 做 serverless 部署，並說明具體做法。
+3. 提供一份「後續優化改良步驟建議 md」。
+（備註：若需要後端，我習慣使用 Firebase。）`},
+  {trigger:"/local", name:"啟動本地端測試", cat:"開發流程", content:`請先在本地端啟動一個連接埠（local server）運行這個專案，我們先測試看看效果，再決定下一步。`},
+  {trigger:"/go", name:"接續進度繼續完成", cat:"開發流程", content:`請接續剛才的進度繼續完成，不用每一步都等我確認，遇到合理的小決策就直接做，完成後再一次回報。`},
+  {trigger:"/card", name:"網站新增建置完成卡片", cat:"開發流程", content:`我的網站要新增一張「已建置完成」的工具卡片：
+・標題：〔填入標題〕
+・超連結：〔填入網址〕
+請自動完成：
+1. 生成符合標題的卡片主圖，以及 webp 預覽圖。
+2. 自動撰寫吸引人的卡片說明文案。
+3. 自動歸好卡片分類，並加上合適的標籤。
+4. 設定好社群分享用的 OG 預覽圖片。`},
+  {trigger:"/simple", name:"代碼只分段不改邏輯", cat:"開發流程", content:`以上內容請不要變更任何程式碼邏輯，只要幫我把代碼分好段落、分行排版整齊就好，方便我快速找到要改動的地方。`},
+  {trigger:"/smes", name:"石門信箱", cat:"常用片段", content:`ipad@mail2.smes.tyc.edu.tw`},
+];
+
+/* ─────────── 分類 → 圖示 / 順序 ─────────── */
+const CAT_ICON = {"部署上線":"i-rocket","網站設計":"i-web","影音字幕":"i-film","圖像簡報":"i-image",
+  "內容寫作":"i-pen","功能整合":"i-hub","技能文件":"i-book","開發流程":"i-term","常用片段":"i-pin"};
+const CAT_ORDER = ["部署上線","網站設計","影音字幕","圖像簡報","內容寫作","功能整合","技能文件","開發流程","常用片段"];
+const iconFor = c => CAT_ICON[c] || "i-spark";
+const LS = {data:"pp_prompts_v1", fav:"pp_favs_v1", cnt:"pp_counts_v1", theme:"pp_theme_v1", sort:"pp_sort_v1"};
+
+/* ─────────── State ─────────── */
+let state = {
+  prompts: [], favs:new Set(), counts:{},
+  view:"fav", sort:"used", query:"", selected:null, editing:null,
+};
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+
+/* ─────────── Persistence ─────────── */
+function load(){
+  try{
+    const d = JSON.parse(localStorage.getItem(LS.data));
+    state.prompts = Array.isArray(d) && d.length ? d : structuredClone(BUILTIN);
+  }catch(e){ state.prompts = structuredClone(BUILTIN); }
+  try{ state.favs = new Set(JSON.parse(localStorage.getItem(LS.fav))||[]); }catch(e){}
+  try{ state.counts = JSON.parse(localStorage.getItem(LS.cnt))||{}; }catch(e){}
+  state.sort = localStorage.getItem(LS.sort) || "used";
+  const th = localStorage.getItem(LS.theme); if(th) document.body.dataset.theme = th;
+}
+const saveData  = () => localStorage.setItem(LS.data, JSON.stringify(state.prompts));
+const saveFav   = () => localStorage.setItem(LS.fav, JSON.stringify([...state.favs]));
+const saveCnt   = () => localStorage.setItem(LS.cnt, JSON.stringify(state.counts));
+
+/* ─────────── Copy ─────────── */
+async function copyText(text){
+  try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); return true; } }catch(e){}
+  const ta=document.createElement("textarea"); ta.value=text;
+  ta.style.cssText="position:fixed;top:-9999px;opacity:0"; document.body.appendChild(ta); ta.focus(); ta.select();
+  let ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+  document.body.removeChild(ta); return ok;
+}
+let toastT;
+function toast(msg, kind){
+  const t=$("#toast"); t.className=""; if(kind) t.classList.add(kind);
+  t.innerHTML = `<svg class="ic"><use href="#${kind==="err"?"i-x":"i-copy"}"/></svg>${esc(msg)}`;
+  requestAnimationFrame(()=>t.classList.add("show"));
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),1900);
+}
+async function doCopy(p, rowEl){
+  const ok = await copyText(p.content);
+  if(ok){
+    state.counts[p.trigger]=(state.counts[p.trigger]||0)+1; saveCnt();
+    toast(`✓ 已複製「${p.name}」！正在切換至上一個程式並自動貼上`, "ok");
+    if(rowEl){ rowEl.classList.add("copied"); setTimeout(()=>rowEl.classList.remove("copied"),800); }
+    if(state.sort==="used") renderList();
+    if(state.selected===p.trigger) renderPane();
+  }else toast("複製失敗，請手動選取內容","err");
+}
+
+/* ─────────── Derived ─────────── */
+function catCounts(){
+  const m={}; state.prompts.forEach(p=>m[p.cat]=(m[p.cat]||0)+1); return m;
+}
+function visiblePrompts(){
+  let list = state.prompts.slice();
+  if(state.view==="fav") list=list.filter(p=>state.favs.has(p.trigger));
+  else if(state.view!=="all") list=list.filter(p=>p.cat===state.view);
+  const q=state.query.trim().toLowerCase();
+  if(q) list=list.filter(p=>(p.name+p.trigger+p.content+p.cat).toLowerCase().includes(q));
+  if(state.sort==="used"){ const ord=new Map(state.prompts.map((p,i)=>[p.trigger,i]));
+    list.sort((a,b)=>((state.counts[b.trigger]||0)-(state.counts[a.trigger]||0))||(ord.get(a.trigger)-ord.get(b.trigger))); }
+  else if(state.sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name,"zh-Hant"));
+  return list;
+}
+const firstLine = s => { const i=s.indexOf("\n"); return (i<0?s:s.slice(0,i)).trim(); };
+function hi(text){
+  let t=esc(text); const q=state.query.trim();
+  if(q){ try{ const re=new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"); t=t.replace(re,'<mark class="hl">$1</mark>'); }catch(e){} }
+  return t;
+}
+function fmtContent(raw){
+  let h=esc(raw);
+  h=h.replace(/(https?:\/\/[^\s）)】]+)/g,'<a class="lnk" href="$1" target="_blank" rel="noopener">$1</a>');
+  h=h.replace(/〔([^〕]*)〕/g,'<span class="ph">〔$1〕</span>');
+  h=h.replace(/^(\s*)(\d+[.、])/gm,'$1<span class="mk">$2</span>');
+  h=h.replace(/^(\s*)([・•])/gm,'$1<span class="mk">$2</span>');
+  return h;
+}
+function updateStats(){
+  const s=document.getElementById("stats");
+  if(s) s.innerHTML=`共 <b>${state.prompts.length}</b> 筆<span class="sep"></span><svg class="ic"><use href="#i-star"/></svg><b>${state.favs.size}</b>`;
+}
+
+/* ─────────── Render: rail ─────────── */
+function renderRail(){
+  const cc=catCounts(), rail=$("#rail");
+  let html = `<div class="grp">總覽</div>`;
+  html += railItem("all","i-spark","全部",state.prompts.length);
+  html += railItem("fav","i-star","我的最愛",state.favs.size);
+  html += `<div class="grp">分類</div>`;
+  CAT_ORDER.forEach(c=>{ if(cc[c]) html += railItem(c, iconFor(c), c, cc[c]); });
+  Object.keys(cc).forEach(c=>{ if(!CAT_ORDER.includes(c)) html += railItem(c, iconFor(c), c, cc[c]); });
+  rail.innerHTML = html;
+  rail.querySelectorAll(".ri").forEach(el=>el.onclick=()=>{ state.view=el.dataset.v; renderAll(); });
+
+  // mobile tabs
+  const mt=$("#mobtabs");
+  let mh = mtab("all","i-spark","全部")+mtab("fav","i-star","最愛");
+  CAT_ORDER.forEach(c=>{ if(cc[c]) mh+=mtab(c, iconFor(c), c); });
+  mt.innerHTML=mh;
+  mt.querySelectorAll(".mtab").forEach(el=>el.onclick=()=>{ state.view=el.dataset.v; renderAll(); });
+  updateStats();
+}
+const railItem=(v,ic,label,ct)=>`<button class="ri ${state.view===v?"on":""}" data-v="${esc(v)}">
+  <svg class="ic"><use href="#${ic}"/></svg>${esc(label)}<span class="ct">${ct}</span></button>`;
+const mtab=(v,ic,label)=>`<button class="mtab ${state.view===v?"on":""}" data-v="${esc(v)}">
+  <svg class="ic"><use href="#${ic}"/></svg>${esc(label)}</button>`;
+
+/* ─────────── Render: list ─────────── */
+function renderList(){
+  const list=visiblePrompts(), rows=$("#rows");
+  const title = state.view==="all"?"全部" : state.view==="fav"?"我的最愛" : state.view;
+  $("#listTitle").textContent=title;
+  $("#listCount").textContent = `${list.length} 筆`+(state.query.trim()?`（篩選自 ${state.prompts.length}）`:"");
+  if(!list.length){
+    rows.innerHTML = `<div class="empty"><div class="ill"><svg class="ic" style="width:30px;height:30px"><use href="#${state.view==="fav"&&!state.query?"i-star":"i-search"}"/></svg></div>${state.view==="fav"&&!state.query?"<b>還沒有最愛</b><br>在清單右側點 ☆ 收藏常用提示詞":"<b>找不到符合的提示詞</b><br>換個關鍵字，或按 Esc 清空"}</div>`;
+    return;
+  }
+  rows.innerHTML = list.map(p=>{
+    const fav=state.favs.has(p.trigger);
+    return `<div class="row ${state.selected===p.trigger?"sel":""}" data-t="${esc(p.trigger)}">
+      <span class="trig">${esc(p.trigger)}</span>
+      <div class="rmid">
+        <div class="nm"><svg class="ic cati"><use href="#${iconFor(p.cat)}"/></svg><span class="nmt">${hi(p.name)}</span>${(state.counts[p.trigger]||0)>0?`<span class="ub">${state.counts[p.trigger]}</span>`:""}</div>
+        <div class="pv">${hi(firstLine(p.content))}</div>
+      </div>
+      <button class="rstar ${fav?"on":""}" data-fav="${esc(p.trigger)}" title="${fav?"取消最愛":"加入最愛"}">
+        <svg class="ic"><use href="#i-star"/></svg></button>
+    </div>`;
+  }).join("");
+  rows.querySelectorAll(".row").forEach(el=>{
+    const t=el.dataset.t, p=state.prompts.find(x=>x.trigger===t);
+    el.onclick=()=>{ state.selected=t; renderPane(); markSel(); doCopy(p, el); };
+  });
+  rows.querySelectorAll(".rstar").forEach(el=>{
+    el.onclick=(e)=>{ e.stopPropagation(); toggleFav(el.dataset.fav); };
+  });
+}
+function markSel(){
+  document.querySelectorAll(".row").forEach(r=>r.classList.toggle("sel", r.dataset.t===state.selected));
+}
+function toggleFav(t){
+  const adding=!state.favs.has(t);
+  if(adding) state.favs.add(t); else state.favs.delete(t);
+  saveFav(); renderRail(); renderList(); if(state.selected===t) renderPane();
+  if(adding){ const s=document.querySelector(`.rstar[data-fav="${cssEsc(t)}"]`);
+    if(s){ s.classList.add("pop"); s.addEventListener("animationend",()=>s.classList.remove("pop"),{once:true}); } }
+}
+
+/* ─────────── Render: preview pane ─────────── */
+function renderPane(){
+  const pane=$("#pane");
+  const p = state.prompts.find(x=>x.trigger===state.selected);
+  if(!p){
+    pane.innerHTML = `<div class="pv-empty"><svg class="ic big"><use href="#i-spark"/></svg>
+      <div>從左邊清單點一張<br>就會在這裡看到完整內容</div></div>`;
+    return;
+  }
+  const fav=state.favs.has(p.trigger), used=state.counts[p.trigger]||0;
+  pane.innerHTML = `<div class="pv-wrap">
+    <div class="pv-top">
+      <span class="trig">${esc(p.trigger)}</span>
+      <span class="cati"><svg class="ic"><use href="#${iconFor(p.cat)}"/></svg></span>
+      <span style="font-size:13px;color:var(--sub);font-weight:600">${esc(p.cat)}</span>
+    </div>
+    <h1 class="pv-h1">${esc(p.name)}</h1>
+    <div class="pv-meta">
+      <span><svg class="ic"><use href="#i-clock"/></svg>已使用 ${used} 次</span>
+      ${fav?'<span style="color:var(--accent-deep)"><svg class="ic" style="fill:var(--accent)"><use href="#i-star"/></svg>已收藏</span>':""}
+    </div>
+    <div class="pv-doc">${fmtContent(p.content)}</div>
+    <div class="pv-actions">
+      <button class="big-copy" id="pvCopy"><svg class="ic"><use href="#i-copy"/></svg>複製全文</button>
+      <button class="ghost-btn fav ${fav?"on":""}" id="pvFav"><svg class="ic"><use href="#i-star"/></svg>${fav?"已收藏":"加入最愛"}</button>
+      <button class="ghost-btn" id="pvEdit"><svg class="ic"><use href="#i-edit"/></svg>編輯</button>
+      <button class="ghost-btn del" id="pvDel"><svg class="ic"><use href="#i-trash"/></svg>刪除</button>
+    </div>
+  </div>`;
+  $("#pvCopy").onclick=async()=>{
+    await doCopy(p, document.querySelector(`.row[data-t="${cssEsc(p.trigger)}"]`));
+    const b=$("#pvCopy"); if(b){ b.classList.add("done"); b.innerHTML='<svg class="ic"><use href="#i-spark"/></svg>已複製！';
+      setTimeout(()=>{ const nb=$("#pvCopy"); if(nb===b){ b.classList.remove("done"); b.innerHTML='<svg class="ic"><use href="#i-copy"/></svg>複製全文'; } },1300); }
+  };
+  $("#pvFav").onclick=()=>toggleFav(p.trigger);
+  $("#pvEdit").onclick=()=>openEditor(p);
+  $("#pvDel").onclick=()=>delPrompt(p.trigger);
+}
+const cssEsc = s => (window.CSS&&CSS.escape)?CSS.escape(s):s.replace(/[^a-zA-Z0-9_-]/g,"\\$&");
+
+/* ─────────── Add / Edit / Delete ─────────── */
+function openEditor(p){
+  state.editing = p ? p.trigger : null;
+  $("#modalTitle").textContent = p ? "編輯提示詞" : "新增提示詞";
+  $("#f-trigger").value = p?p.trigger:"";
+  $("#f-name").value = p?p.name:"";
+  $("#f-cat").value = p?p.cat:"";
+  $("#f-content").value = p?p.content:"";
+  $("#formErr").textContent="";
+  $("#modalDel").style.display = p ? "inline-flex" : "none";
+  $("#catlist").innerHTML = CAT_ORDER.map(c=>`<option value="${esc(c)}">`).join("");
+  $("#scrim").classList.add("show");
+  setTimeout(()=>$("#f-trigger").focus(),50);
+}
+function closeEditor(){ $("#scrim").classList.remove("show"); state.editing=null; }
+function saveEditor(){
+  let trig=$("#f-trigger").value.trim(), name=$("#f-name").value.trim(),
+      cat=$("#f-cat").value.trim(), content=$("#f-content").value;
+  if(!trig||!name||!cat||!content.trim()){ $("#formErr").textContent="觸發詞、名稱、分類、內容都要填。"; return; }
+  if(!trig.startsWith("/")) trig="/"+trig;
+  const clash = state.prompts.find(p=>p.trigger===trig && p.trigger!==state.editing);
+  if(clash){ $("#formErr").textContent=`觸發詞「${trig}」已存在，換一個。`; return; }
+  if(state.editing){
+    const i=state.prompts.findIndex(p=>p.trigger===state.editing);
+    if(state.editing!==trig){ // trigger renamed → migrate fav/count
+      if(state.favs.has(state.editing)){ state.favs.delete(state.editing); state.favs.add(trig); saveFav(); }
+      if(state.counts[state.editing]!=null){ state.counts[trig]=state.counts[state.editing]; delete state.counts[state.editing]; saveCnt(); }
+    }
+    state.prompts[i]={trigger:trig,name,cat,content};
+    state.selected=trig;
+  }else{
+    state.prompts.unshift({trigger:trig,name,cat,content});
+    state.selected=trig;
+  }
+  saveData(); closeEditor(); renderAll(); toast(state.editing?"已更新":"已新增","ok");
+}
+function delPrompt(t){
+  const p=state.prompts.find(x=>x.trigger===t); if(!p) return;
+  if(!confirm(`確定刪除「${p.name}」(${t})？`)) return;
+  state.prompts = state.prompts.filter(x=>x.trigger!==t);
+  state.favs.delete(t); delete state.counts[t];
+  if(state.selected===t) state.selected=null;
+  saveData(); saveFav(); saveCnt(); closeEditor(); renderAll(); toast("已刪除","ok");
+}
+
+/* ─────────── Import / Export ─────────── */
+function exportJSON(){
+  const payload={ app:"提示詞快捷面板", version:1, exportedAt:new Date().toISOString(),
+    prompts:state.prompts, favs:[...state.favs], counts:state.counts };
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=`提示詞備份_${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast(`已匯出 ${state.prompts.length} 筆`,"ok");
+}
+function importJSON(file){
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const d=JSON.parse(r.result);
+      const arr = Array.isArray(d) ? d : d.prompts;
+      if(!Array.isArray(arr)) throw 0;
+      const clean = arr.filter(p=>p&&p.trigger&&p.name&&p.cat&&p.content!=null)
+        .map(p=>({trigger:String(p.trigger),name:String(p.name),cat:String(p.cat),content:String(p.content)}));
+      if(!clean.length) throw 0;
+      const mode = confirm(`匯入 ${clean.length} 筆。\n\n按「確定」= 合併（同觸發詞會被覆蓋）\n按「取消」= 整批取代目前全部`);
+      if(mode){
+        const map=new Map(state.prompts.map(p=>[p.trigger,p]));
+        clean.forEach(p=>map.set(p.trigger,p));
+        state.prompts=[...map.values()];
+      }else state.prompts=clean;
+      if(!Array.isArray(d)){
+        if(Array.isArray(d.favs)) state.favs=new Set([...state.favs,...d.favs]);
+        if(d.counts) state.counts=Object.assign(state.counts,d.counts);
+      }
+      saveData(); saveFav(); saveCnt(); renderAll(); toast(`已匯入 ${clean.length} 筆`,"ok");
+    }catch(e){ toast("檔案格式不正確","err"); }
+  };
+  r.readAsText(file);
+}
+function resetDefaults(){
+  if(!confirm("還原成內建的 48 個提示詞？\n你新增/編輯的內容會被覆蓋（最愛與使用次數保留）。")) return;
+  state.prompts=structuredClone(BUILTIN); state.selected=null;
+  saveData(); renderAll(); toast("已還原預設","ok");
+}
+
+/* ─────────── Theme ─────────── */
+function setTheme(t){
+  document.body.dataset.theme=t; localStorage.setItem(LS.theme,t);
+  document.querySelectorAll(".themes .sw").forEach(s=>s.classList.toggle("on",s.dataset.theme===t));
+}
+
+/* ─────────── Render all ─────────── */
+function renderAll(){ renderRail(); renderList(); renderPane(); }
+
+/* ─────────── Wire up ─────────── */
+load();
+document.querySelector(`.themes .sw[data-theme="${document.body.dataset.theme}"]`)?.classList.add("on");
+document.querySelectorAll(".themes .sw").forEach(s=>s.onclick=()=>setTheme(s.dataset.theme));
+$("#sort").value=state.sort;
+$("#sort").onchange=e=>{ state.sort=e.target.value; localStorage.setItem(LS.sort,state.sort); renderList(); };
+$("#search").addEventListener("input",e=>{ state.query=e.target.value; renderList(); });
+$("#search").addEventListener("keydown",e=>{
+  if(e.key==="Enter"){ const l=visiblePrompts(); if(l.length){ state.selected=l[0].trigger; renderPane(); markSel(); doCopy(l[0], document.querySelector(".row")); } }
+  if(e.key==="Escape"){ e.target.value=""; state.query=""; renderList(); }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="/" && document.activeElement!==$("#search") && !$("#scrim").classList.contains("show")){
+    e.preventDefault(); $("#search").focus(); $("#search").select();
+  }
+  if(e.key==="Escape" && $("#scrim").classList.contains("show")) closeEditor();
+});
+$("#btnAdd").onclick=()=>openEditor(null);
+$("#btnExport").onclick=exportJSON;
+$("#btnImport").onclick=()=>$("#importFile").click();
+$("#importFile").onchange=e=>{ if(e.target.files[0]) importJSON(e.target.files[0]); e.target.value=""; };
+$("#modalX").onclick=closeEditor;
+$("#modalSave").onclick=saveEditor;
+$("#modalDel").onclick=()=>{ if(state.editing) delPrompt(state.editing); };
+$("#scrim").onclick=e=>{ if(e.target===$("#scrim")) closeEditor(); };
+$("#f-content").addEventListener("keydown",e=>{ if((e.metaKey||e.ctrlKey)&&e.key==="Enter") saveEditor(); });
+
+// 排序列加「還原預設」小鈕
+(()=>{ const b=document.createElement("button"); b.className="tb-btn"; b.style.padding="9px 11px";
+  b.title="還原成內建 48 筆"; b.innerHTML='<svg class="ic"><use href="#i-reset"/></svg>';
+  b.onclick=resetDefaults; $(".sortsel").appendChild(b); })();
+
+renderAll();
+if(!state.selected){ const l=visiblePrompts(); if(l[0]){ state.selected=l[0].trigger; renderPane(); markSel(); } }
+$("#search").focus();
+</script>
+</body>
+</html>
