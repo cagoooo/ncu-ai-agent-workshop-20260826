@@ -16,7 +16,9 @@
 - 05_範例資料：PIRLS 風格合成資料、資料字典與講師參考編碼。
 - 06_場務與驗收：帳號、彩排、時間備援、資料治理、平台及 PowerPoint 檢查。
 - 07_備援：簡報與講義 PDF。
-- 08_HTML簡報：可直接放到 GitHub Pages 的互動式 HTML 簡報；開啟 `index.html` 選擇上午或下午場。支援桌機、手機與平板 RWD、觸控滑動、總覽、講者備註與閱讀模式。
+- 08_HTML簡報：可直接放到 GitHub Pages 的互動式 HTML 簡報；開啟 `index.html` 選擇上午或下午場。上午 35 頁、下午 44 頁；桌機首頁採寬版雙欄場次導覽，並支援手機與平板 RWD、觸控滑動、總覽、講者備註、閱讀模式與 EZPage ZIP 部署捷徑。
+- GitHub Pages 線上版：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
+- 網站更新機制：Service Worker 網路優先 HTML、版本輪詢與新版浮動提示；網站版本記錄於 `version.json`。
 
 資料安全
 - 本機 HTML 工具不呼叫 AI API，也不需要 API key。

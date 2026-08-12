@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.13.3",
+  "version": "2026.08.13.4",
   "build": "2026-08-13",
-  "notes": "修正立即更新按鈕，改用 waiting worker、controllerchange 與 cache-busted 導覽",
-  "updatedAt": "2026-08-13T11:30:00+08:00"
+  "notes": "新增 EZPage ZIP 一鍵部署教學路徑與資源連結",
+  "updatedAt": "2026-08-13T14:00:00+08:00"
 }
