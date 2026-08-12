@@ -12,6 +12,7 @@
 - 手機／平板 RWD、觸控滑動、總覽、講者備註與閱讀模式
 - favicon、LINE／Facebook／Twitter 分享預覽圖與完整 Open Graph meta
 - Service Worker 網路優先 HTML 更新策略與新版提示
+- 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
 
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。08_HTML簡報/ 內保留正式研習包的互動簡報與各項教學工具。
 

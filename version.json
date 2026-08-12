@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.13.2",
+  "version": "2026.08.13.3",
   "build": "2026-08-13",
-  "notes": "擴充桌機首頁版面、保留手機平板 RWD，並更新 Service Worker 快取版本",
-  "updatedAt": "2026-08-13T10:30:00+08:00"
+  "notes": "修正立即更新按鈕，改用 waiting worker、controllerchange 與 cache-busted 導覽",
+  "updatedAt": "2026-08-13T11:30:00+08:00"
 }

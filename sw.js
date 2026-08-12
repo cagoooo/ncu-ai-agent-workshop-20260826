@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.13.2";
+const BUILD_VERSION = "2026.08.13.3";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -16,7 +16,6 @@ const PRECACHE = [
 ];
 
 self.addEventListener("install", (event) => {
-  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) =>
       Promise.allSettled(PRECACHE.map((url) => cache.add(url).catch(() => null)))

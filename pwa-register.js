@@ -9,7 +9,9 @@
   const versionUrl = new URL("version.json", rootUrl);
   let localVersion = appVersion;
   let waitingWorker = null;
+  let activeRegistration = null;
   let refreshing = false;
+  let reloadStarted = false;
 
   const style = document.createElement("style");
   style.textContent = [
@@ -20,12 +22,60 @@
     ".pwa-update-actions button{border:1px solid #2a4761;border-radius:999px;padding:8px 13px;background:#102438;color:#dce9f4;cursor:pointer;font:inherit}",
     ".pwa-update-actions .pwa-update-primary{border-color:#55a7ff;background:#256fe8;color:#fff;font-weight:700}",
     ".pwa-update-actions button:hover{filter:brightness(1.12)}",
+    ".pwa-update-actions button:disabled{cursor:wait;opacity:.72}",
     "@media (max-width:600px){.pwa-update-prompt{right:14px;bottom:14px}}"
   ].join("");
   document.head.append(style);
 
+  function forceReload() {
+    if (reloadStarted) return;
+    reloadStarted = true;
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.set("__sw_refresh", String(Date.now()));
+    window.location.replace(nextUrl.href);
+  }
+
+  function waitForControllerChange() {
+    const fallback = window.setTimeout(() => forceReload(), 5000);
+    const onChange = () => {
+      window.clearTimeout(fallback);
+      navigator.serviceWorker.removeEventListener("controllerchange", onChange);
+      forceReload();
+    };
+    navigator.serviceWorker.addEventListener("controllerchange", onChange, { once: true });
+  }
+
+  async function requestUpdate(panel) {
+    if (refreshing) return;
+    refreshing = true;
+    const button = panel.querySelector("[data-pwa-refresh]");
+    const later = panel.querySelector("[data-pwa-later]");
+    if (button) {
+      button.disabled = true;
+      button.textContent = "更新中…";
+    }
+    if (later) later.disabled = true;
+
+    let worker = waitingWorker;
+    if (!worker && activeRegistration) {
+      try {
+        await activeRegistration.update();
+        worker = activeRegistration.waiting || waitingWorker;
+      } catch {
+        // 網路暫時不可用時，仍以 cache-busted 導覽嘗試載入最新版。
+      }
+    }
+    if (worker) {
+      waitingWorker = worker;
+      waitForControllerChange();
+      worker.postMessage({ type: "SKIP_WAITING" });
+    } else {
+      forceReload();
+    }
+  }
+
   function showUpdatePrompt(details = {}) {
-    if (document.querySelector(".pwa-update-prompt")) return;
+    if (refreshing || document.querySelector(".pwa-update-prompt")) return;
     const panel = document.createElement("aside");
     panel.className = "pwa-update-prompt";
     panel.setAttribute("role", "status");
@@ -36,14 +86,7 @@
       "<div class=\"pwa-update-actions\"><button type=\"button\" data-pwa-later>稍後再說</button>" +
       "<button type=\"button\" class=\"pwa-update-primary\" data-pwa-refresh>立即更新</button></div>";
     panel.querySelector("[data-pwa-later]").addEventListener("click", () => panel.remove());
-    panel.querySelector("[data-pwa-refresh]").addEventListener("click", () => {
-      refreshing = true;
-      if (waitingWorker) {
-        waitingWorker.postMessage({ type: "SKIP_WAITING" });
-      } else {
-        window.location.reload();
-      }
-    });
+    panel.querySelector("[data-pwa-refresh]").addEventListener("click", () => requestUpdate(panel));
     document.body.append(panel);
   }
 
@@ -67,10 +110,13 @@
   navigator.serviceWorker.register(swUrl.href, {
     scope: rootUrl.pathname,
     updateViaCache: "none",
-  }).then(observeRegistration).catch(() => {});
+  }).then((registration) => {
+    activeRegistration = registration;
+    observeRegistration(registration);
+  }).catch(() => {});
 
   navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (refreshing) window.location.reload();
+    if (refreshing) forceReload();
   });
   navigator.serviceWorker.addEventListener("message", (event) => {
     if (event.data?.type === "SW_ACTIVATED" && event.data.version && event.data.version !== localVersion) {
