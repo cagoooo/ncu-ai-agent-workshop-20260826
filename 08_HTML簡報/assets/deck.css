@@ -20,3 +20,19 @@
 @media (max-width:900px) and (orientation:portrait){.deck-main{min-height:auto;justify-content:flex-start;gap:10px;padding:14px 0 42px}.deck-stage-wrap{width:100vw}.deck-stage{border-radius:0}.site-credit{display:none}.deck-hint{display:none}}
 @media (max-width:768px) and (orientation:portrait){.deck-stage-wrap{width:100vw}}
 @media (max-width:900px){.reading-panel{padding:20px 14px 42px}.reading-panel h2{font-size:22px}.reading-panel pre{font-size:16px}}
+.hub-shell{max-width:1600px;padding-inline:clamp(18px,3vw,48px)}
+.hub-hero{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);gap:clamp(28px,5vw,72px);align-items:stretch}
+.hub-copy{min-width:0;align-self:center}
+.hub-route-panel{display:grid;align-content:center;gap:12px;min-width:0;padding:8px 0}
+.hub-route-kicker{color:var(--accent);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.hub-route{display:grid;gap:6px;padding:16px 18px;border:1px solid var(--rule);border-radius:16px;color:var(--ink);text-decoration:none;background:rgba(16,36,56,.68);transition:transform .2s,border-color .2s,background .2s}
+.hub-route:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(24,54,80,.82)}
+.hub-route>span{color:var(--muted);font-size:11px;letter-spacing:.08em}
+.hub-route strong{font-size:17px;line-height:1.35}
+.hub-route small{color:var(--muted);font-size:12px;line-height:1.55}
+.hub-route b{color:var(--accent);font-size:12px;font-weight:700;margin-top:4px}
+.hub-route.afternoon-route b{color:var(--accent2)}
+.hub-route-footer{padding-top:4px;color:var(--muted);font-size:12px;letter-spacing:.12em;text-align:center}
+@media (max-width:1100px){.hub-hero{grid-template-columns:minmax(0,1.12fr) minmax(260px,.88fr);gap:28px}.hub-route strong{font-size:16px}}
+@media (max-width:900px){.hub-hero{display:block}.hub-route-panel{margin-top:28px;padding:0}.hub-shell{padding-inline:clamp(18px,5vw,40px)}}
+@media (max-width:600px){.hub-hero{padding:clamp(24px,7vw,36px)}.hub-route{padding:14px}.hub-route small{font-size:11px}}

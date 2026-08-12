@@ -27,28 +27,25 @@
   <style>
     :root{font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;color:#f7fafc;background:#07131f}
     *{box-sizing:border-box}body{margin:0;min-height:100dvh;background:radial-gradient(circle at 12% 10%,rgba(85,167,255,.2),transparent 35%),radial-gradient(circle at 88% 24%,rgba(44,210,199,.14),transparent 30%),#07131f}
-    main{max-width:1120px;margin:0 auto;padding:clamp(30px,8vw,96px) clamp(18px,5vw,56px) 96px}.hero{padding:clamp(26px,5vw,62px);border:1px solid #2a4761;border-radius:28px;background:linear-gradient(135deg,rgba(16,36,56,.94),rgba(5,11,18,.8));box-shadow:0 24px 80px rgba(0,0,0,.38)}
+    main{max-width:1600px;margin:0 auto;padding:clamp(30px,7vw,96px) clamp(18px,3vw,48px) 96px}.hero{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);gap:clamp(28px,5vw,72px);align-items:stretch;padding:clamp(26px,5vw,62px);border:1px solid #2a4761;border-radius:28px;background:linear-gradient(135deg,rgba(16,36,56,.94),rgba(5,11,18,.8));box-shadow:0 24px 80px rgba(0,0,0,.38)}.hero-copy{min-width:0;align-self:center}
     .eyebrow{color:#55a7ff;font-size:12px;letter-spacing:.16em}.hero h1{max-width:850px;margin:24px 0 18px;font-size:clamp(36px,7vw,76px);line-height:1.06;letter-spacing:-.05em}.hero p{max-width:780px;color:#afc1d2;font-size:clamp(17px,2.2vw,23px);line-height:1.55;margin:0}
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}.button{display:inline-flex;padding:14px 18px;border-radius:999px;color:#fff;text-decoration:none;font-weight:700;border:1px solid transparent;transition:transform .2s,box-shadow .2s}.button:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.3)}.morning{background:#256fe8}.afternoon{background:#ff806d}.resources{background:#102438;border-color:#2a4761}
     .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.meta span{padding:7px 10px;border:1px solid #2a4761;border-radius:999px;color:#afc1d2;font-size:12px}
+    .hero-side{display:grid;align-content:center;gap:12px;min-width:0;padding:8px 0}.hero-side-kicker{color:#55a7ff;font-size:11px;letter-spacing:.14em;text-transform:uppercase}.route-card{display:grid;gap:6px;padding:16px 18px;border:1px solid #2a4761;border-radius:16px;color:#f7fafc;text-decoration:none;background:rgba(16,36,56,.68);transition:transform .2s,border-color .2s,background .2s}.route-card:hover{transform:translateY(-3px);border-color:#55a7ff;background:rgba(24,54,80,.82)}.route-card>span{color:#afc1d2;font-size:11px;letter-spacing:.08em}.route-card strong{font-size:17px;line-height:1.35}.route-card small{color:#afc1d2;font-size:12px;line-height:1.55}.route-card b{color:#55a7ff;font-size:12px;font-weight:700;margin-top:4px}.route-card.afternoon-route b{color:#ff806d}.hero-side-footer{padding-top:4px;color:#afc1d2;font-size:12px;letter-spacing:.12em;text-align:center}
+    @media (max-width:1100px){.hero{grid-template-columns:minmax(0,1.12fr) minmax(260px,.88fr);gap:28px}.route-card strong{font-size:16px}}
+    @media (max-width:900px){main{padding-inline:clamp(18px,5vw,40px)}.hero{display:block}.hero-side{margin-top:28px;padding:0}}
+    @media (max-width:600px){.hero{padding:clamp(24px,7vw,36px)}.route-card{padding:14px}.route-card small{font-size:11px}}
     footer{padding:0 18px 24px;text-align:center;color:#afc1d2;font-size:12px}footer a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor}
   </style>
 </head>
-<body data-app-version="2026.08.13.1">
+<body data-app-version="2026.08.13.2">
   <main>
     <section class="hero">
-      <div class="eyebrow">2026.08.26 · NATIONAL CENTRAL UNIVERSITY</div>
-      <h1>從 AI 教學與研究助理到 AI Agent</h1>
-      <p>大學教師的生成式 AI 實作工作坊｜選擇上午或下午場，直接進入可操作的互動式 HTML 簡報。</p>
-      <div class="actions">
-        <a class="button morning" href="08_HTML簡報/index.html#slide-1">進入互動式 HTML 簡報</a>
-        <a class="button resources" href="START_HERE_研習資源導航.html">開啟研習資源導航</a>
-        <a class="button afternoon" href="08_HTML簡報/afternoon.html#slide-1">直接進入下午場</a>
-      </div>
-      <div class="meta"><span>上午 34 頁</span><span>下午 44 頁</span><span>手機／平板 RWD</span><span>閱讀模式</span><span>Service Worker 更新提示</span></div>
+      <div class="hero-copy"><div class="eyebrow">2026.08.26 · NATIONAL CENTRAL UNIVERSITY</div><h1>從 AI 教學與研究助理到 AI Agent</h1><p>大學教師的生成式 AI 實作工作坊｜選擇上午或下午場，直接進入可操作的互動式 HTML 簡報。</p><div class="actions"><a class="button morning" href="08_HTML簡報/index.html#slide-1">進入互動式 HTML 簡報</a><a class="button resources" href="START_HERE_研習資源導航.html">開啟研習資源導航</a><a class="button afternoon" href="08_HTML簡報/afternoon.html#slide-1">直接進入下午場</a></div><div class="meta"><span>上午 34 頁</span><span>下午 44 頁</span><span>手機／平板 RWD</span><span>閱讀模式</span><span>Service Worker 更新提示</span></div></div>
+      <aside class="hero-side" aria-label="工作坊場次導航"><span class="hero-side-kicker">一日工作坊｜兩條實作路徑</span><a class="route-card morning-route" href="08_HTML簡報/morning.html#slide-1"><span>上午場 · 3 小時</span><strong>專屬 AI 教學與研究工作室</strong><small>Gemini Notebook · Gem · Canvas · 網站部署</small><b>開啟上午簡報 ↗</b></a><a class="route-card afternoon-route" href="08_HTML簡報/afternoon.html#slide-1"><span>下午場 · 3 小時</span><strong>會做事的 AI 教學與研究夥伴</strong><small>Antigravity · Codex · Agent Skills · 資料分析</small><b>開啟下午簡報 ↗</b></a><div class="hero-side-footer">教學 × 研究 × AI Agent</div></aside>
     </section>
   </main>
   <footer>Made with <span aria-label="愛心">❤️</span> by <a href="https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5" target="_blank" rel="noopener noreferrer">阿凱老師</a> · 桃園市龍潭區石門國民小學</footer>
-  <script defer src="pwa-register.js?v=2026.08.13.1"></script>
+  <script defer src="pwa-register.js?v=2026.08.13.2"></script>
 </body>
 </html>
