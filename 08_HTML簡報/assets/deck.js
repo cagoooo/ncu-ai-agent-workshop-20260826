@@ -20,6 +20,38 @@ let activeIndex = 0;
 let touchStartX = null;
 let touchStartY = null;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let hiResTimer = 0;
+
+function enableHiResImage(article) {
+  const art = article?.querySelector(".slide-art");
+  const source = art?.dataset.hiresSrc;
+  if (!art || !source || art.dataset.hiresRequested === "true") return;
+  ensureSlideImage(article);
+  art.dataset.hiresRequested = "true";
+  const preload = new Image();
+  preload.decoding = "async";
+  preload.onload = () => {
+    if (!art.isConnected) return;
+    art.src = source;
+    art.dataset.hiresReady = "true";
+  };
+  preload.src = source;
+}
+
+function scheduleHiResImage(article, delay = 900) {
+  window.clearTimeout(hiResTimer);
+  hiResTimer = window.setTimeout(() => {
+    if (article?.classList.contains("is-active")) enableHiResImage(article);
+  }, delay);
+}
+
+function ensureSlideImage(article) {
+  const art = article?.querySelector(".slide-art");
+  const source = art?.dataset.slideSrc;
+  if (!art || !source || art.dataset.sourceReady === "true") return;
+  art.src = source;
+  art.dataset.sourceReady = "true";
+}
 
 function createSlide(item) {
   const article = document.createElement("article");
@@ -31,10 +63,11 @@ function createSlide(item) {
   article.setAttribute("aria-label", item.index + ". " + item.title);
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
-  const hiResImage = item.image.replace(/\.png$/i, "@4k.png");
+  const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
   const loading = item.index <= 2 ? "eager" : "lazy";
   const fetchPriority = item.index === 1 ? ' fetchpriority="high"' : "";
-  article.innerHTML = '<img class="slide-art" src="' + item.image + '" srcset="' + item.image + ' 1280w, ' + hiResImage + ' 3840w" sizes="100vw" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  const sourceAttrs = item.index === 1 ? 'src="' + item.image + '"' : 'src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-slide-src="' + item.image + '"';
+  article.innerHTML = '<img class="slide-art" ' + sourceAttrs + ' data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
@@ -121,6 +154,7 @@ function show(index, direction = 1, updateHash = true) {
   const current = stage.children[nextIndex];
   if (!current) return;
   current.classList.add("is-active");
+  ensureSlideImage(current);
   activeIndex = nextIndex;
   animateIn(current, direction);
   const item = slides[nextIndex];
@@ -131,6 +165,8 @@ function show(index, direction = 1, updateHash = true) {
   updateLinks(item);
   updateNotes(item);
   updateOverviewCurrent();
+  if (document.body.classList.contains("is-immersive")) enableHiResImage(current);
+  else scheduleHiResImage(current);
   if (updateHash) history.replaceState(null, "", "#slide-" + item.index);
 }
 
@@ -203,6 +239,7 @@ function syncFullscreenUi(active) {
   });
   if (immersiveExit) immersiveExit.hidden = !active;
   scheduleFullscreenLayout(active);
+  if (active) scheduleHiResImage(stage.querySelector(".is-active"), 160);
 }
 async function leaveNativeFullscreen() {
   const exit = document.exitFullscreen || document.webkitExitFullscreen;
@@ -261,8 +298,8 @@ slides.forEach((item, index) => {
   const card = document.createElement("button");
   card.type = "button";
   card.className = "overview-card";
-  const hiResImage = item.image.replace(/\.png$/i, "@4k.png");
-  card.innerHTML = '<img src="' + item.image + '" srcset="' + item.image + ' 1280w, ' + hiResImage + ' 3840w" sizes="320px" alt="第 ' + item.index + ' 頁：' + item.title + '" loading="lazy" decoding="async"><span><b>' + String(item.index).padStart(2, "0") + '</b> · ' + item.title + '</span>';
+  const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
+  card.innerHTML = '<img src="' + item.image + '" srcset="' + item.image + ' 1280w, ' + hiResImage + ' 2560w" sizes="320px" alt="第 ' + item.index + ' 頁：' + item.title + '" loading="lazy" decoding="async"><span><b>' + String(item.index).padStart(2, "0") + '</b> · ' + item.title + '</span>';
   card.addEventListener("click", () => { closeOverview(); show(index, index >= activeIndex ? 1 : -1); });
   overviewGrid.append(card);
 });
