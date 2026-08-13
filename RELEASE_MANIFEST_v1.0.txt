@@ -1,5 +1,5 @@
 國立中央大學 AI 教學與研究工作坊｜Release Manifest
-版本：v1.13（線上資源同步版）
+版本：v1.14（提示詞面板滿版優化版）
 封裝日期：2026-08-13
 檔案總數：240（含本清單）
 
@@ -23,6 +23,9 @@ DFA2DBCB8076A409204BE6049EE7DFC6A3C075B985DD5AB66CC4C039E613F5BA
 04_實作工具\03_Agent完成證據打包器.html
 0BA1F601F375F63C61EBF8A4DCDE5654F1645FB2A340EE6D082557937CC75BA6
 
+04_實作工具\提示詞快捷面板_研習用.html
+6AD3B28DFA127C475C9D6081D23B892EDEE3261E73692CBFB0A83D9260BFFDDF
+
 07_備援\上午場_打造專屬AI教學與研究工作室_20260826.pdf
 6153F08B445E5B3C266B3391991F05624455C26462768938FDF2B718300F18DF
 
@@ -33,13 +36,13 @@ DFA2DBCB8076A409204BE6049EE7DFC6A3C075B985DD5AB66CC4C039E613F5BA
 715061D2933C7310D54F9B9482247C6A1F10C944E68AB497C897C1090620DB87
 
 08_HTML簡報\index.html
-07F244869ACA9E2CD685036AC53FB0BC04AC3B818B1DF1E53D167061139FEE68
+10939EBFDF4A0BCC3D4787480C2B5D0AA542BA13DF42B955E2230946E03E27EE
 
 08_HTML簡報\morning.html
-EB1826DADEE0B563960F3CCAD3988FF745A63DDEA17E08C0202B70E8228E5430
+BCD0160FB0634073DF89BD0A12CD311B6E5E03E32B6EB2FDBC26E07CFE6828CB
 
 08_HTML簡報\afternoon.html
-10D29838B2CBB9719288800DE770954D8C275D71031F269407551707C9E5254D
+4835A5B29FFA8FCF6113FABC29A3EAAEB72FA18E746747476BC30B68DB4554D0
 
 08_HTML簡報\assets\deck.css
 D1953E0EE04239636BEC735C804528564B93BCC29112EFF8FAAAF104813B2C93
@@ -64,10 +67,10 @@ q.html
 網站版本與分享素材
 
 version.json
-CCDEB2BC94889E9BF961768ABB195F9A1B3B15B7BCFF6BD1A655A3DB553FE585
+43AADB56169B08454442D9DD52D6F831E627EB66F8507FCD2CBF5CF1CB57D684
 
 sw.js
-68059DC94C1C1571F1C82A72BA4D1D73616A321436FBAD08CCC162EC9593F7D5
+E6BF2F55C4952550AFBA1B243C0FBFD20DB493BD6B95B31C58F737C4E91301EE
 
 pwa-register.js
 183C266AB2D50863D224DE7956DE88B5BC05AD23115F4E4D185DB882730C72FA
@@ -85,9 +88,9 @@ QR Code 與短網址
 - `06_場務與驗收/qr-code-results.json`：逐頁解碼結果，122/122 通過。
 
 封裝狀態
-- 互動式 HTML 簡報：通過；上午 35 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；版本 `2026.08.13.12`。
+- 互動式 HTML 簡報：通過；上午 35 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；版本 `2026.08.13.13`。
 - 互動式 HTML 簡報 RWD 驗收：通過；手機直式 393×852、手機橫式 932×430、平板直式 820×1180、平板橫式 1180×820 均無水平溢位，橫式舞台未超出可視高度。
-- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁已改為寬版雙欄導覽，版本更新為 `2026.08.13.12`；起始成果包、實作工具、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
+- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁已改為寬版雙欄導覽，提示詞面板同步改為滿寬三欄與放大字級，版本更新為 `2026.08.13.13`；起始成果包、實作工具、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
 - 簡報解說圖表增補：通過；上午 4 組、下午 5 組均為可編輯 PowerPoint 流程圖／資料流／品質閘門，上午新增 EZPage 四步部署圖。
 - 簡報自動溢位檢查：通過；上午 35 頁、下午 44 頁均無溢位。
 - 簡報結構檢查：通過；上午 35/35、下午 44/44 頁具講者備註，且均含正式包資源導航連結。

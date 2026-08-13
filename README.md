@@ -15,6 +15,7 @@
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
 - `START_HERE_研習資源導航.html`：線上教材、12 個案例、實作工具與下載入口
 - `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
+- `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄
 - 簡報備註中的提示詞面板已改用公開 GitHub Pages 網址，不依賴講師的 `file:///G:` 本機路徑
 
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。
