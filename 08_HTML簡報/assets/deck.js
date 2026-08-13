@@ -31,7 +31,10 @@ function createSlide(item) {
   article.setAttribute("aria-label", item.index + ". " + item.title);
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
-  article.innerHTML = '<img class="slide-art" src="' + item.image + '" alt="' + escapedAlt + '" loading="' + (item.index <= 2 ? "eager" : "lazy") + '"><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  const hiResImage = item.image.replace(/\.png$/i, "@4k.png");
+  const loading = item.index <= 2 ? "eager" : "lazy";
+  const fetchPriority = item.index === 1 ? ' fetchpriority="high"' : "";
+  article.innerHTML = '<img class="slide-art" src="' + item.image + '" srcset="' + item.image + ' 1280w, ' + hiResImage + ' 3840w" sizes="100vw" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
@@ -206,7 +209,8 @@ slides.forEach((item, index) => {
   const card = document.createElement("button");
   card.type = "button";
   card.className = "overview-card";
-  card.innerHTML = '<img src="' + item.image + '" alt="第 ' + item.index + ' 頁：' + item.title + '" loading="lazy"><span><b>' + String(item.index).padStart(2, "0") + '</b> · ' + item.title + '</span>';
+  const hiResImage = item.image.replace(/\.png$/i, "@4k.png");
+  card.innerHTML = '<img src="' + item.image + '" srcset="' + item.image + ' 1280w, ' + hiResImage + ' 3840w" sizes="320px" alt="第 ' + item.index + ' 頁：' + item.title + '" loading="lazy" decoding="async"><span><b>' + String(item.index).padStart(2, "0") + '</b> · ' + item.title + '</span>';
   card.addEventListener("click", () => { closeOverview(); show(index, index >= activeIndex ? 1 : -1); });
   overviewGrid.append(card);
 });
