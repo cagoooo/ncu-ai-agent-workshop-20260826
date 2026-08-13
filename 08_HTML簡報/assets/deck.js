@@ -150,7 +150,11 @@ function syncFullscreenUi(active) {
   document.body.classList.toggle("is-immersive", active);
   fullscreenButtons.forEach((button) => {
     button.setAttribute("aria-pressed", String(active));
-    button.textContent = active ? "退出全螢幕" : "全螢幕";
+    const label = button.querySelector(".toolbar-action-label");
+    const icon = button.querySelector(".toolbar-action-icon");
+    if (label) label.textContent = active ? "退出全螢幕" : "全螢幕";
+    if (icon) icon.textContent = active ? "×" : "⛶";
+    button.setAttribute("aria-label", active ? "退出全螢幕" : "進入全螢幕");
     button.title = active ? "退出全螢幕（F）" : "全螢幕（F）";
   });
   if (immersiveExit) immersiveExit.hidden = !active;

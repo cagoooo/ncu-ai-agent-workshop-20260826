@@ -93,3 +93,31 @@ html:fullscreen,html:-webkit-full-screen{background:var(--bg)}
 .theme-afternoon .progress-label,.theme-afternoon .deck-hint{color:#c7d8e8}
 .theme-afternoon .progress-label b{color:#fff}
 .theme-afternoon .slide-hotspot:hover{background:rgba(121,188,255,.18);box-shadow:0 0 0 2px #8fc8ff}
+.toolbar-actions button{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.toolbar-action-icon{display:inline-grid;place-items:center;flex:0 0 auto;width:1.25em;height:1.25em;font-size:1.08em;font-weight:800;line-height:1}
+.toolbar-action-label{display:inline;white-space:nowrap}
+@media (max-width:900px){
+  .toolbar-actions button{font-size:12px;width:auto;height:38px;min-width:0;padding:7px 9px;border-radius:11px}
+  .toolbar-actions button::before{content:none!important}
+}
+@media (hover:none) and (pointer:coarse) and (max-width:900px) and (orientation:portrait){
+  .deck-toolbar{height:104px;min-height:104px;display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-rows:36px 44px;grid-template-areas:"back title" "actions actions";align-content:center;gap:8px 10px;padding:8px 12px}
+  .toolbar-back{grid-area:back;display:flex;align-items:center;justify-content:center;width:40px;height:36px}
+  .toolbar-title{grid-area:title;justify-content:center;min-height:36px}
+  .toolbar-title strong{font-size:16px}
+  .toolbar-actions{grid-area:actions;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;width:100%;margin:0}
+  .toolbar-actions button{width:100%;min-height:40px;font-size:12px;padding:7px 3px}
+  .toolbar-action-icon{font-size:15px}
+  .deck-main{min-height:calc(100svh - 104px);height:calc(100svh - 104px)}
+  .deck-stage-wrap{top:calc(50% - 52px);width:min(100vw,calc((100svh - 154px)*16/9))}
+}
+@media (hover:none) and (pointer:coarse) and (max-width:900px) and (orientation:landscape){
+  .toolbar-actions{gap:5px}
+  .toolbar-actions button{font-size:11px;min-height:38px;padding:6px 8px}
+  .toolbar-action-icon{font-size:14px}
+}
+@media (hover:none) and (pointer:coarse) and (max-width:420px) and (orientation:portrait){
+  .toolbar-actions{gap:4px}
+  .toolbar-actions button{font-size:11px;padding-inline:2px}
+  .toolbar-action-icon{font-size:14px}
+}
