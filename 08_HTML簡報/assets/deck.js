@@ -234,6 +234,10 @@ async function toggleFullscreen() {
     return;
   }
   document.body.dataset.fullscreenMode = "pending";
+  // 先立即切換成沉浸式滿版，再等待瀏覽器原生 Fullscreen API 完成。
+  // 部分桌機瀏覽器第一次請求會延遲觸發 fullscreenchange；若此時仍顯示一般工具列，
+  // 使用者會誤以為按鈕沒有作用。原生全螢幕成功後再由事件同步狀態即可。
+  syncFullscreenUi(true);
   const entered = await enterNativeFullscreen();
   // iOS Safari and embedded browsers may not expose Fullscreen API. Keep a usable
   // touch-friendly immersive mode instead of making the button appear unresponsive.
