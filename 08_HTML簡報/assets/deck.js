@@ -13,6 +13,8 @@ const readingSection = document.getElementById("reading-section");
 const readingBody = document.getElementById("reading-body");
 const overview = document.getElementById("overview");
 const overviewGrid = document.getElementById("overview-grid");
+const fullscreenButtons = [...document.querySelectorAll("[data-action=fullscreen]")];
+const immersiveExit = document.querySelector(".immersive-exit");
 const slides = data.slides;
 let activeIndex = 0;
 let touchStartX = null;
@@ -141,9 +143,58 @@ function openOverview() {
 function closeOverview() { overview.hidden = true; document.body.classList.remove("overview-open"); }
 function toggleNotes(force) { notesPanel.hidden = typeof force === "boolean" ? !force : !notesPanel.hidden; }
 function toggleReading(force) { readingPanel.hidden = typeof force === "boolean" ? !force : !readingPanel.hidden; }
-function toggleFullscreen() {
-  if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
-  else document.exitFullscreen?.();
+function nativeFullscreenElement() {
+  return document.fullscreenElement || document.webkitFullscreenElement || null;
+}
+function syncFullscreenUi(active) {
+  document.body.classList.toggle("is-immersive", active);
+  fullscreenButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(active));
+    button.textContent = active ? "退出全螢幕" : "全螢幕";
+    button.title = active ? "退出全螢幕（F）" : "全螢幕（F）";
+  });
+  if (immersiveExit) immersiveExit.hidden = !active;
+}
+async function leaveNativeFullscreen() {
+  const exit = document.exitFullscreen || document.webkitExitFullscreen;
+  if (!exit) return false;
+  try {
+    await exit.call(document);
+    return true;
+  } catch {
+    return false;
+  }
+}
+async function enterNativeFullscreen() {
+  const root = document.documentElement;
+  const request = root.requestFullscreen || root.webkitRequestFullscreen;
+  if (!request) return false;
+  try {
+    await request.call(root, { navigationUI: "hide" });
+    return true;
+  } catch {
+    try {
+      await request.call(root);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+}
+async function toggleFullscreen() {
+  if (nativeFullscreenElement()) {
+    await leaveNativeFullscreen();
+    return;
+  }
+  if (document.body.classList.contains("is-immersive")) {
+    syncFullscreenUi(false);
+    return;
+  }
+  const entered = await enterNativeFullscreen();
+  // iOS Safari and embedded browsers may not expose Fullscreen API. Keep a usable
+  // touch-friendly immersive mode instead of making the button appear unresponsive.
+  syncFullscreenUi(true);
+  document.body.dataset.fullscreenMode = entered ? "native" : "immersive";
 }
 
 slides.forEach((item) => stage.append(createSlide(item)));
@@ -170,7 +221,18 @@ document.querySelectorAll("[data-action=notes]").forEach((button) => button.addE
 document.querySelectorAll("[data-action=notes-close]").forEach((button) => button.addEventListener("click", () => toggleNotes(false)));
 document.querySelectorAll("[data-action=reading]").forEach((button) => button.addEventListener("click", () => toggleReading()));
 document.querySelectorAll("[data-action=reading-close]").forEach((button) => button.addEventListener("click", () => toggleReading(false)));
-document.querySelectorAll("[data-action=fullscreen]").forEach((button) => button.addEventListener("click", toggleFullscreen));
+fullscreenButtons.forEach((button) => button.addEventListener("click", toggleFullscreen));
+const onFullscreenChange = () => {
+  const active = Boolean(nativeFullscreenElement()) || document.body.classList.contains("is-immersive");
+  if (!nativeFullscreenElement() && document.body.dataset.fullscreenMode === "native") {
+    document.body.dataset.fullscreenMode = "";
+    syncFullscreenUi(false);
+    return;
+  }
+  syncFullscreenUi(active);
+};
+document.addEventListener("fullscreenchange", onFullscreenChange);
+document.addEventListener("webkitfullscreenchange", onFullscreenChange);
 
 document.addEventListener("keydown", (event) => {
   if (event.target.matches("input,textarea,select")) return;
@@ -186,6 +248,7 @@ document.addEventListener("keydown", (event) => {
     if (!overview.hidden) closeOverview();
     if (!readingPanel.hidden) toggleReading(false);
     if (!notesPanel.hidden) toggleNotes(false);
+    if (document.body.classList.contains("is-immersive") && !nativeFullscreenElement()) syncFullscreenUi(false);
   }
 });
 

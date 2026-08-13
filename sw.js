@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.13.16";
+const BUILD_VERSION = "2026.08.13.17";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",

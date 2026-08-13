@@ -11,6 +11,8 @@
 - 桌機首頁寬版雙欄場次導覽；手機／平板自動堆疊並保留 RWD
 - 主導覽板新增 10 個研習分支入口：資源導航、任務書、PIRLS、Skill 驗證、123 案例、部署精靈、提示詞面板、場務手冊、備援與 Canvas 起始站
 - 手機／平板 RWD、觸控滑動、總覽、講者備註與閱讀模式
+- 手機／平板簡報舞台會依載具垂直置中並最大化；橫向連結列與導覽控制不覆蓋投影片
+- 全螢幕按鈕支援原生 Fullscreen API；iOS／嵌入式瀏覽器不支援時自動切換可退出的沉浸模式
 - favicon、LINE／Facebook／Twitter 分享預覽圖與完整 Open Graph meta
 - Service Worker 網路優先 HTML 更新策略與新版提示
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
