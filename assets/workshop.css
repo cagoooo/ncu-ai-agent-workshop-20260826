@@ -44,6 +44,13 @@ button { cursor: pointer; }
   backdrop-filter: blur(12px);
 }
 .brand { font-weight: 900; letter-spacing: .02em; }
+.back-home {
+  display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+  min-height: 40px; padding: .42rem .75rem; margin-left: auto;
+  border: 1px solid #a9b9d1; border-radius: .7rem; background: #fff;
+  color: var(--blue-dark); text-decoration: none; font-weight: 850; white-space: nowrap;
+}
+.back-home:hover { background: #e8eef9; border-color: #7e96b8; }
 .topbar nav { display: flex; flex-wrap: wrap; gap: .45rem; }
 .topbar nav a { text-decoration: none; padding: .35rem .65rem; border-radius: 999px; }
 .topbar nav a:hover, .topbar nav a:focus-visible { background: #e8eef9; }
@@ -135,6 +142,7 @@ footer { padding: 3rem 0; margin-top: 3rem; border-top: 1px solid var(--line); c
 @media (max-width: 850px) {
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .topbar { position: static; align-items: flex-start; }
+  .back-home { min-height: 44px; }
   .topbar nav { display: none; }
   .section-head { display: block; }
   h1 { font-size: clamp(2rem, 11vw, 3.5rem); }
