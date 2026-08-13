@@ -20,7 +20,7 @@
 - GitHub Pages 線上版：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 - QR Code 稽核：`06_場務與驗收/QR_Code連結稽核.md`；共 122 個碼，1280×720 投影版解碼 122/122 通過。
 - 桌機顯示：HTML 簡報會依可視高度放大舞台；按工具列「全螢幕」或鍵盤 `F` 後隱藏工具列與導覽，使用 1728×972 舞台呈現更大的投影片字級。
-- 網站更新機制：Service Worker 網路優先 HTML、版本輪詢與新版浮動提示；網站版本記錄於 `version.json`，目前為 `2026.08.13.6`。
+- 網站更新機制：Service Worker 網路優先 HTML、版本輪詢與新版浮動提示；網站版本記錄於 `version.json`，目前為 `2026.08.13.7`。
 
 資料安全
 - 本機 HTML 工具不呼叫 AI API，也不需要 API key。
