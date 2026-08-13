@@ -149,6 +149,36 @@ function toggleReading(force) { readingPanel.hidden = typeof force === "boolean"
 function nativeFullscreenElement() {
   return document.fullscreenElement || document.webkitFullscreenElement || null;
 }
+let fullscreenLayoutTimers = [];
+function clearFullscreenLayoutTimers() {
+  fullscreenLayoutTimers.forEach((timer) => window.clearTimeout(timer));
+  fullscreenLayoutTimers = [];
+}
+function applyFullscreenLayout(active) {
+  const stageWrap = document.querySelector(".deck-stage-wrap");
+  if (!stageWrap) return;
+  if (!active) {
+    stageWrap.style.removeProperty("width");
+    stageWrap.style.removeProperty("height");
+    stageWrap.style.removeProperty("max-width");
+    return;
+  }
+  const viewportWidth = Math.max(1, window.innerWidth || document.documentElement.clientWidth);
+  const viewportHeight = Math.max(1, window.innerHeight || document.documentElement.clientHeight);
+  const width = Math.min(viewportWidth, viewportHeight * 16 / 9);
+  stageWrap.style.width = Math.round(width) + "px";
+  stageWrap.style.height = Math.round(width * 9 / 16) + "px";
+  stageWrap.style.maxWidth = viewportWidth + "px";
+  void stageWrap.offsetWidth;
+}
+function scheduleFullscreenLayout(active) {
+  clearFullscreenLayoutTimers();
+  applyFullscreenLayout(active);
+  if (!active) return;
+  [50, 180, 420].forEach((delay) => {
+    fullscreenLayoutTimers.push(window.setTimeout(() => applyFullscreenLayout(true), delay));
+  });
+}
 function syncFullscreenUi(active) {
   document.body.classList.toggle("is-immersive", active);
   fullscreenButtons.forEach((button) => {
@@ -161,6 +191,7 @@ function syncFullscreenUi(active) {
     button.title = active ? "退出全螢幕（F）" : "全螢幕（F）";
   });
   if (immersiveExit) immersiveExit.hidden = !active;
+  scheduleFullscreenLayout(active);
 }
 async function leaveNativeFullscreen() {
   const exit = document.exitFullscreen || document.webkitExitFullscreen;
@@ -191,17 +222,23 @@ async function enterNativeFullscreen() {
 async function toggleFullscreen() {
   if (nativeFullscreenElement()) {
     await leaveNativeFullscreen();
+    if (!nativeFullscreenElement()) {
+      document.body.dataset.fullscreenMode = "";
+      syncFullscreenUi(false);
+    }
     return;
   }
   if (document.body.classList.contains("is-immersive")) {
+    document.body.dataset.fullscreenMode = "";
     syncFullscreenUi(false);
     return;
   }
+  document.body.dataset.fullscreenMode = "pending";
   const entered = await enterNativeFullscreen();
   // iOS Safari and embedded browsers may not expose Fullscreen API. Keep a usable
   // touch-friendly immersive mode instead of making the button appear unresponsive.
-  syncFullscreenUi(true);
   document.body.dataset.fullscreenMode = entered ? "native" : "immersive";
+  syncFullscreenUi(true);
 }
 
 slides.forEach((item) => stage.append(createSlide(item)));
@@ -231,16 +268,24 @@ document.querySelectorAll("[data-action=reading]").forEach((button) => button.ad
 document.querySelectorAll("[data-action=reading-close]").forEach((button) => button.addEventListener("click", () => toggleReading(false)));
 fullscreenButtons.forEach((button) => button.addEventListener("click", toggleFullscreen));
 const onFullscreenChange = () => {
-  const active = Boolean(nativeFullscreenElement()) || document.body.classList.contains("is-immersive");
-  if (!nativeFullscreenElement() && document.body.dataset.fullscreenMode === "native") {
+  const native = Boolean(nativeFullscreenElement());
+  const mode = document.body.dataset.fullscreenMode || "";
+  if (!native && mode === "native") {
     document.body.dataset.fullscreenMode = "";
     syncFullscreenUi(false);
     return;
   }
-  syncFullscreenUi(active);
+  if (native) document.body.dataset.fullscreenMode = "native";
+  syncFullscreenUi(native || mode === "immersive" || mode === "pending");
 };
 document.addEventListener("fullscreenchange", onFullscreenChange);
 document.addEventListener("webkitfullscreenchange", onFullscreenChange);
+window.addEventListener("resize", () => {
+  if (nativeFullscreenElement() || document.body.classList.contains("is-immersive")) scheduleFullscreenLayout(true);
+});
+window.addEventListener("orientationchange", () => {
+  if (nativeFullscreenElement() || document.body.classList.contains("is-immersive")) scheduleFullscreenLayout(true);
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.target.matches("input,textarea,select")) return;
