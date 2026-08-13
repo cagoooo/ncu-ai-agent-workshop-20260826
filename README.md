@@ -13,9 +13,13 @@
 - favicon、LINE／Facebook／Twitter 分享預覽圖與完整 Open Graph meta
 - Service Worker 網路優先 HTML 更新策略與新版提示
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
-- `START_HERE_研習資源導航.html`：線上教材、12 個案例、實作工具與下載入口
+- `START_HERE_研習資源導航.html`：線上教材、123 個案例（含 12 張精選）、實作工具與下載入口
 - `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
 - `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄
+- `04_實作工具/04_跨平台Skill驗證器.html`：驗證 `SKILL.md`、資料夾或 ZIP 的跨平台可攜性與安全邊界
+- `04_實作工具/05_123個案例需求導向篩選器.html`：依教學／研究需求搜尋 123 筆 Akai 工具案例，提供卡片與應用雙入口
+- `04_實作工具/06_部署選擇詳細教學引導解說精靈.html`：比較 Google Sites、GitHub Pages、EZPage 並產出部署計畫
+- `05_範例資料/Akai教育科技創新專區_工具目錄_123筆.json`：123 筆工具目錄的可下載資料快照
 - 簡報備註中的提示詞面板已改用公開 GitHub Pages 網址，不依賴講師的 `file:///G:` 本機路徑
 
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。

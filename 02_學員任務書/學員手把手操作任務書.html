@@ -62,6 +62,7 @@
         <p><strong>目標：</strong>依作品型態選擇 Google Sites、GitHub Pages、EZPage 或直接分享連結。</p>
         <ol><li>若是課程入口與多人協作，優先評估 Google Sites。</li><li>若是 HTML／CSS／JavaScript，優先評估 GitHub Pages；若已打包完成且希望降低第一次使用 GitHub 的門檻，可改用 EZPage 上傳 ZIP。</li><li>使用 EZPage 時，確認 ZIP 根目錄有 <code>index.html</code>，登入前檢查授權範圍，填入網站名稱後按「部署 ZIP 檔案」。</li><li>實際開啟公開網址，走完主要流程。</li><li>檢查個資、著作權、鍵盤操作、手機版與錯誤訊息。</li></ol>
         <p><strong>完成證據：</strong>公開／分享連結，或一份包含平台、步驟與限制的部署計畫。</p>
+        <div class="card-actions no-print"><a class="btn secondary" href="../04_實作工具/06_部署選擇詳細教學引導解說精靈.html">開啟部署選擇精靈</a></div>
         <div class="card-actions no-print"><a class="btn" href="https://sites.google.com/new" target="_blank" rel="noopener">Google Sites</a><a class="btn secondary" href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a><a class="btn secondary" href="https://gg90052.github.io/ezpage/" target="_blank" rel="noopener">EZPage 一鍵部署</a></div>
       </article>
     </div>
@@ -72,8 +73,10 @@
     <div class="steps">
       <article class="step"><h3>任務 A1｜撰寫可驗收的 Agent 任務簡報</h3><p>填寫目標、素材、範圍、限制、交付物與驗收條件六欄。先要求 Agent 提出計畫，再授權安全且可逆的操作。</p><p><strong>完成證據：</strong>任務簡報、Agent 計畫、修改摘要、測試結果、未確認項目。</p><div class="card-actions no-print"><a class="btn" href="https://antigravity.google/" target="_blank" rel="noopener">Antigravity</a><a class="btn secondary" href="https://chatgpt.com/codex/" target="_blank" rel="noopener">Codex</a></div></article>
       <article class="step"><h3>任務 A2｜把提示詞升級成 Agent Skill</h3><p>挑選一個會重複使用、具有固定步驟與驗收方法的提示詞，補上觸發情境、輸入、工作流程、限制、輸出及驗證。</p><p><strong>完成證據：</strong>只含 `name` 與 `description` 的 YAML frontmatter、命令式流程、人工授權邊界、三個測試提示。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/02_提示詞升級Skill產生器.html">開啟 Skill 產生器</a><a class="btn secondary" href="../03_起始成果包/04_Agent_Skill骨架/SKILL.md">查看骨架</a></div></article>
+      <article class="step"><h3>任務 A2b｜驗證 Skill 能否跨平台攜帶</h3><p>把剛產出的 Skill `SKILL.md` 或 ZIP 放入驗證器，檢查 frontmatter 是否只含 `name`／`description`、相對引用是否完整，以及是否誤放金鑰或本機路徑。</p><p><strong>完成證據：</strong>驗證結果 JSON、紅黃項目處理紀錄，以及交給 Antigravity／Codex 前的人工核准。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/04_跨平台Skill驗證器.html">開啟跨平台驗證器</a><a class="btn secondary" href="../04_實作工具/02_提示詞升級Skill產生器.html">回到 Skill 產生器</a></div></article>
       <article class="step"><h3>任務 A3｜PIRLS 風格資料分析與簡答題初編</h3><p>匯入合成資料，先做欄位、缺漏、重複與答案有效性檢查，再分析選擇題；簡答題先建立編碼規準，再交給 AI 初編並由人工覆核。</p><p><strong>完成證據：</strong>資料品質摘要、題目答對率、AI 初編 JSON、人工最終碼與匯出 CSV。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/01_PIRLS資料分析工作台.html">開啟資料工作台</a><a class="btn secondary" href="../06_場務與驗收/PIRLS資料治理與人工複核SOP.md">查看治理 SOP</a></div></article>
       <article class="step"><h3>任務 A4｜打包 Agent 完成證據</h3><p>把需求、變更、測試、畫面、已知限制與下一步整理成可交接報告。無法驗證的內容必須標示「未確認」。</p><p><strong>完成證據：</strong>一份可下載的 Markdown／HTML 報告與附件清單。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/03_Agent完成證據打包器.html">開啟證據打包器</a></div></article>
+      <article class="step"><h3>任務 A5｜用 123 個案例找下一個可做的題目</h3><p>用一句可觀察的需求搜尋阿凱老師案例目錄，例如「簡答題編碼」、「語文創作」、「RWD 無障礙」或「GitHub 部署」，比較 2–3 張卡片後選一張做延伸。</p><p><strong>完成證據：</strong>需求關鍵字、候選案例、工具卡片網址、直接開啟網址與選擇理由。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/05_123個案例需求導向篩選器.html">搜尋 123 個案例</a><a class="btn secondary" href="../05_範例資料/Akai教育科技創新專區_工具目錄_123筆.json">下載目錄快照</a></div></article>
     </div>
   </section>
 
