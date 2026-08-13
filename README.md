@@ -9,6 +9,7 @@
 - 上午場：Gemini Notebook、Gem、Canvas 與網站部署實作（35 頁）
 - 下午場：Antigravity、Codex、Agent Skills 與資料分析實戰（44 頁）
 - 桌機首頁寬版雙欄場次導覽；手機／平板自動堆疊並保留 RWD
+- 主導覽板新增 10 個研習分支入口：資源導航、任務書、PIRLS、Skill 驗證、123 案例、部署精靈、提示詞面板、場務手冊、備援與 Canvas 起始站
 - 手機／平板 RWD、觸控滑動、總覽、講者備註與閱讀模式
 - favicon、LINE／Facebook／Twitter 分享預覽圖與完整 Open Graph meta
 - Service Worker 網路優先 HTML 更新策略與新版提示
@@ -21,6 +22,7 @@
 - `04_實作工具/06_部署選擇詳細教學引導解說精靈.html`：比較 Google Sites、GitHub Pages、EZPage 並產出部署計畫
 - `05_範例資料/Akai教育科技創新專區_工具目錄_123筆.json`：123 筆工具目錄的可下載資料快照
 - 所有實作工具、任務書、場務手冊、備援頁與 Canvas 起始站皆有首屏可見的「回到簡報主頁」按鈕；線上與離線正式包使用同一相對路徑
+- HTML 簡報主頁 `08_HTML簡報/index.html` 同步提供上述分支入口，從任何分支都能返回主頁再選擇上午／下午場
 - 簡報備註中的提示詞面板已改用公開 GitHub Pages 網址，不依賴講師的 `file:///G:` 本機路徑
 
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。
