@@ -36,3 +36,22 @@
 @media (max-width:1100px){.hub-hero{grid-template-columns:minmax(0,1.12fr) minmax(260px,.88fr);gap:28px}.hub-route strong{font-size:16px}}
 @media (max-width:900px){.hub-hero{display:block}.hub-route-panel{margin-top:28px;padding:0}.hub-shell{padding-inline:clamp(18px,5vw,40px)}}
 @media (max-width:600px){.hub-hero{padding:clamp(24px,7vw,36px)}.hub-route{padding:14px}.hub-route small{font-size:11px}}
+@media (min-width:901px){
+  .deck-main{padding:10px 20px 24px;gap:8px}
+  .deck-stage-wrap{width:min(100%,1728px,calc((100dvh - 214px)*16/9))}
+  .deck-controls,.link-strip{width:min(100%,1728px)}
+  .toolbar-title strong{font-size:17px}
+  .toolbar-kicker{font-size:12px}
+  .toolbar-actions button{font-size:13px;padding:8px 13px}
+  .nav-button{width:42px;height:42px;font-size:22px}
+  .progress-label{font-size:12px}
+  .resource-link{font-size:14px;padding:7px 13px}
+  .deck-hint{font-size:13px}
+}
+@media (min-width:901px) and (orientation:landscape){
+  :fullscreen .deck-toolbar{display:none}
+  :fullscreen .deck-main{min-height:100dvh;padding:0;gap:0}
+  :fullscreen .deck-stage-wrap{width:min(100%,1728px,calc(100dvh*16/9))}
+  :fullscreen .deck-stage{border:0;border-radius:0}
+  :fullscreen .deck-controls,:fullscreen .link-strip,:fullscreen .deck-hint{display:none}
+}
