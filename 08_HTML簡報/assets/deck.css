@@ -61,3 +61,10 @@
 .slide-hotspot-qr{border-radius:10px}
 .slide-hotspot-card,.slide-hotspot-platform{border-radius:6px}
 .slide-hotspot-platform{min-width:28px}
+.theme-afternoon .toolbar-actions button{border-color:#3c5e7b;background:#102b43;color:#f4f8fc}
+.theme-afternoon .toolbar-actions button:hover{border-color:#79bcff;color:#fff;background:#173b5b}
+.theme-afternoon .resource-link{color:#8fc8ff;background:rgba(55,140,230,.2);border-color:rgba(121,188,255,.72);font-weight:700}
+.theme-afternoon .resource-link:hover{background:rgba(55,140,230,.34);border-color:#9fd2ff}
+.theme-afternoon .progress-label,.theme-afternoon .deck-hint{color:#c7d8e8}
+.theme-afternoon .progress-label b{color:#fff}
+.theme-afternoon .slide-hotspot:hover{background:rgba(121,188,255,.18);box-shadow:0 0 0 2px #8fc8ff}

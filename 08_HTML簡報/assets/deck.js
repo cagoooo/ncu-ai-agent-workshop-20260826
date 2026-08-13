@@ -64,17 +64,34 @@ function updateLinks(item) {
 }
 
 function animateIn(article, direction) {
+  stopArticleMotion(article);
   if (reducedMotion) {
-    article.style.opacity = "1";
     return;
   }
+  const isDarkDeck = document.body.classList.contains("theme-afternoon");
+  const distance = isDarkDeck ? 14 : 28;
+  const duration = isDarkDeck ? 0.34 : 0.52;
+  const initialScale = isDarkDeck ? 1 : 0.992;
   if (window.gsap) {
-    window.gsap.fromTo(article, { opacity: 0, x: direction * 28, scale: 0.992 }, { opacity: 1, x: 0, scale: 1, duration: 0.52, ease: "power3.out", clearProps: "transform" });
+    window.gsap.fromTo(article, { opacity: 0, x: direction * distance, scale: initialScale }, { opacity: 1, x: 0, scale: 1, duration, ease: "power3.out", clearProps: "transform,opacity" });
     const art = article.querySelector(".slide-art");
-    window.gsap.fromTo(art, { scale: 1.02 }, { scale: 1, duration: 1.15, ease: "power2.out", clearProps: "transform" });
+    if (!isDarkDeck) window.gsap.fromTo(art, { scale: 1.02 }, { scale: 1, duration: 1.15, ease: "power2.out", clearProps: "transform" });
   } else {
-    article.animate([{ opacity: 0, transform: "translateX(" + (direction * 20) + "px) scale(.994)" }, { opacity: 1, transform: "none" }], { duration: 420, easing: "cubic-bezier(.16,1,.3,1)", fill: "both" });
+    article.animate([{ opacity: 0, transform: "translateX(" + (direction * distance) + "px) scale(" + initialScale + ")" }, { opacity: 1, transform: "none" }], { duration: duration * 1000, easing: "cubic-bezier(.16,1,.3,1)", fill: "none" });
   }
+}
+
+function stopArticleMotion(article) {
+  if (!article) return;
+  if (window.gsap) {
+    window.gsap.killTweensOf(article);
+    const art = article.querySelector(".slide-art");
+    if (art) window.gsap.killTweensOf(art);
+  }
+  article.getAnimations?.().forEach((animation) => animation.cancel());
+  article.querySelector(".slide-art")?.getAnimations?.().forEach((animation) => animation.cancel());
+  article.style.removeProperty("opacity");
+  article.style.removeProperty("transform");
 }
 
 function updateNotes(item) {
@@ -92,7 +109,10 @@ function updateOverviewCurrent() {
 function show(index, direction = 1, updateHash = true) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
   const previous = stage.querySelector(".is-active");
-  if (previous) previous.classList.remove("is-active");
+  if (previous) {
+    stopArticleMotion(previous);
+    previous.classList.remove("is-active");
+  }
   const current = stage.children[nextIndex];
   if (!current) return;
   current.classList.add("is-active");
