@@ -13,7 +13,10 @@
 - favicon、LINE／Facebook／Twitter 分享預覽圖與完整 Open Graph meta
 - Service Worker 網路優先 HTML 更新策略與新版提示
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
+- `START_HERE_研習資源導航.html`：線上教材、12 個案例、實作工具與下載入口
+- `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
+- 簡報備註中的提示詞面板已改用公開 GitHub Pages 網址，不依賴講師的 `file:///G:` 本機路徑
 
-本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。08_HTML簡報/ 內保留正式研習包的互動簡報與各項教學工具。
+本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。
 
 Made with ❤️ by [阿凱老師](https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5) · 桃園市龍潭區石門國民小學

@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.13.11",
+  "version": "2026.08.13.12",
   "build": "2026-08-13",
-  "notes": "Antigravity、Codex 與 GitHub Pages 品牌識別徽章優化",
+  "notes": "公開線上教材與備援資源同步，移除本機提示詞面板路徑",
   "updatedAt": "2026-08-13T16:20:00+08:00"
 }
