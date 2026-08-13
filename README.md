@@ -6,7 +6,7 @@
 
 ## 內容
 
-- 上午場：Gemini Notebook、Gem、Canvas 與網站部署實作（34 頁）
+- 上午場：Gemini Notebook、Gem、Canvas 與網站部署實作（35 頁）
 - 下午場：Antigravity、Codex、Agent Skills 與資料分析實戰（44 頁）
 - 桌機首頁寬版雙欄場次導覽；手機／平板自動堆疊並保留 RWD
 - 手機／平板 RWD、觸控滑動、總覽、講者備註與閱讀模式

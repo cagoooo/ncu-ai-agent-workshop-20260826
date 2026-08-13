@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.13.4";
+const BUILD_VERSION = "2026.08.13.5";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -8,6 +8,7 @@ const PRECACHE = [
   "./assets/favicon-32x32.png",
   "./assets/apple-touch-icon.png",
   "./assets/og-workshop.png",
+  "./q.html",
   "./08_HTML簡報/index.html",
   "./08_HTML簡報/morning.html",
   "./08_HTML簡報/afternoon.html",

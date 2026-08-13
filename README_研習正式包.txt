@@ -9,16 +9,17 @@
 4. 若網路或帳號受限，改用「03_起始成果包」與「07_備援」。
 
 主要資料夾
-- 01_簡報：上午、下午正式 PowerPoint。
+- 01_簡報：上午、下午正式 PowerPoint；所有操作連結旁均配置可投影掃描的 QR Code。
 - 02_學員任務書：網頁版與 PDF 任務書。
 - 03_起始成果包：Gemini Notebook、Gem、Canvas、Agent Skill 起始材料。
 - 04_實作工具：PIRLS 工作台、Skill 產生器、Agent 證據打包器、提示詞面板。
 - 05_範例資料：PIRLS 風格合成資料、資料字典與講師參考編碼。
-- 06_場務與驗收：帳號、彩排、時間備援、資料治理、平台及 PowerPoint 檢查。
+- 06_場務與驗收：帳號、彩排、時間備援、資料治理、平台、PowerPoint 與 QR Code 連結稽核。
 - 07_備援：簡報與講義 PDF。
 - 08_HTML簡報：可直接放到 GitHub Pages 的互動式 HTML 簡報；開啟 `index.html` 選擇上午或下午場。上午 35 頁、下午 44 頁；桌機首頁採寬版雙欄場次導覽，並支援手機與平板 RWD、觸控滑動、總覽、講者備註、閱讀模式與 EZPage ZIP 部署捷徑。
 - GitHub Pages 線上版：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
-- 網站更新機制：Service Worker 網路優先 HTML、版本輪詢與新版浮動提示；網站版本記錄於 `version.json`。
+- QR Code 稽核：`06_場務與驗收/QR_Code連結稽核.md`；共 122 個碼，1280×720 投影版解碼 122/122 通過。
+- 網站更新機制：Service Worker 網路優先 HTML、版本輪詢與新版浮動提示；網站版本記錄於 `version.json`，目前為 `2026.08.13.5`。
 
 資料安全
 - 本機 HTML 工具不呼叫 AI API，也不需要 API key。
