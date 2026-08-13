@@ -30,6 +30,23 @@ function createSlide(item) {
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
   article.innerHTML = '<img class="slide-art" src="' + item.image + '" alt="' + escapedAlt + '" loading="' + (item.index <= 2 ? "eager" : "lazy") + '"><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  for (const itemHotspot of item.hotspots || []) {
+    const anchor = document.createElement("a");
+    anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
+    anchor.href = itemHotspot.url;
+    anchor.style.left = itemHotspot.x + "%";
+    anchor.style.top = itemHotspot.y + "%";
+    anchor.style.width = itemHotspot.w + "%";
+    anchor.style.height = itemHotspot.h + "%";
+    anchor.title = itemHotspot.label + "（點擊開啟）";
+    anchor.setAttribute("aria-label", itemHotspot.label + "（點擊開啟）");
+    anchor.dataset.url = itemHotspot.url;
+    if (itemHotspot.url.startsWith("http")) {
+      anchor.target = "_blank";
+      anchor.rel = "noopener noreferrer";
+    }
+    article.append(anchor);
+  }
   return article;
 }
 
@@ -120,6 +137,14 @@ slides.forEach((item, index) => {
 });
 
 document.querySelectorAll("[data-nav]").forEach((button) => button.addEventListener("click", () => go(button.dataset.nav === "next" ? 1 : -1)));
+stage.addEventListener("click", (event) => {
+  if (event.target.closest(".slide-hotspot")) return;
+  const rect = stage.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const edge = rect.width * 0.18;
+  if (x <= edge) go(-1);
+  else if (x >= rect.width - edge) go(1);
+});
 document.querySelectorAll("[data-action=overview],[data-action=overview-close]").forEach((button) => button.addEventListener("click", () => overview.hidden ? openOverview() : closeOverview()));
 document.querySelectorAll("[data-action=notes]").forEach((button) => button.addEventListener("click", () => toggleNotes()));
 document.querySelectorAll("[data-action=notes-close]").forEach((button) => button.addEventListener("click", () => toggleNotes(false)));

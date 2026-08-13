@@ -55,3 +55,9 @@
   :fullscreen .deck-stage{border:0;border-radius:0}
   :fullscreen .deck-controls,:fullscreen .link-strip,:fullscreen .deck-hint{display:none}
 }
+.slide-hotspot{position:absolute;z-index:10;display:block;border:0;border-radius:8px;background:transparent;color:transparent;text-decoration:none;cursor:pointer;outline:none;pointer-events:auto}
+.slide-hotspot:hover{background:rgba(255,255,255,.12);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 82%,#fff 18%)}
+.slide-hotspot:focus-visible{background:color-mix(in srgb,var(--accent) 18%,transparent);box-shadow:0 0 0 3px var(--accent);outline:none}
+.slide-hotspot-qr{border-radius:10px}
+.slide-hotspot-card,.slide-hotspot-platform{border-radius:6px}
+.slide-hotspot-platform{min-width:28px}
