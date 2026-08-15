@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.15.31",
+  "version": "2026.08.15.32",
   "build": "2026-08-15",
-  "notes": "上午場新增 Typeless 語音輸入與口述痛點到 Gemini Notebook 的橋接實作；維持 2K 簡報素材與 QR／超連結流程",
-  "updatedAt": "2026-08-15T09:30:00+08:00"
+  "notes": "上午場補充 ChatGPT／Codex 原生語音模式與隱私選擇；維持 Typeless、2K 簡報素材與 QR／超連結流程",
+  "updatedAt": "2026-08-15T11:08:29+08:00"
 }

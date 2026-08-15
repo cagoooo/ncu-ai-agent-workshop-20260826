@@ -1,15 +1,15 @@
 國立中央大學 AI 教學與研究工作坊｜Release Manifest
-版本：v1.31（Typeless 語音輸入實作增補版）
+版本：v1.32（Typeless × Codex Voice 語音實作增補版）
 封裝日期：2026-08-15
 檔案總數：357（含本清單）
 
 核心檔案 SHA-256
 
 01_簡報\上午場_打造專屬AI教學與研究工作室_20260826.pptx
-2F63A50E1D2C158ADE7CA001249A4CEF296044BDCD2E679997766BCC93CFFEE9
+96102746C5B89CFD58AB5535F158E81F434C5266BEC60E8ADE2769B23F9F7CAC
 
 01_簡報\下午場_打造會做事的AI教學與研究夥伴_資料分析實戰_20260826.pptx
-6E8A8CA3ADC6004B38C66F9B5B7B6D293A28289AA496135A09399DFB27876BA4
+A486C3DAD18899F1D1B4F4E562DEC99B0D164CDED0885C1D928DBC1A43ACC237
 
 02_學員任務書\學員手把手操作任務書.pdf
 9A89176DC896E57B946DB3F959120E854D970E91709A471D524B3403F67453DD
@@ -39,22 +39,22 @@ B8D21D1ED6EF07EC53D8F5B5C8EDE1053950FD4E08B6BEC830BFF9B96483C624
 5D3C656370754599DD7928D0F9A39119F10CFFFD0C81676813223681BE41675B
 
 07_備援\上午場_打造專屬AI教學與研究工作室_20260826.pdf
-AA53A237EEEA0AEE8C702CF013C55F48ECCF19074E238B489BB06ABC6094342A
+51F21B04DBFE20367B8AD2CF8F2067D55861413F4C575E6E147EC833286CAD04
 
 07_備援\下午場_打造會做事的AI教學與研究夥伴_資料分析實戰_20260826.pdf
-FCCD87D5A4545373EB2381A5083312FEAEB915ACD406A0D8C274CE7B236F118E
+2C3930BF7B68D938F2F2AF8E379DC86456492BEED0CB7C14EDD14DEFCAB47574
 
 07_備援\index.html
 72E70C575348C00EDD84BEBBF1DCE3FACF8CBB209BD08F940511EAB6FA864F4C
 
 08_HTML簡報\index.html
-FF14F235C6DE7B479B64540BD708090FCD17820B77ACB5017410408EB49D4488
+8277CFDE49C9BBA07CDE060949A76D163844B7942BCD09A003263D929168045F
 
 08_HTML簡報\morning.html
-59CA1F68A9B5605F1105C0B9FA24E3ECF0568D5A258CD49BE18F5E7EC4E85EB6
+B5FFC00FD0482B0B1410B95841FDB556C7A123A11AA45C6F1A42ED0CCBDC1654
 
 08_HTML簡報\afternoon.html
-63A1DCD5B54B11764D2314E8276162388638865B058E97A656DF329B1F87629F
+BB1131856D6071D155C87F593F5F3174F7B596BD814702F8608105579E0BB2D6
 
 08_HTML簡報\assets\deck.css
 5EBF50BA171F9B526EC8212271A82E76F9E1BC076D66352469EC11429A775758
@@ -71,18 +71,18 @@ q.html
 1201FD5F4B3801555A804F08FDFB96AB988A260A7CA1D7F3A249625E5D91587A
 
 06_場務與驗收\QR_Code連結稽核.md
-6C945F90F5174E3C75B044D77FDD8A7C481657CE8861038F0AD958C7F0F97C1F
+55DC4079992ABEF33872FADC2E07D763FA71E7B1B318B8216AF51B05C72A49D9
 
 06_場務與驗收\qr-code-results.json
-A484A54FAD0A81404736355B5991B4E14A4EEE6F93723139FF3946AE9F737A85
+6CCC7721EDD2166C6AC0439B850C6F27D07494DAFA810CFC1A390EA9C3BAE370
 
 網站版本與分享素材
 
 version.json
-C5FFDA5F084F7F662EBBD69908FFF048F9F2AA3377360C4233744521899F2C1B
+5C668595D06AB63A3DAEEFA79E5E1D4D503CC81FCD6B157A7A21AF716BC7804E
 
 sw.js
-A6F97A99775BD1DAE061BAFAF7B0AFDDDF05BEA1F08E8C277E987C6D830CE79E
+344A6F9435A92B988A035C8C711BAB9B91F1F2EDD352EDE5E05142E82EA7C81C
 
 pwa-register.js
 183C266AB2D50863D224DE7956DE88B5BC05AD23115F4E4D185DB882730C72FA
@@ -96,13 +96,13 @@ BA149FC66581EA37D69636871DCA843E6EB51BA526E346527D155FAE2AB6A0DC
 QR Code 與短網址
 - `assets/qr/`：61 個 QR 圖檔；`assets/qr/manifest.json`：最終網址對照表。
 - `q/<編號>/index.html`：61 個 GitHub Pages 靜態導向入口；QR 掃描網址均使用 `/q/<編號>/`。
-- `06_場務與驗收/QR_Code連結稽核.md`：144 個 QR Code 的投影解碼驗收報告。
-- `06_場務與驗收/qr-code-results.json`：逐頁解碼結果，144/144 通過。
+- `06_場務與驗收/QR_Code連結稽核.md`：145 個 QR Code 的投影解碼驗收報告。
+- `06_場務與驗收/qr-code-results.json`：逐頁解碼結果，145/145 通過。
 
 封裝狀態
-- 互動式 HTML 簡報：通過；上午 39 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；上午新增 Typeless 語音輸入、口述痛點整理、Typeless → Gemini Notebook 橋接、教學駕駛艙 GitHub／公開網站、既有 Gem 拆解改造、教師會議紀錄 Canvas 與 Google Sites 嵌入流程；下午新增 Claude、Codex／ChatGPT、Antigravity／Gemini 的模型、成本、速度與額度策略比較；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；主頁桌機內容上限 1800px 並放大主標、摘要與分支卡片；手機直式工具列改為圖示加文字的四項清楚操作；補充 Opus 5（若帳號當期可見）的模型選擇邊界；新增「真實教學／研究／行政痛點 → 工具／Agent → 可驗證成果」敘事主軸；提供 1280×720 fallback 與 2560×1440 2K 投影片資產，初次進入全螢幕時先用輕量圖，舞台穩定後再升級目前頁面的 2K 圖片；`deck.js` 加入版本化網址避免舊快取，首次點擊全螢幕立即切換沉浸滿版，並以動態 viewport、`visualViewport`、實際舞台尺寸與第一次／第二次連續進入測試修正底部黑邊；版本 `2026.08.15.31`。
+- 互動式 HTML 簡報：通過；上午 39 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；上午新增 Typeless × ChatGPT／Codex Voice 雙語音入口、口述痛點整理、隱私與權限選擇、Typeless → Gemini Notebook 橋接、教學駕駛艙 GitHub／公開網站、既有 Gem 拆解改造、教師會議紀錄 Canvas 與 Google Sites 嵌入流程；下午新增 Claude、Codex／ChatGPT、Antigravity／Gemini 的模型、成本、速度與額度策略比較；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；主頁桌機內容上限 1800px 並放大主標、摘要與分支卡片；手機直式工具列改為圖示加文字的四項清楚操作；補充 Opus 5（若帳號當期可見）的模型選擇邊界；新增「真實教學／研究／行政痛點 → 工具／Agent → 可驗證成果」敘事主軸；提供 1280×720 fallback 與 2560×1440 2K 投影片資產，初次進入全螢幕時先用輕量圖，舞台穩定後再升級目前頁面的 2K 圖片；`deck.js` 加入版本化網址避免舊快取，首次點擊全螢幕立即切換沉浸滿版，並以動態 viewport、`visualViewport`、實際舞台尺寸與第一次／第二次連續進入測試修正底部黑邊；版本 `2026.08.15.32`。
 - 互動式 HTML 簡報 RWD 驗收：通過；手機直式 393×852、手機橫式 932×430、平板直式 820×1180、平板橫式 1180×820 均無水平溢位，橫式舞台未超出可視高度。
-- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁主內容上限 1800px，主標、摘要、分支卡片與左右雙欄入口已放大，提示詞面板同步改為滿寬三欄與放大字級，手機簡報工具列改為圖示加文字並在直式採雙列排列，版本更新為 `2026.08.15.31`；HTML 簡報投影片提供 1280×720 fallback 與 2560×1440 2K 圖檔，桌機全螢幕先顯示輕量 fallback，再於舞台穩定後升級目前頁面的 2K 版本；上午新增 Typeless 語音輸入、口述痛點整理、Typeless → Gemini Notebook 橋接、教學駕駛艙、會議紀錄系統與 Google Sites 連結，下午新增 Claude 入口與模型官方資料連結；起始成果包、實作工具、123 筆案例資料、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；所有主要分支頁皆有首屏可見的返回簡報主頁按鈕；`deck.js` 的版本 query 與 Service Worker precache 同步更新，並以 `100dvh`、實際 viewport 高度與舞台 inline 尺寸避免首次全螢幕底部黑邊；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
+- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁主內容上限 1800px，主標、摘要、分支卡片與左右雙欄入口已放大，提示詞面板同步改為滿寬三欄與放大字級，手機簡報工具列改為圖示加文字並在直式採雙列排列，版本更新為 `2026.08.15.32`；HTML 簡報投影片提供 1280×720 fallback 與 2560×1440 2K 圖檔，桌機全螢幕先顯示輕量 fallback，再於舞台穩定後升級目前頁面的 2K 版本；上午新增 Typeless × ChatGPT／Codex Voice 雙語音入口、口述痛點整理、隱私與權限選擇、Typeless → Gemini Notebook 橋接、教學駕駛艙、會議紀錄系統與 Google Sites 連結，下午新增 Claude 入口與模型官方資料連結；起始成果包、實作工具、123 筆案例資料、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；所有主要分支頁皆有首屏可見的返回簡報主頁按鈕；`deck.js` 的版本 query 與 Service Worker precache 同步更新，並以 `100dvh`、實際 viewport 高度與舞台 inline 尺寸避免首次全螢幕底部黑邊；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
 - 簡報解說圖表增補：通過；上午 4 組、下午 5 組均為可編輯 PowerPoint 流程圖／資料流／品質閘門，上午新增 EZPage 四步部署圖。
 - 簡報自動溢位檢查：通過；上午 39 頁、下午 44 頁均無溢位。
 - 簡報結構檢查：通過；上午 39/39、下午 44/44 頁具講者備註，且均含正式包資源導航連結。
