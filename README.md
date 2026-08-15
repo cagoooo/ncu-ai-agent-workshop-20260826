@@ -6,7 +6,7 @@
 
 ## 內容
 
-- 上午場：Gemini Notebook、Gem、Canvas 與網站部署實作（35 頁）
+- 上午場：Typeless、Gemini Notebook、Gem、Canvas 與網站部署實作（39 頁）
 - 下午場：Antigravity、Codex、Agent Skills 與資料分析實戰（44 頁）
 - 桌機首頁滿版寬欄場次導覽：主內容上限 1800px，放大主標、摘要、分支卡片與左右雙欄入口；手機／平板自動堆疊並保留 RWD
 - 主導覽板新增 10 個研習分支入口：資源導航、任務書、PIRLS、Skill 驗證、123 案例、部署精靈、提示詞面板、場務手冊、備援與 Canvas 起始站

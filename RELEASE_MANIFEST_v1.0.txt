@@ -1,15 +1,15 @@
 國立中央大學 AI 教學與研究工作坊｜Release Manifest
-版本：v1.18（手機平板 RWD 與全螢幕優化版）
-封裝日期：2026-08-13
-檔案總數：244（含本清單）
+版本：v1.31（Typeless 語音輸入實作增補版）
+封裝日期：2026-08-15
+檔案總數：357（含本清單）
 
 核心檔案 SHA-256
 
 01_簡報\上午場_打造專屬AI教學與研究工作室_20260826.pptx
-D8742A5493D74A3F3293437BC21485595CEBA52AB9BBAB8F425619306E620418
+2F63A50E1D2C158ADE7CA001249A4CEF296044BDCD2E679997766BCC93CFFEE9
 
 01_簡報\下午場_打造會做事的AI教學與研究夥伴_資料分析實戰_20260826.pptx
-F329D373B7739DF1BDED127DFF846F1F94D90027D33B88212C39BCC513F2E412
+6E8A8CA3ADC6004B38C66F9B5B7B6D293A28289AA496135A09399DFB27876BA4
 
 02_學員任務書\學員手把手操作任務書.pdf
 9A89176DC896E57B946DB3F959120E854D970E91709A471D524B3403F67453DD
@@ -39,50 +39,50 @@ B8D21D1ED6EF07EC53D8F5B5C8EDE1053950FD4E08B6BEC830BFF9B96483C624
 5D3C656370754599DD7928D0F9A39119F10CFFFD0C81676813223681BE41675B
 
 07_備援\上午場_打造專屬AI教學與研究工作室_20260826.pdf
-6153F08B445E5B3C266B3391991F05624455C26462768938FDF2B718300F18DF
+AA53A237EEEA0AEE8C702CF013C55F48ECCF19074E238B489BB06ABC6094342A
 
 07_備援\下午場_打造會做事的AI教學與研究夥伴_資料分析實戰_20260826.pdf
-82652F40580973E3071723D0FDD2F6A3955841977BC0C7E3015BB742182F4445
+FCCD87D5A4545373EB2381A5083312FEAEB915ACD406A0D8C274CE7B236F118E
 
 07_備援\index.html
-715061D2933C7310D54F9B9482247C6A1F10C944E68AB497C897C1090620DB87
+72E70C575348C00EDD84BEBBF1DCE3FACF8CBB209BD08F940511EAB6FA864F4C
 
 08_HTML簡報\index.html
-13B280383348F546270E9B576B8793022A02AE2645FF6A80B34BA4EB2DBBF374
+FF14F235C6DE7B479B64540BD708090FCD17820B77ACB5017410408EB49D4488
 
 08_HTML簡報\morning.html
-9ED7E69735AEFF0D33CAC7A3B3EE8729F1532697BCAB748D20FCD65178D34153
+59CA1F68A9B5605F1105C0B9FA24E3ECF0568D5A258CD49BE18F5E7EC4E85EB6
 
 08_HTML簡報\afternoon.html
-7053BF555649A8FD6CAB65620211C1DF786B08D35753C93CA091C1DEF9FB1B62
+63A1DCD5B54B11764D2314E8276162388638865B058E97A656DF329B1F87629F
 
 08_HTML簡報\assets\deck.css
-EF023C07E6B8DF63C739251A0D9C9718A7699074E2C7A81BCD02EBFC08032528
+5EBF50BA171F9B526EC8212271A82E76F9E1BC076D66352469EC11429A775758
 
 08_HTML簡報\assets\deck.js
-F071FA67608E5C584C78C0AC8A646832FF5A324952DF9AB97DDF0BBA3A7E8932
+0AEAA87927E929404D2504D919A33E0C7F5305158FE1494CC5826205D03490D0
 
 QR Code 與導向入口
 
 assets\qr\manifest.json
-366E8F46342FED6A154EF068CD9B03FB0B41D0F92E5E335BA52FC1CDFB331AF0
+6E07875D8E62B265A1FAD92F601AF60113A06C627F8E51257EBFACC7FE30D6E8
 
 q.html
-0C967DA1311F2479EEC1B26F319BDD6D42AD9FC7B01DE12D834DC0429DD3D307
+1201FD5F4B3801555A804F08FDFB96AB988A260A7CA1D7F3A249625E5D91587A
 
 06_場務與驗收\QR_Code連結稽核.md
-51AFDCF2361BA1603FB8358888C1271281785F6ECE7CCCCD84F01A1ED25B21CF
+6C945F90F5174E3C75B044D77FDD8A7C481657CE8861038F0AD958C7F0F97C1F
 
 06_場務與驗收\qr-code-results.json
-1BE4F95E7A5C947E57247DCAE9408224479223B015901EE8EED7299B80D88EB4
+A484A54FAD0A81404736355B5991B4E14A4EEE6F93723139FF3946AE9F737A85
 
 網站版本與分享素材
 
 version.json
-9DF2A9F990DBAAC4E0AB7CE7F34F34E25F59649F42D6892DD76E2670520F5FD9
+C5FFDA5F084F7F662EBBD69908FFF048F9F2AA3377360C4233744521899F2C1B
 
 sw.js
-0017762370107D9F4470B15E10F94BB73671485030445189973E9F68BCC1A26A
+A6F97A99775BD1DAE061BAFAF7B0AFDDDF05BEA1F08E8C277E987C6D830CE79E
 
 pwa-register.js
 183C266AB2D50863D224DE7956DE88B5BC05AD23115F4E4D185DB882730C72FA
@@ -94,24 +94,24 @@ assets\og-workshop.png
 BA149FC66581EA37D69636871DCA843E6EB51BA526E346527D155FAE2AB6A0DC
 
 QR Code 與短網址
-- `assets/qr/`：49 個 QR 圖檔；`assets/qr/manifest.json`：最終網址對照表。
-- `q/<編號>/index.html`：49 個 GitHub Pages 靜態導向入口；QR 掃描網址均使用 `/q/<編號>/`。
-- `06_場務與驗收/QR_Code連結稽核.md`：122 個 QR Code 的投影解碼驗收報告。
-- `06_場務與驗收/qr-code-results.json`：逐頁解碼結果，122/122 通過。
+- `assets/qr/`：61 個 QR 圖檔；`assets/qr/manifest.json`：最終網址對照表。
+- `q/<編號>/index.html`：61 個 GitHub Pages 靜態導向入口；QR 掃描網址均使用 `/q/<編號>/`。
+- `06_場務與驗收/QR_Code連結稽核.md`：144 個 QR Code 的投影解碼驗收報告。
+- `06_場務與驗收/qr-code-results.json`：逐頁解碼結果，144/144 通過。
 
 封裝狀態
-- 互動式 HTML 簡報：通過；上午 35 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；版本 `2026.08.13.15`。
+- 互動式 HTML 簡報：通過；上午 39 頁、下午 44 頁，固定 16:9 舞台、桌機滿版放大、全螢幕模式、鍵盤／觸控導覽、總覽、講者備註、閱讀模式、每頁平台連結與 EZPage ZIP 部署路徑均完成驗收；投影片平台文字、案例連結、資源卡片網址與 QR Code 均可直接點擊；上午新增 Typeless 語音輸入、口述痛點整理、Typeless → Gemini Notebook 橋接、教學駕駛艙 GitHub／公開網站、既有 Gem 拆解改造、教師會議紀錄 Canvas 與 Google Sites 嵌入流程；下午新增 Claude、Codex／ChatGPT、Antigravity／Gemini 的模型、成本、速度與額度策略比較；Antigravity、Codex 與 GitHub Pages 對應頁面加入簡報化品牌識別徽章；提示詞面板備註已改為公開網址；主頁桌機內容上限 1800px 並放大主標、摘要與分支卡片；手機直式工具列改為圖示加文字的四項清楚操作；補充 Opus 5（若帳號當期可見）的模型選擇邊界；新增「真實教學／研究／行政痛點 → 工具／Agent → 可驗證成果」敘事主軸；提供 1280×720 fallback 與 2560×1440 2K 投影片資產，初次進入全螢幕時先用輕量圖，舞台穩定後再升級目前頁面的 2K 圖片；`deck.js` 加入版本化網址避免舊快取，首次點擊全螢幕立即切換沉浸滿版，並以動態 viewport、`visualViewport`、實際舞台尺寸與第一次／第二次連續進入測試修正底部黑邊；版本 `2026.08.15.31`。
 - 互動式 HTML 簡報 RWD 驗收：通過；手機直式 393×852、手機橫式 932×430、平板直式 820×1180、平板橫式 1180×820 均無水平溢位，橫式舞台未超出可視高度。
-- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁已改為寬版雙欄導覽，提示詞面板同步改為滿寬三欄與放大字級，版本更新為 `2026.08.13.15`；起始成果包、實作工具、123 筆案例資料、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；所有主要分支頁皆有首屏可見的返回簡報主頁按鈕；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
+- GitHub Pages 發布素材：完成；根目錄 favicon、1200×630 OG 分享圖、Open Graph／Twitter／canonical meta、version.json、Service Worker 與新版浮動提示已加入；桌機首頁主內容上限 1800px，主標、摘要、分支卡片與左右雙欄入口已放大，提示詞面板同步改為滿寬三欄與放大字級，手機簡報工具列改為圖示加文字並在直式採雙列排列，版本更新為 `2026.08.15.31`；HTML 簡報投影片提供 1280×720 fallback 與 2560×1440 2K 圖檔，桌機全螢幕先顯示輕量 fallback，再於舞台穩定後升級目前頁面的 2K 版本；上午新增 Typeless 語音輸入、口述痛點整理、Typeless → Gemini Notebook 橋接、教學駕駛艙、會議紀錄系統與 Google Sites 連結，下午新增 Claude 入口與模型官方資料連結；起始成果包、實作工具、123 筆案例資料、任務書、場務手冊、PIRLS 練習資料與 PDF／PowerPoint 備援均可由公開網址開啟；所有主要分支頁皆有首屏可見的返回簡報主頁按鈕；`deck.js` 的版本 query 與 Service Worker precache 同步更新，並以 `100dvh`、實際 viewport 高度與舞台 inline 尺寸避免首次全螢幕底部黑邊；立即更新按鈕沿用 waiting worker → controllerchange → cache-busted 導覽流程。
 - 簡報解說圖表增補：通過；上午 4 組、下午 5 組均為可編輯 PowerPoint 流程圖／資料流／品質閘門，上午新增 EZPage 四步部署圖。
-- 簡報自動溢位檢查：通過；上午 35 頁、下午 44 頁均無溢位。
-- 簡報結構檢查：通過；上午 35/35、下午 44/44 頁具講者備註，且均含正式包資源導航連結。
+- 簡報自動溢位檢查：通過；上午 39 頁、下午 44 頁均無溢位。
+- 簡報結構檢查：通過；上午 39/39、下午 44/44 頁具講者備註，且均含正式包資源導航連結。
 - HTML 工具桌面功能測試：通過；PIRLS 18 筆流程、Skill ZIP、Agent 證據 ZIP、跨平台 Skill 驗證、123 案例篩選與部署選擇精靈均完成驗收。
 - HTML 工具 390px 響應式測試：通過；資源導航、任務書與六項工具均無水平溢位。
 - 場務手冊互動檢查：通過；36 個核取項目可勾選、自動保存、重新整理還原，備註可輸入並可清除全部勾選。
 - HTML 本機連結檢查：通過；66 份 HTML、83 個相對資源連結均存在。
 - 外部網址基準檢查：2026-08-13 完成；EZPage 官方入口已加入上午簡報、任務書與資源導航；ChatGPT Codex 對自動請求回 403，須以一般瀏覽器人工登入複核。
-- PDF 全頁渲染：通過；講義 5 頁、場務手冊 3 頁、上午簡報 35 頁、下午簡報 44 頁。
+- PDF 全頁渲染：通過；講義 5 頁、場務手冊 3 頁、上午簡報 39 頁、下午簡報 44 頁。
 - 安全字串掃描：通過；未發現錯誤校名「新明」或常見 API key／GitHub token 樣式。
 - 外部場地、六位教授實際帳號、現場投影與 PowerPoint 按鈕逐點：待主辦方／講師於中央大學或等效環境執行。
 - T-7（2026-08-19）與 T-24h（2026-08-25）平台／連結複核：依 `06_場務與驗收\平台與連結複核清單.csv` 待時執行。
