@@ -21,6 +21,7 @@ let touchStartX = null;
 let touchStartY = null;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 let hiResTimer = 0;
+let transitionCleanTimer = 0;
 
 function enableHiResImage(article) {
   const art = article?.querySelector(".slide-art");
@@ -47,10 +48,21 @@ function scheduleHiResImage(article, delay = 900) {
 
 function ensureSlideImage(article) {
   const art = article?.querySelector(".slide-art");
-  const source = art?.dataset.slideSrc;
-  if (!art || !source || art.dataset.sourceReady === "true") return;
-  art.src = source;
+  const source = art?.dataset.slideSrc || art?.src;
+  if (!art || !source) return;
+  if (!art.src || art.src.includes("data:image")) {
+    art.src = source;
+  }
   art.dataset.sourceReady = "true";
+}
+
+function preloadSlideImages(centerIndex) {
+  for (let offset = -2; offset <= 3; offset++) {
+    const target = stage.children[centerIndex + offset];
+    if (target) {
+      ensureSlideImage(target);
+    }
+  }
 }
 
 function createSlide(item) {
@@ -64,10 +76,9 @@ function createSlide(item) {
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
   const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
-  const loading = item.index <= 2 ? "eager" : "lazy";
-  const fetchPriority = item.index === 1 ? ' fetchpriority="high"' : "";
-  const sourceAttrs = item.index === 1 ? 'src="' + item.image + '"' : 'src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-slide-src="' + item.image + '"';
-  article.innerHTML = '<img class="slide-art" ' + sourceAttrs + ' data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  const loading = item.index <= 4 ? "eager" : "lazy";
+  const fetchPriority = item.index <= 2 ? ' fetchpriority="high"' : "";
+  article.innerHTML = '<img class="slide-art" src="' + item.image + '" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
@@ -101,21 +112,20 @@ function updateLinks(item) {
   }
 }
 
-function animateIn(article, direction) {
+function animateIn(article, direction, isInitial = false) {
   stopArticleMotion(article);
-  if (reducedMotion) {
+  if (isInitial || reducedMotion) {
+    article.style.opacity = "1";
+    article.style.transform = "none";
     return;
   }
   const isDarkDeck = document.body.classList.contains("theme-afternoon");
-  const distance = isDarkDeck ? 14 : 28;
-  const duration = isDarkDeck ? 0.34 : 0.52;
-  const initialScale = isDarkDeck ? 1 : 0.992;
+  const distance = isDarkDeck ? 18 : 28;
+  const duration = isDarkDeck ? 0.32 : 0.44;
   if (window.gsap) {
-    window.gsap.fromTo(article, { opacity: 0, x: direction * distance, scale: initialScale }, { opacity: 1, x: 0, scale: 1, duration, ease: "power3.out", clearProps: "transform,opacity" });
-    const art = article.querySelector(".slide-art");
-    if (!isDarkDeck) window.gsap.fromTo(art, { scale: 1.02 }, { scale: 1, duration: 1.15, ease: "power2.out", clearProps: "transform" });
+    window.gsap.fromTo(article, { x: direction * distance }, { x: 0, duration, ease: "power3.out", clearProps: "transform" });
   } else {
-    article.animate([{ opacity: 0, transform: "translateX(" + (direction * distance) + "px) scale(" + initialScale + ")" }, { opacity: 1, transform: "none" }], { duration: duration * 1000, easing: "cubic-bezier(.16,1,.3,1)", fill: "none" });
+    article.animate([{ transform: "translateX(" + (direction * distance) + "px)" }, { transform: "none" }], { duration: duration * 1000, easing: "cubic-bezier(.16,1,.3,1)", fill: "none" });
   }
 }
 
@@ -144,7 +154,7 @@ function updateOverviewCurrent() {
   overviewGrid.querySelectorAll(".overview-card").forEach((card, index) => card.classList.toggle("is-current", index === activeIndex));
 }
 
-function show(index, direction = 1, updateHash = true) {
+function show(index, direction = 1, updateHash = true, isInitial = false) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
   const previous = stage.querySelector(".is-active");
   if (previous) {
@@ -156,7 +166,9 @@ function show(index, direction = 1, updateHash = true) {
   current.classList.add("is-active");
   ensureSlideImage(current);
   activeIndex = nextIndex;
-  animateIn(current, direction);
+  preloadSlideImages(nextIndex);
+  animateIn(current, direction, isInitial);
+
   const item = slides[nextIndex];
   currentLabel.textContent = String(item.index);
   sectionLabel.textContent = item.section;
@@ -362,5 +374,5 @@ stage.addEventListener("touchend", (event) => { if (touchStartX === null) return
 
 const hashMatch = location.hash.match(/slide-(\d+)/);
 window.scrollTo(0, 0);
-show(hashMatch ? Number(hashMatch[1]) - 1 : 0, 1, false);
+show(hashMatch ? Number(hashMatch[1]) - 1 : 0, 1, false, true);
 stage.focus({ preventScroll: true });

@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 11:00（Asia/Taipei）
+稽核時間：2026-08-16 11:30（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.36`，下午場第 10 頁《阿凱老師實戰案例導航｜研究與驗證》（#105, #123, #88）之 Hotspot 超連結與 QR 映射已全面修復並通過 Playwright 點擊驗證；上下午場 83 頁 PPTX/HTML、專屬 Favicon、1200x630 OG 卡片、QR 解碼 145/145 與全部分支頁均通過自動化 QA 驗收。
+工作坊公開站已上線至 `2026.08.16.37`，已全面消除 HTML 簡報初次進入與換頁時的「閃黑」現象（舞台背景主題色一致化、去除 1x1 GIF 延遲、實體滑入轉場與初次零延遲即刻渲染）；上下午場 83 頁 PPTX/HTML、專屬 Favicon、1200x630 OG 卡片、QR 解碼 145/145 與全部分支頁均通過自動化 QA 驗收。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.36`
+- 公開版本：`2026.08.16.37`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 
