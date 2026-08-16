@@ -16,6 +16,98 @@ const overviewGrid = document.getElementById("overview-grid");
 const fullscreenButtons = [...document.querySelectorAll("[data-action=fullscreen]")];
 const immersiveExit = document.querySelector(".immersive-exit");
 const slides = data.slides;
+
+const spotlight = document.getElementById("concept-spotlight");
+const spotlightBadge = document.getElementById("spotlight-badge");
+const spotlightTitle = document.getElementById("spotlight-title");
+const spotlightContent = document.getElementById("spotlight-content");
+let spotlightVisible = true;
+
+const CONCEPT_MAP = {
+  morning: {
+    14: {
+      badge: "🛡️ RAG 產線底座",
+      title: "RAG（檢索增強生成）打造專屬教學與研究知識庫",
+      content: "大模型幻覺的起因是預訓練機率接字補全。本產線將 Gemini Notebook 作為私有 RAG 知識庫，以真實上傳文獻為事實邊界（Grounding Data），先檢索切片再增強生成，從架構層面根治 AI 幻覺。"
+    },
+    15: {
+      badge: "🛡️ RAG 核心公式",
+      title: "RAG 檢索增強生成：知識庫錨定架構",
+      content: "【真實來源切片】+【向量檢索 (Retrieve)】+【上下文增強 (Augment)】=【零幻覺可驗證生成】。不讓 AI 自由發揮，而是強制在教授提供的文獻庫範圍內推論與引用。"
+    },
+    16: {
+      badge: "🛡️ RAG 防幻覺機制",
+      title: "一般對話 vs RAG 資料庫模式：可追查鏈（Audit Trail）",
+      content: "一般聊天容易『一本正經胡說八道』；RAG 資料庫模式下，AI 的每一句結論都必須綁定原文引用腳註（In-line Citations）。來源未記載時明確標示『來源無相關資料』，絕不捏造！"
+    },
+    17: {
+      badge: "🛡️ RAG 建庫原則",
+      title: "RAG 知識庫 3-2-1 原則：高密度、高相關、少雜訊",
+      content: "優質的 RAG 資料庫講求『3 份核心文獻、2 種互補觀點、1 個明確教學/研究目的』。避免塞入海量無關雜訊文件，以確保向量檢索精準度。"
+    },
+    19: {
+      badge: "🛡️ RAG 實戰檢驗",
+      title: "RAG 防幻覺邊界測試（Boundary Check）",
+      content: "實作防幻覺三部曲：① 檢索事實數據 → ② 跨篇綜合比對 → ③ 故意提問來源未記載的問題，測試系統是否具備誠實拒答的防幻覺邊界。"
+    },
+    23: {
+      badge: "🛡️ Gem 角色固化",
+      title: "自訂 Gem：系統提示詞 ＋ RAG 知識庫綁定",
+      content: "單純 Prompt 會隨對話輪數增加而發生『角色遺忘』或『幻覺漂移』；自訂 Gem 在系統層鎖定教學方法、評量規準與引用約束，確保輸出始終穩定可靠。"
+    }
+  },
+  afternoon: {
+    1: {
+      badge: "🎛️ Agent 交往學",
+      title: "從 AI 助理走向主動推進任務的 AI Agent",
+      content: "Agent 不只是陪你聊天，而是能感知環境、規劃步驟、調度外部工具並交付可驗證成果的數位研究助理。"
+    },
+    4: {
+      badge: "🎛️ Agent Harness 裝具",
+      title: "為什麼大語言模型（LLM）本身不是 Agent？",
+      content: "LLM 只是運算大腦/引擎（LLM Engine），沒有手腳、無法持久感知環境。Harness（調控裝具 / 控管鞍具）是套在模型外部的控制骨架——如同為火箭引擎配備控制艙、儀表板與安全帶，讓模型在約束邊界內主動做事！"
+    },
+    5: {
+      badge: "🎛️ Harness Engineering",
+      title: "Harness Engineering（裝具工程）四大調控支柱",
+      content: "① 狀態與記憶管理（Context Management）：過濾雜訊防止 Token 溢出；② 工具與協議調度（Tool Dispatching）：安全調用檔案與命令列；③ 自省評估閉環（Self-Correction Eval Loop）：報錯時自動反思重試；④ 安全沙盒（Sandboxing & Guardrails）：授權隔離與可逆防呆。"
+    },
+    7: {
+      badge: "🎛️ 三大 Agent 調控比較",
+      title: "Antigravity vs Codex vs Claude Code 的 Harness 設計差異",
+      content: "• Antigravity：Google 開發環境 Harness，具備多模態 Artifacts 即時渲染與自主規劃循環；• Codex：OpenAI 強悍沙盒 Harness，精準掌控終端執行與資料分析；• Claude Code：極致嚴謹的終端 Harness 與上下文壓縮。"
+    },
+    23: {
+      badge: "🎛️ Skill 裝具延伸",
+      title: "Agent Skills 的本質：自訂 Harness Extension（裝具延伸套件）",
+      content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約、操作 SOP 與驗收測試條件（例如 PIRLS 資料分析、學習單生成）。"
+    }
+  }
+};
+
+function updateSpotlight(index) {
+  if (!spotlight) return;
+  const sessionKey = document.body.classList.contains("theme-morning") ? "morning" : "afternoon";
+  const slideNum = index + 1;
+  const concept = CONCEPT_MAP[sessionKey]?.[slideNum];
+  if (concept && spotlightVisible) {
+    spotlightBadge.textContent = concept.badge;
+    spotlightTitle.textContent = concept.title;
+    spotlightContent.textContent = concept.content;
+    spotlight.hidden = false;
+  } else {
+    spotlight.hidden = true;
+  }
+}
+
+function toggleSpotlight(force) {
+  spotlightVisible = typeof force === "boolean" ? force : !spotlightVisible;
+  if (spotlight) {
+    if (!spotlightVisible) spotlight.hidden = true;
+    else updateSpotlight(activeIndex);
+  }
+}
+
 let activeIndex = 0;
 let touchStartX = null;
 let touchStartY = null;
@@ -176,9 +268,9 @@ function show(index, direction = 1, updateHash = true, isInitial = false) {
   document.title = String(item.index).padStart(2, "0") + "｜" + item.title + "｜" + data.title;
   updateLinks(item);
   updateNotes(item);
+  updateSpotlight(nextIndex);
   updateOverviewCurrent();
   if (document.body.classList.contains("is-immersive")) enableHiResImage(current);
-  else scheduleHiResImage(current);
   if (updateHash) history.replaceState(null, "", "#slide-" + item.index);
 }
 
@@ -330,6 +422,7 @@ document.querySelectorAll("[data-action=notes]").forEach((button) => button.addE
 document.querySelectorAll("[data-action=notes-close]").forEach((button) => button.addEventListener("click", () => toggleNotes(false)));
 document.querySelectorAll("[data-action=reading]").forEach((button) => button.addEventListener("click", () => toggleReading()));
 document.querySelectorAll("[data-action=reading-close]").forEach((button) => button.addEventListener("click", () => toggleReading(false)));
+document.querySelectorAll("[data-action=concept-close]").forEach((button) => button.addEventListener("click", () => toggleSpotlight(false)));
 fullscreenButtons.forEach((button) => button.addEventListener("click", toggleFullscreen));
 const onFullscreenChange = () => {
   const native = Boolean(nativeFullscreenElement());
@@ -360,6 +453,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key.toLowerCase() === "o") { event.preventDefault(); overview.hidden ? openOverview() : closeOverview(); }
   if (event.key.toLowerCase() === "n") { event.preventDefault(); toggleNotes(); }
   if (event.key.toLowerCase() === "t") { event.preventDefault(); toggleReading(); }
+  if (event.key.toLowerCase() === "c") { event.preventDefault(); toggleSpotlight(); }
   if (event.key.toLowerCase() === "f") { event.preventDefault(); toggleFullscreen(); }
   if (event.key === "Escape") {
     if (!overview.hidden) closeOverview();
