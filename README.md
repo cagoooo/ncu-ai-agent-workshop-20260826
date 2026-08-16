@@ -30,4 +30,4 @@
 
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。
 
-Made with ❤️ by [阿凱老師](https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5) · 桃園市龍潭區石門國民小學
+Made with ❤️ by [阿凱老師](https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5) · 桃園市龍潭區石門國民小學
