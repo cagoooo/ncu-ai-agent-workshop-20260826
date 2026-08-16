@@ -35,9 +35,9 @@
     <div class="section-head"><div><div class="eyebrow">Morning</div><h2>上午：打造 AI 教學與研究工作室</h2></div><p>完成一個來源型工作區、一個穩定角色、一個互動原型，以及一個可分享成果。</p></div>
     <div class="steps">
       <article class="step">
-        <h3>任務 M1｜建立 Gemini Notebook（RAG 防幻覺資料庫）</h3>
-        <p><strong>目標：</strong>運用 RAG（檢索增強生成）概念建立專屬知識庫，以真實文獻為事實錨點，大幅降低 AI 幻覺並實現精準引用核對。</p>
-        <ol><li>開啟 Gemini Notebook，建立專屬 RAG 筆記本資料庫。</li><li>加入 3–5 份高相關核心來源（3-2-1 原則），建立事實錨定邊界（Grounding Data）。</li><li>依序提出理解、跨篇比較、轉化三層問題，觀察引用腳註（In-line Citations）。</li><li><strong>【防幻覺邊界測試】：</strong>故意詢問來源完全未記載的問題，驗證系統是否具備誠實拒答或標示來源不足的能力。</li><li>選一項輸出轉成課程摘要、研究問題或教學活動。</li></ol>
+        <h3>任務 M1｜建立 Gemini Notebook（專屬私人圖書館・開卷查證法）</h3>
+        <p><strong>目標：</strong>打造專屬資料庫，就像讓 AI 開卷考試，只根據您指定的論文講義來回答，徹底告別 AI 瞎猜，每句話都能查到原文出處。</p>
+        <ol><li>開啟 Gemini Notebook，建立您的專屬私人圖書館。</li><li>加入 3–5 份重要的講義或文獻（掌握 3-2-1 原則：少而精）。</li><li>依序詢問重點、比較兩篇異同，觀察回答後面的出處小數字標籤。</li><li><strong>【防瞎猜測試】：</strong>故意問一個資料裡完全沒寫的陷阱題，看 AI 是否會老實說不知道。</li><li>把整理好的重點轉成教學或研究摘要。</li></ol>
         <p><strong>完成證據：</strong>RAG 筆記本名稱、三個問題、至少一個可追溯引用腳註、防幻覺邊界測試紀錄、成品摘要。</p>
         <div class="card-actions no-print"><a class="btn" href="https://notebook.google.com/" target="_blank" rel="noopener">開啟 Gemini Notebook</a><a class="btn secondary" href="../03_起始成果包/01_Gemini_Notebook來源包/來源包使用說明.txt">使用來源包</a></div>
         <p class="callout"><strong>B 線：</strong>使用來源包閱讀講師完成範例，整理「來源、問題、引用、轉化」四欄觀察表；課後取得 Gemini 權限再補做。</p>
@@ -48,7 +48,7 @@
       <div style="margin-top: 18px; padding: 16px 20px; border-radius: 14px; background: rgba(37, 111, 232, 0.06); border: 1.5px solid #256fe8;">
         <h4 style="margin: 0 0 8px; color: #1b64da; font-size: 15px;">🚀 未來前瞻：將 Gem 升級為專屬 Agent Skill（Gem to Skill 升級顧問）</h4>
         <p style="margin: 0 0 10px; font-size: 13px; color: #334e68; line-height: 1.65;">
-          Gem 雖能固化提示詞，但受限於線上純文字對話與 10 個檔案上限。透過 <code>gem-to-skill-kit</code> 升級流水線，可將在 Gemini 累積的 Gem 一鍵升級為跨平台的標準可攜式 <code>.agents/skills/&lt;name&gt;/SKILL.md</code>，賦予實體檔案讀寫、Python 確定性精算與 DOCX/HTML 排版輸出等 11 大加值能力！
+          線上 Gem 很方便但只能隔空文字聊天；透過 Gem to Skill 升級方法，可以把平常習慣的聊天指令，升級成萬用工作 SOP 懶人包（Skill），讓 AI 不只會講話，還能直接幫您讀寫電腦裡的 Word 檔、算成績統計、自動排版做出互動網頁！
         </p>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <a href="https://github.com/mathruffian-dot/gem-to-skill-kit" target="_blank" rel="noopener noreferrer" style="font-size: 12px; color: #256fe8; font-weight: 700; text-decoration: none; padding: 4px 10px; background: #fff; border: 1px solid #256fe8; border-radius: 999px;">📦 GitHub 升級套件 ↗</a>
@@ -84,7 +84,7 @@
   <section id="afternoon" class="section wrap">
     <div class="section-head"><div><div class="eyebrow">Afternoon</div><h2>下午：打造會做事的 AI 教學與研究夥伴</h2></div><p>把上午成果放入工作區，讓 Agent 在限制內修改、測試、提供證據，再把成功流程封裝成 Skill。</p></div>
     <div class="steps">
-      <article class="step"><h3>任務 A1｜撰寫可驗收的 Agent 任務簡報（Harness 裝具調控）</h3><p><strong>目標：</strong>理解 Harness Engineering（裝具工程）調控架構——LLM 模型是大腦引擎，Harness 是調控鞍具與安全防護欄。填寫目標、素材、範圍、限制、交付物與驗收條件六欄，讓 Agent 在清晰的狀態管理、工具授權與自省閉環內執行任務。</p><p><strong>完成證據：</strong>任務簡報、Agent 計畫、修改摘要、測試結果、未確認項目。</p><div class="card-actions no-print"><a class="btn" href="https://antigravity.google/" target="_blank" rel="noopener">Antigravity</a><a class="btn secondary" href="https://chatgpt.com/codex/" target="_blank" rel="noopener">Codex</a></div></article>
+      <article class="step"><h3>任務 A1｜交辦一項清晰好驗收的研究任務（掌握 AI 的方向盤與煞車）</h3><p><strong>目標：</strong>就像帶研究生或助理，交代清楚『目標、參考素材、工作範圍、限制規範、產出格式與驗收標準』六件事。為 AI 裝上方向盤與煞車系統，讓它在安全規矩下自己跑完任務、自己檢查錯誤，交出令人滿意的成品。</p><p><strong>完成證據：</strong>任務簡報、Agent 計畫、修改摘要、測試結果、未確認項目。</p><div class="card-actions no-print"><a class="btn" href="https://antigravity.google/" target="_blank" rel="noopener">Antigravity</a><a class="btn secondary" href="https://chatgpt.com/codex/" target="_blank" rel="noopener">Codex</a></div></article>
       <article class="step"><h3>任務 A2｜把提示詞升級成 Agent Skill</h3><p>挑選一個會重複使用、具有固定步驟與驗收方法的提示詞，補上觸發情境、輸入、工作流程、限制、輸出及驗證。</p><p><strong>完成證據：</strong>只含 `name` 與 `description` 的 YAML frontmatter、命令式流程、人工授權邊界、三個測試提示。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/02_提示詞升級Skill產生器.html">開啟 Skill 產生器</a><a class="btn secondary" href="../03_起始成果包/04_Agent_Skill骨架/SKILL.md">查看骨架</a></div></article>
       <article class="step"><h3>任務 A2b｜驗證 Skill 能否跨平台攜帶</h3><p>把剛產出的 Skill `SKILL.md` 或 ZIP 放入驗證器，檢查 frontmatter 是否只含 `name`／`description`、相對引用是否完整，以及是否誤放金鑰或本機路徑。</p><p><strong>完成證據：</strong>驗證結果 JSON、紅黃項目處理紀錄，以及交給 Antigravity／Codex 前的人工核准。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/04_跨平台Skill驗證器.html">開啟跨平台驗證器</a><a class="btn secondary" href="../04_實作工具/02_提示詞升級Skill產生器.html">回到 Skill 產生器</a></div></article>
       <article class="step"><h3>任務 A3｜PIRLS 風格資料分析與簡答題初編</h3><p>匯入合成資料，先做欄位、缺漏、重複與答案有效性檢查，再分析選擇題；簡答題先建立編碼規準，再交給 AI 初編並由人工覆核。</p><p><strong>完成證據：</strong>資料品質摘要、題目答對率、AI 初編 JSON、人工最終碼與匯出 CSV。</p><div class="card-actions no-print"><a class="btn" href="../04_實作工具/01_PIRLS資料分析工作台.html">開啟資料工作台</a><a class="btn secondary" href="../06_場務與驗收/PIRLS資料治理與人工複核SOP.md">查看治理 SOP</a></div></article>

@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 17:18（Asia/Taipei）
+稽核時間：2026-08-16 17:35（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.51`：徹底解決首頁「一日工作坊｜兩條實作路徑」導航卡片（`.hub-route`）在 Hover 懸停時因殘留舊深色模式 CSS 導致的「黑底疊深灰字、對比度缺失」痛點；重構為現代明亮淺藍微漸層（`linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%)`）、主題藍高亮邊框（`#256fe8`）、深色粗體標題與立體浮起光暈，確保文字極致清晰；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
+工作坊公開站已上線至 `2026.08.16.52`：全面落實「專業術語口語化親切轉譯」，將原先生硬的工程詞彙（RAG、Grounding Data、Harness、Audit Trail、YAML 規約）全面重構為非資訊領域教授一聽就懂的生動譬喻（「專屬私人圖書館・開卷查證法」、「AI 的方向盤與煞車系統」、「工作 SOP 懶人包」、「句句都有原文出處」）；同時在首頁、簡報概念看板與任務書中內化微軟 Frontier 與陳翰申首席設計師的「增強智慧（Augmentation）」觀點；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.51`
+- 公開版本：`2026.08.16.52`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 
