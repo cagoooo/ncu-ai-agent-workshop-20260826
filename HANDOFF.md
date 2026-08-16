@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 12:15（Asia/Taipei）
+稽核時間：2026-08-16 12:36（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.39`，主頁 UIUX 已全面重構為【明亮北歐科技風】（純白立體浮雕大看板、石墨黑大標、純白高對比分支卡片與清晰場次路徑），徹底根除深黑底黑字辨識不清問題；下午場簡報亦全面升級為【冰川曜藍／北歐科技明亮風】；上下午場 83 頁 PPTX/HTML、專屬 Favicon、1200x630 OG 卡片、QR 解碼 145/145 與全部分支頁均通過自動化 QA 驗收。
+工作坊公開站已上線至 `2026.08.16.40`，主頁排版全面升級為【Apple Keynote / 頂級研討會大氣風（Summit Showcase）】：雙軌巨幅場次主卡片（上午湛藍 / 下午曜藍）＋一日實作學習弧線（The Learning Arc）＋非對稱 Bento 研習工坊工具箱（2 焦點 + 8 標準卡片）＋三大亮點特色，視覺開闊極致大氣；6 大測試矩陣全部 PASS（Exit Code 0）。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.39`
+- 公開版本：`2026.08.16.40`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 
