@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 17:09（Asia/Taipei）
+稽核時間：2026-08-16 17:14（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.46`：全域升級「Made with ❤️ by 阿凱老師」個人化 Footer 連結至石門國小最新教師頁面（`modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5`），並同步固化更新全域技能庫 `akai-author-footer` 與 `github-readme-auto-generation` 規範；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
+工作坊公開站已上線至 `2026.08.16.49`：全面優化中央大學 AI 工作坊 Footer UIUX！首頁升級為高對比白底峰會卡片（含研習徽章、大字級高亮作者連結與副標說明），簡報頁升級為現代毛玻璃浮動膠囊徽章（`Floating Glass Capsule`，字級提升 25%、雙線高亮與 Hover 微光），極大幅度提升可讀性與品牌專業感；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.46`
+- 公開版本：`2026.08.16.49`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 

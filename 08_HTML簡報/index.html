@@ -67,12 +67,24 @@
     .hub-grid h2{font-size:20px;margin:14px 0 8px;color:#0f1e2e;font-weight:700}
     .hub-grid p{color:#486581;line-height:1.65;margin:0;font-size:14px}
     .hub-note{color:#486581;font-size:13px;text-align:center;margin:28px 0 0}
+    .hub-footer{margin-top:48px;padding:0 0 64px;text-align:center}
+    .hub-footer-card{max-width:1080px;margin:0 auto;padding:34px 28px;border:1.5px solid #256fe8;border-radius:24px;background:#ffffff;box-shadow:0 20px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;align-items:center;gap:14px}
+    .hub-footer-brand{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+    .hub-footer-badge{font-size:12px;font-weight:800;letter-spacing:.14em;color:#ffffff;background:#256fe8;padding:5px 14px;border-radius:999px}
+    .hub-footer-title{font-size:18px;font-weight:800;color:#0f1e2e;letter-spacing:-.01em}
+    .hub-footer .site-credit{position:static;font-size:16px;font-weight:700;color:#1e293b;padding:10px 26px;border-radius:999px;background:#f0f4f8;border:1.5px solid #cbd5e1;box-shadow:0 4px 14px rgba(15,30,46,.06);display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+    .hub-footer .site-credit__author{color:#256fe8;font-weight:800;font-size:17px;text-decoration:none;border-bottom:2px solid #256fe8;transition:all .2s;padding:1px 4px;border-radius:4px}
+    .hub-footer .site-credit__author:hover{color:#1d4ed8;border-bottom-color:#1d4ed8;background:#dbeafe}
+    .hub-footer .site-credit__heart{font-size:18px;filter:saturate(1.3);margin:0 2px}
+    .hub-footer .site-credit__divider{color:#94a3b8;margin:0 2px}
+    .hub-footer .site-credit__school{color:#475569;font-size:15px;font-weight:600}
+    .hub-footer-copy{font-size:14px;color:#64748b;margin:0;line-height:1.6;font-weight:500}
     @media (max-width:1100px){.hub-hero{flex-direction:column;align-items:stretch}.hub-route-panel{width:100%}.hub-branch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
     @media (max-width:900px){.hub-branches-head{display:block}.hub-branches-head p{margin-top:10px}.hub-branch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hub-grid{grid-template-columns:1fr}}
     @media (max-width:520px){.hub-branch-grid{grid-template-columns:1fr}.hub-branch-card{min-height:150px}}
   </style>
 </head>
-<body class="hub-page theme-afternoon" data-app-version="2026.08.16.46">
+<body class="hub-page theme-afternoon" data-app-version="2026.08.16.49">
   <main class="hub-shell">
     <div class="hub-hero">
       <div class="hub-copy"><span class="toolbar-kicker">2026.08.26 · NATIONAL CENTRAL UNIVERSITY</span><h1>從 AI 教學與研究助理到 AI Agent</h1><p>大學教師的生成式 AI 實作工作坊｜互動式 HTML 簡報版</p><div class="hub-actions"><a class="hub-button morning" href="morning.html#slide-1">上午場｜Typeless、Gemini Notebook、Gem、Canvas</a><a class="hub-button afternoon" href="afternoon.html#slide-1">下午場｜Antigravity、Codex、Claude、Agent Skills</a></div><div class="hub-meta"><span>上午 39 頁</span><span>下午 44 頁</span><span>鍵盤／觸控／手機響應式</span><span>每頁備註與平台連結</span></div></div>
@@ -82,7 +94,20 @@
     <section class="hub-grid"><article><span class="hub-number">01</span><h2>固定 16:9 舞台</h2><p>適合投影、桌機、平板與手機；觸控裝置以左右滑動換頁，直式手機不會被浮動按鈕遮住內容。</p></article><article><span class="hub-number">02</span><h2>動態轉場</h2><p>以 GSAP 式淡入、位移與微縮放呈現章節切換，並尊重使用者的減少動態偏好。</p></article><article><span class="hub-number">03</span><h2>教學現場工具</h2><p>總覽、講者備註、平台連結、全螢幕與 URL hash 導覽，方便現場教學與課後分享。</p></article></section>
     <p class="hub-note">建議先用 Chrome／Edge 開啟；GitHub Pages 可直接部署此資料夾，不需要 Node.js 建置。</p>
   </main>
-  <footer class="site-credit">Made with <span aria-label="愛心">❤️</span> by <a href="https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5" target="_blank" rel="noopener noreferrer">阿凱老師</a> · 桃園市龍潭區石門國民小學</footer>
-  <script defer src="../pwa-register.js?v=2026.08.16.46"></script>
+  <footer class="hub-footer">
+    <div class="hub-footer-card">
+      <div class="hub-footer-brand">
+        <span class="hub-footer-badge">AI WORKSHOP 2026</span>
+        <strong class="hub-footer-title">國立中央大學 AI 教學與研究實作工作坊</strong>
+      </div>
+      <div class="site-credit">
+        Made with <span class="site-credit__heart" aria-label="愛心">❤️</span> by <a href="https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5" target="_blank" rel="noopener noreferrer" class="site-credit__author">阿凱老師</a>
+        <span class="site-credit__divider">·</span>
+        <span class="site-credit__school">桃園市龍潭區石門國民小學</span>
+      </div>
+      <p class="hub-footer-copy">從 AI 教學與研究助理到 AI Agent｜打造專屬調控裝具與自動化研究產線</p>
+    </div>
+  </footer>
+  <script defer src="../pwa-register.js?v=2026.08.16.49"></script>
 </body>
 </html>
