@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 18:39（Asia/Taipei）
+稽核時間：2026-08-16 18:51（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.53`：已成功串接並條列整合阿凱老師過往建立的 6 大經典實戰 Gem 範例（資訊組客服、備課教案小幫手、學習單生成器、PIRLS閱讀提問、課程計畫AI初審、LINE貼圖生成王）及 Gem 指令模板、Gem to Skill 升級套件、三師爸教學影片與 Skill 骨架，全面注入至上午場簡報（Slide 23-28）之點擊熱點、底部快速連結列（link-strip）與概念看板中；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
+工作坊公開站已上線至 `2026.08.16.54`：已將上午場簡報（Slide 23-28：Gem 製作、開發與升級）中的範例連結，全數替換為阿凱老師 Google 帳號中真實的 **Gemini Gem 實體專屬 URL**（包含 `Gem：資訊組客服 (f1d79ade5fdb)`、`Gem：備課教案小幫手 (3a3b8e7b4401)`、`Gem：學習單生成小幫手 (44c8c74241bb)`、`Gem：故事生圖機器人 (1ce14f743f08)`、`Gem：網頁應用生成器 (d4c0c1303afc)`、`Gem：LINE 貼圖生成王 (5e7e97e166d5)`、`Gem：英文單字漫畫王 (5f5ccd8d9720)`、`Gem：Google 表單大師 (08984f032c3f)`），採用通用無帳號後綴格式，確保任何學員點擊皆能直接在各自 Google 帳號下開啟體驗；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.53`
+- 公開版本：`2026.08.16.54`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 
