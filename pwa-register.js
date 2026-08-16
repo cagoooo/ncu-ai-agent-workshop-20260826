@@ -1,6 +1,6 @@
 (() => {
-  const currentScript = document.currentScript;
-  const rootUrl = new URL("./", currentScript?.src || window.location.href);
+  const currentScript = document.currentScript || document.querySelector('script[src*="pwa-register.js"]');
+  const rootUrl = new URL("./", currentScript?.src || window.location.origin + window.location.pathname.replace(/\/[^/]*$/, "/"));
   const appVersion = document.body?.dataset.appVersion || "dev";
   const isHttp = window.location.protocol === "http:" || window.location.protocol === "https:";
   if (!isHttp || !("serviceWorker" in navigator)) return;
@@ -12,6 +12,7 @@
   let activeRegistration = null;
   let refreshing = false;
   let reloadStarted = false;
+  let lastCheckTime = 0;
 
   const style = document.createElement("style");
   style.textContent = [
@@ -75,17 +76,31 @@
   }
 
   function showUpdatePrompt(details = {}) {
+    const targetVersion = details.version || "";
+    // 若使用者在此 session 已關閉過該版本，不再重複跳窗騷擾
+    try {
+      const dismissed = sessionStorage.getItem("pwa_dismissed_version");
+      if (dismissed && (dismissed === targetVersion || (!targetVersion && dismissed === "dismissed"))) {
+        return;
+      }
+    } catch {}
+
     if (refreshing || document.querySelector(".pwa-update-prompt")) return;
     const panel = document.createElement("aside");
     panel.className = "pwa-update-prompt";
     panel.setAttribute("role", "status");
     panel.setAttribute("aria-live", "polite");
-    const version = details.version ? "（" + details.version + "）" : "";
+    const version = targetVersion ? "（" + targetVersion + "）" : "";
     panel.innerHTML = "<strong>網站有新版可用" + version + "</strong>" +
       "<p>為避免看到舊版簡報、工具或快取內容，請重新載入最新版。</p>" +
       "<div class=\"pwa-update-actions\"><button type=\"button\" data-pwa-later>稍後再說</button>" +
       "<button type=\"button\" class=\"pwa-update-primary\" data-pwa-refresh>立即更新</button></div>";
-    panel.querySelector("[data-pwa-later]").addEventListener("click", () => panel.remove());
+    panel.querySelector("[data-pwa-later]").addEventListener("click", () => {
+      try {
+        sessionStorage.setItem("pwa_dismissed_version", targetVersion || "dismissed");
+      } catch {}
+      panel.remove();
+    });
     panel.querySelector("[data-pwa-refresh]").addEventListener("click", () => requestUpdate(panel));
     document.body.append(panel);
   }
@@ -124,13 +139,18 @@
     }
   });
 
-  async function checkVersion() {
+  async function checkVersion(force = false) {
+    const now = Date.now();
+    // 限制檢查頻率：除非強制，否則至少間隔 30 秒才發送一次 version 檢查
+    if (!force && now - lastCheckTime < 30000) return;
+    lastCheckTime = now;
+
     try {
-      const response = await fetch(versionUrl.href + "?t=" + Date.now(), { cache: "no-store" });
+      const response = await fetch(versionUrl.href + "?t=" + now, { cache: "no-store" });
       if (!response.ok) return;
       const data = await response.json();
       if (!data.version) return;
-      if (data.version !== localVersion) {
+      if (localVersion !== "dev" && data.version !== localVersion) {
         showUpdatePrompt({ version: data.version });
       }
     } catch {
@@ -138,14 +158,10 @@
     }
   }
 
-  window.addEventListener("focus", checkVersion);
-  window.addEventListener("online", checkVersion);
+  window.addEventListener("online", () => checkVersion(true));
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") checkVersion();
+    if (document.visibilityState === "visible") checkVersion(false);
   });
-  window.addEventListener("pageshow", (event) => {
-    if (event.persisted) checkVersion();
-  });
-  window.setTimeout(checkVersion, 5000);
-  window.setInterval(checkVersion, 3 * 60 * 1000);
+  window.setTimeout(() => checkVersion(true), 2500);
+  window.setInterval(() => checkVersion(true), 3 * 60 * 1000);
 })();

@@ -22,7 +22,7 @@ const PRECACHE = [
   "./08_HTML簡報/morning.html",
   "./08_HTML簡報/afternoon.html",
   "./08_HTML簡報/assets/deck.css",
-  "./08_HTML簡報/assets/deck.js?v=2026.08.16.37"
+  "./08_HTML簡報/assets/deck.js?v=" + BUILD_VERSION
 ];
 
 self.addEventListener("install", (event) => {
