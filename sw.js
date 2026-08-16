@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.16.55";
+﻿const BUILD_VERSION = "2026.08.16.57";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -18,11 +18,11 @@ const PRECACHE = [
   "./assets/og-afternoon.png",
   "./assets/deck.css",
   "./q.html",
-  "./08_HTML簡報/index.html",
-  "./08_HTML簡報/morning.html",
-  "./08_HTML簡報/afternoon.html",
-  "./08_HTML簡報/assets/deck.css",
-  "./08_HTML簡報/assets/deck.js?v=" + BUILD_VERSION
+  "./08_HTML蝪∪/index.html",
+  "./08_HTML蝪∪/morning.html",
+  "./08_HTML蝪∪/afternoon.html",
+  "./08_HTML蝪∪/assets/deck.css",
+  "./08_HTML蝪∪/assets/deck.js?v=" + BUILD_VERSION
 ];
 
 self.addEventListener("install", (event) => {
@@ -82,3 +82,4 @@ self.addEventListener("fetch", (event) => {
   }
   event.respondWith(cacheFirst(request));
 });
+
