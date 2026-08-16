@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.16.35";
+const BUILD_VERSION = "2026.08.16.36";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -22,7 +22,7 @@ const PRECACHE = [
   "./08_HTML簡報/morning.html",
   "./08_HTML簡報/afternoon.html",
   "./08_HTML簡報/assets/deck.css",
-  "./08_HTML簡報/assets/deck.js?v=2026.08.16.35"
+  "./08_HTML簡報/assets/deck.js?v=2026.08.16.36"
 ];
 
 self.addEventListener("install", (event) => {
