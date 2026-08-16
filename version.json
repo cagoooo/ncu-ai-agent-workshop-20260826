@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.16.40",
+  "version": "2026.08.16.41",
   "build": "2026-08-16",
-  "notes": "主頁排版全面升級為「Apple Keynote / 頂級研討會大氣風（Summit Showcase）」：雙軌巨幅場次主卡片、非對稱 Bento 工具箱、一日實作學習弧線時程軸，大氣開闊、極致質感",
-  "updatedAt": "2026-08-16T12:35:00+08:00"
+  "notes": "上午場全面融入「RAG 防幻覺資料庫」設計概念以事實錨定根治 AI 幻覺；下午場深入解析「Agent Harness 與 Harness Engineering 裝具工程」四大調控支柱",
+  "updatedAt": "2026-08-16T12:45:00+08:00"
 }

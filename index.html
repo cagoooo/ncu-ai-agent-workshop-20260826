@@ -1,77 +1,65 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f0f4f8">
-  <meta name="description" content="國立中央大學 AI 教學與研究工作坊｜Gemini Notebook、Claude、Codex、Antigravity 與 Agent Skills 實作">
+  <meta name="description" content="國立中央大學 AI 教學與研究工作坊｜互動式 HTML 簡報">
   <meta name="author" content="阿凱老師｜桃園市龍潭區石門國民小學">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="中央大學 AI 教學與研究工作坊">
   <meta property="og:title" content="從 AI 教學與研究助理到 AI Agent｜大學教師的生成式 AI 實作工作坊">
-  <meta property="og:description" content="Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas、Claude、Antigravity、Agent Skills 與資料分析實戰">
-  <meta property="og:url" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/">
+  <meta property="og:description" content="Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas、Antigravity、Codex、Agent Skills 與資料分析實戰">
+  <meta property="og:url" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/08_HTML簡報/">
   <meta property="og:image" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/assets/og-workshop.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="從 AI 教學與研究助理到 AI Agent｜大學教師的生成式 AI 實作工作坊">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="從 AI 教學與研究助理到 AI Agent｜大學教師的生成式 AI 實作工作坊">
-  <meta name="twitter:description" content="Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas、Claude、Antigravity、Agent Skills 與資料分析實戰">
+  <meta name="twitter:description" content="Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas、Antigravity、Codex、Agent Skills 與資料分析實戰">
   <meta name="twitter:image" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/assets/og-workshop.png">
-  <link rel="canonical" href="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/">
+  <link rel="canonical" href="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/08_HTML簡報/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon-32x32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <title>從 AI 教學與研究助理到 AI Agent｜中央大學工作坊</title>
+  <title>中央大學 AI 教學與研究工作坊｜HTML 簡報</title>
   <link rel="stylesheet" href="assets/deck.css">
   <style>
     .hub-page{min-height:100dvh;background:radial-gradient(circle at 10% 8%,rgba(37,111,232,.07),transparent 38%),radial-gradient(circle at 90% 18%,rgba(14,159,148,.06),transparent 34%),#f0f4f8;color:#0f1e2e;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif}
     .hub-shell{max-width:1440px;margin:0 auto;padding:clamp(24px,4vw,48px) clamp(18px,3vw,40px) 80px}
-    
-    /* 頂部 Header 銘牌 */
     .summit-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;margin-bottom:28px;border-bottom:1px solid #ccd8e5}
     .summit-brand{display:flex;align-items:center;gap:12px}
     .summit-badge{display:inline-flex;align-items:center;padding:5px 12px;background:#1b64da;color:#fff;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.08em}
     .summit-inst{font-size:13px;font-weight:700;color:#486581}
     .summit-meta-pill{font-size:12px;color:#627d98;font-weight:600;background:#ffffff;padding:5px 12px;border-radius:999px;border:1px solid #ccd8e5}
-    
-    /* 核心 Hero 標題區 */
     .summit-hero{text-align:center;padding:clamp(20px,3vw,36px) 0 clamp(28px,4vw,44px);max-width:960px;margin:0 auto}
     .summit-kicker{display:inline-block;padding:6px 14px;border-radius:999px;background:rgba(27,100,218,.08);color:#1b64da;font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:16px;text-transform:uppercase}
     .summit-hero h1{font-size:clamp(36px,5.2vw,68px);line-height:1.15;letter-spacing:-.04em;margin:0 0 16px;color:#0f1e2e;font-weight:900}
     .summit-hero p{font-size:clamp(16px,1.6vw,22px);line-height:1.6;color:#486581;margin:0 auto;max-width:760px}
     .summit-tags{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
     .summit-tags span{display:inline-flex;align-items:center;padding:6px 14px;border-radius:999px;background:#ffffff;border:1px solid #ccd8e5;color:#486581;font-size:13px;font-weight:600}
-
-    /* 雙軌巨幅場次主卡片 (Twin Track Hero Cards) */
     .track-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-bottom:44px}
     .track-card{position:relative;display:flex;flex-direction:column;padding:clamp(24px,3.2vw,36px);border-radius:24px;background:#ffffff;border:1px solid #ccd8e5;box-shadow:0 16px 40px rgba(15,30,46,.06);text-decoration:none;color:inherit;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s;overflow:hidden}
     .track-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px}
     .track-card.morning::before{background:linear-gradient(90deg,#256fe8,#55a7ff)}
     .track-card.afternoon::before{background:linear-gradient(90deg,#1b64da,#0e9f94)}
     .track-card:hover{transform:translateY(-4px);box-shadow:0 24px 56px rgba(27,100,218,.14);border-color:#1b64da}
-    
     .track-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
     .track-pill{padding:5px 12px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:.06em}
     .track-card.morning .track-pill{background:#eef5ff;color:#256fe8;border:1px solid #c9dfff}
     .track-card.afternoon .track-pill{background:#e6f8f7;color:#0e9f94;border:1px solid #b7ede9}
     .track-slides-count{font-size:13px;font-weight:700;color:#627d98}
-    
     .track-title{font-size:clamp(22px,2.2vw,30px);font-weight:800;color:#0f1e2e;line-height:1.25;margin:0 0 10px}
     .track-desc{font-size:14px;line-height:1.6;color:#486581;margin:0 0 20px;flex-grow:1}
-    
     .track-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px 14px;background:#f8fafc;border:1px solid #e2edf8;border-radius:14px;margin-bottom:22px}
     .track-step-item{text-align:center}
     .track-step-num{font-size:11px;font-weight:800;color:#1b64da;display:block;margin-bottom:2px}
     .track-step-name{font-size:12px;font-weight:700;color:#0f1e2e;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    
     .track-action-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:999px;font-weight:800;font-size:15px;color:#ffffff;text-align:center;transition:filter .2s}
     .track-card.morning .track-action-btn{background:#256fe8}
     .track-card.afternoon .track-action-btn{background:#1b64da}
     .track-card:hover .track-action-btn{filter:brightness(1.08)}
-
-    /* 一日學習進程 (Summit Flow Milestone) */
     .flow-section{padding:clamp(24px,3vw,34px);border:1px solid #ccd8e5;border-radius:24px;background:#ffffff;box-shadow:0 8px 30px rgba(15,30,46,.04);margin-bottom:44px}
     .flow-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
     .flow-head h2{font-size:clamp(20px,2vw,26px);color:#0f1e2e;margin:0;font-weight:800}
@@ -81,18 +69,14 @@
     .flow-node-num{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:#1b64da;color:#fff;border-radius:50%;font-size:11px;font-weight:800;margin-bottom:8px}
     .flow-node strong{display:block;font-size:14px;color:#0f1e2e;margin-bottom:4px}
     .flow-node small{display:block;font-size:11px;color:#486581;line-height:1.4}
-
-    /* 非對稱 Bento 工具箱 (Asymmetric Bento Grid) */
     .bento-section{margin-bottom:44px}
     .bento-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px}
     .bento-head h2{font-size:clamp(22px,2.2vw,30px);color:#0f1e2e;margin:4px 0 0;font-weight:800}
     .bento-head p{font-size:14px;color:#486581;margin:0;max-width:540px}
     .bento-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-    
     .bento-card{display:flex;flex-direction:column;padding:20px;border-radius:18px;background:#ffffff;border:1px solid #ccd8e5;box-shadow:0 6px 20px rgba(15,30,46,.03);color:#0f1e2e;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s}
     .bento-card:hover{transform:translateY(-3px);border-color:#1b64da;box-shadow:0 12px 30px rgba(27,100,218,.1)}
     .bento-card.is-featured{grid-column:span 2;background:linear-gradient(135deg,#eef5ff,#ffffff);border-color:#1b64da}
-    
     .bento-icon-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
     .bento-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#e2edf8;color:#1b64da;font-size:14px;font-weight:900}
     .bento-kicker{font-size:11px;font-weight:800;letter-spacing:.1em;color:#1b64da;text-transform:uppercase}
@@ -100,37 +84,20 @@
     .bento-card.is-featured strong{font-size:18px}
     .bento-card small{font-size:12px;color:#486581;line-height:1.55;margin-bottom:14px;flex-grow:1}
     .bento-card b{font-size:13px;color:#1b64da;font-weight:800;display:inline-flex;align-items:center;gap:4px}
-
-    /* 底部三大特色 */
     .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
     .feature-card{padding:22px;border:1px solid #ccd8e5;border-radius:18px;background:#ffffff;box-shadow:0 4px 16px rgba(15,30,46,.03)}
     .feature-num{font-size:12px;font-weight:800;color:#1b64da;letter-spacing:.14em}
     .feature-card h3{font-size:17px;color:#0f1e2e;font-weight:800;margin:10px 0 6px}
     .feature-card p{font-size:13px;color:#486581;line-height:1.6;margin:0}
-    
     .site-footer{text-align:center;padding:24px 0 10px;font-size:13px;color:#627d98}
     .site-footer a{color:#1b64da;text-decoration:none;font-weight:700}
     .site-footer a:hover{text-decoration:underline}
-
-    @media (max-width:1024px){
-      .track-grid{grid-template-columns:1fr}
-      .bento-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .bento-card.is-featured{grid-column:span 2}
-      .flow-timeline{grid-template-columns:repeat(3,1fr)}
-    }
-    @media (max-width:720px){
-      .summit-header{flex-direction:column;gap:10px;align-items:flex-start}
-      .flow-timeline{grid-template-columns:1fr}
-      .bento-grid{grid-template-columns:1fr}
-      .bento-card.is-featured{grid-column:span 1}
-      .features-grid{grid-template-columns:1fr}
-      .track-steps{grid-template-columns:repeat(2,1fr)}
-    }
+    @media (max-width:1024px){.track-grid{grid-template-columns:1fr}.bento-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bento-card.is-featured{grid-column:span 2}.flow-timeline{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width:720px){.summit-header{flex-direction:column;gap:10px;align-items:flex-start}.flow-timeline{grid-template-columns:1fr}.bento-grid{grid-template-columns:1fr}.bento-card.is-featured{grid-column:span 1}.features-grid{grid-template-columns:1fr}.track-steps{grid-template-columns:repeat(2,1fr)}}
   </style>
 </head>
-<body class="hub-page" data-app-version="2026.08.16.40">
+<body class="hub-page" data-app-version="2026.08.16.41">
   <main class="hub-shell">
-    <!-- 頂部 Header -->
     <header class="summit-header">
       <div class="summit-brand">
         <span class="summit-badge">NCU 2026</span>
@@ -139,7 +106,6 @@
       <div class="summit-meta-pill">2026.08.26 · 阿凱老師（石門國小資訊組長）</div>
     </header>
 
-    <!-- 英雄大標題 -->
     <section class="summit-hero">
       <span class="summit-kicker">FROM ASSISTANT TO AGENT</span>
       <h1>從 AI 教學與研究助理<br>到 AI Agent</h1>
@@ -147,41 +113,38 @@
       <div class="summit-tags">
         <span>📘 上午 39 頁簡報</span>
         <span>📙 下午 44 頁簡報</span>
-        <span>🛠️ 10 大實作工具</span>
+        <span>🛡️ RAG 防幻覺資料庫</span><span>🎛️ Agent Harness 調控工程</span>
         <span>📱 全裝置 16:9 RWD</span>
         <span>⚡ 離線 PWA 支援</span>
       </div>
     </section>
 
-    <!-- 雙軌巨幅場次主卡片 (Twin Track Cards) -->
     <section class="track-grid" aria-label="工作坊雙軌場次導航">
-      <!-- 上午場 -->
       <a class="track-card morning" href="08_HTML簡報/morning.html#slide-1">
         <div class="track-header">
           <span class="track-pill">上午場 · 09:00–12:00</span>
           <span class="track-slides-count">共 39 頁簡報</span>
         </div>
         <h2 class="track-title">專屬 AI 教學與研究工作室</h2>
-        <p class="track-desc">從真實教學／研究痛點出發，結合語音整理、來源筆記本、固定角色與互動原型，打造專屬可驗證的教學與研究產線。</p>
+        <p class="track-desc">以 <strong>RAG 防幻覺資料庫</strong>為事實錨點，結合語音整理、自訂 Gem 角色與 Canvas 互動原型，打造專屬可驗證的教學與研究產線。</p>
         <div class="track-steps">
           <div class="track-step-item"><span class="track-step-num">01</span><span class="track-step-name">Typeless</span></div>
-          <div class="track-step-item"><span class="track-step-num">02</span><span class="track-step-name">Notebook</span></div>
+          <div class="track-step-item"><span class="track-step-num">02</span><span class="track-step-name">RAG 知識庫</span></div>
           <div class="track-step-item"><span class="track-step-num">03</span><span class="track-step-name">Gem 助理</span></div>
           <div class="track-step-item"><span class="track-step-num">04</span><span class="track-step-name">Canvas 網站</span></div>
         </div>
         <div class="track-action-btn">開啟上午場簡報 ↗</div>
       </a>
 
-      <!-- 下午場 -->
       <a class="track-card afternoon" href="08_HTML簡報/afternoon.html#slide-1">
         <div class="track-header">
           <span class="track-pill">下午場 · 13:00–16:00</span>
           <span class="track-slides-count">共 44 頁簡報</span>
         </div>
         <h2 class="track-title">會做事的 AI 教學與研究夥伴</h2>
-        <p class="track-desc">以人生交往型態生動解析三大 Agent（Antigravity、Codex、Claude），深入 Agent Skills 擴充機制與 PIRLS 資料分析實戰。</p>
+        <p class="track-desc">解析 <strong>Harness Engineering（裝具工程）</strong>四大調控支柱，比較 Antigravity、Codex 與 Claude，深入 Agent Skills 與 PIRLS 分析實戰。</p>
         <div class="track-steps">
-          <div class="track-step-item"><span class="track-step-num">01</span><span class="track-step-name">交往學概論</span></div>
+          <div class="track-step-item"><span class="track-step-num">01</span><span class="track-step-name">Harness裝具</span></div>
           <div class="track-step-item"><span class="track-step-num">02</span><span class="track-step-name">Antigravity</span></div>
           <div class="track-step-item"><span class="track-step-num">03</span><span class="track-step-name">Codex 深度</span></div>
           <div class="track-step-item"><span class="track-step-num">04</span><span class="track-step-name">PIRLS 分析</span></div>
@@ -190,7 +153,6 @@
       </a>
     </section>
 
-    <!-- 一日學習時程進程 -->
     <section class="flow-section" aria-label="研習學習弧線">
       <div class="flow-head">
         <h2>一日實作學習弧線（The Learning Arc）</h2>
@@ -198,14 +160,13 @@
       </div>
       <div class="flow-timeline">
         <div class="flow-node"><span class="flow-node-num">1</span><strong>先說清楚</strong><small>Typeless 口語想法整理成可用文字</small></div>
-        <div class="flow-node"><span class="flow-node-num">2</span><strong>有根據</strong><small>Gemini Notebook 整理可信來源與引用</small></div>
+        <div class="flow-node"><span class="flow-node-num">2</span><strong>有根據 (RAG)</strong><small>Notebook 建立事實錨定庫根治 AI 幻覺</small></div>
         <div class="flow-node"><span class="flow-node-num">3</span><strong>有角色</strong><small>自訂 Gem 固定教學方法與回覆格式</small></div>
         <div class="flow-node"><span class="flow-node-num">4</span><strong>有作品</strong><small>Canvas 互動原型與教學關卡</small></div>
-        <div class="flow-node"><span class="flow-node-num">5</span><strong>能做事</strong><small>Agent Skills 協同解決真實研究問題</small></div>
+        <div class="flow-node"><span class="flow-node-num">5</span><strong>能做事 (Harness)</strong><small>裝具工程調控 Agent 解決真實研究問題</small></div>
       </div>
     </section>
 
-    <!-- 非對稱 Bento 工具箱 (Bento Grid) -->
     <section class="bento-section" aria-label="研習分支頁快速入口">
       <div class="bento-head">
         <div>
@@ -215,29 +176,20 @@
         <p>簡報之外的教材、研究工具與備援入口集中在此；各頁面均可快速返回主頁。</p>
       </div>
       <div class="bento-grid">
-        <!-- 焦點卡片 1 -->
         <a class="bento-card is-featured" href="START_HERE_研習資源導航.html">
-          <div class="bento-icon-row">
-            <span class="bento-icon">⌂</span>
-            <span class="bento-kicker">總入口</span>
-          </div>
+          <div class="bento-icon-row"><span class="bento-icon">⌂</span><span class="bento-kicker">總入口</span></div>
           <strong>研習資源導航（START HERE）</strong>
           <small>聚合研習所有平台、工具、12 張精選實戰案例與所有教材總覽。</small>
           <b>開啟資源導航 ↗</b>
         </a>
 
-        <!-- 焦點卡片 2 -->
         <a class="bento-card is-featured" href="02_學員任務書/學員手把手操作任務書.html">
-          <div class="bento-icon-row">
-            <span class="bento-icon">01</span>
-            <span class="bento-kicker">手把手教材</span>
-          </div>
+          <div class="bento-icon-row"><span class="bento-icon">01</span><span class="bento-kicker">手把手教材</span></div>
           <strong>學員手把手操作任務書</strong>
           <small>上午 5 個、下午 5 個 step-by-step 實作任務與完成證據勾選單。</small>
           <b>開啟任務書 ↗</b>
         </a>
 
-        <!-- 標準卡片 -->
         <a class="bento-card" href="04_實作工具/01_PIRLS資料分析工作台.html">
           <div class="bento-icon-row"><span class="bento-icon">02</span><span class="bento-kicker">研究工具</span></div>
           <strong>PIRLS 資料分析工作台</strong>
@@ -296,7 +248,6 @@
       </div>
     </section>
 
-    <!-- 底部三大特色 -->
     <section class="features-grid">
       <article class="feature-card">
         <span class="feature-num">FEATURE 01</span>
@@ -315,11 +266,10 @@
       </article>
     </section>
 
-    <!-- 頁尾署名 -->
     <footer class="site-footer">
       Made with ❤️ by <a href="https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5" target="_blank" rel="noopener noreferrer">阿凱老師</a> · 桃園市龍潭區石門國民小學
     </footer>
   </main>
-  <script defer src="pwa-register.js?v=2026.08.16.40"></script>
+  <script defer src="pwa-register.js?v=2026.08.16.41"></script>
 </body>
 </html>
