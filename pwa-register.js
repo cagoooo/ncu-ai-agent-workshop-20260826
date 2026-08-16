@@ -61,6 +61,12 @@
     }
     if (later) later.disabled = true;
 
+    // ── ACK GATE：點更新前先把目標版本存入 sessionStorage，
+    //    重載後所有頁面收到 SW_ACTIVATED 時若版本已 ack 就靜默略過，
+    //    防止 SW_ACTIVATED 在重載後再度觸發無限更新提示迴圈。
+    const ackVersion = latestRemoteVersion || localVersion;
+    try { sessionStorage.setItem("pwa_ack_version", ackVersion); } catch {}
+
     let worker = waitingWorker;
     if (!worker && activeRegistration) {
       try {
@@ -81,9 +87,11 @@
 
   function showUpdatePrompt(details = {}) {
     const targetVersion = details.version || latestRemoteVersion || "";
-    // 若使用者在此 session 已針對該特定版本點選過稍後再說，才略過
     if (targetVersion) {
       try {
+        // 已確認更新（ack）或已稍後再說（dismissed）→ 靜默略過
+        const ack = sessionStorage.getItem("pwa_ack_version");
+        if (ack === targetVersion) return;
         const dismissed = sessionStorage.getItem("pwa_dismissed_version");
         if (dismissed === targetVersion) return;
       } catch {}
@@ -157,6 +165,10 @@
   });
   navigator.serviceWorker.addEventListener("message", (event) => {
     if (event.data?.type === "SW_ACTIVATED" && event.data.version && event.data.version !== localVersion) {
+      // 若此版本已被 ack（剛按過立即更新），不再彈窗
+      try {
+        if (sessionStorage.getItem("pwa_ack_version") === event.data.version) return;
+      } catch {}
       showUpdatePrompt({ version: event.data.version });
     }
   });
