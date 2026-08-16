@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 13:25（Asia/Taipei）
+稽核時間：2026-08-16 16:46（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.43`：徹底修復 PWA/Service Worker 更新通知機制（根除無版本號時被 `sessionStorage` 誤判永久攔截的 Bug，強化 `version.json` 與 `activeRegistration.update()` 雙向主動探測，並打造精緻立體的新版通知彈窗）；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
+工作坊公開站已上線至 `2026.08.16.44`：全面將【Gem to Skills（Gem 升級專屬 Agent Skill）】前瞻趨勢注入研習產線！上午場 Slide 27~28 實裝【🚀 Gem to Skill 未來大趨勢】與【五階段標準升級 SOP】概念看板，下午場 Slide 23~26 深度銜接【🎛️ 11 大 Agent 加值選單】與【跨 Agent 可攜標準 (.agents/skills/ 結構)】，並在學員手把手任務書與資源導航中補齊開源套件與三師爸影音教學；全套 6 大測試矩陣全部 PASS（Exit Code 0）。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.43`
+- 公開版本：`2026.08.16.44`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 

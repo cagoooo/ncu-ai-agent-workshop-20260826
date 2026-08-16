@@ -54,6 +54,16 @@ const CONCEPT_MAP = {
       badge: "🛡️ Gem 角色固化",
       title: "自訂 Gem：系統提示詞 ＋ RAG 知識庫綁定",
       content: "單純 Prompt 會隨對話輪數增加而發生『角色遺忘』或『幻覺漂移』；自訂 Gem 在系統層鎖定教學方法、評量規準與引用約束，確保輸出始終穩定可靠。"
+    },
+    27: {
+      badge: "🚀 Gem to Skill 趨勢",
+      title: "從自訂 Gem 邁向專屬 Agent Skill：未來大趨勢",
+      content: "Gem 能固化對話，但受限於線上純文字；未來大趨勢是透過 Gem to Skill 流水線，將 Gem 一鍵升級為標準可攜式 SKILL.md，賦予實體檔案讀寫、Python 精算、DOCX/HTML 排版輸出等 11 大 Agent 加值能力！"
+    },
+    28: {
+      badge: "🚀 5 階段升級 SOP",
+      title: "Gem to Skill 升級顧問五階段標準工作流",
+      content: "① Drive 環境檢查（確認本機掛載）→ ② 定位 Gem 資料夾 → ③ 唯讀盤點與摘要 → ④ 挑選 11 大加值選單（生成 Upgrade Spec）→ ⑤ 構建可攜式 .agents/skills/ 並驗證，無縫搬進 Agent！"
     }
   },
   afternoon: {
@@ -79,8 +89,18 @@ const CONCEPT_MAP = {
     },
     23: {
       badge: "🎛️ Skill 裝具延伸",
-      title: "Agent Skills 的本質：自訂 Harness Extension（裝具延伸套件）",
-      content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約、操作 SOP 與驗收測試條件（例如 PIRLS 資料分析、學習單生成）。"
+      title: "Agent Skills 的本質：自訂 Harness Extension（承接 Gem 升級）",
+      content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約與操作 SOP，完整承接上午場 Gem to Skill 升級成果！"
+    },
+    24: {
+      badge: "🎛️ 跨 Agent 可攜標準",
+      title: "一處定義、三家通用：.agents/skills/ 可攜標準結構",
+      content: "遵循 SKILL.md（流程規範）+ scripts/（Python精算）+ references/（參考格式）標準層級，同一份技能可在 Google Antigravity、OpenAI Codex 與 Anthropic Claude Code 之間 100% 無縫共用！"
+    },
+    26: {
+      badge: "🎛️ 11 大加值實戰",
+      title: "Agent Skill 11 大加值維度落地實踐",
+      content: "透過檔案讀寫（input/output）、確定性精算、DOCX/HTML 直接產出與格式品質驗收器，把原本只能聊天的 Gem 徹底進化為具備生產力的自動化助手。"
     }
   }
 };
