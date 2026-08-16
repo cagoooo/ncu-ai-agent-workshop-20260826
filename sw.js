@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.16.33";
+const BUILD_VERSION = "2026.08.16.34";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -8,13 +8,21 @@ const PRECACHE = [
   "./assets/favicon-32x32.png",
   "./assets/apple-touch-icon.png",
   "./assets/og-workshop.png",
+  "./assets/favicon-morning.svg",
+  "./assets/favicon-morning-32x32.png",
+  "./assets/apple-touch-icon-morning.png",
+  "./assets/og-morning.png",
+  "./assets/favicon-afternoon.svg",
+  "./assets/favicon-afternoon-32x32.png",
+  "./assets/apple-touch-icon-afternoon.png",
+  "./assets/og-afternoon.png",
   "./assets/deck.css",
   "./q.html",
   "./08_HTML簡報/index.html",
   "./08_HTML簡報/morning.html",
   "./08_HTML簡報/afternoon.html",
   "./08_HTML簡報/assets/deck.css",
-  "./08_HTML簡報/assets/deck.js?v=2026.08.16.33"
+  "./08_HTML簡報/assets/deck.js?v=2026.08.16.34"
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,0 +1,155 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <style>
+    @font-face { font-family: "Noto Sans TC Local"; src: local("Noto Sans TC"); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; overflow: hidden; background: #F7F3EC; }
+    .card {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      color: #15191F;
+      font-family: "Noto Sans TC Local", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: radial-gradient(circle at 85% 30%, rgba(255, 120, 102, 0.18), transparent 45%),
+                  radial-gradient(circle at 15% 15%, rgba(37, 111, 232, 0.15), transparent 40%),
+                  #FBF9F5;
+    }
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to right, rgba(205, 211, 219, 0.3) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(205, 211, 219, 0.3) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.6;
+    }
+    .left-panel {
+      position: absolute;
+      left: 64px;
+      top: 56px;
+      width: 760px;
+      z-index: 2;
+    }
+    .badges {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .badge-session {
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: #256FE8;
+      color: #FFFFFF;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .badge-author {
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: rgba(37, 111, 232, 0.12);
+      border: 1px solid rgba(37, 111, 232, 0.35);
+      color: #256FE8;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 28px 0 16px;
+      font-size: 52px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: #15191F;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 26px;
+      color: #5F6873;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+    .topics {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .topic-chip {
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #CDD3DB;
+      color: #15191F;
+      font-size: 17px;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 2px solid #22AFA4;
+      color: #0E625B;
+      font-size: 19px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(34, 175, 164, 0.15);
+    }
+    .right-graphic {
+      position: absolute;
+      right: 50px;
+      top: 90px;
+      width: 380px;
+      height: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .hero-icon {
+      width: 260px;
+      height: 260px;
+      filter: drop-shadow(0 20px 30px rgba(37, 111, 232, 0.22));
+    }
+    .bottom-bar {
+      position: absolute;
+      left: 64px;
+      bottom: 42px;
+      color: #FF7866;
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid-lines"></div>
+    <div class="left-panel">
+      <div class="badges">
+        <div class="badge-session">上午場 · 3 小時</div>
+        <div class="badge-author">NCU × 阿凱老師</div>
+      </div>
+      <h1>打造專屬 AI 教學與研究工作室</h1>
+      <p class="subtitle">大學教師的生成式 AI 實作工作坊</p>
+      <div class="topics">
+        <span class="topic-chip">🎙️ Typeless 語音輸入</span>
+        <span class="topic-chip">📓 Gemini Notebook</span>
+        <span class="topic-chip">💎 自訂 Gem</span>
+        <span class="topic-chip">🎨 Canvas 互動站</span>
+        <span class="topic-chip">🚀 網站一鍵部署</span>
+      </div>
+      <div class="date-badge">📅 2026.08.26｜國立中央大學</div>
+    </div>
+    <div class="right-graphic">
+      <img class="hero-icon" src="favicon-morning.svg" alt="Morning Icon">
+    </div>
+    <div class="bottom-bar">教學 × 研究 × AI Studio</div>
+  </div>
+</body>
+</html>
