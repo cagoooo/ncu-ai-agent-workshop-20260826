@@ -1,10 +1,10 @@
 # HANDOFF.md｜2026-08-16 下一位 Agent 交接
 
-稽核時間：2026-08-16 10:42（Asia/Taipei）
+稽核時間：2026-08-16 10:48（Asia/Taipei）
 
 ## 一句話狀態
 
-工作坊公開站已上線至 `2026.08.16.34`，上午 39 頁與下午 44 頁已全面配置專屬設計版 Favicon（晨曦工作室 vs 科技 Agent 晶片）及 1200x630 社群分享 OG 卡片（`og-morning.png` 與 `og-afternoon.png`），各場次靜態 Meta、Canonical、Apple Touch Icon、PWA 快取與全部分支頁均通過自動化 QA 驗收。
+工作坊公開站已上線至 `2026.08.16.35`，下午場簡報順序已完成邏輯優化重整——將《三大 Agent 的人生交往學》前置移至第一章概論段落（Slide 07），使學員在實作 Antigravity 與 Codex 前先建立全局選型心智模型；上下午場 83 頁 PPTX/HTML、專屬 Favicon、1200x630 OG 卡片、QR 解碼 145/145 與全部分支頁均通過自動化 QA 驗收。
 
 ## 接手前先讀
 
@@ -20,7 +20,7 @@
 - 來源／建置／QA：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - 正式包：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - 分支：`main`
-- 公開版本：`2026.08.16.34`
+- 公開版本：`2026.08.16.35`
 - GitHub Pages：`status=built`，來源 `main / root`
 - 公開網址：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
 
