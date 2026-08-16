@@ -26,27 +26,53 @@
   <title>中央大學 AI 教學與研究工作坊｜HTML 簡報</title>
   <link rel="stylesheet" href="assets/deck.css">
   <style>
-    .hub-shell{max-width:1800px}
-    .hub-branches{margin-top:18px;padding:clamp(20px,3vw,34px);border:1px solid var(--rule);border-radius:22px;background:rgba(16,36,56,.5)}
-    .hub-branches-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:18px}
-    .hub-branches-head h2{margin:8px 0 0;font-size:clamp(24px,3vw,36px)}
-    .hub-branches-head p{max-width:470px;color:var(--muted);line-height:1.7;margin:0;font-size:14px}
-    .hub-branch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .hub-branch-card{display:grid;align-content:start;gap:6px;min-height:190px;padding:16px;border:1px solid var(--rule);border-radius:16px;background:rgba(7,19,31,.62);color:var(--ink);text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
-    .hub-branch-card:hover{transform:translateY(-3px);border-color:var(--accent);background:rgba(24,54,80,.82)}
-    .hub-branch-card.is-primary{border-color:color-mix(in srgb,var(--accent) 70%,var(--rule));background:linear-gradient(145deg,rgba(37,111,232,.25),rgba(7,19,31,.72))}
-    .hub-branch-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);font-size:14px;font-weight:900}
-    .hub-branch-kicker{margin-top:5px;color:var(--accent);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
-    .hub-branch-card strong{font-size:16px;line-height:1.35}
-    .hub-branch-card small{color:var(--muted);line-height:1.55;font-size:12px}
-    .hub-branch-card b{margin-top:auto;color:var(--accent);font-size:12px}
-    @media (max-width:1100px){.hub-branch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media (max-width:900px){.hub-branches-head{display:block}.hub-branches-head p{margin-top:10px}.hub-branch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .hub-shell{max-width:1800px;margin:0 auto;padding:clamp(32px,5vw,64px) clamp(20px,4vw,56px) 100px}
+    .hub-hero{display:flex;justify-content:space-between;align-items:center;gap:36px;padding:clamp(28px,4vw,56px);border:1px solid #ccd8e5;border-radius:28px;background:#ffffff;box-shadow:0 20px 60px rgba(15,30,46,.06)}
+    .hub-copy{flex:1;min-width:0}
+    .hub-copy .toolbar-kicker{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.14em;color:#1b64da;margin-bottom:8px}
+    .hub-hero h1{font-size:clamp(34px,4.2vw,62px);line-height:1.12;letter-spacing:-.03em;margin:12px 0 16px;color:#0f1e2e;font-weight:800}
+    .hub-hero p{color:#486581;font-size:clamp(16px,1.4vw,21px);line-height:1.6;max-width:780px;margin:0}
+    .hub-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+    .hub-button{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;text-decoration:none;color:#ffffff!important;font-weight:700;font-size:15px;transition:transform .2s,box-shadow .2s}
+    .hub-button:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(27,100,218,.22)}
+    .hub-button.morning{background:#256fe8}
+    .hub-button.afternoon{background:#1b64da}
+    .hub-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .hub-meta span{padding:7px 13px;border-radius:999px;color:#486581;background:#f0f4f8;border:1px solid #ccd8e5;font-size:13px;font-weight:600}
+    .hub-route-panel{width:min(100%,420px);padding:22px;border:1px solid #ccd8e5;border-radius:20px;background:#f8fafc;display:grid;gap:14px}
+    .hub-route-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;color:#1b64da;text-transform:uppercase}
+    .hub-route{display:grid;gap:4px;padding:16px;border:1px solid #ccd8e5;border-radius:14px;background:#ffffff;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s}
+    .hub-route:hover{transform:translateY(-2px);border-color:#1b64da;box-shadow:0 8px 20px rgba(27,100,218,.12)}
+    .hub-route span{font-size:12px;font-weight:700;color:#486581}
+    .hub-route strong{font-size:16px;color:#0f1e2e;font-weight:700}
+    .hub-route small{font-size:12px;color:#627d98;line-height:1.4}
+    .hub-route b{margin-top:6px;font-size:13px;color:#1b64da;font-weight:700}
+    .hub-route-footer{font-size:12px;color:#627d98;text-align:center;font-weight:600}
+    .hub-branches{margin-top:24px;padding:clamp(24px,3vw,40px);border:1px solid #ccd8e5;border-radius:24px;background:#ffffff;box-shadow:0 10px 30px rgba(15,30,46,.04)}
+    .hub-branches-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:22px}
+    .hub-branches-head h2{margin:6px 0 0;font-size:clamp(24px,2.5vw,34px);color:#0f1e2e;font-weight:800}
+    .hub-branches-head p{max-width:520px;color:#486581;line-height:1.6;margin:0;font-size:14px}
+    .hub-branch-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .hub-branch-card{display:grid;align-content:start;gap:6px;min-height:190px;padding:18px;border:1px solid #ccd8e5;border-radius:16px;background:#f8fafc;color:#0f1e2e;text-decoration:none;transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+    .hub-branch-card:hover{transform:translateY(-3px);border-color:#1b64da;background:#ffffff;box-shadow:0 10px 24px rgba(27,100,218,.1)}
+    .hub-branch-card.is-primary{border-color:#1b64da;background:linear-gradient(135deg,#eef4ff,#ffffff)}
+    .hub-branch-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#e2edf8;color:#1b64da;font-size:14px;font-weight:900}
+    .hub-branch-kicker{margin-top:4px;color:#1b64da;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .hub-branch-card strong{font-size:16px;color:#0f1e2e;font-weight:700;line-height:1.35}
+    .hub-branch-card small{color:#486581;line-height:1.5;font-size:12px}
+    .hub-branch-card b{margin-top:auto;color:#1b64da;font-size:13px;font-weight:700}
+    .hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+    .hub-grid article{padding:24px;border:1px solid #ccd8e5;border-radius:20px;background:#ffffff;box-shadow:0 4px 16px rgba(15,30,46,.04)}
+    .hub-number{color:#1b64da;font-weight:800;letter-spacing:.16em;font-size:13px}
+    .hub-grid h2{font-size:20px;margin:14px 0 8px;color:#0f1e2e;font-weight:700}
+    .hub-grid p{color:#486581;line-height:1.65;margin:0;font-size:14px}
+    .hub-note{color:#486581;font-size:13px;text-align:center;margin:28px 0 0}
+    @media (max-width:1100px){.hub-hero{flex-direction:column;align-items:stretch}.hub-route-panel{width:100%}.hub-branch-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:900px){.hub-branches-head{display:block}.hub-branches-head p{margin-top:10px}.hub-branch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hub-grid{grid-template-columns:1fr}}
     @media (max-width:520px){.hub-branch-grid{grid-template-columns:1fr}.hub-branch-card{min-height:150px}}
-    @media (min-width:901px){.hub-shell{padding-inline:clamp(32px,4vw,72px)}.hub-hero{padding:clamp(32px,4vw,76px)}.hub-hero h1{max-width:1100px;font-size:clamp(48px,5vw,92px)}.hub-hero p{max-width:980px;font-size:clamp(19px,1.7vw,28px)}.hub-branches{padding:clamp(28px,3vw,48px)}.hub-branches-head h2{font-size:clamp(28px,2.6vw,42px)}.hub-branches-head p{max-width:620px;font-size:16px}.hub-branch-card{min-height:210px;padding:20px}.hub-branch-card strong{font-size:clamp(17px,1.1vw,21px)}.hub-branch-card small{font-size:clamp(13px,.85vw,15px)}.hub-branch-card b{font-size:13px}}
   </style>
 </head>
-<body class="hub-page theme-afternoon" data-app-version="2026.08.16.38">
+<body class="hub-page theme-afternoon" data-app-version="2026.08.16.39">
   <main class="hub-shell">
     <div class="hub-hero">
       <div class="hub-copy"><span class="toolbar-kicker">2026.08.26 · NATIONAL CENTRAL UNIVERSITY</span><h1>從 AI 教學與研究助理到 AI Agent</h1><p>大學教師的生成式 AI 實作工作坊｜互動式 HTML 簡報版</p><div class="hub-actions"><a class="hub-button morning" href="morning.html#slide-1">上午場｜Typeless、Gemini Notebook、Gem、Canvas</a><a class="hub-button afternoon" href="afternoon.html#slide-1">下午場｜Antigravity、Codex、Claude、Agent Skills</a></div><div class="hub-meta"><span>上午 39 頁</span><span>下午 44 頁</span><span>鍵盤／觸控／手機響應式</span><span>每頁備註與平台連結</span></div></div>
@@ -57,6 +83,6 @@
     <p class="hub-note">建議先用 Chrome／Edge 開啟；GitHub Pages 可直接部署此資料夾，不需要 Node.js 建置。</p>
   </main>
   <footer class="site-credit">Made with <span aria-label="愛心">❤️</span> by <a href="https://www.smes.tyc.edu.tw/modules/tadnews/page.php?ncsn=11&nsn=16#a5" target="_blank" rel="noopener noreferrer">阿凱老師</a> · 桃園市龍潭區石門國民小學</footer>
-  <script defer src="../pwa-register.js?v=2026.08.16.38"></script>
+  <script defer src="../pwa-register.js?v=2026.08.16.39"></script>
 </body>
 </html>
