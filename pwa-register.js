@@ -8,6 +8,12 @@
   const swUrl = new URL("sw.js", rootUrl);
   const versionUrl = new URL("version.json", rootUrl);
   let localVersion = appVersion;
+
+  // ── SILENCE WINDOW：剛透過 __sw_refresh 重載的頁面，15 秒內不彈更新通知
+  //    防止「點立即更新 → 重載 → 瀏覽器立刻發現更新 → 又彈窗」的迴圈。
+  const justRefreshed = new URL(location.href).searchParams.has("__sw_refresh");
+  const silenceUntil = justRefreshed ? Date.now() + 15000 : 0;
+  function inSilence() { return Date.now() < silenceUntil; }
   let latestRemoteVersion = "";
   let waitingWorker = null;
   let activeRegistration = null;
@@ -87,6 +93,8 @@
 
   function showUpdatePrompt(details = {}) {
     const targetVersion = details.version || latestRemoteVersion || "";
+    // 靜默期：剛重載後 15 秒不彈窗
+    if (inSilence()) return;
     if (targetVersion) {
       try {
         // 已確認更新（ack）或已稍後再說（dismissed）→ 靜默略過
@@ -95,6 +103,8 @@
         const dismissed = sessionStorage.getItem("pwa_dismissed_version");
         if (dismissed === targetVersion) return;
       } catch {}
+      // 版本與目前頁面相同 → 不需要更新
+      if (targetVersion === localVersion) return;
     }
 
     if (refreshing || document.querySelector(".pwa-update-prompt")) return;
@@ -137,6 +147,8 @@
     if (registration.waiting && navigator.serviceWorker.controller) {
       waitingWorker = registration.waiting;
       const ver = await fetchRemoteVersion();
+      // 版本與目前一致或在靜默期 → 不彈
+      if (!ver || ver === localVersion || inSilence()) return;
       showUpdatePrompt({ version: ver });
     }
     registration.addEventListener("updatefound", () => {
@@ -146,6 +158,7 @@
         if (worker.state === "installed" && navigator.serviceWorker.controller) {
           waitingWorker = worker;
           const ver = await fetchRemoteVersion();
+          if (!ver || ver === localVersion || inSilence()) return;
           showUpdatePrompt({ version: ver });
         }
       });
@@ -165,7 +178,7 @@
   });
   navigator.serviceWorker.addEventListener("message", (event) => {
     if (event.data?.type === "SW_ACTIVATED" && event.data.version && event.data.version !== localVersion) {
-      // 若此版本已被 ack（剛按過立即更新），不再彈窗
+      if (inSilence()) return;
       try {
         if (sessionStorage.getItem("pwa_ack_version") === event.data.version) return;
       } catch {}
@@ -175,13 +188,12 @@
 
   async function checkVersion(force = false) {
     const now = Date.now();
+    if (inSilence()) return; // 靜默期內跳過
     if (!force && now - lastCheckTime < 15000) return;
     lastCheckTime = now;
 
     if (activeRegistration) {
-      try {
-        activeRegistration.update();
-      } catch {}
+      try { activeRegistration.update(); } catch {}
     }
 
     const remoteVer = await fetchRemoteVersion();
