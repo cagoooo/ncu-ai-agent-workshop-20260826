@@ -1,4 +1,4 @@
-﻿const BUILD_VERSION = "2026.08.16.57";
+const BUILD_VERSION = "2026.08.16.58";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 const PRECACHE = [
   "./",
@@ -82,4 +82,5 @@ self.addEventListener("fetch", (event) => {
   }
   event.respondWith(cacheFirst(request));
 });
+
 
