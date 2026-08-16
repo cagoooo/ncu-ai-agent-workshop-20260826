@@ -45,6 +45,11 @@ const CONCEPT_MAP = {
       title: "RAG 知識庫 3-2-1 原則：高密度、高相關、少雜訊",
       content: "優質的 RAG 資料庫講求『3 份核心文獻、2 種互補觀點、1 個明確教學/研究目的』。避免塞入海量無關雜訊文件，以確保向量檢索精準度。"
     },
+    17: {
+      badge: "⚡ Google 最新 Spark",
+      title: "Google 生態系新前沿：Gemini Spark 24/7 雲端主動秘書",
+      content: "Google 最新推出的 Gemini Spark (Beta) 讓 AI 從『等你提問』進化為『關機也能自主做事』！專為 Google Pro/Ultra 會員打造，全自動深度串聯 Gmail、Drive、Docs、Sheets 與 Calendar 全家桶。使用者只要設定好工作流或定時排程，即使電腦休眠，AI 也會在雲端主動幫教授整理文獻、分類信件、彙整研究進度並提醒重要會議！"
+    },
     19: {
       badge: "🛡️ RAG 實戰檢驗",
       title: "RAG 防幻覺邊界測試（Boundary Check）",
