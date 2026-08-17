@@ -165,47 +165,56 @@
     });
   }
 
-  navigator.serviceWorker.register(swUrl.href, {
-    scope: rootUrl.pathname,
-    updateViaCache: "none",
-  }).then((registration) => {
-    activeRegistration = registration;
-    observeRegistration(registration);
-  }).catch(() => {});
+  function initSW() {
+    navigator.serviceWorker.register(swUrl.href, {
+      scope: rootUrl.pathname,
+      updateViaCache: "none",
+    }).then((registration) => {
+      activeRegistration = registration;
+      observeRegistration(registration);
+    }).catch(() => {});
 
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    if (refreshing) forceReload();
-  });
-  navigator.serviceWorker.addEventListener("message", (event) => {
-    if (event.data?.type === "SW_ACTIVATED" && event.data.version && event.data.version !== localVersion) {
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (refreshing) forceReload();
+    });
+    navigator.serviceWorker.addEventListener("message", (event) => {
+      if (event.data?.type === "SW_ACTIVATED" && event.data.version && event.data.version !== localVersion) {
+        if (inSilence()) return;
+        try {
+          if (sessionStorage.getItem("pwa_ack_version") === event.data.version) return;
+        } catch {}
+        showUpdatePrompt({ version: event.data.version });
+      }
+    });
+
+    async function checkVersion(force = false) {
+      const now = Date.now();
       if (inSilence()) return;
-      try {
-        if (sessionStorage.getItem("pwa_ack_version") === event.data.version) return;
-      } catch {}
-      showUpdatePrompt({ version: event.data.version });
-    }
-  });
+      if (!force && now - lastCheckTime < 15000) return;
+      lastCheckTime = now;
 
-  async function checkVersion(force = false) {
-    const now = Date.now();
-    if (inSilence()) return; // 靜默期內跳過
-    if (!force && now - lastCheckTime < 15000) return;
-    lastCheckTime = now;
+      if (activeRegistration) {
+        try { activeRegistration.update(); } catch {}
+      }
 
-    if (activeRegistration) {
-      try { activeRegistration.update(); } catch {}
+      const remoteVer = await fetchRemoteVersion();
+      if (remoteVer && localVersion !== "dev" && remoteVer !== localVersion) {
+        showUpdatePrompt({ version: remoteVer });
+      }
     }
 
-    const remoteVer = await fetchRemoteVersion();
-    if (remoteVer && localVersion !== "dev" && remoteVer !== localVersion) {
-      showUpdatePrompt({ version: remoteVer });
-    }
+    window.addEventListener("online", () => checkVersion(true));
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") checkVersion(true);
+    });
+    window.setTimeout(() => checkVersion(true), 800);
+    window.setInterval(() => checkVersion(true), 2 * 60 * 1000);
   }
 
-  window.addEventListener("online", () => checkVersion(true));
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") checkVersion(true);
-  });
-  window.setTimeout(() => checkVersion(true), 1500);
-  window.setInterval(() => checkVersion(true), 2 * 60 * 1000);
+  // 確保完全不阻礙頁面首屏繪製，在 load 事件觸發後才註冊 SW
+  if (document.readyState === "complete") {
+    initSW();
+  } else {
+    window.addEventListener("load", initSW, { once: true });
+  }
 })();
