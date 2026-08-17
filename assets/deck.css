@@ -147,3 +147,7 @@ html:fullscreen,html:-webkit-full-screen{background:var(--bg)}
   .toolbar-actions button{font-size:11px;padding-inline:2px}
   .toolbar-action-icon{font-size:14px}
 }
+.slide-sticker{position:absolute;z-index:6;pointer-events:none;user-select:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.15));animation:stickerGentleFloat 4.5s ease-in-out infinite;transform-origin:center bottom;transition:transform .3s ease}
+.slide-sticker img{width:100%;height:auto;display:block}
+@keyframes stickerGentleFloat{0%,100%{transform:translateY(0px) rotate(0deg)}50%{transform:translateY(-8px) rotate(1.2deg)}}
+@media (max-width:600px){.slide-sticker{opacity:.92}}

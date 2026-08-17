@@ -61,14 +61,14 @@ const CONCEPT_MAP = {
       content: "單純 Prompt 會隨對話輪數增加而發生『角色遺忘』或『幻覺漂移』；自訂 Gem 在系統層鎖定教學方法、評量規準與引用約束，確保輸出始終穩定可靠。"
     },
     27: {
-      badge: "🚀 Gem to Skill 趨勢",
-      title: "從自訂 Gem 邁向專屬 Agent Skill：未來大趨勢",
-      content: "Gem 能固化對話，但受限於線上純文字；未來大趨勢是透過 Gem to Skill 流水線，將 Gem 一鍵升級為標準可攜式 SKILL.md，賦予實體檔案讀寫、Python 精算、DOCX/HTML 排版輸出等 11 大 Agent 加值能力！"
+      badge: "🚀 觀念躍升：Gems 不是被淘汰，是該升級！",
+      title: "從自訂 Gem 邁向專屬 Agent Skill：讓 Gem 升級成 SKILLS",
+      content: "『Gems 不會消失，是該升級成 Skill！』Skill 說穿了就是一份寫給 Agent 看的標準使用說明書（SOP），只要是重複做的流程都能變成技能。結合五層記憶架構：『記憶讓 Agent 知道背景；Skill 讓 Agent 知道方法』，將原本受限於線上純聊天的 Gem（語意記憶），升級為具備檔案讀寫與自主流程的專屬 Skill（程序記憶）！"
     },
     28: {
-      badge: "🚀 5 階段升級 SOP",
-      title: "Gem to Skill 升級顧問五階段標準工作流",
-      content: "① Drive 環境檢查（確認本機掛載）→ ② 定位 Gem 資料夾 → ③ 唯讀盤點與摘要 → ④ 挑選 11 大加值選單（生成 Upgrade Spec）→ ⑤ 構建可攜式 .agents/skills/ 並驗證，無縫搬進 Agent！"
+      badge: "🚀 實戰三部曲 SOP",
+      title: "讓 Gem 升級成 SKILLS：備份・升級・分享 完整落地指南",
+      content: "① 備份：免費用戶透過 Google Takeout 完整匯出 Gem 系統提示詞與附件；付費用戶由 Spark 自動打包至 Drive → ② 升級：丟 GitHub 套件連結給 Agent 自動盤點＋挑選 11 大能力加值（實例：英文偵錯密碼 Gem 升級為互動闖關網頁）→ ③ 分享：上傳 GitHub repo（.agents/skills/），跨平台換 Agent（Antigravity/Codex/Claude）一鍵安裝，全校共用！"
     }
   },
   afternoon: {
@@ -95,7 +95,7 @@ const CONCEPT_MAP = {
     23: {
       badge: "🎛️ Skill 裝具延伸",
       title: "Agent Skills 的本質：自訂 Harness Extension（承接 Gem 升級）",
-      content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約與操作 SOP，完整承接上午場 Gem to Skill 升級成果！"
+      content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約與操作 SOP，完整承接上午場「讓 Gem 升級成 SKILLS」的成果！"
     },
     24: {
       badge: "🎛️ 跨 Agent 可攜標準",
@@ -212,6 +212,17 @@ function createSlide(item) {
       anchor.rel = "noopener noreferrer";
     }
     article.append(anchor);
+  }
+  if (item.sticker) {
+    const stickerWrap = document.createElement("div");
+    stickerWrap.className = "slide-sticker";
+    stickerWrap.style.cssText = item.sticker.style;
+    const stickerImg = document.createElement("img");
+    stickerImg.src = item.sticker.file;
+    stickerImg.alt = item.sticker.alt || "裝飾貼圖";
+    stickerImg.loading = "lazy";
+    stickerWrap.append(stickerImg);
+    article.append(stickerWrap);
   }
   return article;
 }
