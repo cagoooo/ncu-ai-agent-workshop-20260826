@@ -21,6 +21,9 @@
 - 保留每個分支頁首屏可見的「回到簡報主頁」、主導覽板入口、直接超連結與 QR Code。
 - 學生資料分析只能使用合成或去識別資料；AI 是初編與研究輔助，人工複核與最終決定必須分開。
 - 學校名稱只可寫「桃園市龍潭區石門國民小學」或「石門國小」。
+- **【編碼鐵律】禁止使用 PowerShell 5.1 的 Get-Content / Set-Content 讀寫繁中 HTML/JS/JSON**：PS5 會誤用 CP950 讀取造成多位元組截斷亂碼，且 `-Encoding utf8` 會塞入破壞性的 UTF-8 BOM。版本替換一律使用 Python 專屬腳本（`safe_version_bump.py`）。
+- **【PWA 效能鐵律】Service Worker 導覽請求必須採用 Stale-While-Revalidate (SWR)**：HTML 一律 0ms 本地快取秒開瞬出 + 背景靜默非同步更新，嚴禁在 HTML 請求採用 `networkFirst`；Precache 清單禁止塞入 4MB+ 的 OG 高清社群大圖。
+- **【SW 更新四重防護】Update Prompt 必須包含 Quad-Layer Gate**：(1) 重載後 15 秒 `inSilence` 靜默冷卻；(2) 點更新時寫入 `sessionStorage.pwa_ack_version`；(3) 同版號靜默；(4) `observeRegistration` 彈窗前必須先 fetch version.json 確認真實版號，徹底杜絕無限重複彈窗。
 
 ## 修改與發布流程
 
