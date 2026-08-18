@@ -170,11 +170,14 @@ function ensureSlideImage(article) {
   if (!art.src || art.src.includes("data:image")) {
     art.src = source;
   }
+  if (art.decode) {
+    art.decode().catch(() => {});
+  }
   art.dataset.sourceReady = "true";
 }
 
 function preloadSlideImages(centerIndex) {
-  for (let offset = -2; offset <= 3; offset++) {
+  for (let offset = -3; offset <= 4; offset++) {
     const target = stage.children[centerIndex + offset];
     if (target) {
       ensureSlideImage(target);
@@ -193,9 +196,8 @@ function createSlide(item) {
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
   const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
-  const loading = item.index <= 4 ? "eager" : "lazy";
-  const fetchPriority = item.index <= 2 ? ' fetchpriority="high"' : "";
-  article.innerHTML = '<img class="slide-art" src="' + item.image + '" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="' + loading + '" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  const fetchPriority = item.index <= 4 ? ' fetchpriority="high"' : "";
+  article.innerHTML = '<img class="slide-art" src="' + item.image + '" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="eager" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
@@ -240,20 +242,56 @@ function updateLinks(item) {
   }
 }
 
-function animateIn(article, direction, isInitial = false) {
-  stopArticleMotion(article);
+function animateIn(currentArticle, previousArticle, direction, isInitial = false) {
+  stopArticleMotion(currentArticle);
+  if (previousArticle) stopArticleMotion(previousArticle);
+
   if (isInitial || reducedMotion) {
-    article.style.opacity = "1";
-    article.style.transform = "none";
+    currentArticle.style.opacity = "1";
+    currentArticle.style.transform = "none";
+    if (previousArticle && previousArticle !== currentArticle) {
+      previousArticle.classList.remove("is-previous");
+    }
     return;
   }
+
   const isDarkDeck = document.body.classList.contains("theme-afternoon");
-  const distance = isDarkDeck ? 18 : 28;
-  const duration = isDarkDeck ? 0.32 : 0.44;
+  const distance = isDarkDeck ? 16 : 24;
+  const duration = 0.28;
+
   if (window.gsap) {
-    window.gsap.fromTo(article, { x: direction * distance }, { x: 0, duration, ease: "power3.out", clearProps: "transform" });
+    window.gsap.killTweensOf(currentArticle);
+    window.gsap.fromTo(
+      currentArticle,
+      { opacity: 0, x: direction * distance },
+      {
+        opacity: 1,
+        x: 0,
+        duration,
+        ease: "power2.out",
+        clearProps: "transform",
+        onComplete: () => {
+          if (previousArticle && previousArticle !== currentArticle) {
+            previousArticle.classList.remove("is-previous");
+            previousArticle.style.removeProperty("opacity");
+            previousArticle.style.removeProperty("transform");
+          }
+        }
+      }
+    );
   } else {
-    article.animate([{ transform: "translateX(" + (direction * distance) + "px)" }, { transform: "none" }], { duration: duration * 1000, easing: "cubic-bezier(.16,1,.3,1)", fill: "none" });
+    currentArticle.style.opacity = "1";
+    currentArticle.animate(
+      [
+        { opacity: 0, transform: "translateX(" + (direction * distance) + "px)" },
+        { opacity: 1, transform: "none" }
+      ],
+      { duration: duration * 1000, easing: "ease-out", fill: "none" }
+    ).onfinish = () => {
+      if (previousArticle && previousArticle !== currentArticle) {
+        previousArticle.classList.remove("is-previous");
+      }
+    };
   }
 }
 
@@ -284,18 +322,31 @@ function updateOverviewCurrent() {
 
 function show(index, direction = 1, updateHash = true, isInitial = false) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
-  const previous = stage.querySelector(".is-active");
-  if (previous) {
-    stopArticleMotion(previous);
-    previous.classList.remove("is-active");
-  }
   const current = stage.children[nextIndex];
   if (!current) return;
+
+  const previous = stage.querySelector(".is-active");
+
+  // 清理其他非當前、非上一張的殘留狀態
+  for (let i = 0; i < stage.children.length; i++) {
+    const slide = stage.children[i];
+    if (slide !== previous && slide !== current) {
+      slide.classList.remove("is-active", "is-previous");
+      stopArticleMotion(slide);
+    }
+  }
+
+  if (previous && previous !== current) {
+    previous.classList.remove("is-active");
+    previous.classList.add("is-previous"); // 讓上一頁保留在底層 (z-index: 1) 托底，杜絕閃黑！
+  }
+
+  current.classList.remove("is-previous");
   current.classList.add("is-active");
   ensureSlideImage(current);
   activeIndex = nextIndex;
   preloadSlideImages(nextIndex);
-  animateIn(current, direction, isInitial);
+  animateIn(current, previous, direction, isInitial);
 
   const item = slides[nextIndex];
   currentLabel.textContent = String(item.index);
