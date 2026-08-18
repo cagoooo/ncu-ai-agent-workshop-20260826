@@ -137,31 +137,6 @@ let activeIndex = 0;
 let touchStartX = null;
 let touchStartY = null;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let hiResTimer = 0;
-let transitionCleanTimer = 0;
-
-function enableHiResImage(article) {
-  const art = article?.querySelector(".slide-art");
-  const source = art?.dataset.hiresSrc;
-  if (!art || !source || art.dataset.hiresRequested === "true") return;
-  ensureSlideImage(article);
-  art.dataset.hiresRequested = "true";
-  const preload = new Image();
-  preload.decoding = "async";
-  preload.onload = () => {
-    if (!art.isConnected) return;
-    art.src = source;
-    art.dataset.hiresReady = "true";
-  };
-  preload.src = source;
-}
-
-function scheduleHiResImage(article, delay = 900) {
-  window.clearTimeout(hiResTimer);
-  hiResTimer = window.setTimeout(() => {
-    if (article?.classList.contains("is-active")) enableHiResImage(article);
-  }, delay);
-}
 
 function ensureSlideImage(article) {
   const art = article?.querySelector(".slide-art");
@@ -357,7 +332,6 @@ function show(index, direction = 1, updateHash = true, isInitial = false) {
   updateNotes(item);
   updateSpotlight(nextIndex);
   updateOverviewCurrent();
-  if (document.body.classList.contains("is-immersive")) enableHiResImage(current);
   if (updateHash) history.replaceState(null, "", "#slide-" + item.index);
 }
 
@@ -388,7 +362,6 @@ function syncFullscreenUi(active) {
     button.title = active ? "退出全螢幕（F）" : "全螢幕（F）";
   });
   if (immersiveExit) immersiveExit.hidden = !active;
-  if (active) scheduleHiResImage(stage.querySelector(".is-active"), 120);
 }
 async function leaveNativeFullscreen() {
   const exit = document.exitFullscreen || document.webkitExitFullscreen;
