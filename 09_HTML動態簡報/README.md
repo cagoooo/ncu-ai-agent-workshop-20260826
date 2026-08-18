@@ -7,6 +7,8 @@
 - 所有標題、正文、章節、講者備註與連結均為真正的 HTML／文字，不依賴 `08_HTML簡報` 的投影片圖檔。
 - `data/` 是從既有 `08_HTML簡報` 的 `deck-data` 抽出的內容快照；原本的圖檔版與切換程式完全保留。
 - 場景使用 `data-composition-id`、`data-start`、`data-duration`、`data-track-index` 與 `window.__timelines`，可直接作為 HyperFrames HTML composition 的後續動畫基礎。
+- `assets/favicon.svg`、`favicon.ico`、`apple-touch-icon.png` 與 `icon-192/512*.png` 是本專區專用圖示；`manifest.webmanifest` 提供加入主畫面的 app icon 設定。
+- `assets/og-dynamic.png` 是 1200×630 的社群分享預覽圖；入口與兩份場次頁均含絕對 URL 的 Open Graph、Twitter Card、尺寸與 `zh_TW` meta 標籤，適合 GitHub Pages、LINE 與 Facebook 爬蟲讀取。
 
 ## 入口
 

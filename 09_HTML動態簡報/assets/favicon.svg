@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">HTML 動態簡報專區</title>
+  <desc id="desc">深藍場景中的 HTML、AI Agent 與時間軸節點</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050B12"/>
+      <stop offset=".55" stop-color="#07131F"/>
+      <stop offset="1" stop-color="#102438"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#55A7FF"/>
+      <stop offset=".52" stop-color="#2CD2C7"/>
+      <stop offset="1" stop-color="#FF806D"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#183654"/>
+      <stop offset="1" stop-color="#0A1826"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)" stroke="#2A4761" stroke-width="6"/>
+  <circle cx="256" cy="246" r="174" fill="none" stroke="#16324A" stroke-width="8" stroke-dasharray="18 13"/>
+  <circle cx="256" cy="246" r="145" fill="none" stroke="url(#accent)" stroke-width="15" stroke-linecap="round" filter="url(#glow)" opacity=".88"/>
+  <path d="M92 382 C161 382 178 334 220 334 H420" fill="none" stroke="url(#accent)" stroke-width="8" stroke-linecap="round" opacity=".72"/>
+  <path d="M126 382 H410" fill="none" stroke="#55A7FF" stroke-width="3" opacity=".55"/>
+  <circle cx="156" cy="382" r="10" fill="#2CD2C7"/>
+  <circle cx="250" cy="382" r="10" fill="#55A7FF"/>
+  <circle cx="348" cy="382" r="10" fill="#FF806D"/>
+  <polygon points="256,112 371,179 371,313 256,380 141,313 141,179" fill="url(#core)" stroke="#55A7FF" stroke-width="10" stroke-linejoin="round" filter="url(#glow)"/>
+  <polygon points="256,154 329,196 329,280 256,322 183,280 183,196" fill="none" stroke="#2CD2C7" stroke-width="5" opacity=".86"/>
+  <path d="M220 236 L194 256 L220 276 M292 236 L318 256 L292 276" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity=".92"/>
+  <path d="M246 286 L266 226" fill="none" stroke="#FF806D" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="256" cy="114" r="11" fill="#55A7FF" filter="url(#glow)"/>
+  <circle cx="392" cy="246" r="11" fill="#FF806D" filter="url(#glow)"/>
+  <circle cx="120" cy="246" r="11" fill="#2CD2C7" filter="url(#glow)"/>
+</svg>

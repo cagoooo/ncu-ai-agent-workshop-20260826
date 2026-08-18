@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.10",
-  "buildTime": "2026-08-18T07:09:39.000Z",
-  "title": "清理 HTML 動態專區重複首頁按鈕",
-  "description": "保留單一回工作坊主頁按鈕，並維持 RWD 與 Service Worker 更新通知；原有圖檔簡報不變。"
+  "version": "2026.08.18.11",
+  "buildTime": "2026-08-18T07:38:00.000Z",
+  "title": "新增 HTML 動態簡報 favicon 與社群分享預覽",
+  "description": "為 HTML 動態簡報專區新增 favicon、PWA app icons、manifest 與 LINE／Facebook／Twitter 社群分享 meta 標籤；原有圖檔簡報不變。"
 }
