@@ -1,14 +1,22 @@
-# HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區導覽清理）
+# HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態簡報 favicon 與社群預覽）
 
-稽核時間：2026-08-18 15:22（Asia/Taipei；部署後公開狀態已重驗）
+稽核時間：2026-08-18 16:05（Asia/Taipei；部署後公開狀態已重驗）
 
 ---
 
 ## 一句話狀態
 
-**本輪移除 `09_HTML動態簡報` 首頁重複的返回按鈕，保留單一「回到工作坊主頁」，並維持長文字 RWD 與 Service Worker 更新通知；公開站 `v2026.08.18.10` 已由 Pages built、公開版本、公開瀏覽器量測與帶 `BASE_URL` 的 QA 實際確認。**
+**本輪為 `09_HTML動態簡報` 完成專屬 favicon、PWA app icons、manifest 與 LINE／Facebook／Twitter 社群分享預覽；原有 `08_HTML簡報` 圖檔設計不變，公開站 `v2026.08.18.11` 已由 Pages built、公開版本、公開資產檢查與帶 `BASE_URL` 的 QA 實際確認。**
 
-### 本輪修復（v2026.08.18.10）
+### 本輪更新（v2026.08.18.11）
+
+- 品牌資產：新增 `favicon.svg`、`favicon.ico`、32×32 PNG、180×180 Apple touch icon、192／512 PWA app icons 與 maskable icons；圖像主題對應 HTML 動態簡報的深色舞台、AI 核心、`<>` 語法路徑與時間軸節點。
+- 社群分享：新增 1200×630 `og-dynamic.png`，三個 HTML 動態頁均設定絕對 `og:url`、`og:image`、`og:image:secure_url`、尺寸、`zh_TW`、Twitter `summary_large_image` 與 cache-busting 版本號。
+- PWA：新增 `09_HTML動態簡報/manifest.webmanifest`，並把 favicon／app icons／manifest／OG 資產加入 `sw.js` 預載清單。
+- 文件：更新 `09_HTML動態簡報/README.md` 與本交接紀錄，明確標示新資產與既有圖檔簡報的隔離範圍。
+- 快取：`sw.js`、`version.json` 與所有 HTML query 版本提升至 `.11`；`08_HTML簡報` 僅更新版本 query／版本標記，沒有改動投影片圖片、Hotspot、雙緩衝切換或全螢幕 CSS SSOT。
+
+### 前一輪已保留的功能修復（v2026.08.18.10）
 
 - 根因：桌面版 `.scene-body` 與長文字卡片被固定 16:9 舞台的剩餘高度壓縮；手機與平板仍沿用固定畫布，導致內容被截斷或重疊。
 - 修復：步驟型長文字場景改為從上方自然排版、縮小中等寬度的卡片內文；觸控裝置改用單欄自然增高舞台，保留完整標題、說明與內容卡片。
@@ -34,16 +42,18 @@ npx --yes hyperframes inspect "09_HTML動態簡報" → exit 0，9 個 timeline 
 npx --yes hyperframes check "09_HTML動態簡報" → exit 0，runtime errors=0、layout issues=0、contrast checked/passed=87/87
 git diff --check → exit 0
 gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0，status=built
-Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-10-final' → exit 0，HTTP 200、version=2026.08.18.10
-$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0，`GitHub Pages site QA passed.`
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-11-live' → exit 0，HTTP 200、version=2026.08.18.11
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0，`GitHub Pages site QA passed.`；83 個場景、5 種視窗
+公開社群 meta／資產檢查 → exit 0；3 個動態頁、9 次資產請求全部 HTTP 200，`og:locale=zh_TW`、Twitter `summary_large_image`、favicon／manifest 版本均為 `.11`
+公開 OG PNG fetch → exit 0；HTTP 200、631771 bytes、1200×630
 公開 Playwright slide-12 量測 → exit 0；桌機 active scene 的 grid/body/copy scrollHeight=clientHeight=488、maxBlockOverflow=0、水平溢位=0；手機舞台 1130/1130、grid 1054/1054、body 684/684、copy 352/352、maxBlockOverflow=0、水平溢位=0
 公開 Playwright 首頁量測 → exit 0；保留導覽按鈕=1（文字為「← 回到工作坊主頁」）、動態場次連結=2、可見文字長度=370
-公開 Playwright 首頁三尺寸 RWD 量測 → exit 0；桌機／平板橫向／手機直向均為 `nav=1`、重複選擇器=0、水平溢位=0、`pwa-loader=1`、版本=`2026.08.18.10`
+公開 Playwright 首頁三尺寸 RWD 量測 → exit 0；桌機／平板橫向／手機直向均為 `nav=1`、重複選擇器=0、水平溢位=0、`pwa-loader=1`、版本=`2026.08.18.11`
 公開 Playwright Service Worker 量測（暖機後） → exit 0；動態首頁／上午／下午均為 `pwa-loader=1`、`pwa-register=1`、`controller=true`、`active=true`，scope 為專案根目錄
 公開 Playwright 版本差異模擬 → exit 0；模擬遠端 `v2026.08.18.11` 時 `.pwa-update-prompt` 可見，提示文字含「網站有新版可用」與「立即更新」
 ```
 
-功能修復 commit：`cb36975 移除 HTML 動態專區重複首頁按鈕`，已推送 `main`；本檔為部署後交接資料更新。
+功能 commit：`196428b 新增 HTML 動態簡報 favicon 與社群預覽`，已推送 `main`；本檔為部署後交接資料更新，文件 commit 會在本檔修正後再推送。
 
 ---
 
@@ -63,7 +73,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.18.10`，`version.json` HTTP 200 已確認。
+- **公開版本**：`2026.08.18.11`，`version.json` HTTP 200 已確認。
 - **最新 commit**：以 `git log --oneline -1` 實際確認；不可沿用本檔舊 hash。
 - **GitHub Pages**：`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` exit 0，`status=built`。
 
@@ -102,7 +112,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 - Desktop 1440×960 無水平溢位 ✓
 - 頁腳含「阿凱老師」✓
 - Hotspot QR + Platform + Card 三型全部存在且可命中 ✓
-- `deck.js?v=版本號` cache-busting 版本號存在 ✓；公開 repo 本輪版本為 `2026.08.18.10`
+- `deck.js?v=版本號` cache-busting 版本號存在 ✓；公開 repo 本輪版本為 `2026.08.18.11`
 - 第一次全螢幕：立即進入沉浸狀態、工具列立即隱藏、舞台寬度 ≥ viewport × 0.9 ✓
 - 第二次全螢幕：同上 ✓
 - 鍵盤 ArrowRight 換頁至 slide 2 ✓
@@ -124,7 +134,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ```powershell
 (Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-08').Content
-# → HTTP 200，"version": "2026.08.18.09"
+# → HTTP 200，"version": "2026.08.18.11"
 ```
 
 ### 4. 全螢幕跑版修復（v2026.08.18.02）
@@ -155,7 +165,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 驗證：`qa_workshop_suite.mjs` exit 0、正式包 `qa_html_deck.mjs` exit 0、`qa_ops_checklist.mjs` exit 0、`qa_qr_codes.py` exit 0（145 個 QR）、`audit_local_links.mjs` exit 0（82 個 HTML、127 個本地引用）。
 
-### 9. HTML 原生動態簡報專區、RWD 與 SW 更新通知（v2026.08.18.10）
+### 9. HTML 原生動態簡報專區、RWD 與 SW 更新通知（前一輪 v2026.08.18.10）
 
 - 新入口：`09_HTML動態簡報/index.html`。
 - 上午 composition：`09_HTML動態簡報/compositions/morning.html`，39 頁。
@@ -194,6 +204,36 @@ Invoke-WebRequest version.json?cb=20260818-10-final → exit 0，HTTP 200、vers
 
 ---
 
+### 10. HTML 動態簡報 favicon、PWA 圖示與社群分享預覽（v2026.08.18.11）
+
+- `09_HTML動態簡報/assets/favicon.svg`：HTML 動態簡報專區專屬向量 favicon；另提供 `.ico`、32×32 PNG、180×180 Apple touch icon、192／512 PWA icons 與 maskable icons。
+- `09_HTML動態簡報/assets/og-dynamic.png`：1200×630 PNG，使用 HTML 動態簡報的深色舞台、AI 核心、語法路徑與時間軸視覺，適合作為 LINE／Facebook／Twitter 分享卡片。
+- `09_HTML動態簡報/manifest.webmanifest`：設定名稱、短名稱、語系、standalone 顯示模式、主題色與 4 組 app icons。
+- `09_HTML動態簡報/index.html`、`compositions/morning.html`、`compositions/afternoon.html`：均加入絕對 OG URL／圖片、`og:image:width=1200`、`og:image:height=630`、`og:locale=zh_TW`、Twitter `summary_large_image` 與相對 favicon／manifest 連結。
+- `sw.js`：把本專區 9 個新資產與 manifest 加入版本化預載清單；所有相關 HTML／SW／version query 已提升至 `.11`。
+- `08_HTML簡報` 只更新版本 query／版本標記，沒有改動原有投影片圖片、Hotspot、雙緩衝切換、全螢幕 CSS SSOT 或互動邏輯。
+
+本輪實際驗證（均為已執行結果）：
+
+```text
+git diff --check → exit 0
+node --check sw.js → exit 0
+node --check pwa-register.js → exit 0
+node --check 09_HTML動態簡報/assets/pwa-loader.js → exit 0
+node --check qa_github_pages_site.mjs → exit 0
+Get-Content 09_HTML動態簡報/manifest.webmanifest | ConvertFrom-Json → exit 0
+magick identify → exit 0；9 個新資產，OG=1200×630／631771B、favicon-32=32×32、Apple=180×180、PWA icons=192×192／512×512
+git commit → exit 0，commit=`196428b`
+git push origin main → exit 0，`2303386..196428b main -> main`
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0，status=built
+Invoke-WebRequest version.json?cb=20260818-11-live → exit 0，HTTP 200、version=2026.08.18.11
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0，`GitHub Pages site QA passed.`；83 個場景、5 種視窗
+公開社群 meta／資產檢查 → exit 0；3 個動態頁、9 次資產請求全部 HTTP 200，`og:locale=zh_TW`、Twitter `summary_large_image`、favicon／manifest 版本均為 `.11`
+公開 OG PNG fetch → exit 0；HTTP 200、631771 bytes、1200×630
+```
+
+---
+
 ## 沒做完、被擋住或刻意跳過
 
 1. **正式包 Manifest 與實際檔案數**：本輪未重驗；既有交接紀錄的檔案數字與本輪接手提示不一致，需以老師決定的正式包範圍重新核對，不能自行刪除或重建。
@@ -210,7 +250,7 @@ Invoke-WebRequest version.json?cb=20260818-10-final → exit 0，HTTP 200、vers
 - **全螢幕第一下先進入 `is-immersive` 的競速修正**。
 - **上午 39 頁、下午 44 頁，URL hash 對應關係**。
 - **`Gemini Notebook` 現行命名**（不要改回 NotebookLM）。
-- **版本號 query（目前 `?v=2026.08.18.10`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
+- **版本號 query（目前 `?v=2026.08.18.11`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
 - **投影片圖片點陣圖 + Hotspot 疊加架構**：不要因為「不是純 HTML 文字」就整套改寫。
 - **來源不在 Git**：改正式包 HTML 的同時必須同步改來源腳本。
 
@@ -241,7 +281,7 @@ Invoke-WebRequest version.json?cb=20260818-10-final → exit 0，HTTP 200、vers
 
 - **Token 額度**：本對話已接近耗盡，這是換手原因；剩餘量未確認。
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
-- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.10"`。
+- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.11"`。
 - **Pages build 狀態**：本輪功能 commit `cb36975` 已推送，Pages API exit 0 回報 `status=built`；公開站 QA exit 0。
 - **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
 - **中大現場網路、投影、麥克風**：未確認。
@@ -318,14 +358,14 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.10（version.json HTTP 200 已驗）
+公開站版本：2026.08.18.11（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，上午 39 頁／下午 44 頁
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.10，並提升 SW BUILD_VERSION）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.11，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 4. HTML 動態簡報長文字在固定舞台中截斷／重疊 → 已修（桌機長文字自然列高；觸控裝置改單欄自然增高 RWD）
 5. HTML 動態簡報直接開啟時沒有 SW 更新通知 → 已修（新增 pwa-loader.js，三個動態頁均接上共用更新提示）
