@@ -6,7 +6,7 @@
 
 ## 一句話狀態
 
-**本輪新增 `09_HTML動態簡報` 原生 HTML 動態簡報專區，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；目前 repo 目標版本為 `v2026.08.18.06`，公開站仍待本輪 push 後重新驗證。**
+**本輪新增 `09_HTML動態簡報` 原生 HTML 動態簡報專區，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站 `v2026.08.18.06` 已由 Pages built 與公開 QA 實際確認。**
 
 ---
 
@@ -26,9 +26,9 @@
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：目前公開站仍為 `2026.08.18.05`；本輪 repo `version.json` 目標為 `2026.08.18.06`，push 後再驗證 HTTP 200。
-- **最新 commit**：本輪提交前以 `git log --oneline -1` 實際確認；上一個已知 commit 為 `f6642e0`。
-- **GitHub Pages**：本輪 push 前不宣稱新版本已 built；push 後以 `gh api .../pages` 實際確認。
+- **公開版本**：`2026.08.18.06`，已驗 `version.json` HTTP 200。
+- **最新 commit**：以 `git log --oneline -1` 實際確認；本輪功能 commit 為 `5c2d758`。
+- **GitHub Pages**：已驗 `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` 回報 `status=built`。
 
 ---
 
@@ -79,15 +79,15 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 2. 本機 GitHub Pages QA（`node qa_github_pages_site.mjs`）
 
-**結果**：exit 0，`GitHub Pages site QA passed.`
+**結果**：exit 0，`GitHub Pages site QA passed.`；本輪帶 `BASE_URL` 的公開站 QA 已在公開版本 `2026.08.18.06` 完成。
 
 帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站版本亦已重跑：exit 0，`GitHub Pages site QA passed.`
 
 ### 3. 公開 `version.json` 版本確認
 
 ```powershell
-(Invoke-WebRequest -UseBasicParsing '...version.json?cb=handoff3').Content
-# → "version": "2026.08.18.05"（HTTP 200，2026-08-18 11:30 確認）
+(Invoke-WebRequest -UseBasicParsing '...version.json?cb=20260818-06').Content
+# → HTTP 200，"version": "2026.08.18.06"（本輪 push 後確認）
 ```
 
 ### 4. 全螢幕跑版修復（v2026.08.18.02）
@@ -140,7 +140,7 @@ npx --yes hyperframes inspect 09_HTML動態簡報 --json → exit 0，ok=true、
 npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、layout.ok=true、errorCount=0、warningCount=0、contrast checked/passed=82/82
 ```
 
-以上公開站版本與 Pages built 狀態在 push 前均為**未確認**；不可把本機 QA 當成公開部署完成證據。
+以上公開站版本與 Pages built 狀態已在 push 後以實際指令確認；後續仍不可把本機 QA 單獨當成公開部署完成證據。
 
 ---
 
@@ -191,8 +191,8 @@ npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、la
 
 - **Token 額度**：本對話已接近耗盡，這是換手原因；剩餘量未確認。
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
-- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.05"`（11:30 實際驗證）。
-- **Pages build 狀態**：commit `990c049` 已推送；Pages 重建需數分鐘，接手後請確認 `status=built`。
+- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.06"`（本輪 push 後實際驗證）。
+- **Pages build 狀態**：本輪功能 commit `5c2d758` 已推送，Pages 已回報 `status=built`；公開站 QA exit 0。
 - **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
 - **中大現場網路、投影、麥克風**：未確認。
 - **任何 token、API key、密碼**：本檔均無寫入。
@@ -268,7 +268,7 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.05（version.json HTTP 200 已驗）
+公開站版本：2026.08.18.06（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：exit 0，HTML deck QA passed（2026-08-18 11:29 跑出）
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
