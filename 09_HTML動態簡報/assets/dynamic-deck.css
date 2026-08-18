@@ -67,6 +67,10 @@ a { color: inherit; }
   transition: transform .2s ease, color .2s ease, border-color .2s ease;
 }
 .skip-link:focus, .hub-back:hover { transform: translateY(0); color: var(--accent); border-color: var(--accent); }
+.hub-nav { position: fixed; top: 14px; left: 18px; z-index: 100; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.hub-nav .hub-back { position: static; transform: none; }
+.hub-presentation-link, .deck-home-button { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border: 1px solid var(--rule); border-radius: 999px; background: color-mix(in srgb, var(--panel) 92%, transparent); color: var(--muted); font-size: 13px; font-weight: 800; text-decoration: none; white-space: nowrap; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+.hub-presentation-link:hover, .deck-home-button:hover { border-color: var(--accent); background: var(--panel); color: var(--accent); }
 
 /* ───────────────────────────────────────────────────────────────
    Dynamic hub
@@ -174,7 +178,7 @@ a { color: inherit; }
 .scene-rail { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 24px; border-top: 2px solid var(--accent); color: var(--muted); }
 .scene-rail span { font: 800 11px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .16em; }
 .scene-rail strong { color: var(--ink); font-size: clamp(16px, 1.3vw, 24px); }
-.scene-body { display: grid; align-content: center; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; min-height: 0; overflow: auto; padding: 6px; }
+.scene-body { display: grid; align-content: start; grid-auto-rows: minmax(min-content, auto); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; min-height: 0; overflow: auto; padding: 6px; }
 .content-block { position: relative; min-height: 84px; padding: 20px 20px 18px 54px; border: 1px solid color-mix(in srgb, var(--rule) 92%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--panel-strong) 78%, transparent); box-shadow: 0 10px 24px rgba(0,0,0,.1); }
 .theme-morning .content-block { background: #f8fafc; box-shadow: 0 8px 22px rgba(15,30,46,.07); }
 .content-block::before { position: absolute; top: 22px; left: 20px; width: 18px; height: 3px; border-radius: 99px; background: var(--accent); content: ""; }
@@ -275,6 +279,54 @@ a { color: inherit; }
   .hub-copy h1 { font-size: clamp(44px, 13vw, 76px); }
   .hub-lead { font-size: 16px; }
   .hub-pipeline { font-size: 10px; }
+}
+@media (min-width: 901px) {
+  .layout-steps .scene-copy { justify-content: flex-start; }
+  .layout-steps .scene-copy h1 { font-size: clamp(26px, 3.2vw, 58px); line-height: 1.03; }
+  .layout-steps .scene-description { margin-top: 14px; font-size: clamp(13px, 1vw, 19px); line-height: 1.4; }
+  .layout-steps .scene-rail { margin-top: 18px; padding-top: 16px; }
+  .layout-steps .scene-body { align-content: start; grid-auto-rows: minmax(min-content, auto); grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; }
+  .layout-steps .content-block { min-height: 0; padding: 14px 16px 13px 50px; }
+  .layout-steps .content-block::before { top: 17px; left: 16px; }
+  .layout-steps .content-block p { font-size: clamp(13px, .95vw, 18px); line-height: 1.3; }
+}
+@media (min-width: 901px) and (max-width: 1300px) {
+  .layout-steps .content-block { padding: 12px 12px 10px 44px; }
+  .layout-steps .content-block::before { top: 15px; left: 13px; width: 15px; }
+  .layout-steps .content-block p { font-size: 12px; line-height: 1.25; }
+}
+@media (orientation: landscape) and (max-width: 1100px) {
+  body.interactive-mode .dynamic-main { min-height: calc(100svh - 62px); padding: 12px 16px 28px; }
+  body.interactive-mode .dynamic-stage-wrap { width: min(100%, calc((100svh - 122px) * 16 / 9)); }
+  body.interactive-mode .scene-content { padding: clamp(18px, 3vw, 40px); gap: 14px; }
+  body.interactive-mode .scene-grid { gap: 24px; }
+  body.interactive-mode .scene-copy h1 { font-size: clamp(26px, 3.8vw, 52px); }
+  body.interactive-mode .scene-description { margin-top: 12px; font-size: clamp(13px, 1.35vw, 18px); line-height: 1.5; }
+  body.interactive-mode .content-block { min-height: 0; padding: 12px 14px 11px 44px; }
+  body.interactive-mode .content-block p { font-size: clamp(12px, 1.15vw, 17px); line-height: 1.4; }
+}
+@media (max-width: 1100px) and (hover: none) and (pointer: coarse) {
+  body.interactive-mode .dynamic-main { display: block; min-height: auto; padding: 12px 12px 32px; }
+  body.interactive-mode .dynamic-stage-wrap { width: 100%; height: auto; aspect-ratio: auto; filter: none; }
+  body.interactive-mode .dynamic-stage { height: auto; min-height: calc(100svh - 126px); overflow: visible; border-radius: 14px; }
+  body.interactive-mode .dynamic-slide { position: relative; inset: auto; display: none; min-height: calc(100svh - 126px); overflow: visible; opacity: 1; transform: none; filter: none; transition: none; }
+  body.interactive-mode .dynamic-slide.is-active { display: block; }
+  body.interactive-mode .dynamic-slide.is-previous { display: none; }
+  body.interactive-mode .scene-content { height: auto; min-height: calc(100svh - 126px); overflow: visible; padding: 24px 20px 22px; gap: 18px; }
+  body.interactive-mode .scene-header { flex: 0 0 auto; }
+  body.interactive-mode .scene-grid, body.interactive-mode .layout-hero .scene-grid { display: flex; flex: none; flex-direction: column; gap: 18px; min-height: auto; overflow: visible; }
+  body.interactive-mode .scene-copy, body.interactive-mode .layout-quote .scene-copy { flex: none; justify-content: flex-start; min-height: 0; overflow: visible; }
+  body.interactive-mode .scene-copy h1, body.interactive-mode .layout-hero .scene-copy h1 { max-width: none; font-size: clamp(30px, 8vw, 58px); line-height: 1.12; }
+  body.interactive-mode .scene-description { max-width: none; margin-top: 14px; font-size: 16px; line-height: 1.65; }
+  body.interactive-mode .scene-rail { margin-top: 18px; padding-top: 14px; }
+  body.interactive-mode .scene-body, body.interactive-mode .layout-steps .scene-body { display: grid; grid-auto-rows: auto; grid-template-columns: 1fr; align-content: start; min-height: 0; overflow: visible; padding: 0; }
+  body.interactive-mode .content-block { min-height: 0; overflow: visible; padding: 14px 14px 14px 44px; }
+  body.interactive-mode .content-block::before { top: 18px; left: 14px; width: 14px; }
+  body.interactive-mode .content-block p { font-size: 15px; line-height: 1.6; }
+  body.interactive-mode .scene-footer { flex-wrap: wrap; min-height: 0; overflow: visible; padding-top: 12px; }
+  body.interactive-mode .scene-transcript { position: relative; right: auto; bottom: auto; max-width: none; margin-top: 2px; }
+  body.interactive-mode .dynamic-controls { margin-top: 14px; }
+  body.interactive-mode .dynamic-hint { margin-top: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }

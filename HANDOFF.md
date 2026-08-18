@@ -1,36 +1,38 @@
-# HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區完成）
+# HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區 RWD 修復）
 
-稽核時間：2026-08-18 13:47（Asia/Taipei）
+稽核時間：2026-08-18 14:23（Asia/Taipei；部署後狀態仍以文末指令重新確認）
 
 ---
 
 ## 一句話狀態
 
-**本輪修復 `09_HTML動態簡報` 入口頁的一般瀏覽器渲染，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站 `v2026.08.18.07` 已由 Pages built、公開瀏覽器實測與公開 QA 實際確認。**
+**本輪修復 `09_HTML動態簡報` 的首頁導覽與長文字 RWD，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站目標版本為 `v2026.08.18.08`，部署後須以 Pages status、`version.json` 與帶 `BASE_URL` 的 QA 再確認。**
 
-### 本輪接手修復（v2026.08.18.07）
+### 本輪修復（v2026.08.18.08）
 
-- 根因：入口頁 GSAP timeline 原本保持 `paused`，一般瀏覽器沒有把內容推進到可見狀態，因此 `.hub-copy`、`.hub-side-note` 與場次連結停在 `opacity: 0`；不是圖層遺失或投影片圖片渲染失敗。
-- 修復：一般瀏覽器模式將入口 timeline seek 到結尾；HyperFrames 模式仍保留 paused、可逐幀 seek 的 timeline。
-- 快取：`sw.js`、`version.json` 與 HTML query 版本由 `.06` 提升至 `.07`，讓既有 Service Worker 不再回傳舊入口 HTML。
+- 根因：桌面版 `.scene-body` 與長文字卡片被固定 16:9 舞台的剩餘高度壓縮；手機與平板仍沿用固定畫布，導致內容被截斷或重疊。
+- 修復：步驟型長文字場景改為從上方自然排版、縮小中等寬度的卡片內文；觸控裝置改用單欄自然增高舞台，保留完整標題、說明與內容卡片。
+- 導覽：`09_HTML動態簡報` 首頁新增「回圖檔簡報首頁」；上午／下午 HTML composition 的工具列與底部控制列均新增「回簡報首頁」。
+- HyperFrames：圖檔簡報連結改由執行時解析站點根目錄，避免 `../08_HTML簡報/` 被誤判為越界資產路徑。
+- 快取：`sw.js`、`version.json` 與 HTML query 版本由 `.07` 提升至 `.08`，讓 CSS、資料與頁面更新可被公開站取得。
 - `08_HTML簡報` 僅更新版本 query／版本標記，沒有改動投影片圖片、Hotspot、雙緩衝切換或全螢幕 CSS SSOT。
 
 本輪實際驗證：
 
 ```text
-node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed（本機，含入口可見性回歸測試）
-node qa_html_deck.mjs → exit 0，HTML deck QA passed（原圖檔上午 39 頁、下午 44 頁）
-npx --yes hyperframes lint "09_HTML動態簡報" --json → exit 0，filesScanned=3、errorCount=0、warningCount=0
-npx --yes hyperframes validate "09_HTML動態簡報" → exit 0，console errors=0、WCAG AA text passed=89
-npx --yes hyperframes inspect "09_HTML動態簡報" --json → exit 0，ok=true、issueCount=0
-npx --yes hyperframes check "09_HTML動態簡報" --json → exit 0，ok=true、layout errorCount=0、contrast checked/passed=82/82
-gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0，status=built
-Invoke-WebRequest version.json?cb=20260818-07 → exit 0，HTTP 200、version=2026.08.18.07
-公開瀏覽器入口實測 → exit 0，HTTP 200、appVersion=.07、hubCopyOpacity=1、hubSideOpacity=1、deckLinkCount=2、visibleTextLength=370、timelineRegistered=true
-$env:BASE_URL=...; node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed
+node qa_html_deck.mjs → exit 0，`HTML deck QA passed.`；原圖檔上午 39 頁、下午 44 頁，共 83 頁
+node qa_github_pages_site.mjs → exit 0，`GitHub Pages site QA passed.`；動態簡報 83 個場景逐頁檢查，涵蓋桌機、手機直式／橫式、平板直式／橫式共 5 種視窗
+node --check qa_github_pages_site.mjs → exit 0
+node --check 09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+npx --yes hyperframes lint "09_HTML動態簡報" --json → exit 0，filesScanned=3、errorCount=0、warningCount=0、infoCount=4
+npx --yes hyperframes validate "09_HTML動態簡報" → exit 0，console errors=0、WCAG AA text passed=99
+npx --yes hyperframes inspect "09_HTML動態簡報" → exit 0，9 個 timeline sample、layout issues=0
+npx --yes hyperframes check "09_HTML動態簡報" → exit 0，runtime errors=0、layout issues=0、contrast checked/passed=92/92
+git diff --check → exit 0
+部署後的 `gh api`、`version.json`、公開瀏覽器實測與帶 `BASE_URL` QA：須在 push 後以文末指令實際確認，未確認前不得視為完成
 ```
 
-本輪修復 commit：`fc470a9 修復 HTML 動態專區入口渲染與快取版本`，已推送 `main`。
+本輪 commit 與 push、Pages built、公開版本及帶 `BASE_URL` 的公開站 QA：部署後以本文文末指令實際確認，未確認前不得視為完成。
 
 ---
 
@@ -50,13 +52,13 @@ $env:BASE_URL=...; node qa_github_pages_site.mjs → exit 0，GitHub Pages site 
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.18.07`，已驗 `version.json` HTTP 200。
-- **最新 commit**：以 `git log --oneline -1` 實際確認；本輪修復 commit 為 `fc470a9`。
-- **GitHub Pages**：已驗 `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` 回報 `status=built`。
+- **公開版本**：目標為 `2026.08.18.08`；push 後以 `version.json` HTTP 200 實際確認。
+- **最新 commit**：以 `git log --oneline -1` 實際確認；不可沿用本檔舊 hash。
+- **GitHub Pages**：本輪 push 後須以 `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` 實際確認 `status=built`。
 
 ---
 
-## git 實際數字（稽核時間 2026-08-18 11:29 跑出）
+## 前一輪 git 實際數字（2026-08-18 11:29；目前狀態請以上方與文末指令為準）
 
 ```
 git status → nothing to commit, working tree clean
@@ -82,14 +84,14 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 1. 本機 HTML 簡報 QA（`node qa_html_deck.mjs`）
 
-**結果（2026-08-18 13:21 前後跑出）**：exit 0，`HTML deck QA passed.`；上午 39 頁、下午 44 頁，共 83 頁。
+**本輪重跑結果**：exit 0，`HTML deck QA passed.`；上午 39 頁、下午 44 頁，共 83 頁。
 
 測試涵蓋（完整列表）：
 - 上午 39 頁、下午 44 頁，初始 slide #1 active = 1 ✓
 - Desktop 1440×960 無水平溢位 ✓
 - 頁腳含「阿凱老師」✓
 - Hotspot QR + Platform + Card 三型全部存在且可命中 ✓
-- `deck.js?v=2026.08.18.06` cache-busting 版本號存在 ✓
+- `deck.js?v=版本號` cache-busting 版本號存在 ✓；公開 repo 本輪版本為 `2026.08.18.08`
 - 第一次全螢幕：立即進入沉浸狀態、工具列立即隱藏、舞台寬度 ≥ viewport × 0.9 ✓
 - 第二次全螢幕：同上 ✓
 - 鍵盤 ArrowRight 換頁至 slide 2 ✓
@@ -103,15 +105,15 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 2. 本機 GitHub Pages QA（`node qa_github_pages_site.mjs`）
 
-**結果**：exit 0，`GitHub Pages site QA passed.`；本輪帶 `BASE_URL` 的公開站 QA 已在公開版本 `2026.08.18.06` 完成。
+**結果**：本機 exit 0，`GitHub Pages site QA passed.`；本輪含 83 個動態場景、5 種視窗尺寸的 RWD 檢查已完成。push 後的 `BASE_URL` 公開站結果待文末指令確認。
 
-帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站版本亦已重跑：exit 0，`GitHub Pages site QA passed.`
+帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站 QA：push 後重跑結果待文末指令確認，未確認前不宣稱完成。
 
 ### 3. 公開 `version.json` 版本確認
 
 ```powershell
-(Invoke-WebRequest -UseBasicParsing '...version.json?cb=20260818-06').Content
-# → HTTP 200，"version": "2026.08.18.06"（本輪 push 後確認）
+(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-08').Content
+# → 目標為 HTTP 200，"version": "2026.08.18.08"；push 後重新確認
 ```
 
 ### 4. 全螢幕跑版修復（v2026.08.18.02）
@@ -142,26 +144,29 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 驗證：`qa_workshop_suite.mjs` exit 0、正式包 `qa_html_deck.mjs` exit 0、`qa_ops_checklist.mjs` exit 0、`qa_qr_codes.py` exit 0（145 個 QR）、`audit_local_links.mjs` exit 0（82 個 HTML、127 個本地引用）。
 
-### 9. 新增 HTML 原生動態簡報專區（本輪 v2026.08.18.06）
+### 9. HTML 原生動態簡報專區與本輪 RWD 修復（v2026.08.18.08）
 
 - 新入口：`09_HTML動態簡報/index.html`。
 - 上午 composition：`09_HTML動態簡報/compositions/morning.html`，39 頁。
 - 下午 composition：`09_HTML動態簡報/compositions/afternoon.html`，44 頁；合計 83 頁。
 - 內容資料取自既有 `08_HTML簡報` 的 `deck-data` 快照；新專區使用 HTML 文字、CSS 版面與連結，不讀取投影片圖檔。資料統計實際為上午 39 頁／85 個連結、下午 44 頁／81 個連結。
 - 每頁保留 `data-composition-id`、`data-start`、`data-duration`、`data-track-index`；GSAP timeline 以 `window.__timelines` 註冊並保持可 seek 的 paused 狀態，已可接 HyperFrames。Remotion 本輪未加入，保留後續轉換路徑。
+- 桌機長文字：步驟型場景改為上方起始的自然網格列高，並針對 901–1300px 寬度降低卡片內距與字級，避免內容卡片在固定 16:9 舞台中被截斷。
+- 觸控 RWD：手機／平板切換為單欄、自然增高的 HTML 舞台，取消場景內部固定高度與不必要的 overflow，支援直式與橫式視窗。
+- 導覽：動態專區首頁提供工作坊主頁與 `08_HTML簡報` 首頁；兩份 composition 均提供工具列與底部「回簡報首頁」連結。
 - `08_HTML簡報` 本輪只更新版本 query、版本資訊與專區入口，沒有重建或改寫其圖檔投影片、雙緩衝切換、全螢幕 CSS SSOT 或原有互動邏輯。
 
 本輪實際驗證（均為已執行結果）：
 
 ```text
-node qa_html_deck.mjs → exit 0，HTML deck QA passed（原圖檔上午 39 頁、下午 44 頁）
-node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed（本機，含新專區 39／44 頁逐頁文字可見與舞台內檢查）
+node qa_html_deck.mjs → exit 0，`HTML deck QA passed.`（原圖檔上午 39 頁、下午 44 頁）
+node qa_github_pages_site.mjs → exit 0，`GitHub Pages site QA passed.`（新專區 83 個場景、5 種視窗尺寸逐頁 RWD 檢查）
 node --check qa_github_pages_site.mjs → exit 0
 node --check 09_HTML動態簡報/assets/dynamic-deck.js → exit 0
-npx --yes hyperframes lint 09_HTML動態簡報 --json → exit 0，filesScanned=3、errorCount=0、warningCount=0
-npx --yes hyperframes validate 09_HTML動態簡報 → exit 0，console errors=0、WCAG AA text passed=89
-npx --yes hyperframes inspect 09_HTML動態簡報 --json → exit 0，ok=true、issueCount=0
-npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、layout.ok=true、errorCount=0、warningCount=0、contrast checked/passed=82/82
+npx --yes hyperframes lint 09_HTML動態簡報 --json → exit 0，filesScanned=3、errorCount=0、warningCount=0、infoCount=4
+npx --yes hyperframes validate 09_HTML動態簡報 → exit 0，console errors=0、WCAG AA text passed=99
+npx --yes hyperframes inspect 09_HTML動態簡報 → exit 0，9 個 timeline sample、layout issues=0
+npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，runtime errors=0、layout issues=0、contrast checked/passed=92/92
 ```
 
 以上公開站版本與 Pages built 狀態已在 push 後以實際指令確認；後續仍不可把本機 QA 單獨當成公開部署完成證據。
@@ -184,7 +189,7 @@ npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、la
 - **全螢幕第一下先進入 `is-immersive` 的競速修正**。
 - **上午 39 頁、下午 44 頁，URL hash 對應關係**。
 - **`Gemini Notebook` 現行命名**（不要改回 NotebookLM）。
-- **`deck.js?v=2026.08.18.06` 版本號**：版本號不可移除。
+- **版本號 query（目前 `?v=2026.08.18.08`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
 - **投影片圖片點陣圖 + Hotspot 疊加架構**：不要因為「不是純 HTML 文字」就整套改寫。
 - **來源不在 Git**：改正式包 HTML 的同時必須同步改來源腳本。
 
@@ -215,8 +220,8 @@ npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、la
 
 - **Token 額度**：本對話已接近耗盡，這是換手原因；剩餘量未確認。
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
-- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.06"`（本輪 push 後實際驗證）。
-- **Pages build 狀態**：本輪功能 commit `5c2d758` 已推送，Pages 已回報 `status=built`；公開站 QA exit 0。
+- **公開站版本**：目標為 `version.json` HTTP 200，`"version": "2026.08.18.08"`；push 後實際驗證。
+- **Pages build 狀態**：本輪 commit 與 `status=built`、公開站 QA 結果均以 push 後指令實際確認，未確認前不宣稱完成。
 - **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
 - **中大現場網路、投影、麥克風**：未確認。
 - **任何 token、API key、密碼**：本檔均無寫入。
@@ -292,15 +297,16 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.07（version.json HTTP 200 已驗）
-本機 HTML 簡報 QA：exit 0，HTML deck QA passed（2026-08-18 11:29 跑出）
-帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
+公開站版本：2026.08.18.08（push 後須以 version.json HTTP 200 重驗）
+本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，上午 39 頁／下午 44 頁
+帶 BASE_URL 的公開站 QA：push 後重跑，未確認前不宣稱完成
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.07，並提升 SW BUILD_VERSION）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.08，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
+4. HTML 動態簡報長文字在固定舞台中截斷／重疊 → 已修（桌機長文字自然列高；觸控裝置改單欄自然增高 RWD）
 
 【接手後第一步】
 先跑以下指令確認狀態，不要憑本檔數字直接做事：
