@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.18.06";
+const BUILD_VERSION = "2026.08.18.07";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 
 // 精簡核心預載清單：僅快取極輕量的關鍵 HTML、CSS、JS 與小圖示（排除 4MB+ 的 OG 大圖）

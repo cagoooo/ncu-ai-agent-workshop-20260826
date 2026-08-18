@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.06",
-  "buildTime": "2026-08-18T04:51:34.000Z",
-  "title": "HTML 原生動態簡報專區與全螢幕體驗",
-  "description": "新增上午 39 頁、下午 44 頁的 HTML 文字場景；原有圖檔簡報保持不變，並預留 HyperFrames 與 Remotion 動態化結構。"
+  "version": "2026.08.18.07",
+  "buildTime": "2026-08-18T05:41:56.000Z",
+  "title": "HTML 動態簡報入口渲染修復",
+  "description": "修復一般瀏覽器開啟 HTML 動態簡報專區時內容未顯示的問題；原有圖檔簡報保持不變，並保留 HyperFrames 與 Remotion 動態化結構。"
 }
