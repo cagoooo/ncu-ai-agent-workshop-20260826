@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant" data-composition-variables='[{"id":"mode","type":"enum","label":"專區模式","default":"dynamic","options":[{"value":"dynamic","label":"HTML 動態版"}]}]'>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07131f">
+  <meta name="description" content="國立中央大學 AI 教學與研究工作坊｜HTML 原生動態簡報專區">
+  <title>HTML 動態簡報專區｜國立中央大學 AI 教學與研究工作坊</title>
+  <link rel="stylesheet" href="assets/dynamic-deck.css?v=2026.08.18.06">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+</head>
+<body class="dynamic-hub theme-afternoon" data-app-version="2026.08.18.06">
+  <main id="dynamic-hub-root" class="dynamic-hub-main" data-composition-id="dynamic-hub" data-width="1920" data-height="1080" data-start="0" data-duration="6" data-track-index="0">
+    <a class="hub-back" data-home-link data-layout-allow-overflow href="./">← 回到工作坊主頁</a>
+    <div class="hub-orb hub-orb-a" data-layout-allow-overflow aria-hidden="true"></div>
+    <div class="hub-orb hub-orb-b" data-layout-allow-overflow aria-hidden="true"></div>
+    <header class="hub-header">
+      <span class="hub-kicker">HTML NATIVE · HYPERFRAMES READY</span>
+      <span class="hub-version">2026.08.26</span>
+    </header>
+    <section class="hub-hero-content">
+      <div class="hub-copy">
+        <p class="hub-eyebrow">國立中央大學 × 阿凱老師</p>
+        <h1>把簡報文字變成<br><em>可以動起來的場景</em></h1>
+        <p class="hub-lead">上午 39 頁、下午 44 頁，全部改以 HTML 文字、CSS 版面與可編排時間軸呈現；原本的圖檔簡報維持不變。</p>
+        <div class="hub-actions">
+          <a class="hub-deck-link morning" href="compositions/morning.html#slide-1"><span>上午場</span><strong>AI 教學與研究工作室</strong><small>39 頁 · 淺色編輯式場景</small></a>
+          <a class="hub-deck-link afternoon" href="compositions/afternoon.html#slide-1"><span>下午場</span><strong>會做事的 AI Agent</strong><small>44 頁 · 深色動態式場景</small></a>
+        </div>
+      </div>
+      <aside class="hub-side-note">
+        <span class="hub-side-mark">01</span>
+        <h2>未來可接 HyperFrames / Remotion</h2>
+        <p>每一頁都是獨立 scene，已保留標題、正文、備註、連結與章節資料，方便後續加入 GSAP、轉場、旁白與影片輸出。</p>
+        <div class="hub-pipeline" aria-label="動態化流程"><span>HTML</span><i>→</i><span>GSAP</span><i>→</i><span>HyperFrames</span><i>→</i><span>Remotion</span></div>
+      </aside>
+    </section>
+    <p class="hub-boundary" data-layout-allow-overflow>本專區不讀取、不替換 `08_HTML簡報/` 的投影片圖片。</p>
+  </main>
+  <script>
+    const hubBack = document.querySelector("[data-home-link]");
+    if (hubBack) hubBack.href = new URL("..", location.href).href;
+    window.__timelines = window.__timelines || {};
+    function registerHubTimeline() {
+      if (!window.gsap || window.__timelines["dynamic-hub"]) return;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(".hub-copy", { opacity: 0, x: -42 }, { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }, 0.2);
+      tl.fromTo(".hub-side-note", { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 0.7, ease: "sine.out" }, 0.45);
+      tl.fromTo("#dynamic-hub-root .hub-deck-link", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: "back.out(1.3)" }, 0.65);
+      window.__timelines["dynamic-hub"] = tl;
+    }
+    if (window.gsap) registerHubTimeline();
+    else window.addEventListener("load", registerHubTimeline, { once: true });
+  </script>
+</body>
+</html>

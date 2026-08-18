@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.18.05";
+const BUILD_VERSION = "2026.08.18.06";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 
 // 精簡核心預載清單：僅快取極輕量的關鍵 HTML、CSS、JS 與小圖示（排除 4MB+ 的 OG 大圖）
@@ -20,7 +20,14 @@ const PRECACHE = [
   "./08_HTML簡報/morning.html",
   "./08_HTML簡報/afternoon.html",
   "./08_HTML簡報/assets/deck.css",
-  "./08_HTML簡報/assets/deck.js?v=" + BUILD_VERSION
+  "./08_HTML簡報/assets/deck.js?v=" + BUILD_VERSION,
+  "./09_HTML動態簡報/index.html",
+  "./09_HTML動態簡報/compositions/morning.html",
+  "./09_HTML動態簡報/compositions/afternoon.html",
+  "./09_HTML動態簡報/assets/dynamic-deck.css?v=" + BUILD_VERSION,
+  "./09_HTML動態簡報/assets/dynamic-deck.js?v=" + BUILD_VERSION,
+  "./09_HTML動態簡報/data/morning.js?v=" + BUILD_VERSION,
+  "./09_HTML動態簡報/data/afternoon.js?v=" + BUILD_VERSION
 ];
 
 self.addEventListener("install", (event) => {

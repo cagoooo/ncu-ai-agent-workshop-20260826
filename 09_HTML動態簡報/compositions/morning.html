@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant" data-composition-variables='[{"id":"deck","type":"enum","label":"場次","default":"morning","options":[{"value":"morning","label":"上午場"}]}]'>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3ec">
+  <meta name="description" content="上午場 HTML 原生動態簡報｜39 頁">
+  <title>上午場 HTML 動態簡報｜國立中央大學</title>
+  <script>const deckBase = document.createElement("base"); deckBase.href = new URL("..", document.baseURI).href; document.head.append(deckBase);</script>
+  <link rel="stylesheet" href="assets/dynamic-deck.css?v=2026.08.18.06">
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="data/morning.js?v=2026.08.18.06"></script>
+  <script defer src="assets/dynamic-deck.js?v=2026.08.18.06"></script>
+</head>
+<body class="dynamic-deck theme-morning" data-deck="morning" data-app-version="2026.08.18.06">
+  <div id="dynamic-morning-root" class="dynamic-deck-root" data-composition-id="dynamic-morning-document" data-width="1920" data-height="1080" data-start="0" data-duration="312" data-track-index="0">
+  <a class="skip-link" href="#dynamic-stage">跳到 HTML 動態簡報舞台</a>
+  <header class="dynamic-toolbar">
+    <a class="toolbar-back" href="index.html">← 動態簡報專區</a>
+    <div class="toolbar-title"><span class="toolbar-kicker">HTML NATIVE · MORNING</span><strong id="deck-name">上午場</strong></div>
+    <div class="toolbar-actions">
+      <button type="button" data-action="overview" aria-label="開啟投影片總覽">總覽</button>
+      <button type="button" data-action="notes" aria-label="開啟講者備註">備註</button>
+      <button type="button" data-action="reading" aria-label="開啟閱讀模式">閱讀</button>
+      <button type="button" data-action="fullscreen" aria-label="進入全螢幕">全螢幕</button>
+    </div>
+  </header>
+  <main class="dynamic-main">
+    <div class="dynamic-stage-wrap">
+      <section id="dynamic-stage" class="dynamic-stage" data-composition-id="dynamic-morning" data-width="1920" data-height="1080" tabindex="0" aria-live="polite" aria-label="上午場 HTML 動態投影片"></section>
+    </div>
+    <nav class="dynamic-controls" aria-label="投影片導覽">
+      <button class="nav-button" type="button" data-nav="prev" aria-label="上一頁">←</button>
+      <div class="progress-wrap"><div class="progress-label"><span id="slide-section">建立 AI 教學與研究工作室</span><span><b id="slide-current">1</b> / <span id="slide-total">39</span></span></div><div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div></div>
+      <button class="nav-button" type="button" data-nav="next" aria-label="下一頁">→</button>
+    </nav>
+    <p class="dynamic-hint">← → 換頁　Space 下一頁　O 總覽　N 備註　T 閱讀　F 全螢幕</p>
+  </main>
+  <button class="immersive-exit" type="button" data-action="fullscreen" aria-label="退出全螢幕" hidden>退出全螢幕</button>
+  <aside class="dynamic-notes" id="notes-panel" hidden aria-label="講者備註"><div class="panel-head"><span>講者備註</span><button type="button" data-action="notes-close" aria-label="關閉講者備註">×</button></div><h2 id="notes-title"></h2><p id="notes-body"></p></aside>
+  <aside class="dynamic-reading" id="reading-panel" hidden aria-label="投影片完整文字"><div class="panel-head"><span>HTML 完整文字</span><button type="button" data-action="reading-close" aria-label="關閉閱讀模式">×</button></div><h2 id="reading-title"></h2><pre id="reading-body"></pre></aside>
+  <section class="dynamic-overview" id="overview-panel" hidden aria-label="投影片總覽"><div class="panel-head overview-head"><div><span class="toolbar-kicker">SCENE OVERVIEW</span><h2>上午場 HTML 動態場景</h2></div><button type="button" data-action="overview-close" aria-label="關閉投影片總覽">×</button></div><div class="overview-grid" id="overview-grid"></div></section>
+  </div>
+</body>
+</html>

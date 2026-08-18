@@ -19,6 +19,7 @@
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
 - `START_HERE_研習資源導航.html`：線上教材、123 個案例（含 12 張精選）、實作工具與下載入口
 - `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
+- `09_HTML動態簡報/index.html`：上午 39 頁、下午 44 頁的 HTML 原生文字場景，預留 HyperFrames／Remotion 動態化結構
 - `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄
 - `04_實作工具/04_跨平台Skill驗證器.html`：驗證 `SKILL.md`、資料夾或 ZIP 的跨平台可攜性與安全邊界
 - `04_實作工具/05_123個案例需求導向篩選器.html`：依教學／研究需求搜尋 123 筆 Akai 工具案例，提供卡片與應用雙入口

@@ -1,12 +1,12 @@
-# HANDOFF.md｜2026-08-18 本輪 Agent 交接（接手修正後）
+# HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區完成）
 
-稽核時間：2026-08-18 12:19（Asia/Taipei）
+稽核時間：2026-08-18 13:21（Asia/Taipei）
 
 ---
 
 ## 一句話狀態
 
-**公開站維持 `v2026.08.18.05`，本輪已補跑公開站與正式包完整 QA，並將來源／正式包驗收清單的上午頁數由 34 修正為 39；尚有正式包 Manifest 與 PDF 可及性等需老師決定的事項。**
+**本輪新增 `09_HTML動態簡報` 原生 HTML 動態簡報專區，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；目前 repo 目標版本為 `v2026.08.18.06`，公開站仍待本輪 push 後重新驗證。**
 
 ---
 
@@ -26,9 +26,9 @@
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.18.05`（已驗：`version.json` HTTP 200，版本字串符合）
-- **最新 commit**：`f6642e0`（更新交接驗收紀錄與正式包頁數）
-- **GitHub Pages**：已確認 `status=built`
+- **公開版本**：目前公開站仍為 `2026.08.18.05`；本輪 repo `version.json` 目標為 `2026.08.18.06`，push 後再驗證 HTTP 200。
+- **最新 commit**：本輪提交前以 `git log --oneline -1` 實際確認；上一個已知 commit 為 `f6642e0`。
+- **GitHub Pages**：本輪 push 前不宣稱新版本已 built；push 後以 `gh api .../pages` 實際確認。
 
 ---
 
@@ -58,14 +58,14 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 1. 本機 HTML 簡報 QA（`node qa_html_deck.mjs`）
 
-**結果（2026-08-18 12:19 跑出）**：exit 0，`HTML deck QA passed.`；上午 39 頁、下午 44 頁，共 83 頁。
+**結果（2026-08-18 13:21 前後跑出）**：exit 0，`HTML deck QA passed.`；上午 39 頁、下午 44 頁，共 83 頁。
 
 測試涵蓋（完整列表）：
 - 上午 39 頁、下午 44 頁，初始 slide #1 active = 1 ✓
 - Desktop 1440×960 無水平溢位 ✓
 - 頁腳含「阿凱老師」✓
 - Hotspot QR + Platform + Card 三型全部存在且可命中 ✓
-- `deck.js?v=2026.08.18.05` cache-busting 版本號存在 ✓
+- `deck.js?v=2026.08.18.06` cache-busting 版本號存在 ✓
 - 第一次全螢幕：立即進入沉浸狀態、工具列立即隱藏、舞台寬度 ≥ viewport × 0.9 ✓
 - 第二次全螢幕：同上 ✓
 - 鍵盤 ArrowRight 換頁至 slide 2 ✓
@@ -118,11 +118,35 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 驗證：`qa_workshop_suite.mjs` exit 0、正式包 `qa_html_deck.mjs` exit 0、`qa_ops_checklist.mjs` exit 0、`qa_qr_codes.py` exit 0（145 個 QR）、`audit_local_links.mjs` exit 0（82 個 HTML、127 個本地引用）。
 
+### 9. 新增 HTML 原生動態簡報專區（本輪 v2026.08.18.06）
+
+- 新入口：`09_HTML動態簡報/index.html`。
+- 上午 composition：`09_HTML動態簡報/compositions/morning.html`，39 頁。
+- 下午 composition：`09_HTML動態簡報/compositions/afternoon.html`，44 頁；合計 83 頁。
+- 內容資料取自既有 `08_HTML簡報` 的 `deck-data` 快照；新專區使用 HTML 文字、CSS 版面與連結，不讀取投影片圖檔。資料統計實際為上午 39 頁／85 個連結、下午 44 頁／81 個連結。
+- 每頁保留 `data-composition-id`、`data-start`、`data-duration`、`data-track-index`；GSAP timeline 以 `window.__timelines` 註冊並保持可 seek 的 paused 狀態，已可接 HyperFrames。Remotion 本輪未加入，保留後續轉換路徑。
+- `08_HTML簡報` 本輪只更新版本 query、版本資訊與專區入口，沒有重建或改寫其圖檔投影片、雙緩衝切換、全螢幕 CSS SSOT 或原有互動邏輯。
+
+本輪實際驗證（均為已執行結果）：
+
+```text
+node qa_html_deck.mjs → exit 0，HTML deck QA passed（原圖檔上午 39 頁、下午 44 頁）
+node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed（本機，含新專區 39／44 頁逐頁文字可見與舞台內檢查）
+node --check qa_github_pages_site.mjs → exit 0
+node --check 09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+npx --yes hyperframes lint 09_HTML動態簡報 --json → exit 0，filesScanned=3、errorCount=0、warningCount=0
+npx --yes hyperframes validate 09_HTML動態簡報 → exit 0，console errors=0、WCAG AA text passed=89
+npx --yes hyperframes inspect 09_HTML動態簡報 --json → exit 0，ok=true、issueCount=0
+npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，ok=true、layout.ok=true、errorCount=0、warningCount=0、contrast checked/passed=82/82
+```
+
+以上公開站版本與 Pages built 狀態在 push 前均為**未確認**；不可把本機 QA 當成公開部署完成證據。
+
 ---
 
 ## 沒做完、被擋住或刻意跳過
 
-1. **正式包 Manifest 與實際檔案數仍不一致**：目前 Manifest 寫 357，實際檔案數為 423；需老師決定是否以目前正式包為準重建 Manifest。
+1. **正式包 Manifest 與實際檔案數**：本輪未重驗；既有交接紀錄的檔案數字與本輪接手提示不一致，需以老師決定的正式包範圍重新核對，不能自行刪除或重建。
 2. **兩份簡報 PDF 共 83 頁的 structure-tree 警告**：視覺渲染正常，PDF 可及性仍未確認。
 3. **各工具是否實際載入全域 SKILL**：目錄存在，但功能性載入測試未做。
 4. **現場、帳號、設備均未驗證**：ChatGPT Voice、Typeless、教授帳號訂閱、中大網路、投影設備等，全部未確認。
@@ -136,7 +160,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 - **全螢幕第一下先進入 `is-immersive` 的競速修正**。
 - **上午 39 頁、下午 44 頁，URL hash 對應關係**。
 - **`Gemini Notebook` 現行命名**（不要改回 NotebookLM）。
-- **`deck.js?v=2026.08.18.05` 版本號**：版本號不可移除。
+- **`deck.js?v=2026.08.18.06` 版本號**：版本號不可移除。
 - **投影片圖片點陣圖 + Hotspot 疊加架構**：不要因為「不是純 HTML 文字」就整套改寫。
 - **來源不在 Git**：改正式包 HTML 的同時必須同步改來源腳本。
 
@@ -147,7 +171,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 | # | 問題 | 嚴重度 | 說明 |
 |---|---|---|---|
 | 1 | `qa_github_pages_site.mjs` pathname 回歸覆蓋仍未獨立擴充 | 低 | 現有 encoded 中文路徑測試與公開站 QA 均通過；QA 腳本不在 Git，本輪未擴大版控範圍 |
-| 2 | 正式包 Manifest 寫 357，實際 423 | 低 | 目前搜尋不到 `07_備援\morning.pdf`；刪除或重建 Manifest 需使用者決定 |
+| 2 | 正式包 Manifest 與實際檔案數 | 低 | 本輪未重驗；刪除重複 PDF 或重建 Manifest 需使用者決定 |
 | 3 | 兩份簡報 PDF 共 83 頁有 structure-tree 警告 | 低 | 視覺渲染正常，PDF 可及性影響未確認 |
 | 4 | SKILL 同步未做功能性測試 | 低 | 目錄存在，但各工具是否真的載入未測 |
 
@@ -155,7 +179,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ## 需要阿凱老師本人決定（接手 Agent 不可自作主張）
 
-1. 是否以目前 423 檔正式包為準重建 Manifest；目前搜尋不到 `07_備援\morning.pdf`。
+1. 是否重建正式包 Manifest；本輪未重驗檔案數，且刪除重複 PDF 需老師明確決定。
 2. 是否把建置腳本納入 Git 版控，解決「來源沒有 Git」的風險。
 3. 是否修復簡報 PDF 的 tagged structure tree 可及性警告。
 4. T-7（2026-08-19）與 T-24h（2026-08-25）用哪六個帳號、哪台投影設備做現場驗收。
@@ -251,7 +275,7 @@ Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 c
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.05 版本號）
+2. CSS 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.06 版本號）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 
 【接手後第一步】
@@ -273,7 +297,7 @@ Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 c
 【已知技術債（確認是否需要本輪處理）】
 - 來源與正式包驗收清單的「上午 34 頁」已同步修正為 39 頁，兩檔 SHA-256 相同
 - qa_github_pages_site.mjs 現有 encoded 中文 pathname 測試已通過；腳本不在 Git，未擴大版控範圍
-- 正式包 Manifest 寫 357 檔，實際 423；目前搜尋不到 07_備援\morning.pdf，需老師決定是否重建 Manifest
+- 正式包 Manifest 與實際檔案數本輪未重驗；是否重建 Manifest 或處理重複 PDF 需老師決定
 - 兩份簡報 PDF 共 83 頁有 structure-tree 警告（視覺正常，可及性未確認）
 
 【需要阿凱老師決定，不可自作主張】
