@@ -1,12 +1,12 @@
-# HANDOFF.md｜2026-08-18 本輪 Agent 交接
+# HANDOFF.md｜2026-08-18 本輪 Agent 交接（接手修正後）
 
-稽核時間：2026-08-18 11:31（Asia/Taipei）
+稽核時間：2026-08-18 12:19（Asia/Taipei）
 
 ---
 
 ## 一句話狀態
 
-**公開站已升至 `v2026.08.18.05`，所有核心 QA 綠燈；本輪主要工作是修 Bug，下一個 Agent 的首要任務是：確認是否有待更新的簡報內容或功能，以及處理本檔「沒做完」區塊列出的已知技術債。**
+**公開站維持 `v2026.08.18.05`，本輪已補跑公開站與正式包完整 QA，並將來源／正式包驗收清單的上午頁數由 34 修正為 39；尚有正式包 Manifest 與 PDF 可及性等需老師決定的事項。**
 
 ---
 
@@ -25,10 +25,10 @@
 - **Git repo**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826\github_pages_site`
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
-- **分支**：`main`，工作區乾淨（`nothing to commit`）
+- **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
 - **公開版本**：`2026.08.18.05`（已驗：`version.json` HTTP 200，版本字串符合）
 - **最新 commit**：`990c049`
-- **GitHub Pages**：push 已成功；接手後請再確認 `status=built`
+- **GitHub Pages**：已確認 `status=built`
 
 ---
 
@@ -56,7 +56,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 1. 本機 HTML 簡報 QA（`node qa_html_deck.mjs`）
 
-**結果（2026-08-18 11:29 跑出）**：exit 0，`HTML deck QA passed.`
+**結果（2026-08-18 12:19 跑出）**：exit 0，`HTML deck QA passed.`；上午 39 頁、下午 44 頁，共 83 頁。
 
 測試涵蓋（完整列表）：
 - 上午 39 頁、下午 44 頁，初始 slide #1 active = 1 ✓
@@ -79,7 +79,7 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 **結果**：exit 0，`GitHub Pages site QA passed.`
 
-⚠️ 帶 `BASE_URL` 的公開站版本**未在本輪重跑**。接手後請重跑一次帶 `BASE_URL` 的版本。
+帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站版本亦已重跑：exit 0，`GitHub Pages site QA passed.`
 
 ### 3. 公開 `version.json` 版本確認
 
@@ -110,13 +110,19 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 建立 `html-deck-fullscreen-smooth-transition` SKILL，同步至 `.claude`、`.codex`、`.agents`、`Cowork\.claude`、`Cowork\.agents` 五個目錄。
 ⚠️ 目錄存在已確認，但各工具載入時是否確實讀到此 SKILL，**未做功能性測試**。
 
+### 8. 來源與正式包驗收清單同步修正
+
+`workshop_suite_src/06_場務與驗收/PowerPoint實機驗收清單.csv` 與正式包同路徑檔案已同步將「上午 34 頁」修正為「上午 39 頁」。兩檔 SHA-256 均為 `55CF9382D256725F81A1172C77427882E1A490A496B22F673E6CEF18E5D7A22D`。
+
+驗證：`qa_workshop_suite.mjs` exit 0、正式包 `qa_html_deck.mjs` exit 0、`qa_ops_checklist.mjs` exit 0、`qa_qr_codes.py` exit 0（145 個 QR）、`audit_local_links.mjs` exit 0（82 個 HTML、127 個本地引用）。
+
 ---
 
 ## 沒做完、被擋住或刻意跳過
 
-1. **帶 `BASE_URL` 的公開站 QA 未本輪重跑**：上一版通過，本輪 push 後未再跑。接手請補跑。
-2. **正式包 QA 本輪未重跑**（`qa_workshop_suite.mjs`、`slides_test.py`、`qa_qr_codes.py`、`audit_local_links.mjs`）：正式包本輪沒有修改，沿用上一版驗收結果。
-3. **上一版 HANDOFF 的已知漂移尚未修正**（見下方「已知問題」）。
+1. **正式包 Manifest 與實際檔案數仍不一致**：目前 Manifest 寫 357，實際檔案數為 423；需老師決定是否以目前正式包為準重建 Manifest。
+2. **兩份簡報 PDF 共 83 頁的 structure-tree 警告**：視覺渲染正常，PDF 可及性仍未確認。
+3. **各工具是否實際載入全域 SKILL**：目錄存在，但功能性載入測試未做。
 4. **現場、帳號、設備均未驗證**：ChatGPT Voice、Typeless、教授帳號訂閱、中大網路、投影設備等，全部未確認。
 
 ---
@@ -138,17 +144,16 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 | # | 問題 | 嚴重度 | 說明 |
 |---|---|---|---|
-| 1 | `build_html_deck.mjs` 舊文案「上午 34 頁」 | 低 | 重建才觸發；現行 README 已手動修正 |
-| 2 | `qa_github_pages_site.mjs` 亂碼 pathname | 低 | 測試覆蓋缺口，不影響正式功能 |
-| 3 | 正式包 Manifest 寫 357，實際 358 | 低 | 多出 `07_備援\morning.pdf`，刪或改需使用者決定 |
-| 4 | 兩份簡報 PDF 共 83 頁有 structure-tree 警告 | 低 | 視覺渲染正常，PDF 可及性影響未確認 |
-| 5 | SKILL 同步未做功能性測試 | 低 | 目錄存在，但各工具是否真的載入未測 |
+| 1 | `qa_github_pages_site.mjs` pathname 回歸覆蓋仍未獨立擴充 | 低 | 現有 encoded 中文路徑測試與公開站 QA 均通過；QA 腳本不在 Git，本輪未擴大版控範圍 |
+| 2 | 正式包 Manifest 寫 357，實際 423 | 低 | 目前搜尋不到 `07_備援\morning.pdf`；刪除或重建 Manifest 需使用者決定 |
+| 3 | 兩份簡報 PDF 共 83 頁有 structure-tree 警告 | 低 | 視覺渲染正常，PDF 可及性影響未確認 |
+| 4 | SKILL 同步未做功能性測試 | 低 | 目錄存在，但各工具是否真的載入未測 |
 
 ---
 
 ## 需要阿凱老師本人決定（接手 Agent 不可自作主張）
 
-1. 是否刪除正式包 `07_備援\morning.pdf`，或改 Manifest 為 358。
+1. 是否以目前 423 檔正式包為準重建 Manifest；目前搜尋不到 `07_備援\morning.pdf`。
 2. 是否把建置腳本納入 Git 版控，解決「來源沒有 Git」的風險。
 3. 是否修復簡報 PDF 的 tagged structure tree 可及性警告。
 4. T-7（2026-08-19）與 T-24h（2026-08-25）用哪六個帳號、哪台投影設備做現場驗收。
@@ -239,8 +244,8 @@ Remove-Item Env:WORKSHOP_ROOT
 【當前狀態】
 公開站版本：2026.08.18.05（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：exit 0，HTML deck QA passed（2026-08-18 11:29 跑出）
-帶 BASE_URL 的公開站 QA：本輪未重跑，接手後請補跑
-Git 工作區：乾淨，main 分支，最新 commit 990c049
+帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
+Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
@@ -264,9 +269,9 @@ Git 工作區：乾淨，main 分支，最新 commit 990c049
   Remove-Item Env:BASE_URL
 
 【已知技術債（確認是否需要本輪處理）】
-- build_html_deck.mjs 仍有「上午 34 頁」舊文案（重建才觸發）
-- qa_github_pages_site.mjs 有亂碼 pathname（測試覆蓋缺口）
-- 正式包 Manifest 寫 357 檔，實際 358（多出 07_備援\morning.pdf）
+- 來源與正式包驗收清單的「上午 34 頁」已同步修正為 39 頁，兩檔 SHA-256 相同
+- qa_github_pages_site.mjs 現有 encoded 中文 pathname 測試已通過；腳本不在 Git，未擴大版控範圍
+- 正式包 Manifest 寫 357 檔，實際 423；目前搜尋不到 07_備援\morning.pdf，需老師決定是否重建 Manifest
 - 兩份簡報 PDF 共 83 頁有 structure-tree 警告（視覺正常，可及性未確認）
 
 【需要阿凱老師決定，不可自作主張】
