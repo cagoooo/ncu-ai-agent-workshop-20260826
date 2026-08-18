@@ -23,6 +23,7 @@
 - 學校名稱只可寫「桃園市龍潭區石門國民小學」或「石門國小」。
 - **【編碼鐵律】禁止使用 PowerShell 5.1 的 Get-Content / Set-Content 讀寫繁中 HTML/JS/JSON**：PS5 會誤用 CP950 讀取造成多位元組截斷亂碼，且 `-Encoding utf8` 會塞入破壞性的 UTF-8 BOM。版本替換一律使用 Python 專屬腳本（`safe_version_bump.py`）。
 - **【PWA 效能鐵律】Service Worker 導覽請求必須採用 Stale-While-Revalidate (SWR)**：HTML 一律 0ms 本地快取秒開瞬出 + 背景靜默非同步更新，嚴禁在 HTML 請求採用 `networkFirst`；Precache 清單禁止塞入 4MB+ 的 OG 高清社群大圖。
+- **【全螢幕佈局鐵律】全螢幕尺寸控制 100% 交由現代 CSS，嚴禁 JS 注入 inline px 尺寸**：禁止在進入全螢幕時用 JS 計時器計算或塞入 `style.height/width`（會因全螢幕切換前仍為舊視窗尺寸而導致底部黑底/偏上方）；全螢幕一律使用 `:fullscreen`, `:-webkit-full-screen`, `body.is-immersive` 搭配 `min(100vw, calc(100vh * 16 / 9))` 與 `position: fixed`，實現 0ms 瞬發垂直水平滿版居中。
 - **【SW 更新四重防護】Update Prompt 必須包含 Quad-Layer Gate**：(1) 重載後 15 秒 `inSilence` 靜默冷卻；(2) 點更新時寫入 `sessionStorage.pwa_ack_version`；(3) 同版號靜默；(4) `observeRegistration` 彈窗前必須先 fetch version.json 確認真實版號，徹底杜絕無限重複彈窗。
 
 ## 修改與發布流程
