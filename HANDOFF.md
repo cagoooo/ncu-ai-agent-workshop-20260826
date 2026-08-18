@@ -1,12 +1,12 @@
 # HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區 RWD 修復）
 
-稽核時間：2026-08-18 14:23（Asia/Taipei；部署後狀態仍以文末指令重新確認）
+稽核時間：2026-08-18 14:35（Asia/Taipei；部署後公開狀態已重驗）
 
 ---
 
 ## 一句話狀態
 
-**本輪修復 `09_HTML動態簡報` 的首頁導覽與長文字 RWD，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站目標版本為 `v2026.08.18.08`，部署後須以 Pages status、`version.json` 與帶 `BASE_URL` 的 QA 再確認。**
+**本輪修復 `09_HTML動態簡報` 的首頁導覽與長文字 RWD，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站 `v2026.08.18.08` 已由 Pages built、公開版本、公開瀏覽器量測與帶 `BASE_URL` 的 QA 實際確認。**
 
 ### 本輪修復（v2026.08.18.08）
 
@@ -29,10 +29,14 @@ npx --yes hyperframes validate "09_HTML動態簡報" → exit 0，console errors
 npx --yes hyperframes inspect "09_HTML動態簡報" → exit 0，9 個 timeline sample、layout issues=0
 npx --yes hyperframes check "09_HTML動態簡報" → exit 0，runtime errors=0、layout issues=0、contrast checked/passed=92/92
 git diff --check → exit 0
-部署後的 `gh api`、`version.json`、公開瀏覽器實測與帶 `BASE_URL` QA：須在 push 後以文末指令實際確認，未確認前不得視為完成
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0，status=built
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-08-final' → exit 0，HTTP 200、version=2026.08.18.08
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0，`GitHub Pages site QA passed.`
+公開 Playwright slide-12 量測 → exit 0；桌機 active scene 的 grid/body/copy scrollHeight=clientHeight=488、maxBlockOverflow=0、水平溢位=0；手機舞台 1130/1130、grid 1054/1054、body 684/684、copy 352/352、maxBlockOverflow=0、水平溢位=0
+公開 Playwright 首頁量測 → exit 0；圖檔簡報首頁連結為 `https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/08_HTML%E7%B0%A1%E5%A0%B1/index.html`、動態場次連結=2、可見文字長度=380
 ```
 
-本輪 commit 與 push、Pages built、公開版本及帶 `BASE_URL` 的公開站 QA：部署後以本文文末指令實際確認，未確認前不得視為完成。
+功能修復 commit：`4733e92 修復 HTML 動態簡報 RWD 與首頁導覽`，已推送 `main`；本檔為部署後交接資料更新。
 
 ---
 
@@ -52,9 +56,9 @@ git diff --check → exit 0
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：目標為 `2026.08.18.08`；push 後以 `version.json` HTTP 200 實際確認。
+- **公開版本**：`2026.08.18.08`，`version.json` HTTP 200 已確認。
 - **最新 commit**：以 `git log --oneline -1` 實際確認；不可沿用本檔舊 hash。
-- **GitHub Pages**：本輪 push 後須以 `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` 實際確認 `status=built`。
+- **GitHub Pages**：`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` exit 0，`status=built`。
 
 ---
 
@@ -105,15 +109,15 @@ a7c0677 效能與體驗優化：根除全螢幕切換時的底部黑邊與延遲
 
 ### 2. 本機 GitHub Pages QA（`node qa_github_pages_site.mjs`）
 
-**結果**：本機 exit 0，`GitHub Pages site QA passed.`；本輪含 83 個動態場景、5 種視窗尺寸的 RWD 檢查已完成。push 後的 `BASE_URL` 公開站結果待文末指令確認。
+**結果**：本機 exit 0，`GitHub Pages site QA passed.`；本輪含 83 個動態場景、5 種視窗尺寸的 RWD 檢查已完成。
 
-帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站 QA：push 後重跑結果待文末指令確認，未確認前不宣稱完成。
+帶 `BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826` 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 
 ### 3. 公開 `version.json` 版本確認
 
 ```powershell
 (Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260818-08').Content
-# → 目標為 HTTP 200，"version": "2026.08.18.08"；push 後重新確認
+# → HTTP 200，"version": "2026.08.18.08"
 ```
 
 ### 4. 全螢幕跑版修復（v2026.08.18.02）
@@ -220,8 +224,8 @@ npx --yes hyperframes check 09_HTML動態簡報 --json → exit 0，runtime erro
 
 - **Token 額度**：本對話已接近耗盡，這是換手原因；剩餘量未確認。
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
-- **公開站版本**：目標為 `version.json` HTTP 200，`"version": "2026.08.18.08"`；push 後實際驗證。
-- **Pages build 狀態**：本輪 commit 與 `status=built`、公開站 QA 結果均以 push 後指令實際確認，未確認前不宣稱完成。
+- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.08"`。
+- **Pages build 狀態**：本輪功能 commit `4733e92` 已推送，Pages API exit 0 回報 `status=built`；公開站 QA exit 0。
 - **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
 - **中大現場網路、投影、麥克風**：未確認。
 - **任何 token、API key、密碼**：本檔均無寫入。
@@ -297,9 +301,9 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.08（push 後須以 version.json HTTP 200 重驗）
+公開站版本：2026.08.18.08（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，上午 39 頁／下午 44 頁
-帶 BASE_URL 的公開站 QA：push 後重跑，未確認前不宣稱完成
+帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
