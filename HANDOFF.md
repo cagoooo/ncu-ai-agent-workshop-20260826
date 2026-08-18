@@ -27,7 +27,7 @@
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
 - **公開版本**：`2026.08.18.05`（已驗：`version.json` HTTP 200，版本字串符合）
-- **最新 commit**：`990c049`
+- **最新 commit**：`f6642e0`（更新交接驗收紀錄與正式包頁數）
 - **GitHub Pages**：已確認 `status=built`
 
 ---
@@ -38,6 +38,8 @@
 git status → nothing to commit, working tree clean
 
 git log --oneline -10：
+f6642e0 更新交接驗收紀錄與正式包頁數
+4c989db 交接文件升級：更新至 2026-08-18 本輪實際驗證數字，記錄全螢幕閃黑根治與 SKILL 固化
 990c049 文檔升級：將全螢幕 SSOT、0 閃爍雙緩衝切換與 Cache-Busting 固化至 AGENTS.md
 34f622c 根除全螢幕閃黑：徹底拔除全螢幕動態替換 2K 圖源機制 (enableHiResImage) (v2026.08.18.05)
 ebfee17 根除切換下一頁閃黑：實作雙緩衝重疊轉場 (is-previous 托底) + GPU 預先解碼 (img.decode) (v2026.08.18.04)
