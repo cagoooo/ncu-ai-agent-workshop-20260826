@@ -325,47 +325,6 @@ function toggleReading(force) { readingPanel.hidden = typeof force === "boolean"
 function nativeFullscreenElement() {
   return document.fullscreenElement || document.webkitFullscreenElement || null;
 }
-let fullscreenLayoutTimers = [];
-function clearFullscreenLayoutTimers() {
-  fullscreenLayoutTimers.forEach((timer) => window.clearTimeout(timer));
-  fullscreenLayoutTimers = [];
-}
-function applyFullscreenLayout(active) {
-  const stageWrap = document.querySelector(".deck-stage-wrap");
-  const deckMain = document.querySelector(".deck-main");
-  if (!stageWrap) return;
-  if (!active) {
-    stageWrap.style.removeProperty("width");
-    stageWrap.style.removeProperty("height");
-    stageWrap.style.removeProperty("max-width");
-    deckMain?.style.removeProperty("width");
-    deckMain?.style.removeProperty("min-height");
-    deckMain?.style.removeProperty("height");
-    return;
-  }
-  const visualWidth = window.visualViewport?.width || 0;
-  const visualHeight = window.visualViewport?.height || 0;
-  const viewportWidth = Math.max(1, Math.round(visualWidth || window.innerWidth || document.documentElement.clientWidth));
-  const viewportHeight = Math.max(1, Math.round(visualHeight || window.innerHeight || document.documentElement.clientHeight));
-  const width = Math.min(viewportWidth, viewportHeight * 16 / 9);
-  if (deckMain) {
-    deckMain.style.width = viewportWidth + "px";
-    deckMain.style.minHeight = viewportHeight + "px";
-    deckMain.style.height = viewportHeight + "px";
-  }
-  stageWrap.style.width = Math.round(width) + "px";
-  stageWrap.style.height = Math.round(width * 9 / 16) + "px";
-  stageWrap.style.maxWidth = viewportWidth + "px";
-  void stageWrap.offsetWidth;
-}
-function scheduleFullscreenLayout(active) {
-  clearFullscreenLayoutTimers();
-  applyFullscreenLayout(active);
-  if (!active) return;
-  [50, 180, 420, 800, 1200].forEach((delay) => {
-    fullscreenLayoutTimers.push(window.setTimeout(() => applyFullscreenLayout(true), delay));
-  });
-}
 function syncFullscreenUi(active) {
   document.body.classList.toggle("is-immersive", active);
   fullscreenButtons.forEach((button) => {
@@ -378,8 +337,7 @@ function syncFullscreenUi(active) {
     button.title = active ? "退出全螢幕（F）" : "全螢幕（F）";
   });
   if (immersiveExit) immersiveExit.hidden = !active;
-  scheduleFullscreenLayout(active);
-  if (active) scheduleHiResImage(stage.querySelector(".is-active"), 160);
+  if (active) scheduleHiResImage(stage.querySelector(".is-active"), 120);
 }
 async function leaveNativeFullscreen() {
   const exit = document.exitFullscreen || document.webkitExitFullscreen;
@@ -473,12 +431,6 @@ const onFullscreenChange = () => {
 };
 document.addEventListener("fullscreenchange", onFullscreenChange);
 document.addEventListener("webkitfullscreenchange", onFullscreenChange);
-const handleFullscreenViewportResize = () => {
-  if (nativeFullscreenElement() || document.body.classList.contains("is-immersive")) scheduleFullscreenLayout(true);
-};
-window.addEventListener("resize", handleFullscreenViewportResize);
-window.addEventListener("orientationchange", handleFullscreenViewportResize);
-window.visualViewport?.addEventListener("resize", handleFullscreenViewportResize);
 
 document.addEventListener("keydown", (event) => {
   if (event.target.matches("input,textarea,select")) return;

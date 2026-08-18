@@ -44,15 +44,19 @@ body.is-immersive .spotlight-badge,:fullscreen .spotlight-badge,:-webkit-full-sc
 @media (max-width:900px) and (orientation:portrait){.deck-main{min-height:calc(100svh - 58px);height:calc(100svh - 58px);justify-content:center;gap:10px;padding:14px 0 max(24px,env(safe-area-inset-bottom));overflow:hidden}.deck-stage-wrap{width:min(100vw,calc((100svh - 108px)*16/9));max-width:100vw}.deck-stage{border-radius:0}.site-credit{display:none}.deck-hint{display:none}}
 @media (max-width:768px) and (orientation:portrait){.deck-stage-wrap{width:min(100vw,calc((100svh - 108px)*16/9))}}
 @supports not (height:100svh){.deck-stage-wrap{width:min(100%,1280px,calc((100dvh - 180px)*16/9))}@media (max-width:900px){.deck-stage-wrap{width:min(100%,calc((100dvh - 180px)*16/9))}}@media (max-width:768px) and (orientation:landscape){.deck-main{min-height:calc(100dvh - 58px);height:calc(100dvh - 58px)}.deck-stage-wrap{width:min(100vw,calc((100dvh - 134px)*16/9))}}@media (max-width:900px) and (orientation:portrait){.deck-main{min-height:calc(100dvh - 58px);height:calc(100dvh - 58px)}.deck-stage-wrap{width:min(100vw,calc((100dvh - 108px)*16/9))}}}
-body.is-immersive{overflow:hidden}
-body.is-immersive .deck-toolbar,body.is-immersive .deck-controls,body.is-immersive .link-strip,body.is-immersive .deck-hint,body.is-immersive .site-credit{display:none!important}
-body.is-immersive .deck-main{width:100vw;min-height:100dvh;height:100dvh;padding:0!important;gap:0;justify-content:center;overflow:hidden}
-body.is-immersive .deck-stage-wrap{width:min(100vw,calc(100dvh * 16/9));max-width:100vw}
-body.is-immersive .deck-stage{border:0;border-radius:0}
+:fullscreen,:-webkit-full-screen,body.is-immersive{overflow:hidden!important;background:var(--bg)!important}
+:fullscreen .deck-toolbar,:-webkit-full-screen .deck-toolbar,body.is-immersive .deck-toolbar,
+:fullscreen .deck-controls,:-webkit-full-screen .deck-controls,body.is-immersive .deck-controls,
+:fullscreen .link-strip,:-webkit-full-screen .link-strip,body.is-immersive .link-strip,
+:fullscreen .deck-hint,:-webkit-full-screen .deck-hint,body.is-immersive .deck-hint,
+:fullscreen .site-credit,:-webkit-full-screen .site-credit,body.is-immersive .site-credit{display:none!important}
+:fullscreen .deck-main,:-webkit-full-screen .deck-main,body.is-immersive .deck-main{position:fixed!important;inset:0!important;width:100vw!important;min-height:100vh!important;height:100vh!important;max-height:100vh!important;padding:0!important;margin:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important;overflow:hidden!important;background:var(--bg)!important;z-index:50!important}
+:fullscreen .deck-stage-wrap,:-webkit-full-screen .deck-stage-wrap,body.is-immersive .deck-stage-wrap{width:min(100vw,calc(100vh*16/9))!important;height:min(100vh,calc(100vw*9/16))!important;aspect-ratio:16/9!important;max-width:100vw!important;max-height:100vh!important;position:relative!important;top:auto!important;left:auto!important;margin:auto!important;transform:none!important}
+:fullscreen .deck-stage,:-webkit-full-screen .deck-stage,body.is-immersive .deck-stage{border:0!important;border-radius:0!important;width:100%!important;height:100%!important}
 .immersive-exit{position:fixed;z-index:90;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-height:40px;padding:9px 13px;border:1px solid rgba(255,255,255,.42);border-radius:999px;background:rgba(5,11,18,.72);backdrop-filter:blur(12px);color:#fff;font-size:12px;font-weight:800;letter-spacing:.02em;box-shadow:0 8px 24px rgba(0,0,0,.24)}
 .immersive-exit:hover,.immersive-exit:focus-visible{border-color:var(--accent);color:var(--accent)}
 body:not(.is-immersive) .immersive-exit{display:none}
-html:fullscreen,html:-webkit-full-screen{background:var(--bg)}
+html:fullscreen,html:-webkit-full-screen{background:var(--bg)!important}
 @media (max-width:900px){.reading-panel{padding:20px 14px 42px}.reading-panel h2{font-size:22px}.reading-panel pre{font-size:16px}}
 .hub-shell{max-width:1600px;padding-inline:clamp(18px,3vw,48px)}
 .hub-hero{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr);gap:clamp(28px,5vw,72px);align-items:stretch}
