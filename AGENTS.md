@@ -23,7 +23,9 @@
 - 學校名稱只可寫「桃園市龍潭區石門國民小學」或「石門國小」。
 - **【編碼鐵律】禁止使用 PowerShell 5.1 的 Get-Content / Set-Content 讀寫繁中 HTML/JS/JSON**：PS5 會誤用 CP950 讀取造成多位元組截斷亂碼，且 `-Encoding utf8` 會塞入破壞性的 UTF-8 BOM。版本替換一律使用 Python 專屬腳本（`safe_version_bump.py`）。
 - **【PWA 效能鐵律】Service Worker 導覽請求必須採用 Stale-While-Revalidate (SWR)**：HTML 一律 0ms 本地快取秒開瞬出 + 背景靜默非同步更新，嚴禁在 HTML 請求採用 `networkFirst`；Precache 清單禁止塞入 4MB+ 的 OG 高清社群大圖。
-- **【全螢幕佈局鐵律】全螢幕尺寸控制 100% 交由現代 CSS，嚴禁 JS 注入 inline px 尺寸**：禁止在進入全螢幕時用 JS 計時器計算或塞入 `style.height/width`（會因全螢幕切換前仍為舊視窗尺寸而導致底部黑底/偏上方）；全螢幕一律使用 `:fullscreen`, `:-webkit-full-screen`, `body.is-immersive` 搭配 `min(100vw, calc(100vh * 16 / 9))` 與 `position: fixed`，實現 0ms 瞬發垂直水平滿版居中。
+- **【全螢幕佈局鐵律】全螢幕尺寸控制 100% 交由現代 CSS SSOT 規範**：全螢幕樣式必須置於 CSS 最底層，父容器 `.deck-main` 必須強制宣告 `position: fixed !important; inset: 0 !important; height: 100vh !important; display: flex !important; align-items: center !important; justify-content: center !important;`；舞台容器使用 `margin: auto !important; width: min(100vw, calc(100vh * 16 / 9)) !important; height: min(100vh, calc(100vw * 9 / 16)) !important;`，實現 0ms 瞬發垂直水平滿版置中，杜絕靠頂對齊與下方大黑底。
+- **【全螢幕零閃爍鐵律】嚴禁在全螢幕換頁後運行時動態置換 `img.src`（如 `enableHiResImage`）**：替換 `src` 會強制瀏覽器清空畫面重新點陣化（Rasterization）導致換頁後 100ms 瞬間閃黑；投影片切換必須採用「雙緩衝重疊切換（`is-previous` 托底）」搭配原生 `img.decode()` 預解碼與 `will-change: opacity, transform`，保證 100% 有畫面托底、零重繪零閃爍。
+- **【靜態資源 Cache-Busting 鐵律】所有 CSS 與 JS 引入必須 100% 帶有版本號參數**：例如 `<link rel="stylesheet" href="assets/deck.css?v=2026.08.18.05">` 與 `<script defer src="assets/deck.js?v=2026.08.18.05">`，嚴禁裸連，防止使用者在同一個瀏覽器讀取到本機磁碟快取的舊樣式。
 - **【SW 更新四重防護】Update Prompt 必須包含 Quad-Layer Gate**：(1) 重載後 15 秒 `inSilence` 靜默冷卻；(2) 點更新時寫入 `sessionStorage.pwa_ack_version`；(3) 同版號靜默；(4) `observeRegistration` 彈窗前必須先 fetch version.json 確認真實版號，徹底杜絕無限重複彈窗。
 
 ## 修改與發布流程
