@@ -1,12 +1,36 @@
 # HANDOFF.md｜2026-08-18 本輪 Agent 交接（HTML 動態專區完成）
 
-稽核時間：2026-08-18 13:21（Asia/Taipei）
+稽核時間：2026-08-18 13:47（Asia/Taipei）
 
 ---
 
 ## 一句話狀態
 
-**本輪新增 `09_HTML動態簡報` 原生 HTML 動態簡報專區，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站 `v2026.08.18.06` 已由 Pages built 與公開 QA 實際確認。**
+**本輪修復 `09_HTML動態簡報` 入口頁的一般瀏覽器渲染，保留 `08_HTML簡報` 圖檔版的設計與互動邏輯；公開站 `v2026.08.18.07` 已由 Pages built、公開瀏覽器實測與公開 QA 實際確認。**
+
+### 本輪接手修復（v2026.08.18.07）
+
+- 根因：入口頁 GSAP timeline 原本保持 `paused`，一般瀏覽器沒有把內容推進到可見狀態，因此 `.hub-copy`、`.hub-side-note` 與場次連結停在 `opacity: 0`；不是圖層遺失或投影片圖片渲染失敗。
+- 修復：一般瀏覽器模式將入口 timeline seek 到結尾；HyperFrames 模式仍保留 paused、可逐幀 seek 的 timeline。
+- 快取：`sw.js`、`version.json` 與 HTML query 版本由 `.06` 提升至 `.07`，讓既有 Service Worker 不再回傳舊入口 HTML。
+- `08_HTML簡報` 僅更新版本 query／版本標記，沒有改動投影片圖片、Hotspot、雙緩衝切換或全螢幕 CSS SSOT。
+
+本輪實際驗證：
+
+```text
+node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed（本機，含入口可見性回歸測試）
+node qa_html_deck.mjs → exit 0，HTML deck QA passed（原圖檔上午 39 頁、下午 44 頁）
+npx --yes hyperframes lint "09_HTML動態簡報" --json → exit 0，filesScanned=3、errorCount=0、warningCount=0
+npx --yes hyperframes validate "09_HTML動態簡報" → exit 0，console errors=0、WCAG AA text passed=89
+npx --yes hyperframes inspect "09_HTML動態簡報" --json → exit 0，ok=true、issueCount=0
+npx --yes hyperframes check "09_HTML動態簡報" --json → exit 0，ok=true、layout errorCount=0、contrast checked/passed=82/82
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0，status=built
+Invoke-WebRequest version.json?cb=20260818-07 → exit 0，HTTP 200、version=2026.08.18.07
+公開瀏覽器入口實測 → exit 0，HTTP 200、appVersion=.07、hubCopyOpacity=1、hubSideOpacity=1、deckLinkCount=2、visibleTextLength=370、timelineRegistered=true
+$env:BASE_URL=...; node qa_github_pages_site.mjs → exit 0，GitHub Pages site QA passed
+```
+
+本輪修復 commit：`fc470a9 修復 HTML 動態專區入口渲染與快取版本`，已推送 `main`。
 
 ---
 
@@ -26,8 +50,8 @@
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.18.06`，已驗 `version.json` HTTP 200。
-- **最新 commit**：以 `git log --oneline -1` 實際確認；本輪功能 commit 為 `5c2d758`。
+- **公開版本**：`2026.08.18.07`，已驗 `version.json` HTTP 200。
+- **最新 commit**：以 `git log --oneline -1` 實際確認；本輪修復 commit 為 `fc470a9`。
 - **GitHub Pages**：已驗 `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` 回報 `status=built`。
 
 ---
@@ -227,7 +251,7 @@ Set-Location $src
 node qa_html_deck.mjs
 ```
 
-### Step 4：重跑公開站 QA（本輪未跑，接手必補）
+### Step 4：重跑公開站 QA（本輪已完成；下次接手仍必跑）
 
 ```powershell
 $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'
@@ -268,14 +292,14 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.06（version.json HTTP 200 已驗）
+公開站版本：2026.08.18.07（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：exit 0，HTML deck QA passed（2026-08-18 11:29 跑出）
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.06 版本號）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.07，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 
 【接手後第一步】
