@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.08",
-  "buildTime": "2026-08-18T06:01:15.000Z",
-  "title": "HTML 動態簡報 RWD 與長文字排版修復",
-  "description": "新增回簡報首頁導覽，修復桌面長文字卡片溢位，並讓手機與平板直式場景自然增高完整呈現；原有圖檔簡報保持不變。"
+  "version": "2026.08.18.09",
+  "buildTime": "2026-08-18T06:48:30.000Z",
+  "title": "補齊 HTML 動態簡報 Service Worker 更新通知",
+  "description": "讓 HTML 動態簡報專區載入共用更新提示，並同步提升 Service Worker 與資源版本；保留原有圖檔簡報與 RWD 修復。"
 }
