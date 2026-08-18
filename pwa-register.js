@@ -23,18 +23,18 @@
 
   const style = document.createElement("style");
   style.textContent = [
-    ".pwa-update-prompt{position:fixed;right:20px;bottom:20px;z-index:10000;width:min(440px,calc(100vw - 28px));padding:18px 20px;border:1.5px solid rgba(85,167,255,.6);border-radius:20px;background:rgba(7,19,31,.97);color:#f7fafc;box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 0 1px rgba(85,167,255,.2) inset;font:14px/1.55 \"Noto Sans TC\",\"Microsoft JhengHei\",system-ui,sans-serif;backdrop-filter:blur(20px);animation:pwaSlideUp .3s ease-out}",
+    ".pwa-update-prompt{position:fixed!important;right:20px!important;bottom:20px!important;z-index:10000!important;width:min(440px,calc(100vw - 28px))!important;padding:18px 20px!important;border:1.5px solid rgba(85,167,255,.6)!important;border-radius:20px!important;background:rgba(7,19,31,.97)!important;color:#f7fafc!important;box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 0 1px rgba(85,167,255,.2) inset!important;font:14px/1.55 \"Noto Sans TC\",\"Microsoft JhengHei\",system-ui,sans-serif!important;backdrop-filter:blur(20px)!important;animation:pwaSlideUp .3s ease-out!important}",
     "@keyframes pwaSlideUp{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}",
-    ".pwa-update-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}",
-    ".pwa-update-badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:999px;background:#256fe8;color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em}",
-    ".pwa-update-prompt strong{font-size:16px;font-weight:800;color:#fff;margin:0}",
-    ".pwa-update-prompt p{margin:0 0 14px;color:#c4d3e1;font-size:13px;line-height:1.6}",
-    ".pwa-update-actions{display:flex;gap:10px;justify-content:flex-end}",
-    ".pwa-update-actions button{border:1px solid #2a4761;border-radius:999px;padding:8px 16px;background:#102438;color:#dce9f4;cursor:pointer;font:inherit;font-size:13px;transition:all .2s}",
-    ".pwa-update-actions .pwa-update-primary{border-color:#55a7ff;background:#256fe8;color:#fff;font-weight:700;box-shadow:0 4px 14px rgba(37,111,232,.35)}",
-    ".pwa-update-actions button:hover{filter:brightness(1.15);transform:translateY(-1px)}",
-    ".pwa-update-actions button:disabled{cursor:wait;opacity:.72;transform:none}",
-    "@media (max-width:600px){.pwa-update-prompt{right:12px;bottom:12px;left:12px;width:auto;padding:15px 16px}}"
+    ".pwa-update-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin-bottom:8px!important}",
+    ".pwa-update-badge{display:inline-flex!important;align-items:center!important;padding:3px 9px!important;border-radius:999px!important;background:#256fe8!important;color:#fff!important;font-size:11px!important;font-weight:800!important;letter-spacing:.04em!important}",
+    ".pwa-update-prompt strong{font-size:16px!important;font-weight:800!important;color:#fff!important;margin:0!important}",
+    ".pwa-update-prompt p{margin:0 0 14px!important;color:#c4d3e1!important;font-size:13px!important;line-height:1.6!important}",
+    ".pwa-update-actions{display:flex!important;gap:10px!important;justify-content:flex-end!important}",
+    ".pwa-update-actions button{border:1px solid #2a4761!important;border-radius:999px!important;padding:8px 16px!important;background:#102438!important;color:#dce9f4!important;cursor:pointer!important;font:inherit!important;font-size:13px!important;font-weight:600!important;transition:all .2s!important}",
+    ".pwa-update-actions .pwa-update-primary{border-color:#55a7ff!important;background:#256fe8!important;color:#fff!important;font-weight:800!important;box-shadow:0 4px 14px rgba(37,111,232,.35)!important}",
+    ".pwa-update-actions button:hover{filter:brightness(1.15)!important;transform:translateY(-1px)!important}",
+    ".pwa-update-actions button:disabled{cursor:wait!important;opacity:.72!important;transform:none!important}",
+    "@media (max-width:600px){.pwa-update-prompt{right:12px!important;bottom:12px!important;left:12px!important;width:auto!important;padding:15px 16px!important}}"
   ].join("");
   document.head.append(style);
 
@@ -91,8 +91,10 @@
     }
   }
 
+  let latestRemoteData = null;
   function showUpdatePrompt(details = {}) {
     const targetVersion = details.version || latestRemoteVersion || "";
+    const promptDesc = details.description || latestRemoteData?.description || "為確保檢視最新版簡報、微插圖與 0ms 全螢幕體驗，請立即載入最新版本。";
     // 靜默期：剛重載後 15 秒不彈窗
     if (inSilence()) return;
     if (targetVersion) {
@@ -115,7 +117,7 @@
     const versionLabel = targetVersion ? " v" + targetVersion : "";
     panel.innerHTML =
       "<div class=\"pwa-update-head\"><span class=\"pwa-update-badge\">⚡ 系統更新</span><strong>網站有新版可用" + versionLabel + "</strong></div>" +
-      "<p>為確保能檢視最新版 RAG/Harness 概念看板、工具與無閃爍簡報，請立即載入最新版本。</p>" +
+      "<p>" + promptDesc + "</p>" +
       "<div class=\"pwa-update-actions\"><button type=\"button\" data-pwa-later>稍後再說</button>" +
       "<button type=\"button\" class=\"pwa-update-primary\" data-pwa-refresh>立即更新 🚀</button></div>";
     panel.querySelector("[data-pwa-later]").addEventListener("click", () => {
@@ -137,6 +139,7 @@
       const data = await response.json();
       if (data.version) {
         latestRemoteVersion = data.version;
+        latestRemoteData = data;
         return data.version;
       }
     } catch {}
