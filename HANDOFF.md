@@ -18,7 +18,7 @@
 | P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames lint／validate／inspect／check 均 exit 0；timeline samples=9、layout issues=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
 | P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG 為 1200×630；公開 version=`2026.08.21.03` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
 | P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本輪修正動態 favicon encoded pathname，公開 `BASE_URL` QA → exit 0；上午／下午捲動容器 240/240、300/300，探針與重設各 6/6 | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
-| P1-05 | 待本人決定／未處理 | 正式包 Manifest 與實際檔案數、重複 PDF、來源腳本是否納入 Git、兩份 PDF structure-tree 可及性警告 | 本輪實測正式包 456 檔（PDF 6、PPTX 6、HTML 85、PNG 287）；`RELEASE_MANIFEST_v1.0.txt` 仍寫 357；PDF structure-tree 視覺正常但可及性影響未確認 | 不刪檔、不改 Manifest、不修 PDF，直到老師選定範圍；本輪只同步新增資產與保留可追溯檔案 |
+| P1-05 | 部分完成／仍有決策邊界 | 正式包 Manifest、實際檔案數與重複 PDF 盤點；來源腳本是否納入 Git、PDF structure-tree 可及性仍待決定 | `RELEASE_MANIFEST_v1.1.txt` 建立 → exit 0；實際總數 457（既有 456＋v1.1 Manifest）、SHA-256 inventory=456、missing=0、mismatch=0；正式包套件 QA 與 HTML QA 均 exit 0；PDF 6 份、重複 PDF 群組 2 組 | 重複 PDF 已依老師決定保留；不刪除原 v1.0 歷史清單；來源納入 Git 與 PDF 完整可及性驗收仍不自行決定 |
 ### RDQ 後續候選索引（未採納，等老師挑選）
 
 | 候選編號 | 方向 | 主要內容 | 預估代價／風險 | 建議驗收 |
@@ -89,7 +89,7 @@ Invoke-WebRequest version.json?cb=20260821-02-2 → exit 0；HTTP 200、version=
 $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；GitHub Pages site QA passed；公開上午／下午 scenes=240／300、capability=240／300，兩場垂直捲動探針均 viewports=6、passed=6，兩場捲動重設 maxResidual=0
 ```
 
-正式包 Manifest 是否依新頁數重建、重複 PDF 是否處理、PDF structure-tree 可及性是否修復，仍維持老師決策邊界，未自行刪除或重建。
+正式包 Manifest 已依本輪實際檔案重建為 `RELEASE_MANIFEST_v1.1.txt`；原 `RELEASE_MANIFEST_v1.0.txt` 與 2 組內容完全相同的備援 PDF 均保留。Manifest 完整性核對 → exit 0；inventory=456、實際總數=457、missing=0、mismatch=0、duplicate_pdf_groups=2。正式包 `node qa_workshop_suite.mjs` 與 `node qa_html_deck.mjs` 均 exit 0；HTML QA 為上午 40 頁、下午 50 頁。來源納入 Git 與 PDF 完整 PDF/UA 可及性驗收仍維持老師決策邊界。
 
 ## 歷史紀錄：本輪新增 HTML 動態內容（v2026.08.21.01；已部署公開站確認）
 
@@ -285,8 +285,8 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.21.01`，`version.json` HTTP 200 已確認。
-- **本輪功能 commit**：`65cda07 新增 Agent 時代人生哲學 HTML 簡報內容`；文件 commit 後仍以 `git log --oneline -1` 實際確認目前 HEAD。
+- **公開版本**：`2026.08.21.03`，`version.json` HTTP 200 已確認。
+- **本輪文件更新前最新 commit**：`fd592e2 移除不需追蹤的現場驗收待辦`；本次正式包進度文件提交後，以 `git log --oneline -1` 實際確認目前 HEAD。
 - **GitHub Pages**：`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` exit 0，`status=built`。
 
 ---
@@ -450,8 +450,8 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 
 ## 沒做完、被擋住或刻意跳過
 
-1. **正式包 Manifest 與實際檔案數**：本輪已實測正式包 456 檔，Manifest 仍寫 357；是否依老師決定的正式包範圍重新核對、刪除重複 PDF 或重建 Manifest，均未自行處理。
-2. **兩份簡報 PDF 共 83 頁的 structure-tree 警告**：視覺渲染正常，PDF 可及性仍未確認。
+1. **來源腳本是否納入 Git**：目前 Git 僅追蹤 GitHub Pages 公開站；來源與 QA 腳本仍在專案外層，需老師決定是否擴大版控範圍。
+2. **兩份簡報 PDF 共 90 頁的 structure-tree 可及性**：PDF 結構快速檢查與標記狀態已通過，但完整 PDF/UA 可及性與人工讀屏驗收仍未確認。
 3. **各工具是否實際載入全域 SKILL**：目錄存在，但功能性載入測試未做。
 
 ---
@@ -474,17 +474,15 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 | # | 問題 | 嚴重度 | 說明 |
 |---|---|---|---|
 | 1 | `qa_github_pages_site.mjs` 位於建置／QA 腳本目錄，不在 Pages site repo | 低 | encoded 中文路徑、動畫進場與公開 RWD QA 均通過；本輪已補動畫專項量測 |
-| 2 | 正式包 Manifest 與實際檔案數 | 低 | 實測 456 檔、Manifest 寫 357；刪除重複 PDF 或重建 Manifest 需使用者決定 |
-| 3 | 更新後兩份簡報 PDF 共 90 頁的 structure-tree 可及性 | 低 | PDF 頁數已驗證為上午 40、下午 50；視覺渲染正常，可及性影響未確認 |
-| 4 | SKILL 同步未做功能性測試 | 低 | 目錄存在，但各工具是否真的載入未測 |
+| 2 | 更新後兩份簡報 PDF 共 90 頁的 structure-tree 可及性 | 低 | PDF 頁數已驗證為上午 40、下午 50；結構快速檢查與標記狀態已通過，完整 PDF/UA 與人工讀屏可及性仍未確認 |
+| 3 | SKILL 同步未做功能性測試 | 低 | 目錄存在，但各工具是否真的載入未測 |
 
 ---
 
 ## 需要阿凱老師本人決定（接手 Agent 不可自作主張）
 
-1. 是否重建正式包 Manifest；本輪已實測 456 檔，且刪除重複 PDF 需老師明確決定。
-2. 是否把建置腳本納入 Git 版控，解決「來源沒有 Git」的風險。
-3. 是否修復簡報 PDF 的 tagged structure tree 可及性警告。
+1. 是否把建置腳本納入 Git 版控，解決「來源沒有 Git」的風險。
+2. 是否修復簡報 PDF 的 tagged structure tree 可及性警告，並進行完整 PDF/UA 與人工讀屏驗收。
 
 ---
 
@@ -599,13 +597,12 @@ Git 工作區：main；公開驗證證據已補入本檔，提交後以 `git sta
   Remove-Item Env:BASE_URL
 
 【已知技術債（確認是否需要本輪處理）】
-- 來源與正式包驗收清單曾將「上午 34 頁」同步修正為 39 頁；本輪圖檔／HTML 已更新為上午 40 頁、下午 50 頁，正式包 Manifest 與相關驗收清單是否全面重建仍未確認
+- 正式包 Manifest 已重建為 v1.1；實際總數 457、SHA-256 inventory=456、missing=0、mismatch=0；原 v1.0 歷史清單與 2 組重複 PDF 保留
 - qa_github_pages_site.mjs 現有 encoded 中文 pathname 測試已通過；腳本不在 Git，未擴大版控範圍
-- 正式包 Manifest 與實際檔案數本輪實測為 456 檔，Manifest 仍寫 357；是否重建 Manifest 或處理重複 PDF 需老師決定
-- 更新後兩份簡報 PDF 共 90 頁的 structure-tree 警告仍未做可及性確認（視覺正常）
+- 更新後兩份簡報 PDF 共 90 頁的 structure-tree 已做快速檢查，但完整 PDF/UA 與人工讀屏可及性仍未確認（視覺正常）
 
 【需要阿凱老師決定，不可自作主張】
-刪除重複 PDF、來源納入 Git、修復 PDF 可及性
+來源納入 Git、修復 PDF 可及性
 
 【格式規範】
 - 所有說明、commit、文件全部使用繁體中文
