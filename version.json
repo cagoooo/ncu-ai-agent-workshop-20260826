@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.21.01",
-  "buildTime": "2026-08-21T05:40:44.111Z",
-  "title": "新增 Agent 時代人生反思內容與 HTML 場次頁",
-  "description": "新增上午「把時間還給生活」收束頁，以及下午六頁「從 Agent 到人生」反思章節；保留 HTML／CSS／GSAP 瀏覽器動態、HyperFrames 可 seek 時間軸、RWD 長文閱讀與原有圖檔簡報不變。"
+  "version": "2026.08.21.02",
+  "buildTime": "2026-08-21T06:59:54.601Z",
+  "title": "同步圖檔與 HTML 簡報的人生哲學內容",
+  "description": "上午圖檔與 HTML 簡報同步新增把時間還給人生的收束頁；下午同步新增六頁 Agent 時代人生反思；保留既有圖檔版型、QR、Hotspot、雙緩衝切換、全螢幕與 HTML／CSS／GSAP／HyperFrames 動態。"
 }
