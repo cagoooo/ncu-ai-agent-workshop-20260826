@@ -348,3 +348,165 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/*
+   大型螢幕全螢幕呈現增強（最後覆寫層）
+   - 只作用於桌機／大型觸控螢幕的橫向全螢幕，不改一般視窗與手機／平板 RWD。
+   - 保留 scene-content、scene-copy、scene-body 的垂直捲動，長文不以隱藏溢位換取放大。
+   - :fullscreen 支援 stage 原生全螢幕；body.is-immersive 支援不具 Fullscreen API 的瀏覽器。
+*/
+@media (min-width: 901px) and (orientation: landscape) {
+  :fullscreen .scene-content,
+  :-webkit-full-screen .scene-content,
+  body.is-immersive .scene-content {
+    padding: clamp(28px, 3vw, 64px) clamp(38px, 4vw, 84px) clamp(26px, 2.8vw, 60px) !important;
+    gap: clamp(18px, 1.8vw, 34px) !important;
+    scrollbar-gutter: stable !important;
+  }
+
+  :fullscreen .scene-header,
+  :-webkit-full-screen .scene-header,
+  body.is-immersive .scene-header {
+    gap: clamp(18px, 2vw, 36px) !important;
+    font-size: clamp(12px, 1.05vw, 18px) !important;
+  }
+
+  :fullscreen .scene-grid,
+  :-webkit-full-screen .scene-grid,
+  body.is-immersive .scene-grid {
+    gap: clamp(24px, 4vw, 84px) !important;
+  }
+
+  :fullscreen .scene-copy,
+  :-webkit-full-screen .scene-copy,
+  body.is-immersive .scene-copy,
+  :fullscreen .scene-body,
+  :-webkit-full-screen .scene-body,
+  body.is-immersive .scene-body {
+    scrollbar-gutter: stable !important;
+  }
+
+  :fullscreen .scene-label,
+  :-webkit-full-screen .scene-label,
+  body.is-immersive .scene-label {
+    margin-bottom: clamp(14px, 1.2vw, 24px) !important;
+    font-size: clamp(12px, 1.05vw, 18px) !important;
+  }
+
+  :fullscreen .scene-copy h1,
+  :-webkit-full-screen .scene-copy h1,
+  body.is-immersive .scene-copy h1 {
+    width: 100% !important;
+    max-width: none !important;
+    font-size: clamp(40px, 4.2vw, 88px) !important;
+    line-height: 1.06 !important;
+  }
+
+  :fullscreen .layout-hero .scene-copy h1,
+  :-webkit-full-screen .layout-hero .scene-copy h1,
+  body.is-immersive .layout-hero .scene-copy h1 {
+    font-size: clamp(38px, 3.8vw, 80px) !important;
+  }
+
+  :fullscreen .layout-quote .scene-copy h1,
+  :-webkit-full-screen .layout-quote .scene-copy h1,
+  body.is-immersive .layout-quote .scene-copy h1 {
+    max-width: 1600px !important;
+    font-size: clamp(40px, 4.4vw, 92px) !important;
+    line-height: 1.06 !important;
+  }
+
+  :fullscreen .scene-description,
+  :-webkit-full-screen .scene-description,
+  body.is-immersive .scene-description {
+    width: 100% !important;
+    max-width: none !important;
+    margin-top: clamp(18px, 1.4vw, 28px) !important;
+    font-size: clamp(18px, 1.45vw, 30px) !important;
+    line-height: 1.58 !important;
+  }
+
+  :fullscreen .layout-hero .scene-description,
+  :-webkit-full-screen .layout-hero .scene-description,
+  body.is-immersive .layout-hero .scene-description,
+  :fullscreen .layout-quote .scene-description,
+  :-webkit-full-screen .layout-quote .scene-description,
+  body.is-immersive .layout-quote .scene-description {
+    font-size: clamp(17px, 1.3vw, 27px) !important;
+    line-height: 1.52 !important;
+  }
+
+  :fullscreen .scene-rail,
+  :-webkit-full-screen .scene-rail,
+  body.is-immersive .scene-rail {
+    gap: 10px !important;
+    padding-top: clamp(18px, 1.5vw, 30px) !important;
+  }
+
+  :fullscreen .scene-rail strong,
+  :-webkit-full-screen .scene-rail strong,
+  body.is-immersive .scene-rail strong {
+    font-size: clamp(18px, 1.45vw, 28px) !important;
+  }
+
+  :fullscreen .scene-body,
+  :-webkit-full-screen .scene-body,
+  body.is-immersive .scene-body {
+    gap: clamp(14px, 1.2vw, 22px) !important;
+    padding: clamp(4px, .4vw, 8px) !important;
+  }
+
+  :fullscreen .content-block,
+  :-webkit-full-screen .content-block,
+  body.is-immersive .content-block {
+    min-height: clamp(84px, 7vw, 132px) !important;
+    padding: clamp(18px, 1.35vw, 28px) clamp(20px, 1.55vw, 32px) clamp(16px, 1.2vw, 25px) clamp(48px, 3.2vw, 72px) !important;
+  }
+
+  :fullscreen .content-block::before,
+  :-webkit-full-screen .content-block::before,
+  body.is-immersive .content-block::before {
+    top: clamp(20px, 1.45vw, 28px) !important;
+    left: clamp(18px, 1.25vw, 24px) !important;
+    width: clamp(18px, 1.25vw, 26px) !important;
+    height: clamp(3px, .2vw, 4px) !important;
+  }
+
+  :fullscreen .content-block p,
+  :-webkit-full-screen .content-block p,
+  body.is-immersive .content-block p {
+    font-size: clamp(17px, 1.3vw, 26px) !important;
+    line-height: 1.5 !important;
+  }
+
+  :fullscreen .layout-steps .content-block p,
+  :-webkit-full-screen .layout-steps .content-block p,
+  body.is-immersive .layout-steps .content-block p {
+    font-size: clamp(17px, 1.22vw, 24px) !important;
+    line-height: 1.42 !important;
+  }
+
+  :fullscreen .scene-footer,
+  :-webkit-full-screen .scene-footer,
+  body.is-immersive .scene-footer {
+    min-height: 36px !important;
+    gap: clamp(10px, 1vw, 18px) !important;
+    padding-top: 10px !important;
+  }
+
+  :fullscreen .scene-link,
+  :-webkit-full-screen .scene-link,
+  body.is-immersive .scene-link {
+    padding: 8px 14px !important;
+    font-size: clamp(13px, .9vw, 17px) !important;
+  }
+
+  :fullscreen .scene-transcript,
+  :-webkit-full-screen .scene-transcript,
+  body.is-immersive .scene-transcript {
+    right: clamp(28px, 3vw, 64px) !important;
+    bottom: clamp(26px, 2.8vw, 60px) !important;
+    max-width: min(720px, 42%) !important;
+    font-size: clamp(13px, .9vw, 17px) !important;
+  }
+}

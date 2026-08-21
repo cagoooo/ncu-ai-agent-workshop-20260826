@@ -1,10 +1,10 @@
-# HANDOFF.md｜2026-08-21 本輪 Agent 交接（上午開場擴充、圖檔／HTML 同步）
+# HANDOFF.md｜2026-08-22 本輪 Agent 交接（大型螢幕全螢幕 HTML 呈現優化）
 
-稽核時間：2026-08-21（Asia/Taipei；本輪資產已同步，公開部署已重驗）
+稽核時間：2026-08-22（Asia/Taipei；本機完整 QA 已完成，公開部署待本輪 push 後確認）
 
 ---
 
-## 目前進度表（2026-08-21；依本輪實際驗證更新）
+## 目前進度表（2026-08-22；依本輪實際驗證更新）
 
 本表將 **P0** 定義為公開站可用性、內容完整性與不可回退邊界；**P1** 定義為已交付的體驗能力、維護性與後續可選擴充。下表的「未採納」與「待本人決定」不代表永久不做，而是本輪不自行擴大範圍。
 
@@ -12,13 +12,39 @@
 |---|---|---|---|---|
 | P0-01 | 已完成／守門 | `08_HTML簡報` 圖檔版的全螢幕、雙緩衝切換、快取破壞、原有版面與上午新增開場內容 | `node qa_html_deck.mjs` → exit 0；圖檔版上午 44 頁、下午 50 頁，共 94 頁；新增 4 頁由 `build_decks.mjs` 來源重建，既有 Hotspot、QR、雙緩衝與全螢幕邏輯保留 | 後續 HTML 動態功能不得改寫圖檔版的圖片、Hotspot、雙緩衝與全螢幕 CSS SSOT；若要再改內容，必須回到簡報來源重建 |
 | P0-02 | 已完成／公開可用 | `09_HTML動態簡報` 94 頁內容可讀、長標題不裁切、長文字可捲動、桌機／手機／平板 RWD | 本機與公開 `BASE_URL` 的 `node qa_github_pages_site.mjs` 均 exit 0；上午 scenes=264、capability=264，下午 scenes=300、capability=300；兩場垂直捲動探針均 viewports=6、passed=6；兩場捲動重設均 maxResidual=0 | 後續不得以固定高度或隱藏溢位方式回退內容可讀性 |
-| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開 version=`2026.08.21.04`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
+| P0-03 | 已完成／待公開驗證 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | 本機 `version.json`／`sw.js`／HTML query 已同步為 `2026.08.22.01`；公開 Pages `status`、version HTTP 200 與公開 `BASE_URL` QA 尚未確認 | push 後必須重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
 | P0-04 | 已完成／隔離守門 | HTML 專區獨立於圖檔版；瀏覽器動態呈現，不把 MP4 輸出列為本輪成品 | HyperFrames lint／validate／inspect／check 均 exit 0；filesScanned=3、error/warning/info=0、console errors=0、WCAG AA=94、timeline samples=9、layout issues=0、runtime errorCount=0、contrast=87/87；專區 README 保留「不需要輸出 MP4」邊界；08 圖檔架構未改寫 | 後續動態化仍以 HTML／CSS／GSAP／HyperFrames seek 為主；Remotion 若採用，須另列規格，不得取代既有圖檔版 |
 | P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／總覽／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；圖檔版與 HTML 動態版均為上午 44 頁、下午 50 頁，共 94 頁 | 後續可在既有導覽上加功能，不重做場次資料結構 |
 | P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames lint／validate／inspect／check 均 exit 0；timeline samples=9、layout issues=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
-| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG=1200×630；公開 version=`2026.08.21.04` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
-| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本機與公開上午／下午捲動容器均 264/264、300/300，探針與重設各 6/6、maxResidual=0；公開版本 `.04` | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
+| P1-03 | 已完成／待公開驗證 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 本機 `node qa_github_pages_site.mjs` → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG=1200×630；公開新版本尚未確認 | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
+| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本機上午／下午捲動容器 264/264、300/300，探針與重設各 6/6、maxResidual=0；本機版本 `.01` | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
 | P1-05 | 部分完成／仍有決策邊界 | 正式包 Manifest、實際檔案數與重複 PDF 盤點；來源腳本是否納入 Git、PDF structure-tree 可及性仍待決定 | `RELEASE_MANIFEST_v1.1.txt` 重建 → exit 0；實際總數 468、SHA-256 inventory=467、missing=0、mismatch=0；正式包 PDF 6 份、重複 PDF 群組 2 組、PPTX 6 個；`qa_workshop_suite.mjs` 與正式包 `qa_html_deck.mjs` 均 exit 0 | 重複 PDF 已依老師決定保留；不刪除原 v1.0 歷史清單；來源納入 Git 與 PDF 完整可及性驗收仍不自行決定 |
+| P1-06 | 已完成／待公開驗證 | 901px 以上橫向全螢幕的內容放大、可用寬度釋放、長文垂直捲動與大型觸控螢幕相容 | `node qa_fullscreen_dynamic.mjs` → exit 0；上午 44/44、下午 50/50，全螢幕舞台 1912×1078、水平溢位 0；第 4 頁標題 84.128px、說明 24.856px；原生 Fullscreen API 探針 exit 0 | 僅改 `09_HTML動態簡報` CSS 最末層；不得回退既有手機／平板 RWD、長文捲動、轉場或 `08_HTML簡報` 圖檔架構 |
+
+## 本輪完成：大型螢幕全螢幕 HTML 呈現優化（v2026.08.22.01）
+
+本輪只在 `09_HTML動態簡報/assets/dynamic-deck.css` 最底層加入大型螢幕全螢幕覆寫：限定 `min-width:901px` 且橫向時放大標題、說明、內容卡片、章節標籤與連結，釋放內容可用寬度；同時保留 `scene-content`、`scene-copy`、`scene-body` 的垂直捲動。`08_HTML簡報` 的投影片圖片、Hotspot、QR、雙緩衝切換與既有全螢幕 CSS SSOT 沒有改寫；版本 query 只用於快取更新。
+
+本機實際驗證：
+
+```text
+node --check build_html_deck.mjs／sync_dynamic_deck.mjs／qa_html_deck.mjs／qa_github_pages_site.mjs／09_HTML動態簡報/assets/dynamic-deck.js／09_HTML動態簡報/assets/pwa-loader.js／pwa-register.js／sw.js → 均 exit 0
+node sync_dynamic_deck.mjs → exit 0；morning=44、afternoon=50、version=2026.08.22.01
+node qa_html_deck.mjs → exit 0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；GitHub Pages site QA passed；上午／下午 scenes=264／300、capability=264／300；垂直捲動探針各 6/6；捲動重設各 6/6、maxResidual=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1，morning）→ exit 0；slides=44、passed=44、failures=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1，afternoon）→ exit 0；slides=50、passed=50、failures=0
+node qa_fullscreen_dynamic.mjs（原生 Fullscreen API，1912×1078）→ exit 0；舞台=1912×1078、標題=84.128px、說明=24.856px、水平溢位=0
+node qa_ops_checklist.mjs → exit 0；36 interactive items
+python -X utf8 qa_qr_codes.py → exit 0；145 rendered QR codes decoded
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+WORKSHOP_ROOT=<正式包> node audit_local_links.mjs → exit 0；85 HTML files、161 local references
+HTML_ROOT=<正式包>\08_HTML簡報 node qa_html_deck.mjs → exit 0；HTML deck QA passed
+npx --yes hyperframes lint／validate／inspect／check 09_HTML動態簡報 → 均 exit 0；filesScanned=3、WCAG AA=94、timeline samples=9、layout issues=0、contrast=87/87
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=468、inventory=467、pdf=6、duplicate_pdf_groups=2
+```
+
+公開部署驗證：本次 push 前未確認；完成 push 後補登 Pages `status=built`、公開 `version.json` HTTP 200／版本與公開 `BASE_URL` QA 結果。
 
 ## 本輪新增上午開場「文組的 AI 大航海時代／大藍海時代」（v2026.08.21.04）
 
