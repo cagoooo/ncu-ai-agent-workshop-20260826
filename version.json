@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.12",
-  "buildTime": "2026-08-21T01:58:57.000Z",
-  "title": "強化 HTML 動態簡報瀏覽器動畫",
-  "description": "強化 HTML 動態簡報首頁、頁面切換、文字區塊與連結的 CSS／GSAP 瀏覽器動態；保留 HyperFrames 可 seek 時間軸，不輸出 MP4，原有圖檔簡報不變。"
+  "version": "2026.08.18.13",
+  "buildTime": "2026-08-21T02:42:08.000Z",
+  "title": "補強 HTML 動態簡報長文字垂直捲動",
+  "description": "補強桌機、手機與平板的 HTML 動態簡報長文字垂直捲動容器、RWD 舞台捲動與長句換行；保留 CSS／GSAP 瀏覽器動畫、HyperFrames 可 seek 時間軸，不輸出 MP4，原有圖檔簡報不變。"
 }

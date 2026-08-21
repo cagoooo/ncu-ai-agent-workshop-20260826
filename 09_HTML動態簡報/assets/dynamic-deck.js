@@ -252,6 +252,7 @@ function show(index, direction = 1, updateHash = true) {
   updatePanels(item);
   updateOverviewCurrent();
   if (updateHash) history.replaceState(null, "", `#slide-${item.index}`);
+  stage.scrollTop = 0;
   stage.dataset.direction = direction > 0 ? "next" : "prev";
   animateInteractiveScene(current, direction);
 }
