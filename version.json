@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.21.03",
-  "buildTime": "2026-08-21T08:49:50.836Z",
-  "title": "修正 HTML 簡報入口頁數文案",
-  "description": "修正 HTML 簡報入口的頁數文案為 90 頁（上午 40／下午 50）；保留既有圖檔版型、QR、Hotspot、雙緩衝切換、全螢幕與 HTML／CSS／GSAP／HyperFrames 動態。"
+  "version": "2026.08.21.04",
+  "buildTime": "2026-08-21T18:28:45.3163021+08:00",
+  "title": "新增上午場文組 AI 大航海時代開場章節",
+  "description": "上午場新增 4 頁文組 AI 大航海／大藍海開場內容，圖檔版與 HTML 動態版同步為 94 頁（上午 44／下午 50）；保留既有圖檔版型、QR、Hotspot、雙緩衝切換、全螢幕與 HTML／CSS／GSAP／HyperFrames 動態。"
 }
