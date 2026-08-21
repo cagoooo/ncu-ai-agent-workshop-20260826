@@ -176,6 +176,28 @@ function updateOverviewCurrent() {
   overviewGrid?.querySelectorAll(".overview-card").forEach((card, index) => card.classList.toggle("is-current", index === activeIndex));
 }
 
+const sceneScrollSelector = ".scene-content, .scene-copy, .scene-body, .scene-transcript p";
+
+function resetSceneScroll(scene) {
+  scene?.querySelectorAll(sceneScrollSelector).forEach((element) => {
+    element.scrollTop = 0;
+    element.scrollLeft = 0;
+  });
+}
+
+function syncSceneOverflowState(scene) {
+  scene?.querySelectorAll(".scene-copy").forEach((copy) => {
+    const copyRect = copy.getBoundingClientRect();
+    const childEscapesTop = [...copy.children].some((element) => element.getBoundingClientRect().top < copyRect.top - 1);
+    copy.classList.toggle("is-overflowing", copy.scrollHeight > copy.clientHeight + 1 || childEscapesTop);
+  });
+}
+
+function prepareScene(scene) {
+  resetSceneScroll(scene);
+  syncSceneOverflowState(scene);
+}
+
 function clearInteractiveSceneState(scene) {
   if (!scene) return;
   if (window.gsap) {
@@ -234,6 +256,7 @@ function show(index, direction = 1, updateHash = true) {
   if (!current) return;
   const previous = stage.querySelector(".is-active");
   if (previous && previous !== current) {
+    resetSceneScroll(previous);
     previous.classList.remove("is-active");
     previous.classList.add("is-previous");
     window.clearTimeout(previousRemovalTimer);
@@ -253,6 +276,8 @@ function show(index, direction = 1, updateHash = true) {
   updateOverviewCurrent();
   if (updateHash) history.replaceState(null, "", `#slide-${item.index}`);
   stage.scrollTop = 0;
+  stage.scrollLeft = 0;
+  prepareScene(current);
   stage.dataset.direction = direction > 0 ? "next" : "prev";
   animateInteractiveScene(current, direction);
 }
@@ -374,3 +399,9 @@ stage.addEventListener("touchend", (event) => {
   if (Math.abs(delta) > 48) go(delta < 0 ? 1 : -1);
 }, { passive: true });
 window.addEventListener("hashchange", () => show(readHash(), 1, false));
+window.addEventListener("pageshow", () => prepareScene(stage.querySelector(".is-active")));
+let resizeTimer = 0;
+window.addEventListener("resize", () => {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(() => prepareScene(stage.querySelector(".is-active")), 80);
+});

@@ -200,6 +200,7 @@ a { color: inherit; }
 .layout-quote .scene-grid { grid-template-columns: 1fr; }
 .layout-quote .scene-copy { align-items: center; text-align: center; }
 .layout-quote .scene-copy { overflow: auto; }
+.scene-copy.is-overflowing { justify-content: flex-start; }
 .layout-quote .scene-copy h1 { max-width: 1100px; font-size: clamp(26px, 3vw, 56px); line-height: 1.08; }
 .layout-quote .scene-description { max-width: 900px; margin-top: 14px; font-size: clamp(14px, 1.05vw, 20px); line-height: 1.5; text-align: center; }
 .layout-quote .scene-rail { width: min(100%, 720px); margin-top: 30px; text-align: left; }
@@ -305,6 +306,11 @@ a { color: inherit; }
   .layout-steps .content-block { padding: 12px 12px 10px 44px; }
   .layout-steps .content-block::before { top: 15px; left: 13px; width: 15px; }
   .layout-steps .content-block p { font-size: 12px; line-height: 1.25; }
+}
+@media (min-width: 901px) and (max-height: 900px) {
+  body.interactive-mode { overflow: hidden; }
+  body.interactive-mode .dynamic-main { min-height: calc(100svh - 62px); padding-bottom: 20px; overflow: hidden; }
+  body.interactive-mode .dynamic-stage-wrap { width: min(100%, 1280px, calc(177.78svh - 352px)); }
 }
 @media (orientation: landscape) and (max-width: 1100px) {
   body.interactive-mode .dynamic-main { min-height: calc(100svh - 62px); padding: 12px 16px 28px; }
