@@ -32,6 +32,8 @@ const immersiveExit = document.querySelector(".immersive-exit");
 let activeIndex = 0;
 let touchStartX = 0;
 let previousRemovalTimer = 0;
+let interactiveSceneTimeline = null;
+const reduceMotion = Boolean(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches);
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -174,6 +176,58 @@ function updateOverviewCurrent() {
   overviewGrid?.querySelectorAll(".overview-card").forEach((card, index) => card.classList.toggle("is-current", index === activeIndex));
 }
 
+function clearInteractiveSceneState(scene) {
+  if (!scene) return;
+  if (window.gsap) {
+    window.gsap.set(scene.querySelectorAll(".scene-content, .scene-header, .scene-copy, .scene-body, .scene-rail, .scene-transition, .content-block, .scene-link, .scene-orb"), { clearProps: "all" });
+  }
+  scene.querySelectorAll(".scene-transition").forEach((element) => {
+    element.style.opacity = "0";
+  });
+}
+
+function animateInteractiveScene(scene, direction = 1) {
+  if (isHyperFrames || !window.gsap || !scene) return;
+  interactiveSceneTimeline?.kill();
+  clearInteractiveSceneState(scene);
+  if (reduceMotion || document.documentElement.dataset.qaStaticLayout === "true") return;
+
+  const mode = scene.dataset.transition || "blur-crossfade";
+  const directionSign = direction >= 0 ? 1 : -1;
+  const content = scene.querySelector(".scene-content");
+  const header = scene.querySelector(".scene-header");
+  const copy = scene.querySelector(".scene-copy");
+  const sceneBody = scene.querySelector(".scene-body");
+  const rail = scene.querySelector(".scene-rail");
+  const transition = scene.querySelector(".scene-transition");
+  const blocks = [...scene.querySelectorAll(".content-block")];
+  const links = [...scene.querySelectorAll(".scene-link")];
+  const orb = scene.querySelector(".scene-orb");
+  const zoom = mode === "zoom-through";
+  const contentFrom = zoom ? { opacity: 0, y: 18, scale: .94 } : { opacity: 0, y: 34, scale: 1 };
+  const copyFrom = zoom ? { opacity: 0, y: 18 } : { opacity: 0, x: -42 * directionSign };
+  const bodyFrom = zoom ? { opacity: 0, y: 22, scale: .97 } : { opacity: 0, x: 42 * directionSign };
+  const tl = gsap.timeline({ defaults: { overwrite: "auto" } });
+
+  if (content) tl.fromTo(content, contentFrom, { opacity: 1, y: 0, scale: 1, duration: .62, ease: zoom ? "expo.out" : "power3.out" }, .08);
+  if (header) tl.fromTo(header, { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: .34, ease: "sine.out" }, .12);
+  if (copy) tl.fromTo(copy, copyFrom, { opacity: 1, x: 0, y: 0, duration: .58, ease: directionSign > 0 ? "power3.out" : "expo.out" }, .16);
+  if (sceneBody) tl.fromTo(sceneBody, bodyFrom, { opacity: 1, x: 0, y: 0, scale: 1, duration: .54, ease: "power2.out" }, .2);
+  if (transition) {
+    tl.fromTo(transition, { opacity: 0, scale: 1.18 }, { opacity: .62, scale: 1, duration: .44, ease: "power2.out" }, .04);
+    tl.to(transition, { opacity: 0, duration: .48, ease: "sine.inOut" }, .38);
+  }
+  if (rail) tl.fromTo(rail, { opacity: 0, scaleX: .18, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: .42, ease: "expo.out" }, .4);
+  if (blocks.length) {
+    tl.fromTo(blocks, { opacity: 0, y: 22, scale: .985 }, { opacity: 1, y: 0, scale: 1, duration: .46, ease: "back.out(1.12)", stagger: { each: .065, from: directionSign > 0 ? "start" : "end" } }, .34);
+  }
+  if (links.length) {
+    tl.fromTo(links, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(1.1)", stagger: .05 }, .58);
+  }
+  if (orb) tl.fromTo(orb, { opacity: 0, scale: .82, rotation: directionSign > 0 ? -22 : 18 }, { opacity: .72, scale: 1, rotation: directionSign > 0 ? 8 : -12, duration: 1.05, ease: "sine.out" }, .05);
+  interactiveSceneTimeline = tl;
+}
+
 function show(index, direction = 1, updateHash = true) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
   const current = stage.children[nextIndex];
@@ -199,6 +253,7 @@ function show(index, direction = 1, updateHash = true) {
   updateOverviewCurrent();
   if (updateHash) history.replaceState(null, "", `#slide-${item.index}`);
   stage.dataset.direction = direction > 0 ? "next" : "prev";
+  animateInteractiveScene(current, direction);
 }
 
 function go(delta) { show(activeIndex + delta, delta >= 0 ? 1 : -1); }
@@ -239,16 +294,27 @@ function registerHyperFramesTimeline() {
     const scene = stage.children[index];
     const t = index * SLIDE_DURATION;
     const content = scene.querySelector(".scene-content");
+    const header = scene.querySelector(".scene-header");
+    const copy = scene.querySelector(".scene-copy");
+    const sceneBody = scene.querySelector(".scene-body");
     const rail = scene.querySelector(".scene-rail");
     const orb = scene.querySelector(".scene-orb");
     const transition = scene.querySelector(".scene-transition");
     const blocks = [...scene.querySelectorAll(".content-block")];
-    tl.fromTo(content, { opacity: 0, y: 42 }, { opacity: 1, y: 0, duration: .72, ease: enterEases[index % enterEases.length] }, t + .2);
+    const links = [...scene.querySelectorAll(".scene-link")];
+    const directionSign = index % 2 === 0 ? 1 : -1;
+    const zoom = scene.dataset.transition === "zoom-through";
+    tl.fromTo(content, zoom ? { opacity: 0, y: 18, scale: .94 } : { opacity: 0, y: 42, scale: 1 }, { opacity: 1, y: 0, scale: 1, duration: .72, ease: enterEases[index % enterEases.length] }, t + .2);
+    if (header) tl.fromTo(header, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: .38, ease: "sine.out" }, t + .24);
+    if (copy) tl.fromTo(copy, zoom ? { opacity: 0, y: 18 } : { opacity: 0, x: -38 * directionSign }, { opacity: 1, x: 0, y: 0, duration: .62, ease: index % 2 ? "expo.out" : "power3.out" }, t + .28);
+    if (sceneBody) tl.fromTo(sceneBody, zoom ? { opacity: 0, y: 20, scale: .97 } : { opacity: 0, x: 38 * directionSign }, { opacity: 1, x: 0, y: 0, scale: 1, duration: .56, ease: "power2.out" }, t + .3);
     tl.fromTo(transition, { opacity: 0, scale: 1.14 }, { opacity: .7, scale: 1, duration: .55, ease: "power2.out" }, t + .08);
+    tl.to(transition, { opacity: 0, duration: .5, ease: "sine.inOut" }, t + .76);
     if (rail) tl.fromTo(rail, { opacity: 0, scaleX: .18, transformOrigin: "left center" }, { opacity: 1, scaleX: 1, duration: .46, ease: "expo.out" }, t + .38);
     blocks.forEach((block, blockIndex) => {
       tl.fromTo(block, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .42, ease: blockEases[(index + blockIndex) % blockEases.length] }, t + .48 + Math.min(blockIndex * .07, .42));
     });
+    if (links.length) tl.fromTo(links, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .3, ease: "back.out(1.1)", stagger: .05 }, t + .62);
     if (orb) tl.to(orb, { scale: 1.08, rotation: index % 2 ? -8 : 8, duration: SLIDE_DURATION - .8, ease: "sine.inOut" }, t + .32);
   });
   window.__timelines[stage.dataset.compositionId] = tl;
@@ -257,13 +323,10 @@ function registerHyperFramesTimeline() {
 
 function revealInteractiveSceneState() {
   if (isHyperFrames) return;
-  stage.querySelectorAll(".scene-content, .scene-rail, .content-block").forEach((element) => {
-    element.style.opacity = "1";
-    element.style.transform = "none";
-  });
+  interactiveSceneTimeline?.kill();
+  clearInteractiveSceneState(stage);
   stage.querySelectorAll(".scene-transition").forEach((element) => {
     element.style.opacity = "0";
-    element.style.transform = "none";
   });
 }
 

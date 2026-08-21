@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.11",
-  "buildTime": "2026-08-18T07:38:00.000Z",
-  "title": "新增 HTML 動態簡報 favicon 與社群分享預覽",
-  "description": "為 HTML 動態簡報專區新增 favicon、PWA app icons、manifest 與 LINE／Facebook／Twitter 社群分享 meta 標籤；原有圖檔簡報不變。"
+  "version": "2026.08.18.12",
+  "buildTime": "2026-08-21T01:58:57.000Z",
+  "title": "強化 HTML 動態簡報瀏覽器動畫",
+  "description": "強化 HTML 動態簡報首頁、頁面切換、文字區塊與連結的 CSS／GSAP 瀏覽器動態；保留 HyperFrames 可 seek 時間軸，不輸出 MP4，原有圖檔簡報不變。"
 }
