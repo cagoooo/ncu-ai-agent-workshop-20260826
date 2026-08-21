@@ -19,8 +19,6 @@
 | P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG 為 1200×630；公開 version=`2026.08.21.03` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
 | P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本輪修正動態 favicon encoded pathname，公開 `BASE_URL` QA → exit 0；上午／下午捲動容器 240/240、300/300，探針與重設各 6/6 | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
 | P1-05 | 待本人決定／未處理 | 正式包 Manifest 與實際檔案數、重複 PDF、來源腳本是否納入 Git、兩份 PDF structure-tree 可及性警告 | 本輪實測正式包 456 檔（PDF 6、PPTX 6、HTML 85、PNG 287）；`RELEASE_MANIFEST_v1.0.txt` 仍寫 357；PDF structure-tree 視覺正常但可及性影響未確認 | 不刪檔、不改 Manifest、不修 PDF，直到老師選定範圍；本輪只同步新增資產與保留可追溯檔案 |
-| P1-06 | 待本人決定／未確認 | T-7／T-24h 現場帳號、投影設備、模型名稱與費用方案敘述 | 帳號、現場網路、投影設備與當期方案未確認 | 不切換教授帳號、不猜測模型與費用文字；需先取得現場決策 |
-
 ### RDQ 後續候選索引（未採納，等老師挑選）
 
 | 候選編號 | 方向 | 主要內容 | 預估代價／風險 | 建議驗收 |
@@ -455,7 +453,6 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 1. **正式包 Manifest 與實際檔案數**：本輪已實測正式包 456 檔，Manifest 仍寫 357；是否依老師決定的正式包範圍重新核對、刪除重複 PDF 或重建 Manifest，均未自行處理。
 2. **兩份簡報 PDF 共 83 頁的 structure-tree 警告**：視覺渲染正常，PDF 可及性仍未確認。
 3. **各工具是否實際載入全域 SKILL**：目錄存在，但功能性載入測試未做。
-4. **現場、帳號、設備均未驗證**：ChatGPT Voice、Typeless、教授帳號訂閱、中大網路、投影設備等，全部未確認。
 
 ---
 
@@ -466,7 +463,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **全螢幕第一下先進入 `is-immersive` 的競速修正**。
 - **上午 40 頁、下午 50 頁，URL hash 對應關係**。
 - **`Gemini Notebook` 現行命名**（不要改回 NotebookLM）。
-- **版本號 query（目前 `?v=2026.08.21.02`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
+- **版本號 query（目前 `?v=2026.08.21.03`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
 - **投影片圖片點陣圖 + Hotspot 疊加架構**：不要因為「不是純 HTML 文字」就整套改寫。
 - **來源不在 Git**：改正式包 HTML 的同時必須同步改來源腳本。
 
@@ -488,8 +485,6 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 1. 是否重建正式包 Manifest；本輪已實測 456 檔，且刪除重複 PDF 需老師明確決定。
 2. 是否把建置腳本納入 Git 版控，解決「來源沒有 Git」的風險。
 3. 是否修復簡報 PDF 的 tagged structure tree 可及性警告。
-4. T-7（2026-08-19）與 T-24h（2026-08-25）用哪六個帳號、哪台投影設備做現場驗收。
-5. Claude、Codex、Antigravity、Gemini 模型名稱與費用敘述是否要在活動前刷新（不可由 Agent 猜測）。
 
 ---
 
@@ -499,8 +494,6 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
 - **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.21.01"`。
 - **Pages build 狀態**：本輪功能 commit `65cda07` 與公開驗證文件已推送，Pages API exit 0 回報 `status=built`；帶 `BASE_URL` 的公開站 QA exit 0。
-- **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
-- **中大現場網路、投影、麥克風**：未確認。
 - **任何 token、API key、密碼**：本檔均無寫入。
 
 ---
@@ -574,14 +567,14 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開版本：2026.08.21.02（version.json HTTP 200 已驗）
+公開版本：2026.08.21.03（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，圖檔版上午 40 頁／下午 50 頁；HTML 動態版上午 40 頁／下午 50 頁
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`；公開上午／下午 scenes=240／300、capability=240／300，兩場垂直捲動探針均 viewports=6、passed=6，兩場捲動重設 maxResidual=0
 Git 工作區：main；公開驗證證據已補入本檔，提交後以 `git status --short` 確認乾淨；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.21.02，並提升 SW BUILD_VERSION）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.21.03，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 4. HTML 動態簡報長文字在固定舞台中截斷／重疊 → 已修（桌機長文字自然列高；觸控裝置改單欄自然增高 RWD）
 5. HTML 動態簡報直接開啟時沒有 SW 更新通知 → 已修（新增 pwa-loader.js，三個動態頁均接上共用更新提示）
@@ -612,7 +605,7 @@ Git 工作區：main；公開驗證證據已補入本檔，提交後以 `git sta
 - 更新後兩份簡報 PDF 共 90 頁的 structure-tree 警告仍未做可及性確認（視覺正常）
 
 【需要阿凱老師決定，不可自作主張】
-刪除重複 PDF、來源納入 Git、修復 PDF 可及性、切換教授帳號、變更模型名稱與方案敘述
+刪除重複 PDF、來源納入 Git、修復 PDF 可及性
 
 【格式規範】
 - 所有說明、commit、文件全部使用繁體中文
