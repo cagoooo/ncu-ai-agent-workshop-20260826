@@ -4,6 +4,35 @@
 
 ---
 
+## 目前進度表（2026-08-21；依本輪實際驗證更新）
+
+本表將 **P0** 定義為公開站可用性、內容完整性與不可回退邊界；**P1** 定義為已交付的體驗能力、維護性與後續可選擴充。下表的「未採納」與「待本人決定」不代表永久不做，而是本輪不自行擴大範圍。
+
+| 編號 | 優先級／狀態 | 項目 | 實際證據／數字 | 後續邊界 |
+|---|---|---|---|---|
+| P0-01 | 已完成／守門 | `08_HTML簡報` 圖檔版的全螢幕、雙緩衝切換、快取破壞與原有版面 | `node qa_html_deck.mjs` → exit 0；原圖檔上午 39 頁、下午 44 頁，共 83 頁。`git show --format= --numstat d860da2 -- '08_HTML簡報'` → exit 0；本輪僅 3 個 HTML 版本 query 變更，沒有投影片圖片變更 | 後續 HTML 動態功能不得改寫圖檔版的圖片、Hotspot、雙緩衝與全螢幕 CSS SSOT |
+| P0-02 | 已完成／公開可用 | `09_HTML動態簡報` 83 頁內容可讀、長標題不裁切、長文字可捲動、桌機／手機／平板 RWD | 本機與 `BASE_URL` 公開 QA 均 exit 0；上午 scenes=234、capability=234，下午 scenes=264、capability=264；垂直捲動探針兩場均 viewports=6、passed=6；捲動重設兩場均 maxResidual=0 | 後續不得以固定高度或隱藏溢位方式回退內容可讀性 |
+| P0-03 | 已完成／部署守門 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '.status'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開版本 `2026.08.18.14` | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
+| P0-04 | 已完成／隔離守門 | HTML 專區獨立於圖檔版；瀏覽器動態呈現，不把 MP4 輸出列為本輪成品 | `npx --yes hyperframes check "09_HTML動態簡報" --json` → exit 0；runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87；專區 README 保留「不需要輸出 MP4」邊界 | 後續動態化仍以 HTML／CSS／GSAP／HyperFrames seek 為主；Remotion 若採用，須另列規格，不得取代既有圖檔版 |
+| P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／總覽／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；上午 39 頁、下午 44 頁；公開頁面 QA → exit 0 | 後續可在既有導覽上加功能，不重做場次資料結構 |
+| P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames lint／validate／inspect／check 均 exit 0；timeline samples=9、layout issues=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
+| P1-03 | 已完成 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開資產／meta QA → exit 0；3 個動態頁、9 次資產請求 HTTP 200；OG PNG 為 1200×630。現行公開版本再以 version.json HTTP 200、`.14` 確認 | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
+| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本輪新增 1295×651 短高度桌機與捲動重設檢查；`qa_github_pages_site.mjs` 不在 Pages site repo，版控狀態需另行決定 | 可選 P1-E；未經決定不擴大來源／QA 腳本版控範圍 |
+| P1-05 | 待本人決定／未處理 | 正式包 Manifest 與實際檔案數、重複 PDF、來源腳本是否納入 Git、兩份 PDF structure-tree 可及性警告 | 本輪未重驗正式包檔案數；PDF structure-tree 視覺正常但可及性影響未確認 | 不刪檔、不改正式包、不重建 Manifest、不修 PDF，直到老師選定範圍 |
+| P1-06 | 待本人決定／未確認 | T-7／T-24h 現場帳號、投影設備、模型名稱與費用方案敘述 | 帳號、現場網路、投影設備與當期方案未確認 | 不切換教授帳號、不猜測模型與費用文字；需先取得現場決策 |
+
+### RDQ 後續候選索引（未採納，等老師挑選）
+
+| 候選編號 | 方向 | 主要內容 | 預估代價／風險 | 建議驗收 |
+|---|---|---|---|---|
+| P1-A | 動態精緻化 | 依頁型加入 stagger、段落 reveal、卡片連續編排、背景 orb 微動態、轉場語意；同步維護 GSAP 與 HyperFrames seek | 中至高；需維持 83 頁不溢位、減少動態與鍵盤／觸控可用性 | motion QA、reduced-motion、83 頁邊界與 HyperFrames 9 個 timeline sample 全數通過 |
+| P1-B | 講者模式與導覽 | 章節目錄、頁面搜尋、URL deep link、演講計時器、講者視窗／備註、快速跳頁與目前頁分享 | 中；會增加導覽狀態、視窗同步與手機版操作複雜度 | 鍵盤／觸控／瀏覽器返回、三種主要尺寸與重新整理後 deep link 均通過 |
+| P1-C | 無障礙與閱讀模式 | focus-visible、跳至主要內容、ARIA 語意、放大至 200%、高對比、完整鍵盤操作、讀屏文字順序與更完整的 reduced-motion | 中；部分版面需調整，不能只靠顏色或動畫傳達資訊 | 自動檢查加鍵盤人工走查；目前 94 個文字元素 WCAG AA 基線保留，新增項目逐項留證 |
+| P1-D | 效能、離線與更新韌性 | 首屏優先、目前／下一頁預載、低網速測試、離線 fallback、SW 更新回復、長時間播放記憶體檢查 | 中；需維護快取策略與兩種網路狀態 | 冷啟動、慢網路、離線、更新提示與重新載入均有可重現指令和結果 |
+| P1-E | 內容建置與視覺 QA 自動化 | `deck-data` 單一來源、HTML 重新生成、長文字／頁數 lint、encoded pathname 覆蓋、逐頁 screenshot／視覺差異報告 | 高；可能觸及來源不在 Git、建置腳本與正式包同步方式 | 來源變更可重建 39／44 頁；文字溢位、連結、版本與視覺差異均能在 push 前失敗 |
+
+本索引只供挑選，不是已確認的 RDQ 規格卡；老師選定編號後，下一輪再針對該方向建立 `draft` 規格卡、列出待確認假設與驗收條件，確認前不開始製作。
+
 ## 本輪更新（v2026.08.18.14）
 
 本輪針對截圖所示的 HTML 動態簡報內容裁切進行全面檢查與修正；修改範圍只在 `09_HTML動態簡報`，沒有改寫 `08_HTML簡報` 的投影片圖片、Hotspot、雙緩衝切換或全螢幕版面。一般瀏覽器的 CSS／GSAP 分層動畫、HyperFrames 可 seek 時間軸與「不輸出 MP4」邊界均保留。
@@ -347,7 +376,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **全螢幕第一下先進入 `is-immersive` 的競速修正**。
 - **上午 39 頁、下午 44 頁，URL hash 對應關係**。
 - **`Gemini Notebook` 現行命名**（不要改回 NotebookLM）。
-- **版本號 query（目前 `?v=2026.08.18.12`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
+- **版本號 query（目前 `?v=2026.08.18.14`）**：版本號不可移除，改版時須同步更新 HTML、`version.json` 與 `sw.js`。
 - **投影片圖片點陣圖 + Hotspot 疊加架構**：不要因為「不是純 HTML 文字」就整套改寫。
 - **來源不在 Git**：改正式包 HTML 的同時必須同步改來源腳本。
 
@@ -378,8 +407,8 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 
 - **Token 額度**：本對話已接近耗盡，這是換手原因；剩餘量未確認。
 - **GitHub CLI**：`cagoooo` 已登入，push 權限可用。
-- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.13"`。
-- **Pages build 狀態**：本輪功能 commit `46f1ecf` 已推送，Pages API exit 0 回報 `status=built`；公開站 QA exit 0。
+- **公開站版本**：`version.json` HTTP 200，`"version": "2026.08.18.14"`。
+- **Pages build 狀態**：本輪功能 commit `d860da2` 與文件更新已推送，Pages API exit 0 回報 `status=built`；公開站 QA exit 0。
 - **OpenAI / ChatGPT / Claude / Gemini / Antigravity / Typeless 帳號與訂閱**：未確認。
 - **中大現場網路、投影、麥克風**：未確認。
 - **任何 token、API key、密碼**：本檔均無寫入。
