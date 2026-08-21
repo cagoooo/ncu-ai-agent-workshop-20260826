@@ -33,6 +33,27 @@
 
 本索引只供挑選，不是已確認的 RDQ 規格卡；老師選定編號後，下一輪再針對該方向建立 `draft` 規格卡、列出待確認假設與驗收條件，確認前不開始製作。
 
+## 本輪 HTML 入口頁數文案與快取修正（v2026.08.21.03；公開部署待重驗）
+
+本輪先處理已確認的可見技術債：`08_HTML簡報` 分支入口仍顯示過時的「83 頁原生文字場景」，已回到 `build_html_deck.mjs` 建置來源修正為「90 頁原生文字場景（上午 40／下午 50）」；沒有改動投影片圖片、Hotspot、QR、雙緩衝切換或全螢幕邏輯。
+
+- HTML 建置版本提升為 `2026.08.21.03`，同步更新 `version.json`、`sw.js`、相關 HTML query 與 QA 預期值，避免舊 Service Worker 快取入口文案。
+- `qa_github_pages_site.mjs` 修正動態 favicon 的 encoded pathname，補回 `09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1` 中遺漏的 `%E6%85%8B`；這是測試判斷修正，不是放寬資產檢查。
+
+本機實際驗證：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=40, afternoon=50
+node qa_html_deck.mjs → exit 0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；動態 motion overflow=0；上午／下午 scenes=240／300、capability=240／300；垂直捲動探針各 6/6；捲動重設各 6/6、maxResidual=0
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_ops_checklist.mjs → exit 0；36 interactive items
+python -X utf8 qa_qr_codes.py → exit 0；145 rendered QR codes decoded
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；filesScanned=3、runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87
+```
+
+公開部署目前尚未重驗；`Pages status`、公開 `version.json` HTTP 200 與公開 BASE_URL QA 均記為「未確認」，待 push 後補記實際結果。
+
 ## 本輪圖檔／HTML 內容同步（v2026.08.21.02；已部署公開站重驗）
 
 本輪依老師指示，將已完成的 Agent 時代與人生哲學內容同步納入上午／下午兩種版本：`08_HTML簡報` 圖檔版與 `09_HTML動態簡報` HTML 版均由同一批內容重新建置；既有圖檔版型、Hotspot、QR、雙緩衝切換與全螢幕 CSS SSOT 均保留，沒有改成 MP4。

@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.21.02",
-  "buildTime": "2026-08-21T06:59:54.601Z",
-  "title": "同步圖檔與 HTML 簡報的人生哲學內容",
-  "description": "上午圖檔與 HTML 簡報同步新增把時間還給人生的收束頁；下午同步新增六頁 Agent 時代人生反思；保留既有圖檔版型、QR、Hotspot、雙緩衝切換、全螢幕與 HTML／CSS／GSAP／HyperFrames 動態。"
+  "version": "2026.08.21.03",
+  "buildTime": "2026-08-21T08:49:50.836Z",
+  "title": "修正 HTML 簡報入口頁數文案",
+  "description": "修正 HTML 簡報入口的頁數文案為 90 頁（上午 40／下午 50）；保留既有圖檔版型、QR、Hotspot、雙緩衝切換、全螢幕與 HTML／CSS／GSAP／HyperFrames 動態。"
 }
