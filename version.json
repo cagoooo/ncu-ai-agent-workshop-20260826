@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.18.14",
-  "buildTime": "2026-08-21T03:54:25.000Z",
-  "title": "修正 HTML 動態簡報內容裁切與捲動位置",
-  "description": "修正長標題溢出時的上方裁切、換頁後內層捲動位置殘留，以及短高度桌機外層頁面裁切；保留手機、平板 RWD 捲動、CSS／GSAP 瀏覽器動畫與 HyperFrames 可 seek 時間軸，不輸出 MP4，原有圖檔簡報不變。"
+  "version": "2026.08.21.01",
+  "buildTime": "2026-08-21T05:40:44.111Z",
+  "title": "新增 Agent 時代人生反思內容與 HTML 場次頁",
+  "description": "新增上午「把時間還給生活」收束頁，以及下午六頁「從 Agent 到人生」反思章節；保留 HTML／CSS／GSAP 瀏覽器動態、HyperFrames 可 seek 時間軸、RWD 長文閱讀與原有圖檔簡報不變。"
 }

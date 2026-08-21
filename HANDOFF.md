@@ -33,6 +33,33 @@
 
 本索引只供挑選，不是已確認的 RDQ 規格卡；老師選定編號後，下一輪再針對該方向建立 `draft` 規格卡、列出待確認假設與驗收條件，確認前不開始製作。
 
+## 本輪新增內容（v2026.08.21.01；待部署公開站確認）
+
+本輪依 RDQ 將阿凱老師提出的 Agent 時代與人生哲學納入 `09_HTML動態簡報`，內容定位為「能力提升之後，如何把時間還給人生」；`08_HTML簡報` 圖檔版維持上午 39 頁、下午 44 頁，沒有改寫圖片、Hotspot、雙緩衝切換或全螢幕 CSS SSOT。
+
+- 上午場新增第 39 頁「工具幫我們省下時間，但人生不能只剩下更多任務」，接在整合挑戰後、資源書籤前；上午 HTML 動態版由 39 頁增加為 40 頁。
+- 下午場新增第 44–49 頁「從 Agent 到人生」反思章節，依序為超能力、從做不到到我可以、多巴胺與一人公司、效率陷阱、Harness 反思、情緒價值，以及把時間還給人生；下午資源書籤順延為第 50 頁，下午 HTML 動態版由 44 頁增加為 50 頁。
+- 完整哲學內容保留在各頁 `notes` 講者備註與「HTML 完整文字」閱讀模式；舞台使用分段核心句，降低長文造成的跑版風險。效率「1/10～1/20、至少 20 倍」以老師的觀察語氣呈現，不宣稱為所有任務的普遍測量結果；一人公司／一人獨角獸也以觀察與想像表述。
+- `version.json`、`sw.js` 與相關 HTML 靜態資源 query 已提升至 `2026.08.21.01`；PWA 更新提示仍保留，沒有寫入 API key、token 或密碼。
+
+本機已完成的實際驗證：
+
+```text
+node --check data/morning.js → exit 0
+node --check data/afternoon.js → exit 0
+資料結構檢查 → exit 0；上午 40 頁、下午 50 頁，頁碼均連續
+node qa_github_pages_site.mjs → exit 0；GitHub Pages site QA passed
+HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0
+HTML scroll container QA → 上午 scenes=240、capability=240；下午 scenes=300、capability=300
+HTML vertical scroll probe → 上午／下午均 viewports=6、passed=6
+HTML scroll reset QA → 上午／下午均 viewports=6、passed=6、maxResidual=0
+npx --yes hyperframes lint "09_HTML動態簡報" --json → exit 0；filesScanned=3、errorCount=0、warningCount=0、infoCount=0
+npx --yes hyperframes validate "09_HTML動態簡報" → exit 0；console errors=0、94 個文字元素通過 WCAG AA
+npx --yes hyperframes inspect "09_HTML動態簡報" → exit 0；9 個 timeline sample、layout issues=0
+npx --yes hyperframes check "09_HTML動態簡報" --json → exit 0；runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87
+node qa_html_deck.mjs → 首次 exit 1（既有轉場時序檢查偶發 previous slide 可見）；立即重跑 exit 0、`HTML deck QA passed.`，圖檔版仍為上午 39 頁／下午 44 頁，共 83 頁
+```
+
 ## 本輪更新（v2026.08.18.14）
 
 本輪針對截圖所示的 HTML 動態簡報內容裁切進行全面檢查與修正；修改範圍只在 `09_HTML動態簡報`，沒有改寫 `08_HTML簡報` 的投影片圖片、Hotspot、雙緩衝切換或全螢幕版面。一般瀏覽器的 CSS／GSAP 分層動畫、HyperFrames 可 seek 時間軸與「不輸出 MP4」邊界均保留。

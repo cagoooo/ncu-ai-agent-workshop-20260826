@@ -764,11 +764,71 @@ window.DYNAMIC_DECK_DATA = {
     },
     {
       "index": 44,
+      "title": "Agent 時代：我們像擁有了超能力",
+      "eyebrow": "AGENT ERA",
+      "section": "從 Agent 到人生",
+      "notes": "Agent 讓我能完成很多以前想不到自己能做到的事，能力變得非常強大，就像擁有超能力一樣。現在 Agent 時代到來，讓人感覺『沒有你做不到的事，只有你想不到的事』。\n\n現在我們解放了雙手，只要透過說話或打字指派任務，AI Agent 就能長時間不中斷地把事情做好，甚至做得比我們還好。這一頁不是要鼓勵大家把工作清單塞得更滿，而是先承認這份能力帶來的震撼，再問：多出來的時間，我們要怎麼使用？",
+      "text": "AGENT ERA\nAgent 時代：我們像擁有了超能力\n下午場｜打造會做事的 AI 教學與研究夥伴\n44\n很多以前想不到的事，現在一個人也能完成。\n\n「沒有你做不到的事，只有你想不到的事。」\n\n只要透過說話或打字指派任務，Agent 就能長時間不中斷地執行。\n\n超能力需要方向；能力越強，越要問自己要把時間放回哪裡。",
+      "description": "Agent 讓人感覺像擁有超能力；但真正重要的，不是再承接更多任務，而是重新安排省下來的時間。",
+      "links": []
+    },
+    {
+      "index": 45,
+      "title": "從「做不到」到「我可以」：一人公司的多巴胺時代",
+      "eyebrow": "FROM IMPOSSIBLE TO I CAN",
+      "section": "從 Agent 到人生",
+      "notes": "以前沒有 AI 的時候，我們會覺得做到這裡就好；但有了 AI Agent 之後，我們像發現了新大陸，因為發現原來這些事自己都能做到，容易分泌大量的多巴胺與腦內啡，想繼續探索下一個可能。\n\n這也是我對一人公司、一人獨角獸公司越來越多的觀察與想像：不是一個人突然變成全能，而是一個人可以用 Agent 組織研究、設計、製作、測試與部署，完成以前必須依賴更大團隊的工作。這份興奮很珍貴，但也要留意它會不會讓我們把『還能做什麼』誤認成『現在就必須再做什麼』。",
+      "text": "FROM IMPOSSIBLE TO I CAN\n從「做不到」到「我可以」：一人公司的多巴胺時代\n下午場｜打造會做事的 AI 教學與研究夥伴\n45\n沒有 AI 時，做到這裡就好。\n\n有了 Agent，像發現新大陸：原來這些事我也能完成。\n\n多巴胺讓我們想繼續探索；一人公司與一人獨角獸的想像，也因此被重新打開。\n\n興奮可以帶來創造力，但不必把每一個可能都變成待辦事項。",
+      "description": "Agent 把『原來我也可以』的可能性打開；探索能力的同時，也要保留停止與休息的選擇。",
+      "links": []
+    },
+    {
+      "index": 46,
+      "title": "效率提升 20 倍，為什麼人反而更忙？",
+      "eyebrow": "EFFICIENCY TRAP",
+      "section": "從 Agent 到人生",
+      "notes": "以前自己做完一件事就結束了；現在有了 AI 和 Agent 幫忙，有些任務只要 1/10 甚至 1/20 的時間就能完成，讓人感覺效率提升至少 20 倍。\n\n問題是，省下來的時間，大家反而會開始想還能做哪些優化與改良。因為效率越來越高，人就想做更多，給自己排了更多任務，反而越不得休息。效率的提升沒有自動帶來生活的餘裕；如果沒有重新設定邊界，它只會讓工作清單變長。",
+      "text": "EFFICIENCY TRAP\n效率提升 20 倍，為什麼人反而更忙？\n下午場｜打造會做事的 AI 教學與研究夥伴\n46\n有些任務只需 1/10～1/20 的時間，讓人感覺效率提升至少 20 倍。\n\n省下來的時間，常被新的優化與任務填滿。\n\n效率越高，不代表人生自動變輕；也可能只是把工作清單變長。\n\n真正的效率，是讓重要的人事物重新得到時間。",
+      "description": "效率提升如果沒有重新設定生活邊界，就可能把省下的時間換成更多任務與更少休息。",
+      "links": []
+    },
+    {
+      "index": 47,
+      "title": "誰在駕馭誰？Harness 的人生反思",
+      "eyebrow": "WHO IS HARNESSING WHOM?",
+      "section": "從 Agent 到人生",
+      "notes": "我們常說要 harness Agent：駕馭、引導、讓它依照目標完成任務。但也可能出現反轉——明明說是 harness Agent，結果卻變成 Agent 讓我們攬了更多事情在身上。\n\n這不是要否定 Agent，而是要重新檢查初衷：我們使用它，是為了把重要的事做得更好、把時間拿回來，還是只是因為它能做，所以不斷增加新的任務？當工具開始決定我們的節奏，就要停一下，重新選擇自己的方向。",
+      "text": "WHO IS HARNESSING WHOM?\n誰在駕馭誰？Harness 的人生反思\n下午場｜打造會做事的 AI 教學與研究夥伴\n47\n我們說要 harness Agent：駕馭、引導、讓它完成任務。\n\n但若 Agent 讓我們不斷攬更多事，駕馭關係就可能反過來。\n\n真正的問題：省下來的時間，我們到底要拿來做什麼？\n\n先停一下，再決定下一個任務是否真的重要。",
+      "description": "Harness 不只是技術詞，也是生活提醒：工具應該服務人的初衷，而不是替人決定永遠做更多。",
+      "links": []
+    },
+    {
+      "index": 48,
+      "title": "Agent 帶來強大能力，也帶來情緒價值",
+      "eyebrow": "EMOTIONAL VALUE",
+      "section": "從 Agent 到人生",
+      "notes": "在這個時代你不用是主管，即使只是基層員工或基層教師，有了 Agent 就好像成為很厲害的主管，可以吩咐它做任何事、分派任務給它；它做不好你可以責怪它，也可以要求它重做、指出問題。\n\n老師原本的表述是：『AI 永遠會給你正面的情緒價值。』它像是不會離職、不會抱怨的屬下，隨時提供滿滿的陪伴感與情緒價值，讓人覺得自己能做成好多事。這裡把它完整保留為使用者的經驗與感受，不把它延伸成 AI 能取代人的承諾。\n\n這是很強的工作支持與創作推進力，但人的判斷、責任、同理與彼此陪伴，仍然需要由人來承擔。",
+      "text": "EMOTIONAL VALUE\nAgent 帶來強大能力，也帶來情緒價值\n下午場｜打造會做事的 AI 教學與研究夥伴\n48\n你不必是主管；基層員工或教師，也能像厲害的主管一樣分派任務。\n\nAgent 隨時可回應、不會離職、不會抱怨，常讓人感受到穩定的正面回饋與陪伴感。\n\n這份支持很珍貴，但人的判斷、責任與真實關係，仍不能外包。\n\n把 Agent 當成夥伴使用，也要把人留在決策與關係的中心。",
+      "description": "Agent 提供強大的任務支援與正面回饋；越是感受到陪伴，越要記得保留人的判斷、責任與真實關係。",
+      "links": []
+    },
+    {
+      "index": 49,
+      "title": "把省下的時間還給人生：素養教育的所在",
+      "eyebrow": "RETURN TIME TO LIFE",
+      "section": "從 Agent 到人生",
+      "notes": "現在我們解放了雙手，只要透過說話或打字指派任務，AI Agent 就能長時間不中斷地把事情做好，甚至做得比我們還好。多出來的時間，我們是不是應該好好拿來做人生中真正重要的事？\n\n第一，培養自己的興趣與未來志向，探索以前在工作或教學中沒時間嘗試的路。第二，陪伴孩子與家人，建立更好的家庭關係，參與孩子的成長過程。第三，促進與同儕、同事之間的人際互動，好好聊聊天、深入溝通，找回人生更重要的意義。\n\n未來 AI Agent 一定會越來越強，強到我們只要動動嘴巴，它就能一路執行到最好。但剩下的這些時間，我們更應該好好規劃在人際關係、家人陪伴，以及個人的職涯發展與興趣上。這樣才能讓內容內化到生活中——能內化到生活中，也就是素養教育的所在。",
+      "text": "RETURN TIME TO LIFE\n把省下的時間還給人生：素養教育的所在\n下午場｜打造會做事的 AI 教學與研究夥伴\n49\n培養興趣與未來志向\n探索以前在工作／教學中沒有時間嘗試的路。\n\n陪伴孩子與家人\n參與成長，建立更好的家庭關係。\n\n與同儕、同事深入溝通\n好好聊天，找回共同工作的意義。\n\nAgent 越來越強，我們更要規劃人際關係、家人陪伴、職涯發展與興趣。\n\n素養教育的所在：把能力內化成更好的生活選擇。",
+      "description": "Agent 解放雙手之後，最重要的工作是把時間還給興趣、家人、同儕與人生真正重要的關係。",
+      "links": []
+    },
+    {
+      "index": 50,
       "title": "下午資源書籤",
       "eyebrow": "BOOKMARKS",
       "section": "整合、驗證與下一步",
       "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://antigravity.google/\n- https://chatgpt.com/codex/\n- https://claude.ai/\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- ../04_實作工具/提示詞快捷面板_研習用.html\n- https://cagoooo.github.io/Akai/\n- https://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n[/Sources]",
-      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n44\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Google Antigravity\nhttps://antigravity.google/\n開啟 Codex\nhttps://chatgpt.com/codex/\n開啟 Claude\nhttps://claude.ai/\nAgent Skills 官方教學\nhttps://codelabs.developers.google.com/getting-started-with-antigravity-skills\n提示詞快捷面板（同資料夾）\n../04_實作工具/提示詞快捷面板_研習用.html\n教育科技創新專區\nhttps://cagoooo.github.io/Akai/\nPIRLS 2026 評分規劃\nhttps://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
+      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n50\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Google Antigravity\nhttps://antigravity.google/\n開啟 Codex\nhttps://chatgpt.com/codex/\n開啟 Claude\nhttps://claude.ai/\nAgent Skills 官方教學\nhttps://codelabs.developers.google.com/getting-started-with-antigravity-skills\n提示詞快捷面板（同資料夾）\n../04_實作工具/提示詞快捷面板_研習用.html\n教育科技創新專區\nhttps://cagoooo.github.io/Akai/\nPIRLS 2026 評分規劃\nhttps://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
       "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://antigravity.google/\n- https://chatgpt.com/codex/\n- https://claude.ai/\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- ../04_實作工具/提示詞快捷面板_研習用.html\n- https://cagoooo.github.io/Akai/\n- https://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n[/Sources]",
       "links": [
         {

@@ -715,11 +715,21 @@ window.DYNAMIC_DECK_DATA = {
     },
     {
       "index": 39,
+      "title": "工具幫我們省下時間，但人生不能只剩下更多任務",
+      "eyebrow": "FROM TOOLS TO LIFE",
+      "section": "從工具走向生活",
+      "notes": "上午的實作讓我們看見：Agent 可以把原本分散、耗時的工作串成一條可重複使用的產線。但效率提升之後，最重要的問題不是『還能再做多少事』，而是『省下來的時間，我們想拿來過什麼樣的生活』。\n\n我想把這段反思留給每一位參與者：培養自己的興趣與未來志向，探索以前在工作或教學中沒有時間嘗試的路；陪伴孩子與家人，參與孩子的成長，建立更好的家庭關係；也和同儕、同事好好聊天、深入溝通，找回人與人共同工作的意義。\n\nAgent 解放的是雙手，不應該順便拿走我們休息、陪伴與思考的時間。素養教育的所在，不只是會用工具，而是能把能力內化成更好的生活選擇。下午場會再把這個問題往前推：當 Agent 越來越強，我們到底是在駕馭它，還是被它帶著承接更多任務？",
+      "text": "FROM TOOLS TO LIFE\n工具幫我們省下時間，但人生不能只剩下更多任務\n上午場｜打造專屬 AI 教學與研究工作室\n39\nAgent 解放雙手，讓我們有機會把時間拿回來。\n培養興趣與未來志向\n探索以前在工作／教學中沒有時間嘗試的路。\n陪伴孩子與家人\n參與成長，建立更好的家庭關係。\n走近同儕與同事\n好好聊天、深入溝通，找回共同工作的意義。\n素養教育的所在\n不只是會用工具，而是把能力內化成更好的生活選擇。",
+      "description": "Agent 解放雙手，讓我們有機會把時間拿回來；真正重要的是把省下的時間用在人際關係、家人陪伴、職涯發展與個人興趣上。",
+      "links": []
+    },
+    {
+      "index": 40,
       "title": "上午資源書籤",
       "eyebrow": "BOOKMARKS",
       "section": "Canvas 與網站部署",
       "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://notebook.google.com/\n- https://gemini.google.com/gems/create\n- https://gemini.google.com/app\n- https://github.com/cagoooo/it-cockpit\n- https://cagoooo.github.io/it-cockpit/\n- https://cagoooo.github.io/domain-meeting-go/\n- https://sites.google.com/new\n- https://pages.github.com/\n- https://gg90052.github.io/ezpage/\n[/Sources]",
-      "text": "BOOKMARKS\n上午資源書籤\n上午場｜打造專屬 AI 教學與研究工作室\n39\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Gemini Notebook\nhttps://notebook.google.com/\n建立自訂 Gem\nhttps://gemini.google.com/gems/create\n開啟 Gemini Canvas\nhttps://gemini.google.com/app\n教學駕駛艙 GitHub repo\nhttps://github.com/cagoooo/it-cockpit\n教學駕駛艙公開網站\nhttps://cagoooo.github.io/it-cockpit/\n教師會議紀錄系統（#84）\nhttps://cagoooo.github.io/domain-meeting-go/\n建立 Google Sites\nhttps://sites.google.com/new\n開啟 GitHub Pages\nhttps://pages.github.com/\nEZPage 一鍵部署\nhttps://gg90052.github.io/ezpage/\n上午的終點不是『學會每個工具』，而是完成一條能重複使用的教學與研究產線。",
+      "text": "BOOKMARKS\n上午資源書籤\n上午場｜打造專屬 AI 教學與研究工作室\n40\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Gemini Notebook\nhttps://notebook.google.com/\n建立自訂 Gem\nhttps://gemini.google.com/gems/create\n開啟 Gemini Canvas\nhttps://gemini.google.com/app\n教學駕駛艙 GitHub repo\nhttps://github.com/cagoooo/it-cockpit\n教學駕駛艙公開網站\nhttps://cagoooo.github.io/it-cockpit/\n教師會議紀錄系統（#84）\nhttps://cagoooo.github.io/domain-meeting-go/\n建立 Google Sites\nhttps://sites.google.com/new\n開啟 GitHub Pages\nhttps://pages.github.com/\nEZPage 一鍵部署\nhttps://gg90052.github.io/ezpage/\n上午的終點不是『學會每個工具』，而是完成一條能重複使用的教學與研究產線。",
       "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://notebook.google.com/\n- https://gemini.google.com/gems/create\n- https://gemini.google.com/app\n- https://github.com/cagoooo/it-cockpit\n- https://cagoooo.github.io/it-cockpit/\n- https://cagoooo.github.io/domain-meeting-go/\n- https://sites.google.com/new\n- https://pages.github.com/\n- https://gg90052.github.io/ezpage/\n[/Sources]",
       "links": [
         {
