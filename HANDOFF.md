@@ -1,6 +1,6 @@
 # HANDOFF.md｜2026-08-21 本輪 Agent 交接（圖檔／HTML 內容同步）
 
-稽核時間：2026-08-21（Asia/Taipei；本輪資產已同步，公開部署待推送後重驗）
+稽核時間：2026-08-21（Asia/Taipei；本輪資產已同步，公開部署已重驗）
 
 ---
 
@@ -12,12 +12,12 @@
 |---|---|---|---|---|
 | P0-01 | 已完成／守門 | `08_HTML簡報` 圖檔版的全螢幕、雙緩衝切換、快取破壞、原有版面與新增哲學內容 | `node qa_html_deck.mjs` → exit 0；圖檔版上午 40 頁、下午 50 頁，共 90 頁；新增內容由 `build_decks.mjs` 來源重建，既有 Hotspot、QR、雙緩衝與全螢幕邏輯保留 | 後續 HTML 動態功能不得改寫圖檔版的圖片、Hotspot、雙緩衝與全螢幕 CSS SSOT；若要再改內容，必須回到簡報來源重建 |
 | P0-02 | 已完成／公開可用 | `09_HTML動態簡報` 90 頁內容可讀、長標題不裁切、長文字可捲動、桌機／手機／平板 RWD | 本機與公開 `BASE_URL` 的 `node qa_github_pages_site.mjs` 均 exit 0；上午 scenes=240、capability=240，下午 scenes=300、capability=300；兩場垂直捲動探針均 viewports=6、passed=6；兩場捲動重設均 maxResidual=0 | 後續不得以固定高度或隱藏溢位方式回退內容可讀性 |
-| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開 version=`2026.08.21.02`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
+| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開 version=`2026.08.21.03`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
 | P0-04 | 已完成／隔離守門 | HTML 專區獨立於圖檔版；瀏覽器動態呈現，不把 MP4 輸出列為本輪成品 | `npx --yes hyperframes check "09_HTML動態簡報" --json` → exit 0；runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87；專區 README 保留「不需要輸出 MP4」邊界 | 後續動態化仍以 HTML／CSS／GSAP／HyperFrames seek 為主；Remotion 若採用，須另列規格，不得取代既有圖檔版 |
 | P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／總覽／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；圖檔版上午 40 頁、下午 50 頁；本機與公開 `node qa_github_pages_site.mjs` 均 exit 0；HTML 動態版上午 40 頁、下午 50 頁 | 後續可在既有導覽上加功能，不重做場次資料結構 |
 | P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames lint／validate／inspect／check 均 exit 0；timeline samples=9、layout issues=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
-| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG 為 1200×630；公開 version=`2026.08.21.02` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
-| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本輪新增 1295×651 短高度桌機與捲動重設檢查；`qa_github_pages_site.mjs` 不在 Pages site repo，版控狀態需另行決定 | 可選 P1-E；未經決定不擴大來源／QA 腳本版控範圍 |
+| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG 為 1200×630；公開 version=`2026.08.21.03` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
+| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本輪修正動態 favicon encoded pathname，公開 `BASE_URL` QA → exit 0；上午／下午捲動容器 240/240、300/300，探針與重設各 6/6 | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
 | P1-05 | 待本人決定／未處理 | 正式包 Manifest 與實際檔案數、重複 PDF、來源腳本是否納入 Git、兩份 PDF structure-tree 可及性警告 | 本輪實測正式包 456 檔（PDF 6、PPTX 6、HTML 85、PNG 287）；`RELEASE_MANIFEST_v1.0.txt` 仍寫 357；PDF structure-tree 視覺正常但可及性影響未確認 | 不刪檔、不改 Manifest、不修 PDF，直到老師選定範圍；本輪只同步新增資產與保留可追溯檔案 |
 | P1-06 | 待本人決定／未確認 | T-7／T-24h 現場帳號、投影設備、模型名稱與費用方案敘述 | 帳號、現場網路、投影設備與當期方案未確認 | 不切換教授帳號、不猜測模型與費用文字；需先取得現場決策 |
 
@@ -33,7 +33,7 @@
 
 本索引只供挑選，不是已確認的 RDQ 規格卡；老師選定編號後，下一輪再針對該方向建立 `draft` 規格卡、列出待確認假設與驗收條件，確認前不開始製作。
 
-## 本輪 HTML 入口頁數文案與快取修正（v2026.08.21.03；公開部署待重驗）
+## 本輪 HTML 入口頁數文案與快取修正（v2026.08.21.03；已部署公開站重驗）
 
 本輪先處理已確認的可見技術債：`08_HTML簡報` 分支入口仍顯示過時的「83 頁原生文字場景」，已回到 `build_html_deck.mjs` 建置來源修正為「90 頁原生文字場景（上午 40／下午 50）」；沒有改動投影片圖片、Hotspot、QR、雙緩衝切換或全螢幕邏輯。
 
@@ -52,7 +52,14 @@ python -X utf8 qa_qr_codes.py → exit 0；145 rendered QR codes decoded
 npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；filesScanned=3、runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87
 ```
 
-公開部署目前尚未重驗；`Pages status`、公開 `version.json` HTTP 200 與公開 BASE_URL QA 均記為「未確認」，待 push 後補記實際結果。
+部署後公開驗證：
+
+```text
+git push origin main → exit 0；main 已推送 commit c26a9e5
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0；status=built
+Invoke-WebRequest version.json?cb=20260821-03-live → exit 0；HTTP 200、version=2026.08.21.03
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；GitHub Pages site QA passed；公開上午／下午 scenes=240／300、capability=240／300，兩場垂直捲動探針均 viewports=6、passed=6，兩場捲動重設 maxResidual=0
+```
 
 ## 本輪圖檔／HTML 內容同步（v2026.08.21.02；已部署公開站重驗）
 
