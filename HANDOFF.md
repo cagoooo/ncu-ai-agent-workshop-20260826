@@ -4,6 +4,41 @@
 
 ---
 
+## 本輪更新（v2026.08.18.14）
+
+本輪針對截圖所示的 HTML 動態簡報內容裁切進行全面檢查與修正；修改範圍只在 `09_HTML動態簡報`，沒有改寫 `08_HTML簡報` 的投影片圖片、Hotspot、雙緩衝切換或全螢幕版面。一般瀏覽器的 CSS／GSAP 分層動畫、HyperFrames 可 seek 時間軸與「不輸出 MP4」邊界均保留。
+
+- 內層捲動：換頁、返回上一頁、瀏覽器 `pageshow` 與視窗尺寸變更時，會將 `.scene-content`、`.scene-copy`、`.scene-body` 與完整文字區的捲動位置歸零，避免標題從上方被裁切。
+- 長標題版面：偵測 `.scene-copy` 內容溢位後自動改為從上方排列，保留垂直捲軸讓使用者讀取完整標題、說明與段落，不再以垂直置中把第一行推到容器上方。
+- 短高度桌機：1295×651 等短高度桌機將 16:9 舞台縮放至可用高度，鎖定外層頁面捲動，讓裁切只由簡報內層捲動容器承接；手機／平板原有自然增高舞台與 RWD 捲動保留。
+- QA：`qa_github_pages_site.mjs` 新增 1295×651 短高度桌機逐頁檢查、桌機外層垂直溢位檢查，以及換頁後內層捲動歸零測試。
+- 快取：`version.json`、`sw.js` 與相關 HTML query 版本提升至 `.14`；`08_HTML簡報` 僅更新版本 query，內容圖檔未變更。
+
+本機實際驗證：
+
+```text
+node qa_html_deck.mjs → exit 0；上午 39 頁、下午 44 頁，共 83 頁
+node qa_github_pages_site.mjs → exit 0；GitHub Pages site QA passed
+HTML scroll container QA → 上午 scenes=234、capability=234；下午 scenes=264、capability=264
+HTML vertical scroll probe → 上午 viewports=6、passed=6；下午 viewports=6、passed=6
+HTML scroll reset QA → 上午 viewports=6、passed=6、maxResidual=0；下午 viewports=6、passed=6、maxResidual=0
+HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0
+node --check dynamic-deck.js／pwa-loader.js／sw.js → exit 0
+node --check qa_github_pages_site.mjs → exit 0
+npx --yes hyperframes lint "09_HTML動態簡報" --json → exit 0；filesScanned=3、errorCount=0、warningCount=0、infoCount=0
+npx --yes hyperframes validate "09_HTML動態簡報" → exit 0；console errors=0、94 個文字元素通過 WCAG AA
+npx --yes hyperframes inspect "09_HTML動態簡報" → exit 0；9 個 timeline sample、layout issues=0
+npx --yes hyperframes check "09_HTML動態簡報" --json → exit 0；runtime errorCount=0、layout totalIssueCount=0、contrast checked/passed=87/87
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0；status=built
+Invoke-WebRequest version.json → exit 0；HTTP 200、version=2026.08.18.14
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；GitHub Pages site QA passed；上午 scenes=234、capability=234，下午 scenes=264、capability=264
+公開 HTML vertical scroll probe → 上午 viewports=6、passed=6；下午 viewports=6、passed=6
+公開 HTML scroll reset QA → 上午 viewports=6、passed=6、maxResidual=0；下午 viewports=6、passed=6、maxResidual=0
+公開 Playwright 短高度第 7 頁量測 → exit 0；1295×651、version=.14、copyOverflowing=true、copy scrollHeight/clientHeight=587/240、h1AboveCopy=false、文件水平／垂直溢位=0
+```
+
+---
+
 ## 本輪更新（v2026.08.18.13）
 
 本輪針對 `09_HTML動態簡報` 的長文字內容補上可讀取的垂直捲動與 RWD 捲動承接；原有 `08_HTML簡報` 圖檔版的投影片圖片、Hotspot、雙緩衝切換與全螢幕 CSS SSOT 均未改動。一般瀏覽器的 CSS／GSAP 分層動畫、HyperFrames 可 seek 時間軸與「不輸出 MP4」邊界均保留。
@@ -133,8 +168,8 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.18.13`，`version.json` HTTP 200 已確認。
-- **最新 commit**：`46f1ecf 補強 HTML 簡報長文字垂直捲動`；仍以 `git log --oneline -1` 實際確認。
+- **公開版本**：`2026.08.18.14`，`version.json` HTTP 200 已確認。
+- **最新功能 commit**：`d860da2 修正 HTML 簡報內容裁切與捲動重設`；文件 commit 後仍以 `git log --oneline -1` 實際確認。
 - **GitHub Pages**：`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` exit 0，`status=built`。
 
 ---
@@ -420,19 +455,20 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開站版本：2026.08.18.13（version.json HTTP 200 已驗）
+公開站版本：2026.08.18.14（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，上午 39 頁／下午 44 頁
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`
 Git 工作區：本輪交接文件修正後保持乾淨，main 分支；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.13，並提升 SW BUILD_VERSION）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.18.14，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 4. HTML 動態簡報長文字在固定舞台中截斷／重疊 → 已修（桌機長文字自然列高；觸控裝置改單欄自然增高 RWD）
 5. HTML 動態簡報直接開啟時沒有 SW 更新通知 → 已修（新增 pwa-loader.js，三個動態頁均接上共用更新提示）
 6. HTML 動態簡報頁面切換與區塊呈現缺少分層動態 → 已修（一般瀏覽器播放 CSS／GSAP 進場與轉場；HyperFrames seek timeline 保留；不輸出 MP4）
 7. HTML 動態簡報長文字在桌機／手機／平板超出可視範圍 → 已修（桌機內容容器提供垂直捲動；觸控載具由舞台承接捲動；長句自動換行；換頁重設捲動位置）
+8. HTML 動態簡報長標題上方裁切／換頁後捲動殘留／短高度桌機外層裁切 → 已修（溢位時從上方排列、所有內層容器換頁歸零、短高度桌機舞台自適應）
 
 【接手後第一步】
 先跑以下指令確認狀態，不要憑本檔數字直接做事：
