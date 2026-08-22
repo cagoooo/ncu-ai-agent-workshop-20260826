@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.22.02",
-  "buildTime": "2026-08-22T07:59:31.7832992+08:00",
-  "title": "HTML 簡報總覽專區與快速跳轉",
-  "description": "09_HTML動態簡報新增跨上午／下午的 94 頁總覽專區，支援場次篩選、關鍵字搜尋與指定頁直接跳轉；保留全螢幕放大、長文捲動、手機／平板 RWD、CSS／GSAP／HyperFrames 動態，以及 08_HTML簡報圖檔版。"
+  "version": "2026.08.22.03",
+  "buildTime": "2026-08-22T13:40:04.356+08:00",
+  "title": "Antigravity Remote Control 與下午場同步更新",
+  "description": "下午場新增 2 頁 Antigravity Remote Control：介紹手機瀏覽器接手桌面 Agent、啟用與遠端修正流程；同步更新 08 圖檔版與 09 HTML 動態版，上午 44 頁、下午 52 頁、總覽 96 頁，並保留全螢幕、長文捲動、手機／平板 RWD、CSS／GSAP／HyperFrames 動態。官方功能目前逐步開放，是否可用依帳號與方案而定。"
 }
