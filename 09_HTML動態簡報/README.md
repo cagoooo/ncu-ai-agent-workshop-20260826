@@ -4,6 +4,7 @@
 
 - `compositions/morning.html`：上午場 44 頁（含「把時間還給生活」收束頁）
 - `compositions/afternoon.html`：下午場 50 頁（含 6 頁「從 Agent 到人生」反思章節）
+- `overview.html`：跨上午／下午的 94 頁總覽專區，可用關鍵字搜尋、場次篩選並直接跳轉到指定頁面。
 - 所有標題、正文、章節、講者備註與連結均為真正的 HTML／文字，不依賴 `08_HTML簡報` 的投影片圖檔。
 - `data/` 是從既有 `08_HTML簡報` 的 `deck-data` 抽出的內容快照；原本的圖檔版與切換程式完全保留。
 - 場景使用 `data-composition-id`、`data-start`、`data-duration`、`data-track-index` 與 `window.__timelines`；瀏覽器版以 CSS／GSAP 呈現頁面切換、標題、文字卡片、連結與背景的分層動態，HyperFrames 保留可 seek 的 HTML composition 時間軸契約，不需要輸出 MP4。
@@ -13,7 +14,7 @@
 
 ## 入口
 
-開啟 `index.html`，再選擇上午或下午場。兩份 deck 放在 `compositions/`，方便以一個入口管理多個可 seek 的 HTML composition。簡報支援鍵盤方向鍵、Space、總覽、講者備註、閱讀模式、觸控滑動與全螢幕；一般瀏覽器會播放分層轉場，`prefers-reduced-motion` 使用者則自動降低動畫。
+開啟 `index.html`，再選擇上午或下午場；若要快速定位，開啟 `overview.html`，可搜尋標題、章節或內容後直接跳轉。兩份 deck 放在 `compositions/`，方便以一個入口管理多個可 seek 的 HTML composition。簡報支援鍵盤方向鍵、Space、總覽、講者備註、閱讀模式、觸控滑動與全螢幕；一般瀏覽器會播放分層轉場，`prefers-reduced-motion` 使用者則自動降低動畫。
 
 ## 與既有版本的界線
 

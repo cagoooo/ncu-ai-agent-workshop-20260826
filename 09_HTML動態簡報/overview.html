@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07131f">
+  <meta name="description" content="國立中央大學 AI 教學與研究工作坊｜HTML 動態簡報總覽專區：一次瀏覽上午 44 頁與下午 50 頁，搜尋後直接跳轉到指定頁面。">
+  <link rel="canonical" href="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/overview.html">
+  <title>HTML 動態簡報總覽專區｜國立中央大學 AI 教學與研究工作坊</title>
+  <meta name="author" content="阿凱老師｜桃園市龍潭區石門國民小學">
+  <link rel="icon" href="assets/favicon.ico?v=2026.08.22.02" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2026.08.22.02">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png?v=2026.08.22.02">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=2026.08.22.02">
+  <link rel="manifest" href="manifest.webmanifest?v=2026.08.22.02">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="國立中央大學 AI 教學與研究工作坊">
+  <meta property="og:url" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/overview.html">
+  <meta property="og:title" content="HTML 動態簡報總覽專區｜國立中央大學">
+  <meta property="og:description" content="一次瀏覽上午 44 頁與下午 50 頁，搜尋、篩選後直接跳轉到指定 HTML 簡報頁面。">
+  <meta property="og:image" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/assets/og-dynamic.png?v=2026.08.22.02">
+  <meta property="og:image:secure_url" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/assets/og-dynamic.png?v=2026.08.22.02">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HTML 動態簡報總覽專區｜國立中央大學 AI 教學與研究工作坊">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HTML 動態簡報總覽專區｜國立中央大學">
+  <meta name="twitter:description" content="搜尋、篩選後直接跳轉到上午或下午 HTML 簡報的指定頁面。">
+  <meta name="twitter:image" content="https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/assets/og-dynamic.png?v=2026.08.22.02">
+  <meta name="twitter:image:alt" content="HTML 動態簡報總覽專區｜國立中央大學 AI 教學與研究工作坊">
+  <link rel="stylesheet" href="assets/dynamic-deck.css?v=2026.08.22.02">
+</head>
+<body class="overview-page theme-afternoon" data-app-version="2026.08.22.02">
+  <main id="overview-root" class="overview-main">
+    <nav class="overview-topbar" aria-label="總覽導覽">
+      <a class="overview-back" href="./">← 回 HTML 動態簡報首頁</a>
+      <span class="overview-kicker">SCENE INDEX · 94 HTML SLIDES</span>
+    </nav>
+
+    <header class="overview-hero">
+      <div>
+        <p class="overview-eyebrow">國立中央大學 × 阿凱老師</p>
+        <h1>先看全局，再直達那一頁</h1>
+        <p class="overview-lead">上午 44 頁、下午 50 頁集中在這裡。可以用場次篩選、關鍵字搜尋，或直接點選頁卡，快速跳到想看的 HTML 動態場景。</p>
+      </div>
+      <div class="overview-stats" aria-label="簡報頁數統計">
+        <div><b id="overview-visible-count">94</b><span>目前顯示</span></div>
+        <div><b id="overview-total-count">94</b><span>全部頁數</span></div>
+        <div><b>2</b><span>場次</span></div>
+      </div>
+    </header>
+
+    <section class="overview-tools" aria-label="搜尋與篩選">
+      <div class="overview-filters" role="tablist" aria-label="場次篩選">
+        <button type="button" class="overview-filter is-active" data-session-filter="all" role="tab" aria-selected="true">全部 94 頁</button>
+        <button type="button" class="overview-filter" data-session-filter="morning" role="tab" aria-selected="false">上午場 44 頁</button>
+        <button type="button" class="overview-filter" data-session-filter="afternoon" role="tab" aria-selected="false">下午場 50 頁</button>
+      </div>
+      <label class="overview-search">
+        <span>搜尋頁面</span>
+        <input id="overview-search-input" type="search" placeholder="輸入標題、章節或內容關鍵字" autocomplete="off" spellcheck="false">
+        <kbd>/</kbd>
+      </label>
+    </section>
+
+    <p class="overview-result-note" id="overview-result-note" role="status" aria-live="polite">顯示全部 94 頁</p>
+    <div class="overview-empty" id="overview-empty" hidden>找不到符合的頁面，請換一個關鍵字或清除篩選。</div>
+    <div class="overview-decks" id="overview-decks"></div>
+
+    <footer class="overview-footer">
+      <a href="./">回 HTML 動態簡報首頁</a>
+      <span>O 可在場次頁開啟快速總覽 · / 聚焦搜尋</span>
+    </footer>
+  </main>
+
+  <script src="data/morning.js?v=2026.08.22.02"></script>
+  <script>window.__OVERVIEW_DECKS = { morning: window.DYNAMIC_DECK_DATA };</script>
+  <script src="data/afternoon.js?v=2026.08.22.02"></script>
+  <script>window.__OVERVIEW_DECKS.afternoon = window.DYNAMIC_DECK_DATA;</script>
+  <script src="assets/overview.js?v=2026.08.22.02"></script>
+  <script defer src="assets/pwa-loader.js?v=2026.08.22.02"></script>
+</body>
+</html>

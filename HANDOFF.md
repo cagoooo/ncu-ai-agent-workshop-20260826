@@ -1,4 +1,4 @@
-# HANDOFF.md｜2026-08-22 本輪 Agent 交接（大型螢幕全螢幕 HTML 呈現優化）
+# HANDOFF.md｜2026-08-22 本輪 Agent 交接（HTML 簡報總覽專區）
 
 稽核時間：2026-08-22（Asia/Taipei；本輪資產已同步，公開部署已重驗）
 
@@ -12,14 +12,33 @@
 |---|---|---|---|---|
 | P0-01 | 已完成／守門 | `08_HTML簡報` 圖檔版的全螢幕、雙緩衝切換、快取破壞、原有版面與上午新增開場內容 | `node qa_html_deck.mjs` → exit 0；圖檔版上午 44 頁、下午 50 頁，共 94 頁；新增 4 頁由 `build_decks.mjs` 來源重建，既有 Hotspot、QR、雙緩衝與全螢幕邏輯保留 | 後續 HTML 動態功能不得改寫圖檔版的圖片、Hotspot、雙緩衝與全螢幕 CSS SSOT；若要再改內容，必須回到簡報來源重建 |
 | P0-02 | 已完成／公開可用 | `09_HTML動態簡報` 94 頁內容可讀、長標題不裁切、長文字可捲動、桌機／手機／平板 RWD | 本機與公開 `BASE_URL` 的 `node qa_github_pages_site.mjs` 均 exit 0；上午 scenes=264、capability=264，下午 scenes=300、capability=300；兩場垂直捲動探針均 viewports=6、passed=6；兩場捲動重設均 maxResidual=0 | 後續不得以固定高度或隱藏溢位方式回退內容可讀性 |
-| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開 version=`2026.08.22.01`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
+| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` → exit 0、`status=built`；`Invoke-WebRequest version.json` → exit 0、HTTP 200、公開 version=`2026.08.22.02`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
 | P0-04 | 已完成／隔離守門 | HTML 專區獨立於圖檔版；瀏覽器動態呈現，不把 MP4 輸出列為本輪成品 | HyperFrames lint／validate／inspect／check 均 exit 0；filesScanned=3、error/warning/info=0、console errors=0、WCAG AA=94、timeline samples=9、layout issues=0、runtime errorCount=0、contrast=87/87；專區 README 保留「不需要輸出 MP4」邊界；08 圖檔架構未改寫 | 後續動態化仍以 HTML／CSS／GSAP／HyperFrames seek 為主；Remotion 若採用，須另列規格，不得取代既有圖檔版 |
-| P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／總覽／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；圖檔版與 HTML 動態版均為上午 44 頁、下午 50 頁，共 94 頁 | 後續可在既有導覽上加功能，不重做場次資料結構 |
+| P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／單場快速總覽／跨場總覽專區／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；圖檔版與 HTML 動態版均為上午 44 頁、下午 50 頁，共 94 頁 | 後續可在既有導覽上加功能，不重做場次資料結構 |
 | P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames lint／validate／inspect／check 均 exit 0；timeline samples=9、layout issues=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
-| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；3 個動態頁的 meta／favicon／manifest 與 9 次資產請求均通過 HTTP 200；OG PNG=1200×630；公開 version=`2026.08.22.01` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
-| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本機與公開上午／下午捲動容器均 264/264、300/300，探針與重設各 6/6、maxResidual=0；公開版本 `.01` | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
+| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；4 個動態頁的 meta／favicon／manifest 與 12 次資產請求均通過 HTTP 200；OG PNG=1200×630；公開 version=`2026.08.22.02` | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
+| P1-04 | 基線完成／仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零、跨場總覽與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本機與公開上午／下午捲動容器均 264/264、300/300，探針與重設各 6/6、maxResidual=0；總覽卡片 94 張、直接連結 94 個、RWD 3 種尺寸；公開版本 `.02` | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
 | P1-05 | 部分完成／仍有決策邊界 | 正式包 Manifest、實際檔案數與重複 PDF 盤點；來源腳本是否納入 Git、PDF structure-tree 可及性仍待決定 | `RELEASE_MANIFEST_v1.1.txt` 重建 → exit 0；實際總數 468、SHA-256 inventory=467、missing=0、mismatch=0；正式包 PDF 6 份、重複 PDF 群組 2 組、PPTX 6 個；`qa_workshop_suite.mjs` 與正式包 `qa_html_deck.mjs` 均 exit 0 | 重複 PDF 已依老師決定保留；不刪除原 v1.0 歷史清單；來源納入 Git 與 PDF 完整可及性驗收仍不自行決定 |
-| P1-06 | 已完成／公開可用 | 901px 以上橫向全螢幕的內容放大、可用寬度釋放、長文垂直捲動與大型觸控螢幕相容 | `node qa_fullscreen_dynamic.mjs` → exit 0；上午 44/44、下午 50/50，全螢幕舞台 1912×1078、水平溢位 0；第 4 頁標題 84.128px、說明 24.856px；原生 Fullscreen API 探針 exit 0；公開 CSS HTTP 200、bytes=37144、新規則存在 | 僅改 `09_HTML動態簡報` CSS 最末層；不得回退既有手機／平板 RWD、長文捲動、轉場或 `08_HTML簡報` 圖檔架構 |
+| P1-06 | 已完成／公開可用 | 901px 以上橫向全螢幕的內容放大、可用寬度釋放、長文垂直捲動與大型觸控螢幕相容 | `node qa_fullscreen_dynamic.mjs` → exit 0；上午 44/44、下午 50/50，全螢幕舞台 1912×1078、水平溢位 0；第 4 頁標題 84.128px、說明 24.856px；原生 Fullscreen API 探針 exit 0；公開 CSS HTTP 200、bytes=47986、新規則存在 | 僅改 `09_HTML動態簡報` CSS 最末層；不得回退既有手機／平板 RWD、長文捲動、轉場或 `08_HTML簡報` 圖檔架構 |
+| P1-07 | 已完成／公開可用 | 跨上午／下午的 HTML 簡報總覽專區、場次篩選、關鍵字搜尋與指定頁直接跳轉 | `node qa_github_pages_site.mjs` → exit 0；總覽卡片 94 張（上午 44／下午 50）、直接連結 94 個、篩選按鈕 3 個；下午篩選 50 張；`Codex` 搜尋命中 31 張；RWD 393×852、932×430、820×1180 共 3 種尺寸均無水平溢位 | 維持 `overview.html` 為跨場索引；單場頁的 `O` 快速總覽保留，不互相取代 |
+
+## 本輪完成：跨場 HTML 簡報總覽專區（v2026.08.22.02）
+
+本輪新增 `09_HTML動態簡報/overview.html`，將上午 44 頁與下午 50 頁集中成 94 張可點選的 HTML 卡片；支援全部／上午／下午 3 種場次篩選、標題／章節／內容關鍵字搜尋、`/` 聚焦搜尋、`Esc` 清除搜尋，點擊後直接開啟對應的 `compositions/*.html#slide-N`。既有場次頁的單場快速總覽仍保留，並在總覽面板提供跨場專區入口。
+
+入口與 RWD：HTML 動態簡報首頁新增「總覽專區」卡片；總覽頁在桌機以多欄卡片呈現，在手機／平板改為單欄或自適應欄位，保留鍵盤 focus-visible、觸控點擊與頁面垂直捲動；`08_HTML簡報` 只更新版本 query 以同步快取，投影片圖片、Hotspot、QR、雙緩衝與原有版面未改寫。
+
+本機與正式包同步證據：
+
+```text
+node --check build_html_deck.mjs／sync_dynamic_deck.mjs／qa_html_deck.mjs／qa_github_pages_site.mjs／09_HTML動態簡報/assets/overview.js → 均 exit 0
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=44, afternoon=50
+node sync_dynamic_deck.mjs → exit 0；morning=44、afternoon=50、version=2026.08.22.02
+python 跨專案資產同步 → exit 0；copied=27、differing=0、overview_exists=True
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=470、inventory=469、pdf=6、duplicate_pdf_groups=2
+```
+
+公開部署證據會在本輪 `git push` 後補登：Pages `status=built`、公開 `version.json` HTTP 200／版本與公開 `BASE_URL` QA 結果。
 
 ## 本輪完成：大型螢幕全螢幕 HTML 呈現優化（v2026.08.22.01）
 
@@ -361,7 +380,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 - **建置 / QA 腳本目錄**：`C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826`
 - **正式包**：`C:\Users\smes\Desktop\Cowork\4-投稿與文件\中央大學_AI_Agent工作坊_20260826\研習正式包_v1.0`
 - **分支**：`main`，本輪交接文件修正完成後工作區應保持乾淨
-- **公開版本**：`2026.08.21.04`，`version.json` HTTP 200 已確認。
+- **公開版本**：`2026.08.22.02`，`version.json` HTTP 200 已確認。
 - **本輪功能 commit**：`a9c1a50 新增上午場文組 AI 大航海時代開場內容`；本檔更新提交後，以 `git log --oneline -1` 實際確認目前 HEAD。
 - **GitHub Pages**：`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}'` exit 0，`status=built`。
 
@@ -641,20 +660,21 @@ Remove-Item Env:WORKSHOP_ROOT
 讀完後再開始做任何事。
 
 【當前狀態】
-公開版本：2026.08.21.04（version.json HTTP 200 已驗）
+公開版本：2026.08.22.02（version.json HTTP 200 已驗）
 本機 HTML 簡報 QA：本輪 exit 0，`HTML deck QA passed.`，圖檔版上午 44 頁／下午 50 頁，共 94 頁；HTML 動態版上午 44 頁／下午 50 頁
 帶 BASE_URL 的公開站 QA：exit 0，`GitHub Pages site QA passed.`；公開上午／下午 scenes=264／300、capability=264／300，兩場垂直捲動探針均 viewports=6、passed=6，兩場捲動重設 maxResidual=0
 Git 工作區：main；公開驗證證據已補入本檔，提交後以 `git status --short` 確認乾淨；最新 commit 以 `git log --oneline -1` 為準
 
 【本輪修復的 Bug（不要回退）】
 1. 全螢幕跑版（靠頂、下方大黑底）→ 已修（CSS SSOT 置於最底層）
-2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.21.04，並提升 SW BUILD_VERSION）
+2. CSS／Service Worker 快取舊版不更新 → 已修（全 HTML 補 ?v=2026.08.22.02，並提升 SW BUILD_VERSION）
 3. 全螢幕切換下一頁閃黑 → 已修（移除 enableHiResImage，雙緩衝重疊轉場 + img.decode()）
 4. HTML 動態簡報長文字在固定舞台中截斷／重疊 → 已修（桌機長文字自然列高；觸控裝置改單欄自然增高 RWD）
-5. HTML 動態簡報直接開啟時沒有 SW 更新通知 → 已修（新增 pwa-loader.js，三個動態頁均接上共用更新提示）
+5. HTML 動態簡報直接開啟時沒有 SW 更新通知 → 已修（新增 pwa-loader.js，四個動態頁均接上共用更新提示）
 6. HTML 動態簡報頁面切換與區塊呈現缺少分層動態 → 已修（一般瀏覽器播放 CSS／GSAP 進場與轉場；HyperFrames seek timeline 保留；不輸出 MP4）
 7. HTML 動態簡報長文字在桌機／手機／平板超出可視範圍 → 已修（桌機內容容器提供垂直捲動；觸控載具由舞台承接捲動；長句自動換行；換頁重設捲動位置）
 8. HTML 動態簡報長標題上方裁切／換頁後捲動殘留／短高度桌機外層裁切 → 已修（溢位時從上方排列、所有內層容器換頁歸零、短高度桌機舞台自適應）
+9. HTML 簡報頁數多、跨場跳轉不便 → 已修（新增 `overview.html`，94 張卡片、3 種場次篩選、關鍵字搜尋與指定頁直接跳轉）
 
 【接手後第一步】
 先跑以下指令確認狀態，不要憑本檔數字直接做事：

@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.22.01";
+const BUILD_VERSION = "2026.08.22.02";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 
 // 精簡核心預載清單：僅快取極輕量的關鍵 HTML、CSS、JS 與小圖示（排除 4MB+ 的 OG 大圖）
@@ -22,10 +22,12 @@ const PRECACHE = [
   "./08_HTML簡報/assets/deck.css",
   "./08_HTML簡報/assets/deck.js?v=" + BUILD_VERSION,
   "./09_HTML動態簡報/index.html",
+  "./09_HTML動態簡報/overview.html",
   "./09_HTML動態簡報/compositions/morning.html",
   "./09_HTML動態簡報/compositions/afternoon.html",
   "./09_HTML動態簡報/assets/dynamic-deck.css?v=" + BUILD_VERSION,
   "./09_HTML動態簡報/assets/dynamic-deck.js?v=" + BUILD_VERSION,
+  "./09_HTML動態簡報/assets/overview.js?v=" + BUILD_VERSION,
   "./09_HTML動態簡報/assets/pwa-loader.js?v=" + BUILD_VERSION,
   "./09_HTML動態簡報/assets/favicon.ico?v=" + BUILD_VERSION,
   "./09_HTML動態簡報/assets/favicon.svg?v=" + BUILD_VERSION,
