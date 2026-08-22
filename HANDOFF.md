@@ -1,6 +1,6 @@
 # HANDOFF.md｜2026-08-22 本輪 Agent 交接（全螢幕 HTML 互動轉場修正）
 
-稽核時間：2026-08-22（Asia/Taipei；本輪本機與正式包已驗證，公開部署待本次 push 後重驗）
+稽核時間：2026-08-22（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
 
@@ -12,18 +12,18 @@
 |---|---|---|---|---|
 | P0-01 | 已完成／守門 | `08_HTML簡報` 圖檔版的全螢幕、雙緩衝切換、快取破壞、原有版面與上午新增開場內容 | `node qa_html_deck.mjs` → exit 0；圖檔版上午 44 頁、下午 52 頁，共 96 頁；本輪新增下午第 18–19 頁並產生 4 個新頁面圖檔（1x／2K）；既有 Hotspot、QR、雙緩衝與全螢幕邏輯保留 | 後續 HTML 動態功能不得改寫圖檔版的圖片、Hotspot、雙緩衝與全螢幕 CSS SSOT；若要再改內容，必須回到簡報來源重建 |
 | P0-02 | 已完成／公開可用 | `09_HTML動態簡報` 96 頁內容可讀、長標題不裁切、長文字可捲動、桌機／手機／平板 RWD；操作型頁面改為語意化步驟／完成面板 | 本機與公開 `BASE_URL` 的 `node qa_github_pages_site.mjs` 均 exit 0；上午 scenes=264、capability=264，下午 scenes=312、capability=312；兩場垂直捲動探針均 viewports=6、passed=6；兩場捲動重設均 maxResidual=0；第 16 頁面板=2、操作項目=4、完成項目=4；桌機水平溢位=0 | 後續不得以固定高度或隱藏溢位方式回退內容可讀性 |
-| P0-03 | 已完成／本機驗證，待公開重驗 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | 本機 `sw.js`、`version.json` 與 HTML 資產版本均已升至 `2026.08.22.05`；`node --check github_pages_site/sw.js` → exit 0；本次 push 後的 Pages `built`、公開 `version.json` HTTP 200 與公開 QA 尚未確認 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
+| P0-03 | 已完成／公開可用 | Service Worker 更新提示、版本快取與 GitHub Pages 發布 | `gh run watch 32576892833 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status` → exit 0；`gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}'` → exit 0、`status=built`；`(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260822-05-live').Content` → exit 0、HTTP 200、公開 version=`2026.08.22.05`；公開 `BASE_URL` QA → exit 0 | 每次發布都要重新確認 Pages `built`、`version.json` HTTP 200 與公開 QA |
 | P0-04 | 已完成／隔離守門 | HTML 專區獨立於圖檔版；瀏覽器動態呈現，不把 MP4 輸出列為本輪成品 | `npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json` → exit 0；`ok=true`、filesScanned=3、lint error/warning/info=0、runtime error/warning/info=0、layout totalIssueCount=0、motion ok=true（本次 CLI motion enabled=false、samples=0）、contrast=99/99；專區 README 保留「不需要輸出 MP4」邊界；08 圖檔架構未改寫 | 後續動態化仍以 HTML／CSS／GSAP／HyperFrames seek 為主；Remotion 若採用，須另列規格，不得取代既有圖檔版 |
 | P1-01 | 已完成 | HTML 簡報入口、上午／下午場 composition、返回簡報首頁、鍵盤／觸控／單場快速總覽／跨場總覽專區／講者備註／閱讀模式／全螢幕 | `node qa_html_deck.mjs` → exit 0；圖檔版與 HTML 動態版均為上午 44 頁、下午 52 頁，共 96 頁 | 後續可在既有導覽上加功能，不重做場次資料結構 |
 | P1-02 | 已完成 | CSS／GSAP 分層進場與轉場、HyperFrames 可 seek timeline、減少動態模式 | HTML browser motion QA → exit 0；samples=2、entering=true、transitioning=true、settled=true、overflow=0。HyperFrames check → exit 0；lint／runtime／layout 問題均為 0、contrast=99/99；CLI motion enabled=false、samples=0 | 目前是可用基線；更精緻的動態節奏列為候選 P1-A，尚未採納 |
-| P1-03 | 已完成／本機驗證，待公開重驗 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 本機既有 4 個動態頁 meta／favicon／manifest 契約保留；`node qa_github_pages_site.mjs` → exit 0；本輪快取版本已升至 `2026.08.22.05`，公開 version 尚未確認 | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
-| P1-04 | 基線完成／本輪本機驗證，仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零、跨場總覽與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；本機上午／下午捲動容器 264/264、312/312，探針與重設各 6/6、maxResidual=0；總覽卡片 96 張、直接連結 96 個、RWD 3 種尺寸；本輪版本 `.05` 公開結果尚未確認 | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
+| P1-03 | 已完成／公開可用 | 專區 favicon、PWA icon／manifest、LINE／Facebook／Twitter OG 預覽與公開 meta | 公開 `BASE_URL` QA → exit 0；4 個動態頁的 meta／favicon／manifest 與資產請求均通過；公開 version=`2026.08.22.05`、OG PNG=1200×630 | 若要增加多組分享卡或動態預覽，另列候選，不改既有分享圖契約 |
+| P1-04 | 基線完成／公開可用，仍有維護缺口 | QA 已涵蓋 encoded 中文路徑、短高度桌機、RWD、內層捲動、換頁捲動歸零、跨場總覽與公開站；QA 腳本仍在專案外層 | `node --check qa_github_pages_site.mjs` → exit 0；公開 `BASE_URL` QA → exit 0；公開上午／下午捲動容器均 264/264、312/312，探針與重設各 6/6、maxResidual=0；總覽卡片 96 張、直接連結 96 個、RWD 3 種尺寸；公開版本 `.05` | QA 腳本仍不在 Pages site repo，版控狀態需另行決定；可選 P1-E |
 | P1-05 | 部分完成／仍有決策邊界 | 正式包 Manifest、實際檔案數與重複 PDF 盤點；來源腳本是否納入 Git、PDF structure-tree 可及性仍待決定 | `rebuild_release_manifest.py` → exit 0；正式包總數 474、SHA-256 inventory=473、missing=0、mismatch=0；正式包 PDF 6 份、重複 PDF 群組 2 組、PPTX 6 個；PDF 頁數上午 44、下午 52、合計 96；正式包 `audit_local_links.mjs` → exit 0（86 HTML、176 references）；`qa_workshop_suite.mjs` 與正式包 `qa_html_deck.mjs` 均 exit 0 | 重複 PDF 已依老師決定保留；不刪除原 v1.0 歷史清單；來源納入 Git 與 PDF 完整可及性驗收仍不自行決定 |
-| P1-06 | 已完成／公開可用 | 901px 以上橫向全螢幕的內容放大、可用寬度釋放、長文垂直捲動與大型觸控螢幕相容 | `node qa_fullscreen_dynamic.mjs`（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 52/52，全螢幕舞台 1912×1078、水平溢位 0；第 4 頁標題 84.128px、說明 24.856px；公開 CSS HTTP 200、bytes=53115，語意化面板規則存在 | 僅改 `09_HTML動態簡報` CSS 最末層；不得回退既有手機／平板 RWD、長文捲動、轉場或 `08_HTML簡報` 圖檔架構 |
+| P1-06 | 已完成／公開可用 | 901px 以上橫向全螢幕的內容放大、可用寬度釋放、長文垂直捲動與大型觸控螢幕相容 | `node qa_fullscreen_dynamic.mjs`（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 52/52，全螢幕舞台 1912×1078、水平溢位 0；第 4 頁標題 84.128px、說明 24.856px；公開 CSS `Invoke-WebRequest` → exit 0、HTTP 200、bytes=53951，語意化面板規則存在 | 僅改 `09_HTML動態簡報` CSS 最末層；不得回退既有手機／平板 RWD、長文捲動、轉場或 `08_HTML簡報` 圖檔架構 |
 | P1-07 | 已完成／公開可用 | 跨上午／下午的 HTML 簡報總覽專區、場次篩選、關鍵字搜尋與指定頁直接跳轉 | `node qa_github_pages_site.mjs` → exit 0；總覽卡片 96 張（上午 44／下午 52）、直接連結 96 個、篩選按鈕 3 個；下午篩選 52 張；`Codex` 搜尋命中 32 張；RWD 393×852、932×430、820×1180 共 3 種尺寸均無水平溢位 | 維持 `overview.html` 為跨場索引；單場頁的 `O` 快速總覽保留，不互相取代 |
 | P1-08 | 已完成／公開可用 | Antigravity Remote Control 下午場最新功能：手機瀏覽器接手桌面 Agent、啟用與遠端修正流程 | `node build_decks.mjs`／`node build_html_deck.mjs`／`node sync_dynamic_deck.mjs` 均 exit 0；新增下午第 18–19 頁；公開 `09_HTML動態簡報/data/afternoon.js` HTTP 200 且標題與官方來源存在；公開 `08_HTML簡報/afternoon.html` HTTP 200 且 afternoon-51／52 圖檔存在 | 官方功能逐步開放，需同一 Google 帳號、桌面端開啟 Remote Control 且主機保持連線；不得把 rollout／方案可用性寫成所有帳號已啟用 |
 | P1-09 | 已完成／公開可用 | 操作型 HTML 投影片右側卡片 UI／UX：步驟、完成條件、編號、勾選、時間標籤與連結分層；避免最高卡片撐高同列空白 | `node --check github_pages_site/09_HTML動態簡報/assets/dynamic-deck.js` → exit 0；第 16 頁桌機面板=2、操作項目=4、完成項目=4、水平溢位=0；手機／平板改單欄；全螢幕上午 44/44、下午 52/52；HyperFrames `check` → exit 0、lint/runtime/layout 錯誤與警告=0、contrast=99/99 | 新增操作型頁面時優先提供清楚的步驟／驗收資料；不回寫 `08_HTML簡報` 圖檔內容 |
-| P1-10 | 已完成／本機驗證，待公開重驗 | 全螢幕 HTML 互動轉場單一動畫控制：外層雙緩衝不再與 GSAP 重複淡入／模糊／縮放，保留內容分層進場 | `node qa_fullscreen_animation.mjs` → exit 0；1912×1078；上午／下午前進與後退共 4 個方向、16 個取樣、failures=0、pageErrors=0；`node qa_fullscreen_dynamic.mjs`（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 52/52、水平溢位=0；`08_HTML簡報` 未改投影片圖片 | 後續若要增加轉場效果，必須先通過全螢幕動畫 QA，不得讓投影片外層與內容層同時控制同一個 opacity／filter／transform |
+| P1-10 | 已完成／公開可用 | 全螢幕 HTML 互動轉場單一動畫控制：外層雙緩衝不再與 GSAP 重複淡入／模糊／縮放，保留內容分層進場 | `node qa_fullscreen_animation.mjs` → exit 0；1912×1078；上午／下午前進與後退共 4 個方向、16 個取樣、failures=0、pageErrors=0；`node qa_fullscreen_dynamic.mjs`（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 52/52、水平溢位=0；公開 CSS `Invoke-WebRequest` → exit 0、HTTP 200、bytes=53951；`08_HTML簡報` 未改投影片圖片 | 後續若要增加轉場效果，必須先通過全螢幕動畫 QA，不得讓投影片外層與內容層同時控制同一個 opacity／filter／transform |
 
 ## 本輪完成：全螢幕 HTML 互動轉場單一動畫控制（v2026.08.22.05）
 
@@ -35,7 +35,7 @@
 - 沒有修改 `dynamic-deck.js` 的換頁資料、場景時間軸或 HyperFrames seek 行為；沒有修改 `08_HTML簡報` 的投影片圖片、Hotspot、QR、雙緩衝與既有圖檔版 CSS 架構。
 - 版本快取升至 `2026.08.22.05`，同步根目錄、`08_HTML簡報`、`09_HTML動態簡報`、Service Worker 與正式包；本輪不輸出 MP4。
 
-本機與正式包證據（公開部署於本節更新前尚未重驗）：
+本機、正式包與公開站證據：
 
 ```text
 node --check qa_fullscreen_animation.mjs → exit 0
@@ -49,6 +49,13 @@ $env:WORKSHOP_ROOT=<正式包>；node audit_local_links.mjs → exit 0；86 HTML
 $env:WORKSHOP_ROOT=<正式包>；node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
 npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；ok=true、filesScanned=3、lint/runtime/layout error/warning=0、contrast=99/99
 git diff --check → exit 0
+git commit -m "修正全螢幕 HTML 互動轉場動畫" → exit 0；8543a28；12 files changed
+git push origin main → exit 0；faa6619..8543a28，main -> main
+gh run watch 32576892833 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build、report-build-status、deploy 全部成功
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260822-05-live').Content → exit 0；HTTP 200、公開 version=2026.08.22.05
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'；node qa_github_pages_site.mjs；Remove-Item Env:BASE_URL → exit 0；GitHub Pages site QA passed；總覽 96 卡片／96 直達連結；上午／下午 scenes=264／312；探針與重設各 6/6、maxResidual=0
+$r=Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML%E5%8B%95%E6%85%8B%E7%B0%A1%E5%A0%B1/assets/dynamic-deck.css?v=2026.08.22.05'；[PSCustomObject]@{status=$r.StatusCode;bytes=$r.RawContentLength;hasSingleAnimationControl=$r.Content.Contains('body.interactive-mode .dynamic-slide') -and $r.Content.Contains('transition: none !important')} | ConvertTo-Json -Compress → exit 0；`{"status":200,"bytes":53951,"hasSingleAnimationControl":true}`
 ```
 
 以下以「操作型 HTML 簡報卡片 UI／UX 優化（v2026.08.22.04）」為上一輪歷史紀錄，保留當時的公開版本與 commit 證據，不回寫為本輪版本。
