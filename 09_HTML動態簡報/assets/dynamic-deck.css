@@ -753,3 +753,14 @@ a { color: inherit; }
   .overview-slide-card { min-height: 150px; }
   .overview-footer { align-items: flex-start; flex-direction: column; }
 }
+
+/* ───────────────────────────────────────────────────────────────
+   互動轉場單一動畫控制（最底層 SSOT）
+   - 投影片外層只負責雙緩衝堆疊，不再與 GSAP 同時淡入、縮放、模糊。
+   - scene-transition 的透明度與縮放交由 animateInteractiveScene() 統一控制。
+   - 保留 HyperFrames 模式原有的 seek／呈現行為，不影響 08 圖檔簡報。
+   ─────────────────────────────────────────────────────────────── */
+body.interactive-mode .dynamic-slide,
+body.interactive-mode .scene-transition {
+  transition: none !important;
+}
