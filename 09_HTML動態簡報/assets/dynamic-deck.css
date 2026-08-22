@@ -520,6 +520,145 @@ a { color: inherit; }
 }
 
 /* ───────────────────────────────────────────────────────────────
+   操作型投影片的語意化卡片
+   - 以「操作步驟／完成條件」取代長段落硬拆，避免最高卡片把同列撐出大空白。
+   - 桌機維持雙欄；觸控裝置改為單欄，讓每一項都能自然閱讀。
+   ─────────────────────────────────────────────────────────────── */
+.layout-steps .scene-body { align-items: start; grid-auto-rows: auto; }
+.layout-steps .content-block { align-self: start; }
+.layout-steps .content-block--steps:only-child,
+.layout-steps .content-block--checks:only-child { grid-column: 1 / -1; }
+.layout-steps .content-block.content-block--steps,
+.layout-steps .content-block.content-block--checks {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  align-self: start;
+  padding: clamp(16px, 1.25vw, 26px);
+}
+.layout-steps .content-block--steps::before,
+.layout-steps .content-block--checks::before {
+  top: clamp(18px, 1.4vw, 26px);
+  left: clamp(18px, 1.25vw, 24px);
+  width: clamp(18px, 1.25vw, 26px);
+}
+.content-block-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 24px;
+  padding-left: clamp(30px, 2vw, 42px);
+}
+.content-block-kicker {
+  color: var(--ink);
+  font-size: clamp(15px, 1.08vw, 21px);
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+.content-block-meta {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--rule));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  color: var(--accent);
+  font: 800 clamp(11px, .8vw, 15px)/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: nowrap;
+}
+.content-list {
+  display: grid;
+  gap: 0;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.content-list li {
+  display: grid;
+  grid-template-columns: 2.15em minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 78%, transparent);
+}
+.content-list li:first-child { border-top: 0; }
+.content-list--steps { counter-reset: structured-step; }
+.content-list--steps li { counter-increment: structured-step; }
+.content-list--steps li::before {
+  display: grid;
+  width: 1.85em;
+  height: 1.85em;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  color: var(--accent);
+  content: counter(structured-step);
+  font: 900 clamp(12px, .86vw, 17px)/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+.content-list--checks li::before {
+  display: grid;
+  width: 1.85em;
+  height: 1.85em;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--teal) 15%, transparent);
+  color: var(--teal);
+  content: "✓";
+  font-size: clamp(14px, .95vw, 19px);
+  font-weight: 900;
+}
+.content-list li span {
+  min-width: 0;
+  color: var(--ink);
+  font-size: clamp(14px, 1.02vw, 20px);
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1200px) and (hover: none) and (pointer: coarse) {
+  .layout-steps .content-block.content-block--steps,
+  .layout-steps .content-block.content-block--checks {
+    padding: 16px;
+  }
+  .content-block-heading { padding-left: 28px; }
+  .content-list li { padding: 10px 0; }
+  .content-list li span { font-size: 15px; line-height: 1.55; }
+}
+
+@media (min-width: 901px) and (orientation: landscape) {
+  :fullscreen .layout-steps .content-block.content-block--steps,
+  :-webkit-full-screen .layout-steps .content-block.content-block--steps,
+  body.is-immersive .layout-steps .content-block.content-block--steps,
+  :fullscreen .layout-steps .content-block.content-block--checks,
+  :-webkit-full-screen .layout-steps .content-block.content-block--checks,
+  body.is-immersive .layout-steps .content-block.content-block--checks {
+    min-height: 0 !important;
+    padding: clamp(16px, 1.2vw, 26px) !important;
+  }
+  :fullscreen .layout-steps .content-block--steps::before,
+  :-webkit-full-screen .layout-steps .content-block--steps::before,
+  body.is-immersive .layout-steps .content-block--steps::before,
+  :fullscreen .layout-steps .content-block--checks::before,
+  :-webkit-full-screen .layout-steps .content-block--checks::before,
+  body.is-immersive .layout-steps .content-block--checks::before {
+    top: clamp(18px, 1.4vw, 26px) !important;
+    left: clamp(18px, 1.25vw, 24px) !important;
+  }
+  :fullscreen .layout-steps .content-block-heading,
+  :-webkit-full-screen .layout-steps .content-block-heading,
+  body.is-immersive .layout-steps .content-block-heading {
+    min-height: 28px;
+  }
+  :fullscreen .layout-steps .content-list li span,
+  :-webkit-full-screen .layout-steps .content-list li span,
+  body.is-immersive .layout-steps .content-list li span {
+    font-size: clamp(15px, 1.08vw, 22px) !important;
+    line-height: 1.42 !important;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
    跨場次 HTML 簡報總覽專區
    - 獨立頁面提供上午／下午場的搜尋、篩選與指定頁跳轉。
    - 卡片不依賴投影片圖片，保留 HTML 文字可讀性與手機 RWD。

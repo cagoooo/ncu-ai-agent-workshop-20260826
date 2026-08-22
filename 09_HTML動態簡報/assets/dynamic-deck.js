@@ -86,6 +86,94 @@ function cleanBodyBlocks(item) {
   return blocks;
 }
 
+function parseStructuredStepPanels(item) {
+  const ignored = new Set([
+    ...splitTitleLines(item),
+    String(item.eyebrow || "").trim(),
+    String(item.section || "").trim(),
+    String(item.session || "").trim(),
+    String(item.index),
+    String(item.index).padStart(2, "0"),
+  ]);
+  const lines = String(item.text || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean)
+    .filter((line) => {
+      if (ignored.has(line)) return false;
+      if (/^(上午|下午)場[｜|]/.test(line)) return false;
+      if (/^https?:\/\//i.test(line) || /^\.\.\//.test(line)) return false;
+      return true;
+    });
+  const steps = [];
+  const checks = [];
+  let section = "";
+  let minutes = "";
+  let linksStarted = false;
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (linksStarted) continue;
+    if (line.includes("↗")) {
+      linksStarted = true;
+      continue;
+    }
+    if (line === "操作步驟") {
+      section = "steps";
+      continue;
+    }
+    if (line === "完成條件") {
+      section = "checks";
+      continue;
+    }
+    if (/^\d{1,3}$/.test(line) && lines[index + 1] === "分鐘") {
+      minutes = `${line} 分鐘`;
+      index += 1;
+      continue;
+    }
+    if (section === "steps" && /^\d+$/.test(line)) {
+      const parts = [];
+      for (index += 1; index < lines.length; index += 1) {
+        const next = lines[index];
+        if (next === "操作步驟" || next === "完成條件" || /^\d+$/.test(next) || /^✓/.test(next) || next.includes("↗")) {
+          index -= 1;
+          break;
+        }
+        if (next !== "→") parts.push(next);
+      }
+      if (parts.length) steps.push(parts.join(" "));
+      continue;
+    }
+    if (section === "checks" && /^✓/.test(line)) {
+      const parts = [line.replace(/^✓\s*/, "")];
+      for (index += 1; index < lines.length; index += 1) {
+        const next = lines[index];
+        if (/^✓/.test(next) || next.includes("↗")) {
+          index -= 1;
+          break;
+        }
+        parts.push(next);
+      }
+      if (parts.length) checks.push(parts.join(" "));
+    }
+  }
+
+  if (!steps.length && !checks.length) return null;
+  return { minutes, steps, checks };
+}
+
+function renderStructuredStepPanels(structured) {
+  const renderPanel = (kind, title, items, minutes = "") => {
+    const listTag = kind === "steps" ? "ol" : "ul";
+    const listItems = items.map((item) => `<li><span>${escapeHtml(item)}</span></li>`).join("");
+    return `<section class="content-block content-block--${kind}" aria-label="${escapeHtml(title)}">
+      <div class="content-block-heading"><span class="content-block-kicker">${escapeHtml(title)}</span>${minutes ? `<span class="content-block-meta">${escapeHtml(minutes)}</span>` : ""}</div>
+      <${listTag} class="content-list content-list--${kind}">${listItems}</${listTag}>
+    </section>`;
+  };
+  return [
+    structured.steps.length ? renderPanel("steps", "操作步驟", structured.steps, structured.minutes) : "",
+    structured.checks.length ? renderPanel("checks", "完成條件", structured.checks) : "",
+  ].join("");
+}
+
 function layoutFor(item, blocks) {
   const haystack = `${slideTitle(item)}\n${item.text || ""}`;
   if (Number(item.index) === 1) return "hero";
@@ -110,7 +198,10 @@ function renderLinks(links) {
 function createSlide(item, index) {
   const blocks = cleanBodyBlocks(item);
   const layout = layoutFor(item, blocks);
-  const blockMarkup = blocks.map((block) => `<div class="content-block"><p>${escapeHtml(block)}</p></div>`).join("");
+  const structured = layout === "steps" ? parseStructuredStepPanels(item) : null;
+  const blockMarkup = structured
+    ? renderStructuredStepPanels(structured)
+    : blocks.map((block) => `<div class="content-block"><p>${escapeHtml(block)}</p></div>`).join("");
   const safeTitle = escapeHtml(displayTitle(item));
   const total = String(slides.length).padStart(2, "0");
   const current = String(item.index).padStart(2, "0");
