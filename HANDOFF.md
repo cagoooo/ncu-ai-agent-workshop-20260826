@@ -33,7 +33,14 @@ npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → e
 正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
 正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
-公開 Pages status／公開 version → 未確認（待本輪 commit、push 與建置完成後補驗）
+git diff --check → exit 0
+git commit -m "優化 HTML 完整文字分類面板" → exit 0；commit=ef822f4；13 files changed
+git push origin main → exit 0；043b4d7..ef822f4，main → main
+gh run watch 32625113020 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97159145363、deploy=97159169854、report=97159169932 全部成功（僅有既有 Node.js 20 deprecation annotation）
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest version.json?cb=20260823-09-final → exit 0；HTTP 200、615 bytes、公開 version=2026.08.23.09、title=完整文字分類面板與 RWD
+Invoke-WebRequest 公開 dynamic-deck.js／dynamic-deck.css → exit 0；JS／CSS HTTP 200；renderTranscript=4、transcript-panel=10
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；公開總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；轉場 samples=2 且 overflow=0；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
 ```
 
 ## 本輪上一項完成：資源列多列化與完整文字區塊避讓（v2026.08.23.08）
