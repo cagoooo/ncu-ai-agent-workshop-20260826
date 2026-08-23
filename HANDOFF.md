@@ -1,8 +1,47 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（完整文字分類面板 UIUX 修正）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（完整文字浮層 z-index 版面固定）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
+
+## 本輪最新完成：完整文字浮層 z-index 版面固定（v2026.08.23.10）
+
+- 依老師回報的截圖修正「展開完整文字」：展開後不再把標題、說明、章節與資源列往上擠，原本投影片內容維持原座標，完整文字改成獨立高層浮層呈現。
+- 根因是 `.scene-transcript` 原本是 `.scene-content` 的 flex 子項；面板展開後高度增加，flex 重新分配可用高度，造成投影片主內容被壓縮。這不是文字遺失，而是版面流重排。
+- `09_HTML動態簡報/assets/dynamic-deck.css` 以 z-index 與定位分層修正：主內容 `.scene-content` 保持第 5 層、資源列 `.scene-footer` 為第 6 層、完整文字浮層 `.scene-transcript` 為第 40 層、內層 `.transcript-panel` 為第 41 層；完整文字移出 flex 排版流，面板內仍保留垂直捲動。
+- 面板改為 flex 內部結構，長文由 `.transcript-body` 獨立 `overflow:auto` 承接；桌機、平板、橫向觸控與手機均保留 RWD 寬度與面板入口。資源列維持多列換行與 `overflow: visible`。
+- `08_HTML簡報` 圖檔版、PPTX、PDF、Hotspot、QR 與原有設計沒有改寫；本輪僅同步 HTML 動態專區的版本快取字串至 `.10`，沒有輸出 MP4，也沒有寫入任何 API key、token 或密碼。
+
+本輪本機、瀏覽器與公開部署證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47、afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.10
+node --check github_pages_site/09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+來源／部署 dynamic-deck.css 比對 → exit 0；內容一致
+部署 CSS git diff --check → exit 0；無空白錯誤
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、afternoonFilter=54；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+瀏覽器公開互動探針（桌機／平板／橫向觸控／手機）→ exit 0；4/4 面板可見；展開前後 h1／說明／章節／資源列 shift=0；z-index=40／41；全文 body overflow=697>276（桌機），document horizontal overflow=0，pageErrors=[]
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+node qa_fullscreen_dynamic.mjs（上午／下午；全部頁面與單頁沉浸式）→ exit 0；4 組；上午 47/47、下午 54/54；failures=0、footerWrap=wrap、footerOverflow=visible、horizontalOverflow=0
+node qa_fullscreen_longrun.mjs（上午／下午；immersive；260ms）→ exit 0；47/47＋54/54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+git commit -m "修正 HTML 完整文字浮層 z-index 版面" → exit 0；commit=7a02eec；11 files changed
+git push origin main → exit 0；3a42649..7a02eec，main → main
+gh run watch 32628497357 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97167502821、deploy=97167523697、report=97167523755 全部成功（僅有既有 Node.js 20 deprecation annotation）
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest version.json?cb=20260823-10-functional → exit 0；HTTP 200、477 bytes、公開 version=2026.08.23.10、title=完整文字浮層 z-index 與版面固定
+Invoke-WebRequest 公開 dynamic-deck.css?v=2026.08.23.10 → exit 0；HTTP 200、66524 bytes；absolute 規則=1、z-index 40 規則=2
+Invoke-WebRequest 公開 morning.html?cb=20260823-10-functional → exit 0；HTTP 200、6857 bytes；版本字串=13
+正式包內容同步（排除 .git、複製資料夾內容）→ exit 0；source_root_items=23、nested_same_name_after=0、formal_git=False
+正式包同名巢狀同步副本整理（可恢復移至專案備份）→ exit 0；最終 remaining=0；備份資料夾=formal_sync_backup_20260823_10
+正式包 node qa_html_deck.mjs（HTML_ROOT=正式包/08_HTML簡報）→ exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=480、inventory=479、pdf=6、duplicate_pdf_groups=2
+```
 
 ## 本輪最新完成：完整文字分類面板 UIUX 與 RWD（v2026.08.23.09）
 
