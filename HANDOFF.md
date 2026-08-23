@@ -1,10 +1,51 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（上午新增 Vibe Coding 與 AI 三個 Level）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（Skills 資源庫與白話教學更新）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
 
-## 本輪最新完成：上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level（v2026.08.23.05）
+## 本輪最新完成：Agent Skills 公開資源庫與「灌入技能」白話教學（v2026.08.23.06）
+
+- 新增 `04_實作工具/07_Agent_Skills資源庫.html`，集中整理三師爸 Sense Bar 教學脈絡下的公開 OpenCode 懶人包、Anthropic、Vercel、Remotion、HyperFrames、Hugging Face、Agent Skills 規格與跨平台索引；頁面提供官方／公開來源、安裝指令、使用邊界、安全檢查與直接跳轉。
+- 三師爸相關內容採保守標示：以公開人物介紹與 `mathruffian-dot/opencode-lazy-packs` 公開儲存庫作為「相關教學脈絡／公開 OpenCode 懶人包」索引，不宣稱該儲存庫作者就是三師爸；每個外部資源均保留原始 GitHub／官方文件連結。
+- 下午 Skills 頁新增《駭客任務》與《寶可夢》比喻：Skill 像可灌入 Agent 的能力模組，也像裝上的技能卡；但安裝只是起點，必須透過對話、測試、修正、規則與工作流程調整，逐步進化成自己的版本。這頁同時提醒授權、來源、腳本與安全邊界。
+- 下午資源書籤頁新增「Agent Skills 資源庫」直達連結；相關 Skills 頁與資源頁均可回到簡報首頁，也可回到研習資源導航。靜態圖檔／PPTX 的 QR 與 HTML 連結同步加入資源庫入口。
+- `08_HTML簡報` 圖檔版／PPTX 與 `09_HTML動態簡報` 仍由同一套來源同步；原有圖檔設計、Hotspot、QR、雙緩衝、全螢幕 CSS SSOT、RWD、OpenClaw、Gemini 3.7 Flash 與「速度快 20 倍以上」個人使用體感均保留；本輪沒有輸出 MP4。
+- 已查閱並採用的公開來源：
+  - 三師爸相關公開脈絡：[翻轉教育講師介紹](https://edu.parenting.com.tw/flipedu-ai-empowerment-2097)、[公開 OpenCode 懶人包](https://github.com/mathruffian-dot/opencode-lazy-packs)
+  - [Anthropic Skills](https://github.com/anthropics/skills)、[Vercel Agent Skills](https://github.com/vercel-labs/agent-skills)、[Vercel Skills CLI](https://github.com/vercel-labs/skills)
+  - [Remotion Skills](https://github.com/remotion-dev/remotion/tree/main/packages/skills)、[HyperFrames Skills 指南](https://github.com/heygen-com/hyperframes/blob/main/docs/guides/skills.mdx)、[Hugging Face Skills](https://github.com/huggingface/skills)
+  - [Agent Skills 規格](https://agentskills.io/home)、[Awesome Agent Skills](https://github.com/khasky/awesome-agent-skills)、[跨平台 Skills 索引](https://github.com/JPeetz/agent-skills)
+
+本輪已完成的本機證據：
+
+```text
+node build_decks.mjs → exit 0；PPTX／圖檔版上午 47 頁、下午 54 頁，共 101 頁
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47, afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.06
+python -X utf8 generate_qr_assets.py → exit 0；Generated 74 QR assets
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+python -X utf8 qa_qr_codes.py → exit 0；161 rendered QR codes decoded
+node qa_github_pages_site.mjs → exit 0；總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；公開工具標籤 named=72、numeric=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；上午）→ exit 0；47/47、failures=0、horizontalOverflow=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；下午）→ exit 0；54/54、failures=0、horizontalOverflow=0
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；lint/runtime/layout/motion 問題 0、contrast=99/99
+```
+
+本輪正式包證據：
+
+```text
+正式包 qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
+```
+
+正式包已同步版本 `.06`、Skills 資源庫與本輪 HTML／QR 產物；公開版本、Pages `built` 與帶 `BASE_URL` 的公開 QA 必須在本輪提交／推送後重新確認，在此之前標示為「未確認」。
+
+## 前一輪已完成：上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level（v2026.08.23.05）
 
 - 上午場標題頁後新增 3 頁，依序說明「Vibe Coding：靈感一來，就開始做」、「從 Vibe Coding 進階到 Vibe Working」與「AI 的三個 Level：從對話到代理」；原有上午內容順延，上午共 47 頁、下午共 54 頁，合計 101 頁。
 - Vibe Coding 頁保留 Andrej Karpathy 的概念脈絡：把突然出現的靈感直接說給 AI／Agent，快速做出原本以為做不到的原型，再由人校準方向與品質。
@@ -98,6 +139,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 | P1-12 | 已完成／公開可用 | 下午新增「為什麼 Agent 會紅起來？」OpenClaw（小龍蝦）脈絡，以及 Gemini 3.7 Flash 工作馬與個人速度體感 | `node build_decks.mjs` → exit 0；OpenClaw 第 6 頁、工具比較第 8 頁、Gemini 3.7 Flash 第 14 頁；`python -X utf8 qa_qr_codes.py` → exit 0、151 rendered QR codes decoded；公開資料 HTTP 200 且 OpenClaw／Gemini 3.7 Flash／速度快 20 倍以上均存在；正式包 PDF 54 頁 | OpenClaw「爆紅」作為社群／教學脈絡，不宣稱單一事件造成產業因果；Gemini 官方能力與現場帳號可用性仍應分開說明 |
 | P1-13 | 已完成／公開可用 | 上午／下午 HTML 案例工具連結改用實際工具名稱，並區分「工具卡片」與「開啟應用」 | `node build_html_deck.mjs` → exit 0；HTML morning=47、afternoon=54；`node qa_html_deck.mjs` → exit 0；named=12+12、numeric=0；公開 `node qa_github_pages_site.mjs` → exit 0；公開工具標籤 named=72、numeric=0；7 個公開端點 HTTP 200；靜態與動態 HTML 均同步 | 不改 `08_HTML簡報` 圖檔、Hotspot、QR；未來新增案例沿用實際工具名稱，不再以編號作為唯一可見標籤 |
 | P1-14 | 已完成／公開可用 | 上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level，並把上午 Level 1／2 連到下午 Level 3 Agentic AI | `node build_decks.mjs` → exit 0；新增上午第 2–4 頁；`node build_html_deck.mjs`／`node sync_dynamic_deck.mjs` → exit 0；上午 47 頁、版本 `.05`；公開 `BASE_URL` QA → exit 0；公開上午 HTML／動態資料 HTTP 200 且含新頁文字 | Vibe Working 已標註為本工作坊延伸框架；後續新增概念頁仍需同步圖檔／PPTX 與 HTML 兩條產線 |
+| P1-15 | 已完成／待公開驗證 | Agent Skills 公開資源庫、三師爸相關公開脈絡與國際官方 Skills 索引；下午新增《駭客任務》／《寶可夢》白話比喻，並在簡報頁、QR 與資源書籤提供直達入口 | `node build_decks.mjs` → exit 0；上午 47、下午 54、共 101 頁；`node qa_html_deck.mjs` → exit 0；`python -X utf8 qa_qr_codes.py` → exit 0、161 個 QR 解碼；`npx --yes hyperframes check ... --json` → exit 0、lint/runtime/layout/motion=0、contrast=99/99；資源頁本機 HTML 內容與正式包同步完成；公開版與 Pages `built` 在本輪部署完成前未確認 | 外部 Skills 僅作公開索引與教學參考；安裝前仍須檢查 README／LICENSE／腳本／權限，並保留 Human-in-the-loop；不自動替教授選擇安裝或授權 |
 
 ## 本輪完成：降本增效與 Human-in-the-loop 教學內容（v2026.08.23.01）
 

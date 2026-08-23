@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.23.05",
-  "buildTime": "2026-08-23T08:30:00+08:00",
-  "title": "上午新增 Vibe Coding、Vibe Working 與 AI 三個 Level",
-  "description": "上午場開頭新增 Vibe Coding、Vibe Working 與 AI 三個 Level，並同步更新圖檔／PPTX、08 HTML 圖檔版與 09 HTML 動態簡報；保留工具卡片實際名稱、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、全螢幕、長文捲動與手機／平板 RWD。上午 47 頁、下午 54 頁、總覽 101 頁。"
+  "version": "2026.08.23.06",
+  "buildTime": "2026-08-23T12:00:00+08:00",
+  "title": "Agent Skills 資源庫與 Skills 白話比喻更新",
+  "description": "新增三師爸相關公開實作與 Anthropic、Vercel、Remotion、HyperFrames、Hugging Face 等公開 Skills 資源庫，下午 Agent Skills 頁面加入直達連結與 QR；並以《駭客任務》與寶可夢技能卡說明下載、調整、驗證與進化。保留既有圖檔版、HTML 47／54 頁、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、全螢幕、長文捲動與手機／平板 RWD。"
 }
