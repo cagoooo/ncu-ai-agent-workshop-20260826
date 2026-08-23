@@ -32,7 +32,11 @@ npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → e
 正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
 正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
-本輪 v2026.08.23.11 GitHub Pages 公開部署 → 未確認；待 commit／push 後確認 Pages status=built、version.json HTTP 200 與公開 CSS 快取版本
+gh run watch 32631522027 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97174955041、deploy=97174980835、report=97174980749
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260823-11-final → exit 0；HTTP 200、365 bytes、公開 version=2026.08.23.11、title=完整文字浮層安全區定位
+Invoke-WebRequest 公開 dynamic-deck.css?v=2026.08.23.11 → exit 0；HTTP 200、68072 bytes；安全定位規則=1、全螢幕安全規則=1、z-index 40/41 各 2
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；公開總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；轉場 samples=2 且 settled=true；上午／下午 scenes=282／324、垂直捲動各 6/6、捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
 ```
 
 ## 本輪最新完成：完整文字浮層 z-index 版面固定（v2026.08.23.10）
