@@ -208,7 +208,7 @@ a { color: inherit; }
 .layout-quote .scene-rail { width: min(100%, 720px); margin-top: 30px; text-align: left; }
 .layout-quote .scene-body { display: none; }
 .scene-footer { display: flex; align-items: center; gap: 10px; min-height: 28px; overflow-x: auto; padding-top: 8px; border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); }
-.scene-link { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 6px; padding: 6px 11px; border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--rule)); border-radius: 999px; background: color-mix(in srgb, var(--panel) 70%, transparent); color: var(--accent); font-size: 12px; font-weight: 800; text-decoration: none; transition: color .24s ease, background-color .24s ease, border-color .24s ease, transform .24s ease; }
+.scene-link { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 6px; max-width: min(100%, 360px); padding: 6px 11px; border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--rule)); border-radius: 999px; background: color-mix(in srgb, var(--panel) 70%, transparent); color: var(--accent); font-size: 12px; font-weight: 800; line-height: 1.35; overflow-wrap: anywhere; text-align: center; text-decoration: none; transition: color .24s ease, background-color .24s ease, border-color .24s ease, transform .24s ease; }
 .scene-link:hover { background: var(--accent); color: var(--panel); }
 .scene-transcript { position: absolute; right: 28px; bottom: 70px; z-index: 8; max-width: min(540px, 45%); color: var(--muted); font-size: 12px; }
 .scene-transcript summary { cursor: pointer; color: var(--accent); font-weight: 800; }

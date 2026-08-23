@@ -126,27 +126,27 @@ window.DYNAMIC_DECK_DATA = {
       "description": "這三個案例分別支援學生資料、PIRLS 評量與 Agent Skills 的實作討論。先判斷輸入資料、規則與驗收，再決定交給哪個 Agent。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/73/\n- https://cagoooo.github.io/filter/\n- https://cagoooo.github.io/Akai/tool/87/\n- https://cagoooo.github.io/pirls-questioncraft/\n- https://cagoooo.github.io/Akai/tool/103/\n- https://cagoooo.github.io/PlayRight/\n[/Sources]",
       "links": [
         {
-          "label": "#73 工具卡片",
+          "label": "期中考成績篩選 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/73/"
         },
         {
-          "label": "#73 直接開啟",
+          "label": "期中考成績篩選 · 開啟應用",
           "url": "https://cagoooo.github.io/filter/"
         },
         {
-          "label": "#87 工具卡片",
+          "label": "PIRLS 閱讀理解生成 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/87/"
         },
         {
-          "label": "#87 直接開啟",
+          "label": "PIRLS 閱讀理解生成 · 開啟應用",
           "url": "https://cagoooo.github.io/pirls-questioncraft/"
         },
         {
-          "label": "#103 工具卡片",
+          "label": "Web 技能雙引擎 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/103/"
         },
         {
-          "label": "#103 直接開啟",
+          "label": "Web 技能雙引擎 · 開啟應用",
           "url": "https://cagoooo.github.io/PlayRight/"
         }
       ]
@@ -161,27 +161,27 @@ window.DYNAMIC_DECK_DATA = {
       "description": "三個案例分別對應研究資料、無障礙檢核與規準式 AI 審查。請參與者比較：哪些步驟能交給 Agent，哪些判斷必須保留人工責任。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/105/\n- https://cagoooo.github.io/taic-edu/\n- https://cagoooo.github.io/Akai/tool/123/\n- https://cagoooo.github.io/smes-web-migration/\n- https://cagoooo.github.io/Akai/tool/88/\n- https://cagoooo.github.io/JHScurriculum/\n[/Sources]",
       "links": [
         {
-          "label": "#105 工具卡片",
+          "label": "臺灣主權 AI 語料庫 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/105/"
         },
         {
-          "label": "#105 直接開啟",
+          "label": "臺灣主權 AI 語料庫 · 開啟應用",
           "url": "https://cagoooo.github.io/taic-edu/"
         },
         {
-          "label": "#123 工具卡片",
+          "label": "校網 AA 無障礙遷移 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/123/"
         },
         {
-          "label": "#123 直接開啟",
+          "label": "校網 AA 無障礙遷移 · 開啟應用",
           "url": "https://cagoooo.github.io/smes-web-migration/"
         },
         {
-          "label": "#88 工具卡片",
+          "label": "國中課程計畫 AI 審查 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/88/"
         },
         {
-          "label": "#88 直接開啟",
+          "label": "國中課程計畫 AI 審查 · 開啟應用",
           "url": "https://cagoooo.github.io/JHScurriculum/"
         }
       ]

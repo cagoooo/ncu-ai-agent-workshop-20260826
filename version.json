@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.23.03",
+  "version": "2026.08.23.04",
   "buildTime": "2026-08-23T08:30:00+08:00",
-  "title": "新增 OpenClaw Agent 起源與 Gemini 3.7 Flash 教學內容",
-  "description": "下午前段新增 OpenClaw（小龍蝦）如何讓大家看見 AI 從聊天機器人走向可調用工具的 Agent；保留並標註阿凱老師對 Antigravity／Gemini 3.7 Flash 速度快 20 倍以上的個人使用體感。同步保留 Gemini 3.7 Flash 工作馬、Agent Harness、Human-in-the-loop、08 圖檔版、09 HTML 動態簡報、全螢幕、長文捲動、手機／平板 RWD、CSS／GSAP／HyperFrames 動態。上午 44 頁、下午 54 頁、總覽 98 頁。"
+  "title": "HTML 工具卡片改用實際工具名稱",
+  "description": "所有 HTML 簡報的案例連結改用實際工具名稱，並清楚區分工具卡片與開啟應用；同步保留 OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、08 圖檔版、09 HTML 動態簡報、全螢幕、長文捲動與手機／平板 RWD。上午 44 頁、下午 54 頁、總覽 98 頁。"
 }

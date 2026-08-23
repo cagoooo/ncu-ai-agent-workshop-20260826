@@ -30,6 +30,12 @@ body.is-immersive .spotlight-badge,:fullscreen .spotlight-badge,:-webkit-full-sc
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
 @media print{.deck-toolbar,.deck-controls,.link-strip,.deck-hint,.site-credit,.notes-panel,.overview{display:none!important}.deck-main{padding:0}.deck-stage-wrap{width:100vw}.deck-stage{border:0;border-radius:0}}
 
+/* 工具連結顯示完整名稱；桌機可換行，觸控裝置維持可水平滑動的單列按鈕。 */
+.resource-link{max-width:min(100%,360px);justify-content:center;text-align:center;line-height:1.35;overflow-wrap:anywhere}
+@media (hover:none) and (pointer:coarse) and (orientation:portrait){
+  .resource-link{max-width:82vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 12px!important;font-size:12px!important}
+}
+
 .reading-panel{position:fixed;z-index:65;inset:0;overflow:auto;padding:clamp(20px,5vw,72px);background:color-mix(in srgb,var(--bg) 96%,#000 4%)}
 .reading-head{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--accent);font-size:13px;letter-spacing:.12em}
 .reading-head button{width:42px;height:42px;padding:0;border:1px solid var(--rule);border-radius:50%;background:var(--panel);color:var(--ink);font-size:24px;line-height:1}

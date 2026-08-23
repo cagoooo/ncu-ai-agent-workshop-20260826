@@ -1,10 +1,16 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（OpenClaw、Gemini 3.7 Flash 與個人體感保留）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（HTML 工具卡片名稱與個人體感保留）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
 
-## 本輪最新完成：OpenClaw 起源、Gemini 3.7 Flash 與 20 倍個人體感（v2026.08.23.03）
+## 本輪最新完成：HTML 工具卡片改用實際工具名稱（v2026.08.23.04）
+
+- 上午／下午 HTML 簡報的案例連結按鈕已由 `#91`、`#24`、`#103` 等編號，改成「實際工具名稱 · 工具卡片」與「實際工具名稱 · 開啟應用」；工具名稱取自簡報案例來源，社群成員不必先記編號才能判斷按鈕用途。
+- `08_HTML簡報` 與 `09_HTML動態簡報` 均同步更新；桌機按鈕可自然換行，手機／平板維持可辨識的水平滑動或彈性換行，原有連結、QR、Hotspot、全螢幕與圖檔版均未改寫。
+- 此修正沿用前一輪已完成的 OpenClaw、Gemini 3.7 Flash 與「Antigravity／Gemini 3.7 Flash 速度快 20 倍以上」個人工作流體感，沒有刪除或改寫該內容。
+
+## 前一輪已完成：OpenClaw 起源、Gemini 3.7 Flash 與 20 倍個人體感（v2026.08.23.03）
 
 - 下午新增第 6 頁「為什麼 Agent 會紅起來？從 OpenClaw 看見『長了手腳』」，完整說明聊天機器人如何透過 MCP、CLI、瀏覽器、檔案與主機工具走向 Agent；同頁保留 OpenClaw 官方網站與 GitHub QR／直接連結。
 - 下午第 8 頁保留「Antigravity／Gemini 3.7 Flash 相較其他家 Agent，速度快 20 倍以上，像熱血年輕人」；這是阿凱老師的個人工作流體感，簡報與備註明確標註為個人觀察，不冒充官方 benchmark，也不刪除這項重要經驗。
@@ -16,9 +22,9 @@
 ```text
 node build_decks.mjs → exit 0；PPTX 上午 44 頁、下午 54 頁
 node build_html_deck.mjs → exit 0；HTML decks exported: morning=44, afternoon=54
-node sync_dynamic_deck.mjs → exit 0；morning=44、afternoon=54、version=2026.08.23.03
-node qa_html_deck.mjs → exit 0；HTML deck QA passed
-node qa_github_pages_site.mjs → exit 0；總覽 98 卡片／98 直達連結／下午篩選 54；場景上午／下午 264／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0
+node sync_dynamic_deck.mjs → exit 0；morning=44、afternoon=54、version=2026.08.23.04
+node qa_html_deck.mjs → exit 0；上午工具標籤 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 98 卡片／98 直達連結／下午篩選 54；場景上午／下午 264／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤檢查 named=72、numeric=0
 python -X utf8 qa_qr_codes.py → exit 0；151 rendered QR codes decoded
 npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；ok=true、lint/runtime/layout/motion/contrast 無 issue，contrast=99/99，lint filesScanned=3
 node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 54/54
@@ -57,6 +63,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 | P1-10 | 已完成／公開可用 | 全螢幕 HTML 互動轉場單一動畫控制：外層雙緩衝不再與 GSAP 重複淡入／模糊／縮放，保留內容分層進場 | `node qa_fullscreen_animation.mjs` → exit 0；1912×1078；上午／下午前進與後退共 4 個方向、16 個取樣、failures=0、pageErrors=0；`node qa_fullscreen_dynamic.mjs`（FULLSCREEN_ALL=1）→ exit 0；上午 44/44、下午 54/54、水平溢位=0；公開 CSS HTTP 200、bytes=53951、單一動畫控制規則存在；`08_HTML簡報` 未改投影片圖片 | 後續若要增加轉場效果，必須先通過全螢幕動畫 QA，不得讓投影片外層與內容層同時控制同一個 opacity／filter／transform |
 | P1-11 | 已完成／公開可用 | 上午開場「降本增效」與下午 Human-in-the-loop 教學內容 | `node build_decks.mjs` → exit 0；PPTX 上午 44 頁、下午 54 頁；`node build_html_deck.mjs` → exit 0；HTML morning=44、afternoon=54；`node sync_dynamic_deck.mjs` → exit 0、version=`2026.08.23.03`；公開 `BASE_URL` QA → exit 0 且公開資料含新增文字 | 上午以開場標題／章節帶入「降本增效」；下午 Human-in-the-loop 實際為第 7 頁；圖檔版與 HTML 版均由同一來源重建 |
 | P1-12 | 已完成／公開可用 | 下午新增「為什麼 Agent 會紅起來？」OpenClaw（小龍蝦）脈絡，以及 Gemini 3.7 Flash 工作馬與個人速度體感 | `node build_decks.mjs` → exit 0；OpenClaw 第 6 頁、工具比較第 8 頁、Gemini 3.7 Flash 第 14 頁；`python -X utf8 qa_qr_codes.py` → exit 0、151 rendered QR codes decoded；公開資料 HTTP 200 且 OpenClaw／Gemini 3.7 Flash／速度快 20 倍以上均存在；正式包 PDF 54 頁 | OpenClaw「爆紅」作為社群／教學脈絡，不宣稱單一事件造成產業因果；Gemini 官方能力與現場帳號可用性仍應分開說明 |
+| P1-13 | 已完成／待公開驗證 | 上午／下午 HTML 案例工具連結改用實際工具名稱，並區分「工具卡片」與「開啟應用」 | `node build_html_deck.mjs` → exit 0；HTML morning=44、afternoon=54；`node qa_html_deck.mjs` → exit 0；named=12+12、numeric=0；`node qa_github_pages_site.mjs` → exit 0；公開檔案內容檢查 named=72、numeric=0；靜態與動態 HTML 均同步 | 不改 `08_HTML簡報` 圖檔、Hotspot、QR；未來新增案例沿用實際工具名稱，不再以編號作為唯一可見標籤 |
 
 ## 本輪完成：降本增效與 Human-in-the-loop 教學內容（v2026.08.23.01）
 

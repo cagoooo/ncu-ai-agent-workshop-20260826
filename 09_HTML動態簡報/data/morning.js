@@ -138,27 +138,27 @@ window.DYNAMIC_DECK_DATA = {
       "description": "三個案例分別對應語文創作、教學設計與互動網站。現場可由三組各選一張，先讀卡片介紹，再用測試者視角操作成品。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/91/\n- https://cagoooo.github.io/PhotoPoet/\n- https://cagoooo.github.io/Akai/tool/58/\n- https://cagoooo.github.io/prepare/\n- https://cagoooo.github.io/Akai/tool/11/\n- https://cagoooo.github.io/Akailao/\n[/Sources]",
       "links": [
         {
-          "label": "#91 工具卡片",
+          "label": "點亮詩意 Pro · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/91/"
         },
         {
-          "label": "#91 直接開啟",
+          "label": "點亮詩意 Pro · 開啟應用",
           "url": "https://cagoooo.github.io/PhotoPoet/"
         },
         {
-          "label": "#58 工具卡片",
+          "label": "教師數位備課小幫手 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/58/"
         },
         {
-          "label": "#58 直接開啟",
+          "label": "教師數位備課小幫手 · 開啟應用",
           "url": "https://cagoooo.github.io/prepare/"
         },
         {
-          "label": "#11 工具卡片",
+          "label": "剛好學互動課堂 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/11/"
         },
         {
-          "label": "#11 直接開啟",
+          "label": "剛好學互動課堂 · 開啟應用",
           "url": "https://cagoooo.github.io/Akailao/"
         }
       ]
@@ -173,27 +173,27 @@ window.DYNAMIC_DECK_DATA = {
       "description": "三個案例分別用於形成性回饋、Google Sites 與 GitHub Pages 部署比較。提醒參與者同時觀察內容架構、權限、維護方式與手機操作。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/3/\n- https://cagoooo.github.io/vote/\n- https://cagoooo.github.io/Akai/tool/24/\n- https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/\n- https://cagoooo.github.io/Akai/tool/81/\n- https://cagoooo.github.io/it-cockpit/\n[/Sources]",
       "links": [
         {
-          "label": "#3 工具卡片",
+          "label": "學生即時投票 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/3/"
         },
         {
-          "label": "#3 直接開啟",
+          "label": "學生即時投票 · 開啟應用",
           "url": "https://cagoooo.github.io/vote/"
         },
         {
-          "label": "#24 工具卡片",
+          "label": "教師午會報告站 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/24/"
         },
         {
-          "label": "#24 直接開啟",
+          "label": "教師午會報告站 · 開啟應用",
           "url": "https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/"
         },
         {
-          "label": "#81 工具卡片",
+          "label": "資訊科技教學駕駛艙 · 工具卡片",
           "url": "https://cagoooo.github.io/Akai/tool/81/"
         },
         {
-          "label": "#81 直接開啟",
+          "label": "資訊科技教學駕駛艙 · 開啟應用",
           "url": "https://cagoooo.github.io/it-cockpit/"
         }
       ]
