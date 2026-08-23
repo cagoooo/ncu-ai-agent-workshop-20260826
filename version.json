@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.23.06",
+  "version": "2026.08.23.07",
   "buildTime": "2026-08-23T12:00:00+08:00",
-  "title": "Agent Skills 資源庫與 Skills 白話比喻更新",
-  "description": "新增三師爸相關公開實作與 Anthropic、Vercel、Remotion、HyperFrames、Hugging Face 等公開 Skills 資源庫，下午 Agent Skills 頁面加入直達連結與 QR；並以《駭客任務》與寶可夢技能卡說明下載、調整、驗證與進化。保留既有圖檔版、HTML 47／54 頁、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、全螢幕、長文捲動與手機／平板 RWD。"
+  "title": "修正全螢幕長時間逐頁播放殘留圖層",
+  "description": "修正 HTML 動態簡報長時間全螢幕逐頁播放時，舊頁面殘留 previous 圖層與合成層負擔造成的空白畫面；早、下午場分別維持 47／54 頁，並保留 Skills、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、全螢幕、長文捲動與手機／平板 RWD。"
 }

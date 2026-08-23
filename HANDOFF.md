@@ -1,8 +1,44 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（Skills 資源庫與白話教學更新）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（全螢幕長時間逐頁播放修正）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
+
+## 本輪最新完成：全螢幕長時間逐頁播放的殘留圖層修正（v2026.08.23.07）
+
+- 已重現老師回報的情境：全螢幕從第 1 頁快速逐頁播放，超過第 30 頁後可能出現內容空白；退出全螢幕再進入會暫時恢復。修正前壓力測試早場 47 頁有 42 頁失敗、最後殘留 `is-previous` 圖層 5 個；下午 54 頁有 49 頁失敗、最後殘留圖層 6 個；兩組 `pageErrors=0`，因此根因是圖層生命週期／合成負擔，不是 JavaScript 例外。
+- 根因是換頁共用單一 `previousRemovalTimer`：快速換頁時，新的換頁會清除前一次計時器，舊的 `.is-previous` 沒有被移除，雙緩衝圖層逐頁堆積；同時所有未顯示頁面都預先保留 `will-change` 與 blur 合成提示，放大了長時間播放的資源壓力。
+- `09_HTML動態簡報/assets/dynamic-deck.js` 新增換頁前的殘留圖層清理；每次換頁只保留目前頁與上一頁，計時器結束時同步清除 class 與 `aria-hidden`。互動式 HyperFrames 模式保留原有 seek 行為，不在 seek 過程清空其時間軸狀態。
+- `09_HTML動態簡報/assets/dynamic-deck.css` 將 `will-change` 限定在 active／previous 圖層，未顯示頁面移除 blur；互動模式下再以 `visibility`、`content-visibility` 與 `contain` 限制非活動頁面的繪製範圍。`08_HTML簡報` 圖檔、Hotspot、QR、PPTX 與既有設計沒有改寫，本輪沒有輸出 MP4。
+- 新增專案外層 `qa_fullscreen_longrun.mjs`，以沉浸式／原生全螢幕、早／下午場、260ms 快速逐頁切換，逐頁檢查活動圖層、殘留圖層、透明度、標題可見性與頁面錯誤。
+
+本輪修正後的本機證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47, afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.07
+node --check workshop_suite_src/09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+node --check github_pages_site/09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+node --check qa_fullscreen_longrun.mjs → exit 0
+qa_fullscreen_longrun.mjs（morning、immersive、260ms）→ exit 0；47/47、failures=0、pageErrors=0、activeCount=1、previousCount=1
+qa_fullscreen_longrun.mjs（afternoon、immersive、260ms）→ exit 0；54/54、failures=0、pageErrors=0、activeCount=1、previousCount=1
+qa_fullscreen_longrun.mjs（morning、native fullscreen、260ms）→ exit 0；47/47、failures=0、pageErrors=0、fullscreen=true、activeCount=1、previousCount=1
+qa_fullscreen_longrun.mjs（afternoon、native fullscreen、260ms）→ exit 0；54/54、failures=0、pageErrors=0、fullscreen=true、activeCount=1、previousCount=1
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；上午）→ exit 0；47/47、passed=47、failures=0、horizontalOverflow=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；下午）→ exit 0；54/54、passed=54、failures=0、horizontalOverflow=0
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 101 卡片／101 直達連結／RWD 3 種尺寸；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+python -X utf8 qa_qr_codes.py → exit 0；161 rendered QR codes decoded
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+```
+
+公開部署與正式包證據：
+
+```text
+公開 Pages status、version.json HTTP 200、公開 BASE_URL QA、正式包同步與正式包 Manifest → 未確認（本輪待 commit／push 後補驗）
+```
 
 ## 本輪最新完成：Agent Skills 公開資源庫與「灌入技能」白話教學（v2026.08.23.06）
 
@@ -150,6 +186,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 | P1-13 | 已完成／公開可用 | 上午／下午 HTML 案例工具連結改用實際工具名稱，並區分「工具卡片」與「開啟應用」 | `node build_html_deck.mjs` → exit 0；HTML morning=47、afternoon=54；`node qa_html_deck.mjs` → exit 0；named=12+12、numeric=0；公開 `node qa_github_pages_site.mjs` → exit 0；公開工具標籤 named=72、numeric=0；7 個公開端點 HTTP 200；靜態與動態 HTML 均同步 | 不改 `08_HTML簡報` 圖檔、Hotspot、QR；未來新增案例沿用實際工具名稱，不再以編號作為唯一可見標籤 |
 | P1-14 | 已完成／公開可用 | 上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level，並把上午 Level 1／2 連到下午 Level 3 Agentic AI | `node build_decks.mjs` → exit 0；新增上午第 2–4 頁；`node build_html_deck.mjs`／`node sync_dynamic_deck.mjs` → exit 0；上午 47 頁、版本 `.05`；公開 `BASE_URL` QA → exit 0；公開上午 HTML／動態資料 HTTP 200 且含新頁文字 | Vibe Working 已標註為本工作坊延伸框架；後續新增概念頁仍需同步圖檔／PPTX 與 HTML 兩條產線 |
 | P1-15 | 已完成／待公開驗證 | Agent Skills 公開資源庫、三師爸相關公開脈絡與國際官方 Skills 索引；下午新增《駭客任務》／《寶可夢》白話比喻，並在簡報頁、QR 與資源書籤提供直達入口 | `node build_decks.mjs` → exit 0；上午 47、下午 54、共 101 頁；`node qa_html_deck.mjs` → exit 0；`python -X utf8 qa_qr_codes.py` → exit 0、161 個 QR 解碼；`npx --yes hyperframes check ... --json` → exit 0、lint/runtime/layout/motion=0、contrast=99/99；資源頁本機 HTML 內容與正式包同步完成；公開版與 Pages `built` 在本輪部署完成前未確認 | 外部 Skills 僅作公開索引與教學參考；安裝前仍須檢查 README／LICENSE／腳本／權限，並保留 Human-in-the-loop；不自動替教授選擇安裝或授權 |
+| P1-16 | 已完成／待公開驗證 | 全螢幕長時間逐頁播放穩定性：修正快速換頁造成的 `is-previous` 殘留圖層與未顯示頁面合成層累積，保留雙緩衝與 HyperFrames seek | `node qa_fullscreen_longrun.mjs` → exit 0；早／下午沉浸式與原生全螢幕共 4 組，47／54 頁全數通過、failures=0、pageErrors=0；四組最終 activeCount=1、previousCount=1；`node qa_fullscreen_animation.mjs` → exit 0；4 個方向、16 個取樣；本輪 `08_HTML簡報` 圖片與設計未改 | 後續若調整轉場或增加長時間自動播放，須先跑快速逐頁壓力測試；公開 Pages `built`、公開版本與 BASE_URL QA 待 push 後確認 |
 
 ## 本輪完成：降本增效與 Human-in-the-loop 教學內容（v2026.08.23.01）
 

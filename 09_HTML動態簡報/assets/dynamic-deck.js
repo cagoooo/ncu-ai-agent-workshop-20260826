@@ -289,6 +289,15 @@ function prepareScene(scene) {
   syncSceneOverflowState(scene);
 }
 
+function clearPreviousSlides() {
+  const active = stage.querySelector(".dynamic-slide.is-active");
+  stage.querySelectorAll(".dynamic-slide.is-previous").forEach((slide) => {
+    if (slide === active) return;
+    slide.classList.remove("is-previous");
+    slide.setAttribute("aria-hidden", "true");
+  });
+}
+
 function clearInteractiveSceneState(scene) {
   if (!scene) return;
   if (window.gsap) {
@@ -345,13 +354,20 @@ function show(index, direction = 1, updateHash = true) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
   const current = stage.children[nextIndex];
   if (!current) return;
+  window.clearTimeout(previousRemovalTimer);
+  previousRemovalTimer = 0;
+  clearPreviousSlides();
   const previous = stage.querySelector(".is-active");
   if (previous && previous !== current) {
     resetSceneScroll(previous);
+    if (!isHyperFrames) clearInteractiveSceneState(previous);
     previous.classList.remove("is-active");
     previous.classList.add("is-previous");
-    window.clearTimeout(previousRemovalTimer);
-    previousRemovalTimer = window.setTimeout(() => previous.classList.remove("is-previous"), 720);
+    previousRemovalTimer = window.setTimeout(() => {
+      previous.classList.remove("is-previous");
+      if (previous !== stage.querySelector(".is-active")) previous.setAttribute("aria-hidden", "true");
+      previousRemovalTimer = 0;
+    }, 720);
   }
   current.classList.remove("is-previous");
   current.classList.add("is-active");
