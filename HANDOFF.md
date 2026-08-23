@@ -4,6 +4,39 @@
 
 ---
 
+## 本輪最新完成：HTML 動態簡報底部安全區與手機／平板 RWD（v2026.08.23.13）
+
+- 依最新桌機截圖修正第 14 頁右側四張卡片與「展開完整文字」摘要列的重疊問題：新增 `scene-bottom` 底部安全區，資源列位於左欄、完整文字入口位於右欄，不再以絕對定位壓在正文或卡片上方。
+- 桌機一般視窗的 editorial 卡片改為等高、垂直置中與較穩定的文字尺寸；短桌面視窗（高度 750px 以下）改回內容自然高度，由內容區承接捲動，避免新增巢狀捲軸。
+- 手機／平板觸控版改為固定視窗高度與簡報區單一垂直捲動；隱藏重複的底部「回簡報首頁」與鍵盤提示，保留上方返回入口與左右換頁；資源按鈕改為兩欄 RWD 排列，長文字可換行。
+- 原生全螢幕與模擬全螢幕沿用既有 SSOT，新增 `native-fullscreen` 狀態識別避免一般 RWD 規則誤套到全螢幕；HyperFrames／Remotion-ready 結構、圖檔簡報、PPTX、PDF 與 QR Code 設計均保留。
+- `dynamic-deck.css` 與 `dynamic-deck.js` 的來源／部署版保持一致；本輪沒有寫入 API key、token 或密碼，也沒有輸出 MP4。
+
+本輪本機、瀏覽器與公開部署證據：
+
+```text
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.13
+node --check github_pages_site/09_HTML動態簡報/assets/dynamic-deck.js；node --check workshop_suite_src/09_HTML動態簡報/assets/dynamic-deck.js；node --check sync_dynamic_deck.mjs；git -C github_pages_site diff --check → exit 0
+Playwright RWD 四視窗探針（node -e；1353×870、393×852 兩頁、932×430）→ exit 0；body／html scrollHeight 均等於 viewport；桌機第 14 頁 scene-bottom=grid、摘要列 position=relative；手機資源列=2 欄、提示列 hidden、外層頁面無垂直捲動
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、下午=54；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=[]
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 47/47、下午 54/54；failures=0、footerWrap=wrap、footerOverflow=visible、horizontalOverflow=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；checked=47、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+FULLSCREEN_DECK=afternoon PREVIEW_PORT=8789 node qa_fullscreen_longrun.mjs → exit 0；checked=54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+python -X utf8 qa_qr_codes.py → exit 0；QR code QA passed: 167 rendered QR codes decoded
+來源／部署 dynamic-deck.css、dynamic-deck.js SHA-256 比對 → exit 0；CSS=C10A92915F8EE4F89DFF216C92E0102D4E7AB7772AE36EC792F4007EECC07DB0；JS=88D863AEB7FF95D4674E557DF44F2FA1D4F31D9B2938AB56960A4FB762BCEDCB；兩者來源／部署均一致
+git -C github_pages_site commit -m "改善 HTML 動態簡報底部安全區與手機 RWD" → exit 0；commit=ceab63c；13 files changed、277 insertions、82 deletions
+git -C github_pages_site push origin main → exit 0；2fd1953..ceab63c，main → main
+gh run watch 32637013402 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97188192858、deploy=97188220571、report=97188220613
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260823-13-rwd → exit 0；HTTP 200、336 bytes、公開 version=2026.08.23.13、title=HTML 動態簡報底部安全區與手機 RWD 優化
+Invoke-WebRequest 公開 dynamic-deck.css?v=2026.08.23.13、dynamic-deck.js?v=2026.08.23.13、compositions/morning.html?cb=20260823-13-rwd → exit 0；HTTP 200；CSS=75445 bytes、JS=29926 bytes、morning HTML=6857 bytes；scene-bottom、touch RWD、短桌面規則與 cache-bust 均存在
+BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826 node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、下午=54；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+git -C github_pages_site status --short → exit 0；空白（部署子倉庫乾淨）
+```
+
 ## 本輪最新完成：上午場圖片簡報開場第 2–4 頁補齊右上角 QR Code（v2026.08.23.12）
 
 - 依老師回報的圖片版截圖檢查上午場開頭頁面，確認第 2、3、4 頁原本只有右上角平台文字連結，沒有同步繪製 QR Code。
