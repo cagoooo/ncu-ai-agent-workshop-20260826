@@ -778,10 +778,11 @@ body.interactive-mode .dynamic-slide.is-previous {
 }
 
 /* ───────────────────────────────────────────────────────────────
-   資源列多列化與完整文字區塊避讓
+   資源列多列化與完整文字浮層
    - 資源連結過多時自然換列，不再以單列橫向捲軸壓在底部。
-   - 完整文字改回 scene-content 的正常流，避免與資源列重疊。
-   - 手機／平板保留資源入口，並沿用舞台本身的垂直捲動。
+   - 完整文字移出 scene-content 的 flex 排版流，展開只以高層浮層覆蓋，
+     不壓縮原投影片的 scene-grid、標題與內容位置。
+   - z-index：內容 5／資源列 6／完整文字浮層 40，保留手機／平板 RWD。
    ─────────────────────────────────────────────────────────────── */
 .scene-footer {
   display: flex;
@@ -793,19 +794,26 @@ body.interactive-mode .dynamic-slide.is-previous {
   min-height: 28px;
   overflow: visible;
   padding-top: 10px;
+  position: relative;
+  z-index: 6;
 }
 .scene-transcript,
 :fullscreen .scene-transcript,
 :-webkit-full-screen .scene-transcript,
 body.is-immersive .scene-transcript {
-  position: relative !important;
-  right: auto !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: clamp(16px, 3vw, 64px) !important;
   bottom: auto !important;
-  align-self: flex-end;
+  align-self: auto;
   flex: 0 0 auto;
-  max-width: min(100%, 540px);
-  margin-top: 0;
+  width: min(660px, calc(100% - 32px));
+  max-width: min(660px, calc(100% - 32px)) !important;
+  margin: 0 !important;
+  z-index: 40 !important;
 }
+.scene-transcript[open] { z-index: 40 !important; }
+.scene-transcript .transcript-panel { position: relative; z-index: 41; }
 .scene-transcript p { max-width: min(100%, 720px); }
 
 @media (max-width: 900px) {
@@ -818,8 +826,11 @@ body.is-immersive .scene-transcript {
   }
   .scene-link { max-width: 100%; }
   .scene-transcript {
-    align-self: stretch;
-    max-width: 100%;
+    top: 42% !important;
+    right: 16px !important;
+    bottom: auto !important;
+    width: min(660px, 68%) !important;
+    max-width: min(660px, 68%) !important;
   }
 }
 
@@ -829,6 +840,13 @@ body.is-immersive .scene-transcript {
     max-width: 100%;
     padding: 6px 9px;
     font-size: 12px;
+  }
+  .scene-transcript {
+    top: 38% !important;
+    right: 12px !important;
+    bottom: auto !important;
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px) !important;
   }
 }
 
@@ -899,9 +917,10 @@ body.is-immersive .scene-transcript {
 .scene-transcript[open] .transcript-state-closed { display: none; }
 .scene-transcript[open] .transcript-state-open { display: inline; }
 .transcript-panel {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  max-height: min(52svh, 560px);
+  max-height: min(45svh, 480px);
   overflow: hidden;
   margin-top: 10px;
   padding: clamp(14px, 1.2vw, 20px);
@@ -926,9 +945,10 @@ body.is-immersive .scene-transcript {
 .transcript-chip--page { color: var(--accent-2); }
 .transcript-body {
   display: grid;
+  flex: 1 1 auto;
   gap: 6px;
   min-height: 0;
-  max-height: min(34svh, 360px);
+  max-height: none;
   overflow: auto;
   padding: 3px 5px 3px 2px;
   scrollbar-width: thin;
@@ -968,9 +988,7 @@ body.is-immersive .scene-transcript {
 .transcript-legend-item--point::before { background: var(--transcript-gold); }
 
 @media (max-width: 900px) {
-  .scene-transcript { align-self: stretch; width: 100%; max-width: 100% !important; }
-  .transcript-panel { max-height: min(58svh, 520px); }
-  .transcript-body { max-height: min(40svh, 360px); }
+  .transcript-panel { max-height: min(50svh, 440px); }
 }
 @media (max-width: 600px) {
   .scene-transcript { display: block; }
