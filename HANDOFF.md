@@ -4,6 +4,33 @@
 
 ---
 
+## 本輪最新完成：上午場圖片簡報開場第 2–4 頁補齊右上角 QR Code（v2026.08.23.12）
+
+- 依老師回報的圖片版截圖檢查上午場開頭頁面，確認第 2、3、4 頁原本只有右上角平台文字連結，沒有同步繪製 QR Code。
+- 根因是上午場新增開頭 3 頁後，舊版 `addQRLinksToSlides()` 仍沿用原本的 `slideNumberOffset=7`，導致 QR Code 被偏移到後面的頁面；本輪改由 `build_decks.mjs` 直接對開場 3 頁加入對應 QR Panel，保留原有版面、平台連結與互動 Hotspot。
+- 第 2 頁補上 Vibe Coding；第 3 頁補上 Gemini Notebook／Gemini Canvas；第 4 頁補上 Gemini Notebook／Gemini Canvas／Antigravity。QR Code 均以實際 URL 產生，圖片版、PPTX、PDF 與 HTML 動態版的既有設計不回退。
+- `qa_qr_codes.py` 新增上午開場頁專用覆蓋，避免未來重新建置時再次漏測；本輪沒有寫入 API key、token 或密碼，也沒有輸出 MP4。
+
+本輪本機、正式包與公開部署證據：
+
+```text
+node --check build_decks.mjs → exit 0
+node build_decks.mjs → exit 0；PPTX=上午 47 頁、下午 54 頁；PNG renders=上午 47、下午 54
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47、afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.12
+python -X utf8 qa_qr_codes.py → exit 0；QR code QA passed: 167 rendered QR codes decoded（上一版 161，本輪開場新增 6 個）
+slides_test.py 上午／下午 → exit 0；兩份簡報均 Test passed. No overflow detected.
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、下午=54；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+正式包同步 → exit 0；source_root_items=23、formal_root_items=26、nested_same_name=0、formal_git=False
+正式包 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
+公開部署驗證 → 待本輪 push 後補記 Pages built、公開 version.json HTTP 200 與上午第 2–4 頁圖片 HTTP 200／QR 驗證結果
+```
+
 ## 本輪最新完成：完整文字浮層安全區定位與窄畫面 RWD（v2026.08.23.11）
 
 - 依老師最新截圖修正「展開完整文字」摘要列位置：不再使用 `top: 50%`（平板／手機原為 42%／38%），桌機改停靠在投影片右下、資源列上方的安全帶，不遮住中央標題、說明與章節內容。
