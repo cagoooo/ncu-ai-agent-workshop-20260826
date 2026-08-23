@@ -776,3 +776,58 @@ body.interactive-mode .dynamic-slide.is-previous {
   content-visibility: visible;
   contain: none;
 }
+
+/* ───────────────────────────────────────────────────────────────
+   資源列多列化與完整文字區塊避讓
+   - 資源連結過多時自然換列，不再以單列橫向捲軸壓在底部。
+   - 完整文字改回 scene-content 的正常流，避免與資源列重疊。
+   - 手機／平板保留資源入口，並沿用舞台本身的垂直捲動。
+   ─────────────────────────────────────────────────────────────── */
+.scene-footer {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  min-width: 0;
+  min-height: 28px;
+  overflow: visible;
+  padding-top: 10px;
+}
+.scene-transcript,
+:fullscreen .scene-transcript,
+:-webkit-full-screen .scene-transcript,
+body.is-immersive .scene-transcript {
+  position: relative !important;
+  right: auto !important;
+  bottom: auto !important;
+  align-self: flex-end;
+  flex: 0 0 auto;
+  max-width: min(100%, 540px);
+  margin-top: 0;
+}
+.scene-transcript p { max-width: min(100%, 720px); }
+
+@media (max-width: 900px) {
+  .scene-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    overflow: visible;
+    padding-top: 12px;
+  }
+  .scene-link { max-width: 100%; }
+  .scene-transcript {
+    align-self: stretch;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .scene-footer { gap: 7px; }
+  .scene-link {
+    max-width: 100%;
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+}

@@ -1,8 +1,38 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（全螢幕長時間逐頁播放修正）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（資源列多列 RWD 修正）
 
-稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
+稽核時間：2026-08-23（Asia/Taipei；本輪本機已重驗，正式包與公開部署待本輪 push 後補驗）
 
 ---
+
+## 本輪最新完成：資源列多列化與完整文字區塊避讓（v2026.08.23.08）
+
+- 修正 HTML 動態簡報底部資源過多時全部擠在單列、產生橫向捲軸，並與右下角「展開完整文字」區塊重疊的問題。
+- 根因是 `.scene-footer` 原本使用單列 `overflow-x: auto`，而 `.scene-transcript` 使用 `position: absolute` 搭配右下偏移；資源列變高時兩者沒有共同的正常文件流高度。
+- `09_HTML動態簡報/assets/dynamic-deck.css` 將資源列改為 `flex-wrap: wrap`、`overflow: visible`，並讓完整文字區塊回到 `scene-content` 的正常流；桌機、平板與手機均保留資源入口，手機按鈕改為可辨識的彈性換列。
+- 全螢幕的 `right`／`bottom` 舊覆寫以更高優先級清除，避免原生全螢幕與沉浸式模式重新把完整文字定位回資源列上方。
+- `qa_github_pages_site.mjs` 已加入桌機與 6 種 RWD 尺寸的資源列斷言：必須 `flex-wrap=wrap`、`overflow=visible`，且不得與完整文字區塊重疊；內層長文若超出，必須由 `overflow-y=auto/scroll` 承接。
+- `08_HTML簡報` 圖檔、Hotspot、QR、PPTX、PDF 與既有圖檔版設計沒有改寫；本輪只更新 HTML 專區與其版本快取，沒有輸出 MP4。
+
+本輪本機證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47, afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.08
+node --check build_html_deck.mjs／sync_dynamic_deck.mjs／qa_html_deck.mjs／qa_github_pages_site.mjs／qa_fullscreen_dynamic.mjs／09_HTML動態簡報/assets/dynamic-deck.js → exit 0；6/6
+git diff --check → exit 0；無空白錯誤
+來源與公開 CSS SHA-256 比對 → exit 0；source=child=70041151732A8C0104F806D71E02E1751C95E48F6F50A98386A129E5752DB2AB
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+python -X utf8 qa_qr_codes.py → exit 0；161 rendered QR codes decoded
+node qa_github_pages_site.mjs → exit 0；總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；動畫 samples=2 且 overflow=0；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0；資源列換行／可見／不重疊斷言全數通過
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；上午；immersive）→ exit 0；47/47、failures=0、footerWrap=wrap、footerOverflow=visible、footerTranscriptOverlap=false、horizontalOverflow=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；下午；immersive）→ exit 0；54/54、failures=0、footerWrap=wrap、footerOverflow=visible、footerTranscriptOverlap=false、horizontalOverflow=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；上午；native）→ exit 0；47/47、failures=0、footerWrap=wrap、footerOverflow=visible、footerTranscriptOverlap=false、horizontalOverflow=0
+node qa_fullscreen_dynamic.mjs（FULLSCREEN_ALL=1；下午；native）→ exit 0；54/54、failures=0、footerWrap=wrap、footerOverflow=visible、footerTranscriptOverlap=false、horizontalOverflow=0
+node qa_fullscreen_longrun.mjs（morning／afternoon；immersive／native；260ms）→ exit 0；4 組、47/47＋54/54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+```
 
 ## 本輪最新完成：全螢幕長時間逐頁播放的殘留圖層修正（v2026.08.23.07）
 
@@ -455,6 +485,7 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 
 | 候選編號 | 方向 | 主要內容 | 預估代價／風險 | 建議驗收 |
 |---|---|---|---|---|
+| P1-17 | 資源列多列 RWD 與完整文字避讓（已完成） | 資源連結過多時自動換列；完整文字回到正常流；桌機／全螢幕／手機／平板均不重疊，內層長文保留垂直捲動 | 低；只調整 `09_HTML動態簡報` CSS 與 QA，未改寫圖檔版 | v2026.08.23.08；早／下午全螢幕 47／54 頁、RWD 6 種尺寸、資源列與文字區塊斷言全數通過 |
 | P1-A | 動態精緻化 | 依頁型加入 stagger、段落 reveal、卡片連續編排、背景 orb 微動態、轉場語意；同步維護 GSAP 與 HyperFrames seek | 中至高；需維持目前 96 頁不溢位、減少動態與鍵盤／觸控可用性 | motion QA、reduced-motion、96 頁邊界與 HyperFrames 檢查全數通過 |
 | P1-B | 講者模式與導覽 | 章節目錄、頁面搜尋、URL deep link、演講計時器、講者視窗／備註、快速跳頁與目前頁分享 | 中；會增加導覽狀態、視窗同步與手機版操作複雜度 | 鍵盤／觸控／瀏覽器返回、三種主要尺寸與重新整理後 deep link 均通過 |
 | P1-C | 無障礙與閱讀模式 | focus-visible、跳至主要內容、ARIA 語意、放大至 200%、高對比、完整鍵盤操作、讀屏文字順序與更完整的 reduced-motion | 中；部分版面需調整，不能只靠顏色或動畫傳達資訊 | 自動檢查加鍵盤人工走查；目前 HyperFrames contrast=99/99，完整 PDF/UA 與人工讀屏仍逐項留證 |
