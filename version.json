@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.23.08",
+  "version": "2026.08.23.09",
   "buildTime": "2026-08-23T12:00:00+08:00",
-  "title": "資源列多列化與完整文字區塊避讓",
-  "description": "修正 HTML 動態簡報資源連結過多時的單列橫向捲軸與右下角完整文字區塊重疊；資源列改為多列 RWD 換行，完整文字改採正常流定位，早、下午場分別維持 47／54 頁，並保留全螢幕長時間播放、Skills、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、長文捲動與手機／平板 RWD。"
+  "title": "完整文字分類面板與 RWD",
+  "description": "優化 HTML 動態簡報右下角「展開完整文字」區塊：加入主題、章節、頁碼資訊晶片，將全文逐行分為標題、章節、重點與資源並以不同色彩呈現，網址可直接開啟，面板內可捲動；同時維持資源列多列換行、全螢幕長時間播放、早／下午 47／54 頁、Skills、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop 與手機／平板 RWD。"
 }

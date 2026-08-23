@@ -195,6 +195,97 @@ function renderLinks(links) {
   }).join("");
 }
 
+function transcriptLineKind(value, item, inSources) {
+  const line = String(value || "").trim();
+  if (!line) return "spacer";
+  if (inSources || /^https?:\/\//i.test(line) || /^\.\.?\//.test(line)) return "source";
+  if (line === String(item.eyebrow || "").trim() || /^[A-Z][A-Z0-9 .·_/-]{4,}$/.test(line)) return "eyebrow";
+  if (splitTitleLines(item).includes(line)) return "heading";
+  if (line === String(item.section || "").trim() || /^(上午|下午)場[｜|]/.test(line)) return "meta";
+  if (/^\d{1,3}$/.test(line) || /^L(?:evel)?\s*[123]$/i.test(line)) return "marker";
+  if (/^(?:✓|☑|→|↗|•|・|[-－])\s*/.test(line)) return "bullet";
+  return "body";
+}
+
+function transcriptLineLabel(kind) {
+  return {
+    eyebrow: "主題",
+    heading: "標題",
+    meta: "章節",
+    marker: "標記",
+    bullet: "重點",
+    source: "資源",
+    body: "內容",
+  }[kind] || "內容";
+}
+
+function linkifyTranscriptLine(value) {
+  const line = String(value || "");
+  const match = line.match(/https?:\/\/[^\s]+/i);
+  if (!match) return escapeHtml(line);
+  const rawUrl = match[0];
+  const cleanUrl = rawUrl.replace(/[。．，,、；;）)\]]+$/g, "");
+  const suffix = rawUrl.slice(cleanUrl.length);
+  const before = line.slice(0, match.index);
+  const after = line.slice((match.index || 0) + rawUrl.length);
+  return `${escapeHtml(before)}<a href="${escapeHtml(cleanUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(cleanUrl)}</a>${escapeHtml(`${suffix}${after}`)}`;
+}
+
+function renderTranscriptLines(item) {
+  const lines = String(item.text || item.description || "此頁沒有額外文字。")
+    .replace(/\r\n?/g, "\n")
+    .split("\n");
+  let inSources = false;
+  return lines.map((rawLine) => {
+    const line = rawLine.trim();
+    if (/^\[Sources?\]$/i.test(line)) inSources = true;
+    const kind = transcriptLineKind(line, item, inSources);
+    if (/^\[\/Sources?\]$/i.test(line)) inSources = false;
+    if (kind === "spacer") return '<div class="transcript-line transcript-line--spacer" aria-hidden="true"></div>';
+    const label = transcriptLineLabel(kind);
+    return `<div class="transcript-line transcript-line--${kind}" data-kind="${kind}">
+      <span class="transcript-line-marker" aria-hidden="true"></span>
+      <span class="transcript-line-label">${escapeHtml(label)}</span>
+      <span class="transcript-line-copy">${linkifyTranscriptLine(line)}</span>
+    </div>`;
+  }).join("");
+}
+
+function renderTranscript(item) {
+  const page = `${String(item.index).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+  const topic = item.eyebrow || data.session || "HTML NATIVE";
+  const section = item.section || "工作坊場景";
+  return `<details class="scene-transcript">
+    <summary class="transcript-toggle">
+      <span class="transcript-toggle-icon" aria-hidden="true">↗</span>
+      <span class="transcript-toggle-copy"><strong>展開完整文字</strong><small>查看本頁逐行內容</small></span>
+      <span class="transcript-toggle-state"><span class="transcript-state-closed">展開</span><span class="transcript-state-open">收合</span></span>
+    </summary>
+    <div class="transcript-panel">
+      <div class="transcript-panel-head">
+        <div class="transcript-panel-title-wrap">
+          <span class="transcript-panel-eyebrow">完整內容</span>
+          <h2 class="transcript-panel-title">${escapeHtml(displayTitle(item))}</h2>
+        </div>
+        <span class="transcript-page-badge">${escapeHtml(page)}</span>
+      </div>
+      <div class="transcript-chips" aria-label="本頁分類">
+        <span class="transcript-chip transcript-chip--topic"><b>主題</b>${escapeHtml(topic)}</span>
+        <span class="transcript-chip transcript-chip--section"><b>章節</b>${escapeHtml(section)}</span>
+        <span class="transcript-chip transcript-chip--page"><b>頁面</b>${escapeHtml(`第 ${item.index} 頁`)}</span>
+      </div>
+      <div class="transcript-body" tabindex="0" aria-label="${escapeHtml(`${displayTitle(item)} 完整文字`)}">${renderTranscriptLines(item)}</div>
+      <div class="transcript-panel-foot" aria-label="文字分類圖例">
+        <span class="transcript-foot-label">分類</span>
+        <span class="transcript-legend-item transcript-legend-item--topic">主題</span>
+        <span class="transcript-legend-item transcript-legend-item--section">章節</span>
+        <span class="transcript-legend-item transcript-legend-item--source">資源</span>
+        <span class="transcript-legend-item transcript-legend-item--point">重點</span>
+      </div>
+    </div>
+  </details>`;
+}
+
 function createSlide(item, index) {
   const blocks = cleanBodyBlocks(item);
   const layout = layoutFor(item, blocks);
@@ -229,7 +320,7 @@ function createSlide(item, index) {
         <div class="scene-body">${blockMarkup}</div>
       </div>
       <div class="scene-footer">${renderLinks(item.links)}</div>
-      <details class="scene-transcript"><summary>展開完整文字</summary><p>${escapeHtml(item.text || item.description || "")}</p></details>
+      ${renderTranscript(item)}
     </div>`;
   return article;
 }
@@ -267,7 +358,7 @@ function updateOverviewCurrent() {
   overviewGrid?.querySelectorAll(".overview-card").forEach((card, index) => card.classList.toggle("is-current", index === activeIndex));
 }
 
-const sceneScrollSelector = ".scene-content, .scene-copy, .scene-body, .scene-transcript p";
+const sceneScrollSelector = ".scene-content, .scene-copy, .scene-body, .scene-transcript .transcript-body";
 
 function resetSceneScroll(scene) {
   scene?.querySelectorAll(sceneScrollSelector).forEach((element) => {

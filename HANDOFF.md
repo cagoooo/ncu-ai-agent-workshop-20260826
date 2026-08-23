@@ -1,10 +1,42 @@
-# HANDOFF.md｜2026-08-23 本輪 Agent 交接（資源列多列 RWD 修正）
+# HANDOFF.md｜2026-08-23 本輪 Agent 交接（完整文字分類面板 UIUX 修正）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
 
-## 本輪最新完成：資源列多列化與完整文字區塊避讓（v2026.08.23.08）
+## 本輪最新完成：完整文字分類面板 UIUX 與 RWD（v2026.08.23.09）
+
+- 將 `09_HTML動態簡報` 右下角「展開完整文字」由單一純文字 `<p>` 改為可收合的完整內容資訊面板；原始 `item.text` 全文保留，沒有刪字或改寫內容。
+- 面板新增「主題／章節／頁面」三個資訊晶片、標題與頁碼徽章；全文逐行依內容分類為主題、標題、章節、標記、重點、資源與一般內容，使用藍／青綠／珊瑚／金色區分，並同步顯示文字分類標籤，不只依賴顏色辨識。
+- 文字中的 `http(s)` 網址會轉為可點擊的新分頁連結；全文改在面板內獨立垂直捲動，保留完整長文，不再以固定高度裁切或與資源列重疊。
+- 面板在桌機、平板、橫向觸控與手機均保留入口；手機不再隱藏「展開完整文字」，改以 100% 寬度與較小字級自然重排。
+- 來源版與公開站子專案版的 `dynamic-deck.js`／`dynamic-deck.css` SHA-256 已比對相同；本輪只改 HTML 動態專區與其版本快取，沒有改寫 `08_HTML簡報` 圖檔版、Hotspot、QR、PPTX、PDF，也沒有輸出 MP4。
+
+本輪本機與正式包證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47, afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.09
+node --check workshop_suite_src/09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+node --check github_pages_site/09_HTML動態簡報/assets/dynamic-deck.js → exit 0
+Node 全文面板 RWD 探針 → exit 0；desktop/tablet/landscape/phone=4/4；panelVisible=4/4；colorCategories=6；sourceLinks=9；documentHorizontalOverflow=0
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+python -X utf8 qa_qr_codes.py → exit 0；161 rendered QR codes decoded
+node qa_github_pages_site.mjs → exit 0；總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；動畫 samples=2 且 overflow=0；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+node qa_fullscreen_dynamic.mjs（上午／下午；immersive/native；FULLSCREEN_ALL=1）→ exit 0；4 組、47/47＋54/54、failures=0；footerWrap=wrap、footerOverflow=visible、footerTranscriptOverlap=false、horizontalOverflow=0
+node qa_fullscreen_longrun.mjs（上午／下午；immersive/native；260ms）→ exit 0；4 組、47/47＋54/54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+正式包同步（排除 .git）→ exit 0；formal_git_before=False、formal_git_after=False
+正式包 node qa_html_deck.mjs（HTML_ROOT=正式包/08_HTML簡報）→ exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
+公開 Pages status／公開 version → 未確認（待本輪 commit、push 與建置完成後補驗）
+```
+
+## 本輪上一項完成：資源列多列化與完整文字區塊避讓（v2026.08.23.08）
 
 - 修正 HTML 動態簡報底部資源過多時全部擠在單列、產生橫向捲軸，並與右下角「展開完整文字」區塊重疊的問題。
 - 根因是 `.scene-footer` 原本使用單列 `overflow-x: auto`，而 `.scene-transcript` 使用 `position: absolute` 搭配右下偏移；資源列變高時兩者沒有共同的正常文件流高度。
