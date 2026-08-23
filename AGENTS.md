@@ -13,7 +13,7 @@
 
 ## 不要破壞的既定決策
 
-- `08_HTML簡報` 圖檔版與 `09_HTML動態簡報` HTML 專區目前均為上午 44 頁、下午 52 頁；兩個版本同步保留 Agent 時代人生哲學、文組 AI 大航海開場與 Antigravity Remote Control 更新內容。現行名稱一律使用「Gemini Notebook」，不要改回 NotebookLM。
+- `08_HTML簡報` 圖檔版與 `09_HTML動態簡報` HTML 專區目前均為上午 47 頁、下午 54 頁；兩個版本同步保留 Vibe Coding、Vibe Working、AI 三個 Level、Agent 時代人生哲學、文組 AI 大航海開場與 Antigravity Remote Control 更新內容。現行名稱一律使用「Gemini Notebook」，不要改回 NotebookLM。
 - 保留 1280×720 fallback 與 2560×1440 2K 圖片。曾使用 4K，會讓第一次全螢幕載入延遲並出現底部黑邊；未取得新證據前不要恢復 4K。
 - HTML 簡報用已驗收的投影片點陣圖維持中文字型穩定，平台文字與 QR Code 由透明 hotspot 疊加以支援全螢幕點擊；不要因為看似「不是純 HTML 文字」就整套改寫。
 - 第一次進入全螢幕會先立即套用沉浸狀態，再等待 Fullscreen API；這是為了解決第一次點擊不滿版的競速問題。

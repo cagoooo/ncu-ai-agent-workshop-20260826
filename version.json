@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.23.04",
+  "version": "2026.08.23.05",
   "buildTime": "2026-08-23T08:30:00+08:00",
-  "title": "HTML 工具卡片改用實際工具名稱",
-  "description": "所有 HTML 簡報的案例連結改用實際工具名稱，並清楚區分工具卡片與開啟應用；同步保留 OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、08 圖檔版、09 HTML 動態簡報、全螢幕、長文捲動與手機／平板 RWD。上午 44 頁、下午 54 頁、總覽 98 頁。"
+  "title": "上午新增 Vibe Coding、Vibe Working 與 AI 三個 Level",
+  "description": "上午場開頭新增 Vibe Coding、Vibe Working 與 AI 三個 Level，並同步更新圖檔／PPTX、08 HTML 圖檔版與 09 HTML 動態簡報；保留工具卡片實際名稱、OpenClaw、Gemini 3.7 Flash、速度快 20 倍以上的個人使用體感、Agent Harness、Human-in-the-loop、全螢幕、長文捲動與手機／平板 RWD。上午 47 頁、下午 54 頁、總覽 101 頁。"
 }
