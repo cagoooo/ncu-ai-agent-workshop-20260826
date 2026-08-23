@@ -4,6 +4,37 @@
 
 ---
 
+## 本輪最新完成：完整文字浮層安全區定位與窄畫面 RWD（v2026.08.23.11）
+
+- 依老師最新截圖修正「展開完整文字」摘要列位置：不再使用 `top: 50%`（平板／手機原為 42%／38%），桌機改停靠在投影片右下、資源列上方的安全帶，不遮住中央標題、說明與章節內容。
+- 桌機全螢幕另預留資源列換行安全距離；短桌面視窗（1295×651）也有獨立安全帶，避免上午／下午資源書籤頁的多列按鈕與摘要列重疊。
+- 展開面板改為摘要列上方的第 41 層浮出，不改變原投影片 flex 排版流；平板／手機改在內容流末端顯示，透過投影片垂直捲動查看，展開前後不推動標題、說明、章節與資源列。
+- z-index 分層維持：主內容第 5 層、資源列第 6 層、完整文字浮層第 40 層、面板第 41 層；來源版與部署版 CSS 保持一致。
+- `08_HTML簡報` 圖檔版、PPTX、PDF、Hotspot、QR 與既有設計沒有改寫；本輪只更新 HTML 動態專區與其快取版本至 `.11`，沒有輸出 MP4，也沒有寫入 API key、token 或密碼。
+
+本輪本機、瀏覽器與正式包證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47、afternoon=54
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=54、version=2026.08.23.11
+Playwright 瀏覽器安全區探針（1920×1080 沉浸式、820×1180、932×430、393×852 觸控）→ exit 0；摘要列中央內容交集=0；展開前後 h1／說明／章節／資源列 shift=0；面板 z-index=41
+Playwright 短桌面探針（1295×651、下午第 54 頁）→ exit 0；摘要列 y=319.91–366.25、資源按鈕第一列 y=379.89–410.08、overlap=false
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、afternoonFilter=54；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+node qa_fullscreen_dynamic.mjs（上午／下午；FULLSCREEN_ALL=1）→ exit 0；上午 47/47、下午 54/54；failures=0、footerWrap=wrap、footerOverflow=visible、horizontalOverflow=0
+node qa_fullscreen_longrun.mjs（上午／下午；immersive；260ms）→ exit 0；47/47＋54/54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+來源／部署 dynamic-deck.css 比對 → exit 0；內容一致；node --check 來源／部署 dynamic-deck.js → exit 0；git diff --check → exit 0
+正式包同步（排除 .git、複製資料夾內容）→ exit 0；source_root_items=23、formal_root_items=26、nested_same_name=0、formal_git=False
+正式包 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
+本輪 v2026.08.23.11 GitHub Pages 公開部署 → 未確認；待 commit／push 後確認 Pages status=built、version.json HTTP 200 與公開 CSS 快取版本
+```
+
 ## 本輪最新完成：完整文字浮層 z-index 版面固定（v2026.08.23.10）
 
 - 依老師回報的截圖修正「展開完整文字」：展開後不再把標題、說明、章節與資源列往上擠，原本投影片內容維持原座標，完整文字改成獨立高層浮層呈現。
