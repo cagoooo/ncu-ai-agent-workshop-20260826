@@ -37,7 +37,18 @@ npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → e
 公開部署與正式包證據：
 
 ```text
-公開 Pages status、version.json HTTP 200、公開 BASE_URL QA、正式包同步與正式包 Manifest → 未確認（本輪待 commit／push 後補驗）
+git commit -m "修正全螢幕長時間播放殘留圖層" → exit 0；commit=f8642fc；13 files changed
+git push origin main → exit 0；bb1a605..f8642fc，main → main
+gh run watch 32617869251 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97141397942、deploy=97141426267、report=97141426331 全部成功（僅有既有 Node.js 20 deprecation annotation）
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest version.json?cb=20260823-07-handoff → exit 0；HTTP 200、516 bytes、公開 version=2026.08.23.07、title=修正全螢幕長時間逐頁播放殘留圖層
+Invoke-WebRequest 公開 dynamic-deck.css／dynamic-deck.js → exit 0；CSS HTTP 200、54537 bytes、非活動頁 content-visibility 規則存在；JS HTTP 200、25255 bytes、clearPreviousSlides 與 HyperFrames 保護條件存在
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；轉場 samples=2；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+Get-ChildItem <github_pages_site> -Force | Copy-Item -Destination <正式包> -Recurse -Force → exit 0；正式包內 .git 已排除並以可恢復方式移至暫存備份
+正式包 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
 ```
 
 ## 本輪最新完成：Agent Skills 公開資源庫與「灌入技能」白話教學（v2026.08.23.06）
@@ -185,8 +196,8 @@ $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node q
 | P1-12 | 已完成／公開可用 | 下午新增「為什麼 Agent 會紅起來？」OpenClaw（小龍蝦）脈絡，以及 Gemini 3.7 Flash 工作馬與個人速度體感 | `node build_decks.mjs` → exit 0；OpenClaw 第 6 頁、工具比較第 8 頁、Gemini 3.7 Flash 第 14 頁；`python -X utf8 qa_qr_codes.py` → exit 0、151 rendered QR codes decoded；公開資料 HTTP 200 且 OpenClaw／Gemini 3.7 Flash／速度快 20 倍以上均存在；正式包 PDF 54 頁 | OpenClaw「爆紅」作為社群／教學脈絡，不宣稱單一事件造成產業因果；Gemini 官方能力與現場帳號可用性仍應分開說明 |
 | P1-13 | 已完成／公開可用 | 上午／下午 HTML 案例工具連結改用實際工具名稱，並區分「工具卡片」與「開啟應用」 | `node build_html_deck.mjs` → exit 0；HTML morning=47、afternoon=54；`node qa_html_deck.mjs` → exit 0；named=12+12、numeric=0；公開 `node qa_github_pages_site.mjs` → exit 0；公開工具標籤 named=72、numeric=0；7 個公開端點 HTTP 200；靜態與動態 HTML 均同步 | 不改 `08_HTML簡報` 圖檔、Hotspot、QR；未來新增案例沿用實際工具名稱，不再以編號作為唯一可見標籤 |
 | P1-14 | 已完成／公開可用 | 上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level，並把上午 Level 1／2 連到下午 Level 3 Agentic AI | `node build_decks.mjs` → exit 0；新增上午第 2–4 頁；`node build_html_deck.mjs`／`node sync_dynamic_deck.mjs` → exit 0；上午 47 頁、版本 `.05`；公開 `BASE_URL` QA → exit 0；公開上午 HTML／動態資料 HTTP 200 且含新頁文字 | Vibe Working 已標註為本工作坊延伸框架；後續新增概念頁仍需同步圖檔／PPTX 與 HTML 兩條產線 |
-| P1-15 | 已完成／待公開驗證 | Agent Skills 公開資源庫、三師爸相關公開脈絡與國際官方 Skills 索引；下午新增《駭客任務》／《寶可夢》白話比喻，並在簡報頁、QR 與資源書籤提供直達入口 | `node build_decks.mjs` → exit 0；上午 47、下午 54、共 101 頁；`node qa_html_deck.mjs` → exit 0；`python -X utf8 qa_qr_codes.py` → exit 0、161 個 QR 解碼；`npx --yes hyperframes check ... --json` → exit 0、lint/runtime/layout/motion=0、contrast=99/99；資源頁本機 HTML 內容與正式包同步完成；公開版與 Pages `built` 在本輪部署完成前未確認 | 外部 Skills 僅作公開索引與教學參考；安裝前仍須檢查 README／LICENSE／腳本／權限，並保留 Human-in-the-loop；不自動替教授選擇安裝或授權 |
-| P1-16 | 已完成／待公開驗證 | 全螢幕長時間逐頁播放穩定性：修正快速換頁造成的 `is-previous` 殘留圖層與未顯示頁面合成層累積，保留雙緩衝與 HyperFrames seek | `node qa_fullscreen_longrun.mjs` → exit 0；早／下午沉浸式與原生全螢幕共 4 組，47／54 頁全數通過、failures=0、pageErrors=0；四組最終 activeCount=1、previousCount=1；`node qa_fullscreen_animation.mjs` → exit 0；4 個方向、16 個取樣；本輪 `08_HTML簡報` 圖片與設計未改 | 後續若調整轉場或增加長時間自動播放，須先跑快速逐頁壓力測試；公開 Pages `built`、公開版本與 BASE_URL QA 待 push 後確認 |
+| P1-15 | 已完成／公開可用 | Agent Skills 公開資源庫、三師爸相關公開脈絡與國際官方 Skills 索引；下午新增《駭客任務》／《寶可夢》白話比喻，並在簡報頁、QR 與資源書籤提供直達入口 | `node build_decks.mjs` → exit 0；上午 47、下午 54、共 101 頁；`node qa_html_deck.mjs` → exit 0；`python -X utf8 qa_qr_codes.py` → exit 0、161 個 QR 解碼；`npx --yes hyperframes check ... --json` → exit 0、lint/runtime/layout/motion=0、contrast=99/99；公開 `BASE_URL` QA → exit 0；公開 version=`2026.08.23.07`、Pages `status=built` | 外部 Skills 僅作公開索引與教學參考；安裝前仍須檢查 README／LICENSE／腳本／權限，並保留 Human-in-the-loop；不自動替教授選擇安裝或授權 |
+| P1-16 | 已完成／公開可用 | 全螢幕長時間逐頁播放穩定性：修正快速換頁造成的 `is-previous` 殘留圖層與未顯示頁面合成層累積，保留雙緩衝與 HyperFrames seek | `node qa_fullscreen_longrun.mjs` → exit 0；早／下午沉浸式與原生全螢幕共 4 組，47／54 頁全數通過、failures=0、pageErrors=0；四組最終 activeCount=1、previousCount=1；`node qa_fullscreen_animation.mjs` → exit 0；4 個方向、16 個取樣；公開 CSS／JS HTTP 200 且修正字串存在；公開 `BASE_URL` QA → exit 0；本輪 `08_HTML簡報` 圖片與設計未改 | 後續若調整轉場或增加長時間自動播放，須先跑快速逐頁壓力測試；維持公開 Pages `built`、公開版本與 BASE_URL QA 守門 |
 
 ## 本輪完成：降本增效與 Human-in-the-loop 教學內容（v2026.08.23.01）
 
