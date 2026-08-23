@@ -43,7 +43,17 @@ npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → e
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
 ```
 
-正式包已同步版本 `.06`、Skills 資源庫與本輪 HTML／QR 產物；公開版本、Pages `built` 與帶 `BASE_URL` 的公開 QA 必須在本輪提交／推送後重新確認，在此之前標示為「未確認」。
+正式包已同步版本 `.06`、Skills 資源庫與本輪 HTML／QR 產物。本輪公開部署證據：
+
+```text
+gh run watch 32616011565 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97136750941、report=97136774549、deploy=97136774587 全部成功（僅有既有 Node.js 20 deprecation annotation）
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest version.json?cb=20260823-06-final → exit 0；HTTP 200、633 bytes、公開 version=2026.08.23.06
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；公開總覽 101 卡片／101 直達連結／3 篩選器／下午 54 張；轉場 samples=2；上午／下午 scenes=282／324、capability=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+公開端點複核 → exit 0；Skills 資源庫 HTTP 200、16379 bytes；08 下午圖檔版 HTTP 200、128591 bytes；09 下午動態資料 HTTP 200、98349 bytes
+```
+
+本輪公開版本已完成 Pages `built` 與公開 QA 驗證。
 
 ## 前一輪已完成：上午開場新增 Vibe Coding、Vibe Working 與 AI 三個 Level（v2026.08.23.05）
 
