@@ -28,7 +28,13 @@ node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
 正式包 node audit_local_links.mjs → exit 0；87 HTML files、183 local references
 正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=500、inventory=499、pdf=6、duplicate_pdf_groups=2
-公開部署驗證 → 待本輪 push 後補記 Pages built、公開 version.json HTTP 200 與上午第 2–4 頁圖片 HTTP 200／QR 驗證結果
+gh run watch 32634457818 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97182011878、deploy=97182035002、report=97182035042
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260823-12-final → exit 0；HTTP 200、294 bytes、公開 version=2026.08.23.12、title=上午場圖片簡報補齊右上角 QR Code
+Invoke-WebRequest 公開 08_HTML簡報/morning.html?cb=20260823-12-final → exit 0；HTTP 200、111620 bytes
+curl.exe 公開 morning-02.png／morning-03.png／morning-04.png → exit 0；HTTP 200；bytes=82880／87347／85830
+公開圖片 QR 解碼探針 → exit 0；第 2／3／4 頁共 6 個 QR Code 全部解碼，與 manifest scanUrl 逐一相同；三張圖片 SHA-256 與本機部署檔相同
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=101、directLinks=101、filters=3、下午=54；轉場 samples=2 且 settled=true；上午／下午 scenes=282／324、垂直捲動各 6/6、捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
 ```
 
 ## 本輪最新完成：完整文字浮層安全區定位與窄畫面 RWD（v2026.08.23.11）
