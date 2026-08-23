@@ -20,7 +20,7 @@ window.DYNAMIC_DECK_DATA = {
       "eyebrow": "VIBE CODING",
       "section": "Vibe Coding、Vibe Working 與 AI 三個 Level",
       "notes": "Andrej Karpathy 將這種『先跟著靈感走、用自然語言讓 AI 協助把想法做出來』的工作方式稱為 Vibe Coding。這裡把它轉成適合今天社群的學習入口：當你突然想到一個教學活動、研究工具或生活中的小作品，不必先被『我不會寫程式』擋住，可以先把想法說清楚，讓 AI／Agent 協助把它推成第一個可操作原型。\n\n但 Vibe Coding 不是把責任交給模型。要保留人工試用、資料權限、測試與品質判斷；靈感負責啟動，人的目的與驗證負責把作品帶到可用。\n\n[Sources]\n- https://www.youtube.com/watch?v=LCEmiRjPEtQ\n[/Sources]",
-      "text": "VIBE CODING\nVibe Coding：靈感一來，就開始做\n上午場｜打造專屬 AI 教學與研究工作室\n02\n01\n一個 vibe\n早上醒來靈光一閃，突然知道想做什麼；先把念頭抓住，不必等自己會寫程式。\n02\n直接說出來\n用自然語言告訴 AI／Agent 目標、對象、限制與期待的成果。\n03\n讓工具接手\nAgent 可以協助寫程式、做介面、串資料與測試，把想法推成可操作的原型。\n04\n人來校準\n試用、提問、修正與驗證，保留目的、品質與責任；靈感不是免除判斷。\nAndrej Karpathy：Vibe Coding ↗",
+      "text": "VIBE CODING\nVibe Coding：靈感一來，就開始做\n上午場｜打造專屬 AI 教學與研究工作室\n02\n01\n一個 vibe\n早上醒來靈光一閃，突然知道想做什麼；先把念頭抓住，不必等自己會寫程式。\n02\n直接說出來\n用自然語言告訴 AI／Agent 目標、對象、限制與期待的成果。\n03\n讓工具接手\nAgent 可以協助寫程式、做介面、串資料與測試，把想法推成可操作的原型。\n04\n人來校準\n試用、提問、修正與驗證，保留目的、品質與責任；靈感不是免除判斷。\nAndrej Karpathy：Vibe Coding ↗\nVibe Coding",
       "description": "Andrej Karpathy 將這種『先跟著靈感走、用自然語言讓 AI 協助把想法做出來』的工作方式稱為 Vibe Coding。這裡把它轉成適合今天社群的學習入口：當你突然想到一個教學活動、研究工具或生活中的小作品，不必先被『我不會寫程式』擋住，可以先把想法說清楚，讓 AI／Agent 協助把它推成第一個可操作原型。\n\n但 Vibe Coding 不是把責任交給模型。要保留人工試用、資料權限、測試與品質判斷；靈感負責啟動，人的目的與驗證負責把作品帶到可用。\n\n[Sources]\n- https://www.youtube.com/watch?v=LCEmiRjPEtQ\n[/Sources]",
       "links": [
         {
@@ -35,7 +35,7 @@ window.DYNAMIC_DECK_DATA = {
       "eyebrow": "VIBE WORKING",
       "section": "Vibe Coding、Vibe Working 與 AI 三個 Level",
       "notes": "Vibe Working 是本工作坊把 Vibe Coding 延伸到日常工作的課程框架，不把它當成 Andrej Karpathy 的原始名詞。當我們在工作中發現『為什麼人生要一直浪費在這些重複事情上』，那個不滿與靈感就是自動化的入口。\n\n請大家不要只追求做更多，而是把重複流程交給 AI／Agent 後，重新決定省下來的時間要回到哪裡：更好的課程、更扎實的研究、更深的人際互動，或是自己一直想做卻沒有時間做的事。效率的終點不是把行程塞滿，而是重新取得生活的主導權。",
-      "text": "VIBE WORKING\n從 Vibe Coding 進階到 Vibe Working\n上午場｜打造專屬 AI 教學與研究工作室\n03\n1\n看見摩擦\n發現工作中一再重複、繁瑣又消耗人的流程。\n→\n2\n捕捉靈感\n想一想：這件事能不能交給 AI 協作或自動化？\n→\n3\n說明工作\n交代對象、資料、規則、限制與完成標準。\n→\n4\n讓 Agent 推進\n從整理、產出到測試，讓工具持續把流程往前推。\n→\n5\n把時間還給人\n省下的時間回到教學、研究、家人、興趣與真正重要的事。\n每一步都留下可檢查的成果\nGemini Notebook ↗  ·  Gemini Canvas ↗",
+      "text": "VIBE WORKING\n從 Vibe Coding 進階到 Vibe Working\n上午場｜打造專屬 AI 教學與研究工作室\n03\n1\n看見摩擦\n發現工作中一再重複、繁瑣又消耗人的流程。\n→\n2\n捕捉靈感\n想一想：這件事能不能交給 AI 協作或自動化？\n→\n3\n說明工作\n交代對象、資料、規則、限制與完成標準。\n→\n4\n讓 Agent 推進\n從整理、產出到測試，讓工具持續把流程往前推。\n→\n5\n把時間還給人\n省下的時間回到教學、研究、家人、興趣與真正重要的事。\n每一步都留下可檢查的成果\nGemini Notebook ↗  ·  Gemini Canvas ↗\nNotebook\nCanvas",
       "description": "Vibe Working 是本工作坊把 Vibe Coding 延伸到日常工作的課程框架，不把它當成 Andrej Karpathy 的原始名詞。當我們在工作中發現『為什麼人生要一直浪費在這些重複事情上』，那個不滿與靈感就是自動化的入口。\n\n請大家不要只追求做更多，而是把重複流程交給 AI／Agent 後，重新決定省下來的時間要回到哪裡：更好的課程、更扎實的研究、更深的人際互動，或是自己一直想做卻沒有時間做的事。效率的終點不是把行程塞滿，而是重新取得生活的主導權。",
       "links": [
         {
@@ -54,7 +54,7 @@ window.DYNAMIC_DECK_DATA = {
       "eyebrow": "AI CAPABILITY LEVELS",
       "section": "Vibe Coding、Vibe Working 與 AI 三個 Level",
       "notes": "上午會帶大家從 Level 1 的對話式 AI，進階到 Level 2 的協作式 AI：用 Gemini Notebook、Gem 與 Canvas 一起完成作品。下午再進入 Level 3 的 Agentic AI，讓 Agent 從頭到尾推進任務並交付成果。\n\nLevel 3 不只是『模型比較強』，而是人、工作區、工具、規則與 Skills 組成一個可重複的工作流。你可以把自己的 AI Agent 想成一位長期協作的數位同仁：它會逐漸理解你的工作方式與痛點，但授權範圍、驗證標準與最後責任仍由人保留。\n\n[Sources]\n- https://notebook.google.com/\n- https://gemini.google.com/app\n- https://antigravity.google/\n[/Sources]",
-      "text": "AI CAPABILITY LEVELS\nAI 的三個 Level：從對話到代理\n上午場｜打造專屬 AI 教學與研究工作室\n04\nL1\n對話式 AI\n問問題、要解釋、請它發想；人把答案帶回工作，通常仍由人逐步操作。現場平常使用的聊天機器人，多半在這一層。\nL2\n協作式 AI\n把來源、角色與工作區交給 AI，一起整理、比較、設計與修改。Gemini Notebook、Gem 與 Canvas 讓人和 AI 共同產出。\nL3\nAgentic AI／AI 代理人\n交代目標與邊界，讓 Agent 長時間規劃、使用工具、執行與驗證，並透過 Skills 越來越懂你的工作流；人仍在關鍵節點做決策。\nGemini Notebook ↗  ·  Gemini Canvas ↗  ·  Antigravity ↗",
+      "text": "AI CAPABILITY LEVELS\nAI 的三個 Level：從對話到代理\n上午場｜打造專屬 AI 教學與研究工作室\n04\nL1\n對話式 AI\n問問題、要解釋、請它發想；人把答案帶回工作，通常仍由人逐步操作。現場平常使用的聊天機器人，多半在這一層。\nL2\n協作式 AI\n把來源、角色與工作區交給 AI，一起整理、比較、設計與修改。Gemini Notebook、Gem 與 Canvas 讓人和 AI 共同產出。\nL3\nAgentic AI／AI 代理人\n交代目標與邊界，讓 Agent 長時間規劃、使用工具、執行與驗證，並透過 Skills 越來越懂你的工作流；人仍在關鍵節點做決策。\nGemini Notebook ↗  ·  Gemini Canvas ↗  ·  Antigravity ↗\nNotebook\nCanvas\nAntigravity",
       "description": "上午會帶大家從 Level 1 的對話式 AI，進階到 Level 2 的協作式 AI：用 Gemini Notebook、Gem 與 Canvas 一起完成作品。下午再進入 Level 3 的 Agentic AI，讓 Agent 從頭到尾推進任務並交付成果。\n\nLevel 3 不只是『模型比較強』，而是人、工作區、工具、規則與 Skills 組成一個可重複的工作流。你可以把自己的 AI Agent 想成一位長期協作的數位同仁：它會逐漸理解你的工作方式與痛點，但授權範圍、驗證標準與最後責任仍由人保留。\n\n[Sources]\n- https://notebook.google.com/\n- https://gemini.google.com/app\n- https://antigravity.google/\n[/Sources]",
       "links": [
         {

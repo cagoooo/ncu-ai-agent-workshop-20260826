@@ -319,8 +319,10 @@ function createSlide(item, index) {
         </div>
         <div class="scene-body">${blockMarkup}</div>
       </div>
-      <div class="scene-footer">${renderLinks(item.links)}</div>
-      ${renderTranscript(item)}
+      <div class="scene-bottom">
+        <div class="scene-footer">${renderLinks(item.links)}</div>
+        ${renderTranscript(item)}
+      </div>
     </div>`;
   return article;
 }
@@ -506,7 +508,9 @@ async function toggleFullscreen() {
   }
 }
 function syncFullscreenUi(entered = Boolean(nativeFullscreenElement()) || body.classList.contains("is-immersive")) {
-  body.classList.toggle("is-immersive", entered && !nativeFullscreenElement());
+  const nativeFullscreen = Boolean(nativeFullscreenElement());
+  body.classList.toggle("native-fullscreen", nativeFullscreen);
+  body.classList.toggle("is-immersive", entered && !nativeFullscreen);
   if (immersiveExit) immersiveExit.hidden = !entered;
 }
 

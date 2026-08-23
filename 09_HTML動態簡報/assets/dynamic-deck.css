@@ -1050,3 +1050,194 @@ body.is-immersive .scene-transcript {
   .transcript-line-marker { width: 3px; }
   .transcript-line-label { font-size: 9px; }
 }
+
+/* ───────────────────────────────────────────────────────────────
+   2026.08.23.13：投影片底部安全區與觸控 RWD
+   - 全文摘要列與資源列同屬 scene-bottom，不再浮在正文或卡片上方。
+   - 原生／模擬全螢幕維持既有 SSOT；只修正一般互動頁，避免回退全螢幕轉場。
+   - 觸控裝置由簡報區單一捲動，外層不再跟著捲動；導覽提示與重複首頁按鈕收起。
+   ─────────────────────────────────────────────────────────────── */
+@media (min-width: 901px) {
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-bottom {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, min(42%, 520px));
+    align-items: end;
+    gap: clamp(12px, 1.8vw, 28px);
+    min-width: 0;
+    flex: 0 0 auto;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-bottom .scene-footer {
+    grid-column: 1;
+    min-width: 0;
+    width: 100%;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-bottom .scene-transcript {
+    grid-column: 2;
+    position: relative !important;
+    inset: auto !important;
+    align-self: end;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    z-index: 40 !important;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-bottom .scene-transcript[open] .transcript-panel {
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 10px);
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    z-index: 41;
+  }
+  .scene-footer:empty { display: none; }
+  .layout-editorial .scene-copy h1 {
+    max-width: 720px;
+    font-size: clamp(34px, 3.5vw, 72px);
+    line-height: 1.05;
+  }
+  .layout-editorial .scene-description {
+    line-height: 1.5;
+  }
+  .layout-editorial .scene-body {
+    gap: clamp(10px, 1vw, 16px);
+    padding: 4px;
+    align-content: stretch;
+    grid-auto-rows: minmax(120px, 1fr);
+  }
+  .layout-editorial .content-block {
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    height: 100%;
+    overflow: auto;
+    padding: clamp(12px, 1.05vw, 18px) clamp(14px, 1.05vw, 18px) clamp(11px, .9vw, 16px) clamp(38px, 2.8vw, 52px);
+  }
+  .layout-editorial .content-block::before {
+    top: clamp(15px, 1.15vw, 21px);
+    left: clamp(13px, 1.05vw, 19px);
+    width: clamp(15px, 1.05vw, 20px);
+  }
+  .layout-editorial .content-block p {
+    font-size: clamp(13px, .95vw, 18px);
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 1200px) and (hover: none) and (pointer: coarse) {
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) {
+    height: 100svh;
+    min-height: 100svh;
+    overflow: hidden;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-main {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: calc(100svh - 62px);
+    min-height: 0;
+    gap: 8px;
+    overflow: hidden;
+    padding: 8px 12px;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-stage-wrap {
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-stage {
+    height: 100%;
+    max-height: none;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-slide {
+    min-height: 100%;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-content {
+    min-height: 100%;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-bottom {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 7px;
+    min-width: 0;
+    min-height: 0;
+    overflow: visible;
+    padding-top: 10px;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-footer:empty {
+    display: none;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-link {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    padding: 7px 8px;
+    font-size: clamp(11px, 2.8vw, 13px);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-transcript {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-transcript[open] .transcript-panel {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: none;
+    margin-top: 8px;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-controls {
+    flex: 0 0 42px;
+    width: 100%;
+    gap: 8px;
+    margin-top: 0;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .deck-home-button,
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-hint {
+    display: none;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .nav-button {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 901px) and (max-height: 750px) {
+  .layout-editorial .scene-body {
+    align-content: start;
+    grid-auto-rows: minmax(min-content, auto);
+  }
+  .layout-editorial .content-block {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 600px) and (hover: none) and (pointer: coarse) {
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .dynamic-main {
+    padding-inline: 0;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-content {
+    padding: 22px 18px 18px;
+  }
+  html:not(:fullscreen):not(:-webkit-full-screen) body.interactive-mode:not(.is-immersive):not(.native-fullscreen) .scene-transcript > summary.transcript-toggle {
+    min-height: 40px;
+    padding: 6px 10px;
+  }
+}
