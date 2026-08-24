@@ -33,7 +33,18 @@ FULLSCREEN_DECK=afternoon PREVIEW_PORT=8789 node qa_fullscreen_longrun.mjs → e
 git -C github_pages_site diff --check → exit 0
 ```
 
-本輪公開部署證據：待本輪 commit、push 與 GitHub Pages built 後補記。
+本輪公開部署證據：
+
+```text
+git -C github_pages_site commit -m "新增 HTML 動態簡報網站 Footer" → exit 0；commit=0fd113a、8 files changed、135 insertions、61 deletions
+git -C github_pages_site push origin main → exit 0；c02e960..0fd113a，main → main
+gh run watch 32679312280 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97293050720、deploy=97293085089、report=97293085106
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260824-02-footer → exit 0；HTTP 200、version=2026.08.24.02、title=新增 HTML 動態簡報網站 Footer
+公開 09 HTML 動態簡報 4 個入口掃描 → exit 0；4/4 HTTP 200、4/4 footer=1、4/4 author=True、4/4 version02=True
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 101、直達連結 101、篩選 3、下午 54；轉場 samples=2 且 settled=true；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+git -C github_pages_site status --short → exit 0；空白（部署子倉庫乾淨）
+```
 
 ---
 
