@@ -182,10 +182,11 @@ function layoutFor(item, blocks) {
   return Number(item.index) % 3 === 0 ? "data" : "editorial";
 }
 
-function compactDescription(item) {
-  const source = String(item.description || item.notes || "").split(/\n\s*\n/)[0].trim();
+function fullDescription(item) {
+  const source = String(item.description || item.notes || "").trim();
   if (!source) return "HTML 原生場景：標題、正文、備註與連結都可獨立編排。";
-  return source.length > 220 ? `${source.slice(0, 217)}…` : source;
+  const body = source.replace(/\n\s*\[Sources?\][\s\S]*?\[\/Sources?\]\s*$/i, "").trim();
+  return body || source;
 }
 
 function renderLinks(links) {
@@ -314,7 +315,7 @@ function createSlide(item, index) {
         <div class="scene-copy">
           <p class="scene-label">${escapeHtml(item.session || data.session || "WORKSHOP")}</p>
           <h1>${safeTitle}</h1>
-          <p class="scene-description">${escapeHtml(compactDescription(item))}</p>
+          <p class="scene-description">${escapeHtml(fullDescription(item))}</p>
           <div class="scene-rail"><span>SECTION</span><strong>${escapeHtml(item.section || "工作坊場景")}</strong></div>
         </div>
         <div class="scene-body">${blockMarkup}</div>

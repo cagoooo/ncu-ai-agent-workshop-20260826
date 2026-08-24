@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.24.03",
-  "buildTime": "2026-08-24T10:09:32+08:00",
-  "title": "新增 Gemini Spark 排程教學與學習歷程",
-  "description": "下午場新增 Gemini Spark、Notebook、Skill、Task 與 Review 的排程教學五頁；同步更新 59 頁圖檔、PPTX、PDF 與 HTML 動態簡報，保留人工複核與既有 Footer／RWD／全螢幕行為。"
+  "version": "2026.08.24.04",
+  "buildTime": "2026-08-24T12:41:57+08:00",
+  "title": "修正 HTML 簡報長文字完整呈現",
+  "description": "HTML 動態簡報完整保留各頁主說明文字，移除 220 字摘要截斷與省略號，保留來源連結於展開文字區塊，並維持桌機、平板、手機與全螢幕捲動行為。"
 }
