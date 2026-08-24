@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">研習資源導航</title>
+  <desc id="desc">深藍色導航背景、開啟的書本、路線與 AI 節點</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07131f"/>
+      <stop offset="1" stop-color="#12324a"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#2cd2c7"/>
+      <stop offset=".55" stop-color="#55a7ff"/>
+      <stop offset="1" stop-color="#ff806d"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="398" cy="112" r="72" fill="none" stroke="#55a7ff" stroke-width="3" opacity=".35"/>
+  <circle cx="398" cy="112" r="42" fill="none" stroke="#2cd2c7" stroke-width="3" opacity=".45"/>
+  <path d="M82 352 C150 352 166 294 231 294 C294 294 306 231 365 205 C390 194 412 173 430 143" fill="none" stroke="url(#route)" stroke-width="25" stroke-linecap="round" opacity=".9" filter="url(#glow)"/>
+  <path d="M82 352 C150 352 166 294 231 294 C294 294 306 231 365 205 C390 194 412 173 430 143" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+  <circle cx="430" cy="143" r="31" fill="#12324a" stroke="#ff806d" stroke-width="6" filter="url(#glow)"/>
+  <path d="M430 120 L439 134 L456 138 L443 150 L446 167 L430 159 L414 167 L417 150 L404 138 L421 134 Z" fill="#ff806d"/>
+  <path d="M98 361 L204 326 L260 354 L153 390 Z" fill="#153b5c" stroke="#55a7ff" stroke-width="5"/>
+  <path d="M98 361 L153 395 L260 359 L204 326 Z" fill="#0b1c2e" stroke="#2cd2c7" stroke-width="5"/>
+  <path d="M153 395 V348 L204 326 V378" fill="none" stroke="#55a7ff" stroke-width="5"/>
+  <path d="M256 294 L286 320 L318 283" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  <circle cx="256" cy="294" r="8" fill="#2cd2c7"/>
+  <circle cx="286" cy="320" r="8" fill="#55a7ff"/>
+  <circle cx="318" cy="283" r="8" fill="#ff806d"/>
+</svg>

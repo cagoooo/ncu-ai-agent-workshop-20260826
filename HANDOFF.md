@@ -4,6 +4,37 @@
 
 ---
 
+## 本輪最新完成：研習資源導航頁 favicon、PWA 圖示與社群分享卡片（v2026.08.24.05）
+
+- `START_HERE_研習資源導航.html` 已補上符合頁面標題與內容的專用品牌資產：`favicon-resource-nav.svg`、多尺寸 PNG、ICO、Apple Touch Icon、maskable icon 與 `manifest-resource-nav.webmanifest`。
+- 已補齊 LINE／Facebook／Twitter Card 可讀的完整 meta：絕對 `canonical`、`og:url`、`og:image`、`og:image:secure_url`、`og:image:type`、`og:image:width=1200`、`og:image:height=630`、`og:locale=zh_TW`、`og:image:alt` 與 `summary_large_image`。
+- 新增 `og-resource-nav.png`，內容聚焦「研習資源導航／從這一頁開始」、上午／下午場、Agent、Skills、工具、案例與線上／離線備援；不覆蓋首頁、08 圖檔版或 09 HTML 動態簡報原有品牌資產。
+- 版本提升至 `2026.08.24.05`，Service Worker 已加入資源導航頁與新資產的快取識別；沒有寫入 API key、token 或密碼。
+
+本輪本機與正式包證據：
+
+```text
+node render_resource_nav_assets.mjs；magick favicon-resource-nav.svg -define icon:auto-resize=16,32,48,64,128,256 favicon-resource-nav.ico → exit 0；OG=1200×630；ICO=16/32/48/64/128/256；PNG=32/180/192/512；maskable=192/512
+資源導航本機瀏覽器 QA → exit 0；viewports=3、cards=37、assets=10/10、manifest icons=4、RWD overflow=0
+node qa_github_pages_site.mjs → exit 0；總覽 cards=106、directLinks=106、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；上午／下午 scenes=282／354；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；長文字 morning=47／long=4／mismatches=0；afternoon=59／long=9／mismatches=0；公開工具 named=72、numeric=0
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 qa_qr_codes.py → exit 0；176 個渲染 QR Code 全部解碼
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題=0、contrast=99/99
+正式包 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+正式包 node audit_local_links.mjs → exit 0；103 HTML files、189 local references
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=551、inventory=550、pdf=6、duplicate_pdf_groups=2
+node qa_fullscreen_animation.mjs → exit 0；上午／下午各 2 個方向、共 16 個取樣、failures=0、pageErrors=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、failures=0、pageErrors=[]、activeCount=1
+FULLSCREEN_DECK=afternoon node qa_fullscreen_longrun.mjs → exit 0；59/59、failures=0、pageErrors=[]、activeCount=1
+```
+
+本輪公開部署證據待 push 後補記；公開版的 `version.json`、資源導航頁 meta、PNG 尺寸與各資產 HTTP 200 需以實際 Pages 回應確認，未確認前不宣稱完成。
+
+---
+
 ## 本輪最新完成：HTML 動態簡報長文字完整呈現（v2026.08.24.04）
 
 - 已修正 09 HTML 動態簡報主畫面把說明文字限制為前 220 字並加上省略號的問題；現在 47 頁上午場與 59 頁下午場均保留完整主說明文字。

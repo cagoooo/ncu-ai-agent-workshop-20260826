@@ -1,4 +1,4 @@
-const BUILD_VERSION = "2026.08.24.04";
+const BUILD_VERSION = "2026.08.24.05";
 const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
 
 // 精簡核心預載清單：僅快取極輕量的關鍵 HTML、CSS、JS 與小圖示（排除 4MB+ 的 OG 大圖）
@@ -6,10 +6,21 @@ const PRECACHE = [
   "./",
   "./index.html",
   "./version.json",
+  "./START_HERE_研習資源導航.html",
   "./pwa-register.js?v=" + BUILD_VERSION,
   "./assets/favicon.svg",
   "./assets/favicon-32x32.png",
   "./assets/apple-touch-icon.png",
+  "./assets/favicon-resource-nav.ico?v=" + BUILD_VERSION,
+  "./assets/favicon-resource-nav.svg?v=" + BUILD_VERSION,
+  "./assets/favicon-resource-nav-32x32.png?v=" + BUILD_VERSION,
+  "./assets/apple-touch-icon-resource-nav.png?v=" + BUILD_VERSION,
+  "./assets/icon-resource-nav-192.png?v=" + BUILD_VERSION,
+  "./assets/icon-resource-nav-512.png?v=" + BUILD_VERSION,
+  "./assets/icon-resource-nav-192-maskable.png?v=" + BUILD_VERSION,
+  "./assets/icon-resource-nav-512-maskable.png?v=" + BUILD_VERSION,
+  "./assets/manifest-resource-nav.webmanifest?v=" + BUILD_VERSION,
+  "./assets/og-resource-nav.png?v=" + BUILD_VERSION,
   "./assets/favicon-morning.svg",
   "./assets/favicon-morning-32x32.png",
   "./assets/favicon-afternoon.svg",

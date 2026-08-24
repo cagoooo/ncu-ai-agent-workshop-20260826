@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.24.04",
-  "buildTime": "2026-08-24T12:41:57+08:00",
-  "title": "修正 HTML 簡報長文字完整呈現",
-  "description": "HTML 動態簡報完整保留各頁主說明文字，移除 220 字摘要截斷與省略號，保留來源連結於展開文字區塊，並維持桌機、平板、手機與全螢幕捲動行為。"
+  "version": "2026.08.24.05",
+  "buildTime": "2026-08-24T14:03:35+08:00",
+  "title": "新增研習資源導航 favicon 與社群分享卡片",
+  "description": "研習資源導航新增專用 favicon、Apple Touch Icon、PWA manifest 與 1200×630 Open Graph 分享預覽圖，補齊 LINE、Facebook 與 GitHub Pages 所需的繁體中文 meta 標籤。"
 }

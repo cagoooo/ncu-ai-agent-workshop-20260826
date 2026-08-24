@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <style>
+    @font-face { font-family: "Noto Sans TC Local"; src: local("Noto Sans TC"); }
+    * { box-sizing: border-box; }
+    html, body { width: 1200px; height: 630px; margin: 0; overflow: hidden; background: #07131f; }
+    .card {
+      position: relative; width: 1200px; height: 630px; overflow: hidden;
+      color: #f8fbff; font-family: "Noto Sans TC Local", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: radial-gradient(circle at 92% 18%, rgba(44,210,199,.24), transparent 30%),
+        radial-gradient(circle at 15% 14%, rgba(85,167,255,.26), transparent 36%), #07131f;
+    }
+    .grid { position: absolute; inset: 0; opacity: .25; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .orbit { position: absolute; right: -110px; top: -180px; width: 630px; height: 630px; border: 1px solid rgba(85,167,255,.45); border-radius: 50%; }
+    .orbit::after { content: ""; position: absolute; inset: 92px; border: 1px solid rgba(44,210,199,.45); border-radius: 50%; }
+    .content { position: absolute; left: 66px; top: 52px; width: 720px; z-index: 2; }
+    .eyebrow { display: inline-flex; align-items: center; padding: 9px 18px; border: 1px solid rgba(85,167,255,.9); border-radius: 999px; background: rgba(37,111,232,.86); color: #fff; font-size: 19px; font-weight: 800; letter-spacing: .05em; }
+    h1 { margin: 42px 0 12px; font-size: 66px; line-height: 1.08; letter-spacing: -.04em; font-weight: 900; }
+    .subtitle { margin: 0; color: #cfe9fb; font-size: 29px; line-height: 1.35; font-weight: 600; }
+    .description { margin: 25px 0 0; color: #a9c8dc; font-size: 19px; line-height: 1.55; }
+    .date { display: inline-flex; margin-top: 28px; padding: 10px 20px; border: 2px solid #2cd2c7; border-radius: 999px; background: rgba(16,36,56,.78); color: #f7ffff; font-size: 19px; font-weight: 800; }
+    .side { position: absolute; right: 72px; top: 116px; width: 310px; z-index: 2; display: grid; gap: 14px; }
+    .side-card { padding: 18px 20px; border: 1px solid rgba(173,213,239,.6); border-radius: 18px; background: rgba(18,50,74,.78); box-shadow: 0 14px 30px rgba(0,0,0,.18); }
+    .side-card strong { display: block; color: #fff; font-size: 23px; line-height: 1.25; }
+    .side-card span { display: block; margin-top: 5px; color: #a9e7e2; font-size: 16px; line-height: 1.4; }
+    .side-card.blue { border-top: 4px solid #55a7ff; }
+    .side-card.teal { border-top: 4px solid #2cd2c7; }
+    .side-card.coral { border-top: 4px solid #ff806d; }
+    .footer { position: absolute; left: 68px; bottom: 39px; color: #ff9b8c; font-size: 21px; font-weight: 800; letter-spacing: .04em; }
+    .route { position: absolute; right: 82px; bottom: 45px; width: 300px; height: 90px; opacity: .9; }
+    .route::before { content: ""; position: absolute; left: 0; right: 0; top: 45px; border-top: 3px solid #55a7ff; transform: rotate(-13deg); transform-origin: left center; }
+    .route::after { content: "✦"; position: absolute; right: 0; top: 10px; color: #ff806d; font-size: 32px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="grid"></div><div class="orbit"></div>
+    <div class="content">
+      <div class="eyebrow">START HERE · WORKSHOP RESOURCE NAVIGATION</div>
+      <h1>研習資源導航<br>從這一頁開始</h1>
+      <p class="subtitle">國立中央大學 AI 教學與研究工作坊</p>
+      <p class="description">把上午的學習路徑、下午的 Agent 實作、工具、案例、部署與備援教材，集中在一個可以直接出發的入口。</p>
+      <div class="date">2026.08.26 · NCU × 阿凱老師</div>
+    </div>
+    <div class="side" aria-hidden="true">
+      <div class="side-card blue"><strong>上午場</strong><span>Vibe Coding · Notebook · Gem · Canvas</span></div>
+      <div class="side-card teal"><strong>下午場</strong><span>Agent · Skills · 資料分析 · 交付證據</span></div>
+      <div class="side-card coral"><strong>一站式入口</strong><span>教材、案例、工具與線上／離線備援</span></div>
+    </div>
+    <div class="route" aria-hidden="true"></div>
+    <div class="footer">教學 × 研究 × AI Agent</div>
+  </div>
+</body>
+</html>
