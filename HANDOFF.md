@@ -1,6 +1,6 @@
 # HANDOFF.md｜2026-08-24 本輪 Agent 交接（Gemini Spark 排程教學與學習歷程）
 
-稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包已重驗，公開部署待本輪 commit／push 後確認）
+稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
 
@@ -45,6 +45,20 @@ python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=540、
 ```
 
 補充：正式包第一次 HTML deck QA 以舊 `08_HTML簡報` 執行時為 exit 1（第 59 張總覽卡不存在）；已補同步 6 個靜態 HTML 專區項目後重跑，最終 exit 0。此問題已修正，不是內容排版錯誤。
+
+本輪公開部署證據：
+
+```text
+git -C github_pages_site commit -m "新增 Gemini Spark 排程教學與 59 頁簡報同步" → exit 0；commit=7efbd71、215 files changed、1213 insertions、974 deletions
+git -C github_pages_site push origin main → exit 0；87e1594..7efbd71，main → main
+gh run watch 32688333648 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=13 秒、report-build-status=4 秒、deploy=9 秒
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260824-03-spark-final' → exit 0；HTTP=200、version=2026.08.24.03
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/08_HTML簡報/afternoon.html?cb=20260824-03-static' → exit 0；HTTP=200、147082 bytes、59 頁、version=2026.08.24.03
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/09_HTML動態簡報/data/afternoon.js?cb=20260824-03-dynamic' → exit 0；HTTP=200、111073 bytes、59 頁、含 Gemini Spark
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/07_備援/下午場_打造會做事的AI教學與研究夥伴_資料分析實戰_20260826.pdf?cb=20260824-03-pdf-final' → exit 0；HTTP=200、application/pdf、4681261 bytes
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=106、directLinks=106、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；轉場 settled=true；上午／下午 scenes=282／354；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+```
 
 ---
 
