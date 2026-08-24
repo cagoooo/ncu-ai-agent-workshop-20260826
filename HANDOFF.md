@@ -31,7 +31,19 @@ FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、fail
 FULLSCREEN_DECK=afternoon node qa_fullscreen_longrun.mjs → exit 0；59/59、failures=0、pageErrors=[]、activeCount=1
 ```
 
-本輪公開部署證據待 push 後補記；公開版的 `version.json`、資源導航頁 meta、PNG 尺寸與各資產 HTTP 200 需以實際 Pages 回應確認，未確認前不宣稱完成。
+本輪公開部署證據：
+
+```text
+git commit -m "新增研習資源導航圖示與社群分享卡片" → exit 0；commit=16bcbc7、23 files changed、264 insertions、80 deletions
+git push origin main → exit 0；314aac9..16bcbc7，main → main
+gh run watch 32696822354 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=8 秒、report-build-status=4 秒、deploy=9 秒
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json → exit 0；HTTP=200、bytes=359、version=2026.08.24.05
+Invoke-WebRequest 公開研習資源導航頁 → exit 0；HTTP=200、bytes=18814
+Invoke-WebRequest 公開資源導航 10 個 favicon／PNG／manifest／OG 資產 → exit 0；10/10 HTTP=200；OG=291178 bytes、PNG=1200×630
+公開資源導航瀏覽器 QA（Node／Playwright inline） → exit 0；viewports=3、cards=37、assets=10/10 HTTP 200、manifest icons=4、OG=1200×630、RWD overflow=0
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=106、directLinks=106、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；長文字與捲動／轉場檢查通過；GitHub Pages site QA passed
+```
 
 ---
 
