@@ -1,3 +1,44 @@
+# HANDOFF.md｜2026-08-24 本輪 Agent 交接（移除網站／簡報可見本機路徑）
+
+稽核時間：2026-08-24（Asia/Taipei；本輪本機與正式包已重驗，公開部署待本輪 push 後確認）
+
+---
+
+## 本輪最新完成：公開資源入口取代本機路徑（v2026.08.24.01）
+
+- 案例導航與講者備註不再顯示個人電腦磁碟路徑，改為「案例公開版本與測試結果稽核」。
+- 簡報資源卡片與 HTML 文字層改以 GitHub Pages 公開網址作為實際入口；畫面只顯示資源名稱與「公開網站資源 ↗」，不印出本機路徑或 file URL。
+- 「同資料夾」、個人電腦 Skills 路徑與影片磁碟路徑範例，已改為公開網站／不同工作區／Agent 全域 Skills 等社群可理解文字。
+- 上午 47 頁、下午 54 頁 PPTX／PNG／08_HTML簡報／09_HTML動態簡報與正式包同步更新；原有圖檔版面、QR、全螢幕動畫、RWD 與動態轉場保留。
+- 本輪沒有寫入 API key、token 或密碼，也沒有輸出 MP4。
+
+本輪本機與正式包證據：
+
+```text
+node --check build_decks.mjs；node --check build_html_deck.mjs；node --check sync_dynamic_deck.mjs；node --check 兩份 dynamic-deck.js → exit 0
+node build_decks.mjs → exit 0；上午 47 頁、下午 54 頁
+node build_html_deck.mjs → exit 0；上午 47 頁、下午 54 頁
+node sync_dynamic_deck.mjs → exit 0；上午 47 頁、下午 54 頁、version=2026.08.24.01
+python -X utf8 qa_qr_codes.py → exit 0；167 個 QR 全部解碼
+node qa_html_deck.mjs → exit 0；HTML deck QA passed
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 101、直達連結 101、篩選 3、下午 54；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 47/47、下午 54/54、failures=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、failures=0
+FULLSCREEN_DECK=afternoon PREVIEW_PORT=8789 node qa_fullscreen_longrun.mjs → exit 0；54/54、failures=0
+正式包 node qa_html_deck.mjs → exit 0；HTML deck QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML、183 個可解析內部引用
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=512、inventory=511、pdf=6、duplicate_pdf_groups=2
+可見文字檔稽核 → exit 0；TEXT_FILES_SCANNED=66、OLD_CASE_PATH_HITS=0、DRIVE_OR_FILE_URL_HITS=0
+git -C github_pages_site diff --check → exit 0
+```
+
+公開部署確認將在本輪 push 後補記；目前尚未確認。
+
+---
+
 # HANDOFF.md｜2026-08-23 本輪 Agent 交接（完整文字浮層 z-index 版面固定）
 
 稽核時間：2026-08-23（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）

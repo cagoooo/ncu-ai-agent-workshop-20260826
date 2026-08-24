@@ -448,7 +448,7 @@ service cloud.firestore {
 }
 API 金鑰：〔填入 API 金鑰〕
 請依此完成資料庫串接與必要設定。`},
-  {trigger:"/projects", name:"檢查 Firebase 專案多 App 共用", cat:"部署上線", content:`我已安裝 firebase CLI。請檢查 teacher 這個 Firebase 專案是否還有其他位於 h:\\ 的網頁 App 也在共用，確認彼此不會互相影響，並自動幫我做好相關設定（多 App 共存的安全隔離）。`},
+  {trigger:"/projects", name:"檢查 Firebase 專案多 App 共用", cat:"部署上線", content:`我已安裝 firebase CLI。請檢查 teacher 這個 Firebase 專案是否還有其他位於不同工作區的網頁 App 也在共用，確認彼此不會互相影響，並自動幫我做好相關設定（多 App 共存的安全隔離）。`},
   {trigger:"/cloud", name:"Cloudflare Skills 串接建議", cat:"部署上線", content:`我用 Cloudflare 雲端部署 moltworker 沙盒，目前正在建立 skills 階段。請繼續提供適合我們串接的方法建議，未來同步更新到 AGENTS.md。我想要更多適合自動化流程的 skills，可參考：
 ・https://skillsmp.com/zh/search
 ・https://clawhub.ai/`},
@@ -471,7 +471,7 @@ API 金鑰：〔填入 API 金鑰〕
 2. 把 emoji 換成適合的 SVG 圖示。
 這樣才不會影響到校網其他區塊的排版。`},
   {trigger:"/style", name:"開發新設計風格並存進技能", cat:"網站設計", content:`我們來繼續開發其他適合的全新設計風格，並把成果整理加入 SKILLS（技能庫）中，方便未來參考重用，逐步擴充設計風格的多樣性。`},
-  {trigger:"/ui", name:"參考技能庫優化繽紛 UI", cat:"網站設計", content:`請參考 C:\\Users\\smes\\.gemini\\antigravity\\skills 資料夾中的專業提示詞與設計範例，把這個區塊的 UI 優化得更繽紛、更醒目，並維持 RWD 響應式格式。`},
+  {trigger:"/ui", name:"參考技能庫優化繽紛 UI", cat:"網站設計", content:`請參考 Agent 的全域 Skills 資料夾中的專業提示詞與設計範例，把這個區塊的 UI 優化得更繽紛、更醒目，並維持 RWD 響應式格式。`},
   {trigger:"/layout", name:"優化網站布局與配色", cat:"網站設計", content:`請完整參照上面的內容，優化改良網站的整體布局與配色設計，讓視覺更協調、層次更清楚、重點更突出。`},
   {trigger:"/srt", name:"影片 SRT 逐字稿（完整規則）", cat:"影音字幕", content:`請根據影片內容，理解全文語義後產出並校正繁體中文 SRT 字幕檔，務必嚴格遵守 3 項規則：
 1. 專有名詞校正：比對我提供的參考檔案，修正語音辨識錯誤的字詞（劇名、人名、班級等）。
@@ -518,7 +518,7 @@ API 金鑰：〔填入 API 金鑰〕
 4. 我確認 OK 後再改 public。
 完成後給我觀看連結、Studio 連結、RTMP 位址與串流金鑰。`},
   {trigger:"/upload", name:"上傳影片到石門官方頻道", cat:"影音字幕", content:`請幫我把這支錄影檔上傳到石門國小影音平台（@tycsmes）：
-・影片檔案路徑：〔填入完整路徑，例：G:\\Videos\\活動紀錄.mp4〕
+・影片檔案：〔填入你的影片檔案或公開網址〕
 ・標題：〔填入〕
 ・說明：〔選填，留空會自動產生〕
 ・縮圖：〔選填，填圖檔路徑；不填則不設〕

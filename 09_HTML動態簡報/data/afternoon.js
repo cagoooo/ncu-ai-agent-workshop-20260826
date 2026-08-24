@@ -121,9 +121,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "阿凱老師實戰案例導航｜資料與 Agent Skills",
       "eyebrow": "AKAI CASE NAVIGATION",
       "section": "從助理走向 Agent",
-      "notes": "這三個案例分別支援學生資料、PIRLS 評量與 Agent Skills 的實作討論。先判斷輸入資料、規則與驗收，再決定交給哪個 Agent。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/73/\n- https://cagoooo.github.io/filter/\n- https://cagoooo.github.io/Akai/tool/87/\n- https://cagoooo.github.io/pirls-questioncraft/\n- https://cagoooo.github.io/Akai/tool/103/\n- https://cagoooo.github.io/PlayRight/\n[/Sources]",
+      "notes": "這三個案例分別支援學生資料、PIRLS 評量與 Agent Skills 的實作討論。先判斷輸入資料、規則與驗收，再決定交給哪個 Agent。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/73/\n- https://cagoooo.github.io/filter/\n- https://cagoooo.github.io/Akai/tool/87/\n- https://cagoooo.github.io/pirls-questioncraft/\n- https://cagoooo.github.io/Akai/tool/103/\n- https://cagoooo.github.io/PlayRight/\n[/Sources]",
       "text": "AKAI CASE NAVIGATION\n阿凱老師實戰案例導航｜資料與 Agent Skills\n下午場｜打造會做事的 AI 教學與研究夥伴\n10\n從學生表現分析、PIRLS 評量設計到 Web Agent 技能，觀察可驗證的工作流程。\n#73 · 學生資料分析\n國小期中考成績篩選工具\n快速查看成績分布與篩選結果，作為結構化學生資料分析的入門案例。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#87 · PIRLS 評量\nPIRLS 閱讀理解生成站 PRO\n依四層次生成提問與答案說明，銜接評量設計、規準與人工檢核。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#103 · 提示詞與 Skill\nAI Agent 的 Web 技能雙引擎\n用 Playwright × Webwright 解釋 Agent 如何規劃、操作並回報證據。\n工具卡片介紹 ↗\n直接開啟應用 ↗",
-      "description": "這三個案例分別支援學生資料、PIRLS 評量與 Agent Skills 的實作討論。先判斷輸入資料、規則與驗收，再決定交給哪個 Agent。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/73/\n- https://cagoooo.github.io/filter/\n- https://cagoooo.github.io/Akai/tool/87/\n- https://cagoooo.github.io/pirls-questioncraft/\n- https://cagoooo.github.io/Akai/tool/103/\n- https://cagoooo.github.io/PlayRight/\n[/Sources]",
+      "description": "這三個案例分別支援學生資料、PIRLS 評量與 Agent Skills 的實作討論。先判斷輸入資料、規則與驗收，再決定交給哪個 Agent。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/73/\n- https://cagoooo.github.io/filter/\n- https://cagoooo.github.io/Akai/tool/87/\n- https://cagoooo.github.io/pirls-questioncraft/\n- https://cagoooo.github.io/Akai/tool/103/\n- https://cagoooo.github.io/PlayRight/\n[/Sources]",
       "links": [
         {
           "label": "期中考成績篩選 · 工具卡片",
@@ -156,9 +156,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "阿凱老師實戰案例導航｜研究與驗證",
       "eyebrow": "AKAI CASE NAVIGATION",
       "section": "從助理走向 Agent",
-      "notes": "三個案例分別對應研究資料、無障礙檢核與規準式 AI 審查。請參與者比較：哪些步驟能交給 Agent，哪些判斷必須保留人工責任。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/105/\n- https://cagoooo.github.io/taic-edu/\n- https://cagoooo.github.io/Akai/tool/123/\n- https://cagoooo.github.io/smes-web-migration/\n- https://cagoooo.github.io/Akai/tool/88/\n- https://cagoooo.github.io/JHScurriculum/\n[/Sources]",
+      "notes": "三個案例分別對應研究資料、無障礙檢核與規準式 AI 審查。請參與者比較：哪些步驟能交給 Agent，哪些判斷必須保留人工責任。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/105/\n- https://cagoooo.github.io/taic-edu/\n- https://cagoooo.github.io/Akai/tool/123/\n- https://cagoooo.github.io/smes-web-migration/\n- https://cagoooo.github.io/Akai/tool/88/\n- https://cagoooo.github.io/JHScurriculum/\n[/Sources]",
       "text": "AKAI CASE NAVIGATION\n阿凱老師實戰案例導航｜研究與驗證\n下午場｜打造會做事的 AI 教學與研究夥伴\n11\n把資料來源、審查規準、無障礙檢測與人工覆核組成可追查的 Agent 流程。\n#105 · 研究工作流程\n臺灣主權 AI 訓練語料庫\n4,554 筆開放語料依主題、課綱與授權整理，再轉化成教學研究素材。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#123 · RWD／無障礙\n校網無障礙 AA 遷移操作平台\n12 步遷移清單、對比度檢查與送審雷區，示範可驗證工作流程。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#88 · Agent 驗證\n國中課程計畫 AI 審查工具\n依 40+ 審查標準逐項比對 PDF，示範規則、證據與人工覆核。\n工具卡片介紹 ↗\n直接開啟應用 ↗",
-      "description": "三個案例分別對應研究資料、無障礙檢核與規準式 AI 審查。請參與者比較：哪些步驟能交給 Agent，哪些判斷必須保留人工責任。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/105/\n- https://cagoooo.github.io/taic-edu/\n- https://cagoooo.github.io/Akai/tool/123/\n- https://cagoooo.github.io/smes-web-migration/\n- https://cagoooo.github.io/Akai/tool/88/\n- https://cagoooo.github.io/JHScurriculum/\n[/Sources]",
+      "description": "三個案例分別對應研究資料、無障礙檢核與規準式 AI 審查。請參與者比較：哪些步驟能交給 Agent，哪些判斷必須保留人工責任。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/105/\n- https://cagoooo.github.io/taic-edu/\n- https://cagoooo.github.io/Akai/tool/123/\n- https://cagoooo.github.io/smes-web-migration/\n- https://cagoooo.github.io/Akai/tool/88/\n- https://cagoooo.github.io/JHScurriculum/\n[/Sources]",
       "links": [
         {
           "label": "臺灣主權 AI 語料庫 · 工具卡片",
@@ -446,7 +446,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -469,7 +469,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -484,7 +484,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "提示詞快捷面板",
-          "url": "../04_實作工具/提示詞快捷面板_研習用.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/%E6%8F%90%E7%A4%BA%E8%A9%9E%E5%BF%AB%E6%8D%B7%E9%9D%A2%E6%9D%BF_%E7%A0%94%E7%BF%92%E7%94%A8.html"
         }
       ]
     },
@@ -507,7 +507,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -530,7 +530,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -553,7 +553,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -576,7 +576,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -599,7 +599,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -622,7 +622,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -645,7 +645,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Skills 資源庫",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         }
       ]
     },
@@ -755,7 +755,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "PIRLS 工作台",
-          "url": "../04_實作工具/01_PIRLS資料分析工作台.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/01_PIRLS%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E5%B7%A5%E4%BD%9C%E5%8F%B0.html"
         },
         {
           "label": "Codex",
@@ -812,7 +812,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "Agent 證據打包器",
-          "url": "../04_實作工具/03_Agent完成證據打包器.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/03_Agent%E5%AE%8C%E6%88%90%E8%AD%89%E6%93%9A%E6%89%93%E5%8C%85%E5%99%A8.html"
         },
         {
           "label": "Codex",
@@ -831,7 +831,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "Agent 證據打包器",
-          "url": "../04_實作工具/03_Agent完成證據打包器.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/03_Agent%E5%AE%8C%E6%88%90%E8%AD%89%E6%93%9A%E6%89%93%E5%8C%85%E5%99%A8.html"
         },
         {
           "label": "Antigravity",
@@ -854,7 +854,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "研習資源導航",
-          "url": "../START_HERE_研習資源導航.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/START_HERE_%E7%A0%94%E7%BF%92%E8%B3%87%E6%BA%90%E5%B0%8E%E8%88%AA.html"
         },
         {
           "label": "Antigravity",
@@ -931,13 +931,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "下午資源書籤",
       "eyebrow": "BOOKMARKS",
       "section": "下午資源書籤",
-      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://antigravity.google/\n- https://chatgpt.com/codex/\n- https://claude.ai/\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html\n- ../04_實作工具/提示詞快捷面板_研習用.html\n- https://cagoooo.github.io/Akai/\n- https://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n[/Sources]",
-      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n54\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Google Antigravity\nhttps://antigravity.google/\n開啟 Codex\nhttps://chatgpt.com/codex/\n開啟 Claude\nhttps://claude.ai/\nAgent Skills 官方教學\nhttps://codelabs.developers.google.com/getting-started-with-antigravity-skills\nAgent Skills 資源庫：三師爸與國際公開 Skills\nhttps://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html\n提示詞快捷面板（同資料夾）\n../04_實作工具/提示詞快捷面板_研習用.html\n教育科技創新專區\nhttps://cagoooo.github.io/Akai/\nPIRLS 2026 評分規劃\nhttps://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
-      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://antigravity.google/\n- https://chatgpt.com/codex/\n- https://claude.ai/\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html\n- ../04_實作工具/提示詞快捷面板_研習用.html\n- https://cagoooo.github.io/Akai/\n- https://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf\n[/Sources]",
+      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：三師爸與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
+      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n54\n研習資源導航\n公開網站資源 ↗\n開啟 Google Antigravity\n公開網站資源 ↗\n開啟 Codex\n公開網站資源 ↗\n開啟 Claude\n公開網站資源 ↗\nAgent Skills 官方教學\n公開網站資源 ↗\nAgent Skills 資源庫：三師爸與國際公開 Skills\n公開網站資源 ↗\n提示詞快捷面板\n公開網站資源 ↗\n教育科技創新專區\n公開網站資源 ↗\nPIRLS 2026 評分規劃\n公開網站資源 ↗\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
+      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：三師爸與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
       "links": [
         {
           "label": "研習資源導航",
-          "url": "../START_HERE_研習資源導航.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/START_HERE_%E7%A0%94%E7%BF%92%E8%B3%87%E6%BA%90%E5%B0%8E%E8%88%AA.html"
         },
         {
           "label": "Google Antigravity",
@@ -957,11 +957,11 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Agent Skills 資源庫：三師爸與國際公開 Skills",
-          "url": "../04_實作工具/07_Agent_Skills資源庫.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         },
         {
           "label": "提示詞快捷面板",
-          "url": "../04_實作工具/提示詞快捷面板_研習用.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/%E6%8F%90%E7%A4%BA%E8%A9%9E%E5%BF%AB%E6%8D%B7%E9%9D%A2%E6%9D%BF_%E7%A0%94%E7%BF%92%E7%94%A8.html"
         },
         {
           "label": "教育科技創新專區",

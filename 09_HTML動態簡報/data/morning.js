@@ -190,9 +190,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "阿凱老師實戰案例導航｜語文、設計、互動",
       "eyebrow": "AKAI CASE NAVIGATION",
       "section": "建立 AI 教學與研究工作室",
-      "notes": "三個案例分別對應語文創作、教學設計與互動網站。現場可由三組各選一張，先讀卡片介紹，再用測試者視角操作成品。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/91/\n- https://cagoooo.github.io/PhotoPoet/\n- https://cagoooo.github.io/Akai/tool/58/\n- https://cagoooo.github.io/prepare/\n- https://cagoooo.github.io/Akai/tool/11/\n- https://cagoooo.github.io/Akailao/\n[/Sources]",
+      "notes": "三個案例分別對應語文創作、教學設計與互動網站。現場可由三組各選一張，先讀卡片介紹，再用測試者視角操作成品。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/91/\n- https://cagoooo.github.io/PhotoPoet/\n- https://cagoooo.github.io/Akai/tool/58/\n- https://cagoooo.github.io/prepare/\n- https://cagoooo.github.io/Akai/tool/11/\n- https://cagoooo.github.io/Akailao/\n[/Sources]",
       "text": "AKAI CASE NAVIGATION\n阿凱老師實戰案例導航｜語文、設計、互動\n上午場｜打造專屬 AI 教學與研究工作室\n15\n先讀工具卡片理解設計脈絡，再直接開啟應用觀察輸入、輸出與操作流程。\n#91 · 語文創作\n✨ 點亮詩意 Pro ✨早安長輩圖\n上傳照片產出繁體詩詞與圖文作品，適合看圖寫詩、意境討論與數位創作。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#58 · 教學設計\n教師數位備課教案小幫手\n用 AI 產出教案與活動設計，示範從教學需求走到可使用的成果。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#11 · 互動網站\n剛好學：課堂互動 so easy\n13 種互動模式涵蓋投票、閱讀測驗、文字雲、繪圖題與作品牆。\n工具卡片介紹 ↗\n直接開啟應用 ↗",
-      "description": "三個案例分別對應語文創作、教學設計與互動網站。現場可由三組各選一張，先讀卡片介紹，再用測試者視角操作成品。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/91/\n- https://cagoooo.github.io/PhotoPoet/\n- https://cagoooo.github.io/Akai/tool/58/\n- https://cagoooo.github.io/prepare/\n- https://cagoooo.github.io/Akai/tool/11/\n- https://cagoooo.github.io/Akailao/\n[/Sources]",
+      "description": "三個案例分別對應語文創作、教學設計與互動網站。現場可由三組各選一張，先讀卡片介紹，再用測試者視角操作成品。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/91/\n- https://cagoooo.github.io/PhotoPoet/\n- https://cagoooo.github.io/Akai/tool/58/\n- https://cagoooo.github.io/prepare/\n- https://cagoooo.github.io/Akai/tool/11/\n- https://cagoooo.github.io/Akailao/\n[/Sources]",
       "links": [
         {
           "label": "點亮詩意 Pro · 工具卡片",
@@ -225,9 +225,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "阿凱老師實戰案例導航｜評量與部署",
       "eyebrow": "AKAI CASE NAVIGATION",
       "section": "建立 AI 教學與研究工作室",
-      "notes": "三個案例分別用於形成性回饋、Google Sites 與 GitHub Pages 部署比較。提醒參與者同時觀察內容架構、權限、維護方式與手機操作。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/3/\n- https://cagoooo.github.io/vote/\n- https://cagoooo.github.io/Akai/tool/24/\n- https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/\n- https://cagoooo.github.io/Akai/tool/81/\n- https://cagoooo.github.io/it-cockpit/\n[/Sources]",
+      "notes": "三個案例分別用於形成性回饋、Google Sites 與 GitHub Pages 部署比較。提醒參與者同時觀察內容架構、權限、維護方式與手機操作。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/3/\n- https://cagoooo.github.io/vote/\n- https://cagoooo.github.io/Akai/tool/24/\n- https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/\n- https://cagoooo.github.io/Akai/tool/81/\n- https://cagoooo.github.io/it-cockpit/\n[/Sources]",
       "text": "AKAI CASE NAVIGATION\n阿凱老師實戰案例導航｜評量與部署\n上午場｜打造專屬 AI 教學與研究工作室\n16\n比較同一個教學構想如何透過即時回饋、Google Sites 與 GitHub Pages 落地。\n#3 · 形成性評量\n學生即時投票系統\n掃 QR Code 即時作答；連投影片上的題目也能快速轉成互動活動。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#24 · Google Sites\n教師午會記錄報告站\n以 Google Sites 承載會議紀錄與互動式報告，示範嵌入與分享。\n工具卡片介紹 ↗\n直接開啟應用 ↗\n#81 · GitHub Pages\n國小資訊科技教學駕駛艙\n整合全學期課程、影片、Canvas 關卡與評量入口的一站式教學網站。\n工具卡片介紹 ↗\n直接開啟應用 ↗",
-      "description": "三個案例分別用於形成性回饋、Google Sites 與 GitHub Pages 部署比較。提醒參與者同時觀察內容架構、權限、維護方式與手機操作。本次資料依據 H:\\Akai v3.6.109 稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/3/\n- https://cagoooo.github.io/vote/\n- https://cagoooo.github.io/Akai/tool/24/\n- https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/\n- https://cagoooo.github.io/Akai/tool/81/\n- https://cagoooo.github.io/it-cockpit/\n[/Sources]",
+      "description": "三個案例分別用於形成性回饋、Google Sites 與 GitHub Pages 部署比較。提醒參與者同時觀察內容架構、權限、維護方式與手機操作。本次資料依據案例公開版本與測試結果稽核。\n\n[Sources]\n- https://cagoooo.github.io/Akai/tool/3/\n- https://cagoooo.github.io/vote/\n- https://cagoooo.github.io/Akai/tool/24/\n- https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/\n- https://cagoooo.github.io/Akai/tool/81/\n- https://cagoooo.github.io/it-cockpit/\n[/Sources]",
       "links": [
         {
           "label": "學生即時投票 · 工具卡片",
@@ -485,7 +485,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "Gem 指令模板",
-          "url": "../03_起始成果包/02_Gem教學與研究助理/Gem指令模板.txt"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/03_%E8%B5%B7%E5%A7%8B%E6%88%90%E6%9E%9C%E5%8C%85/02_Gem%E6%95%99%E5%AD%B8%E8%88%87%E7%A0%94%E7%A9%B6%E5%8A%A9%E7%90%86/Gem%E6%8C%87%E4%BB%A4%E6%A8%A1%E6%9D%BF.txt"
         }
       ]
     },
@@ -512,7 +512,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "提示詞快捷面板",
-          "url": "../04_實作工具/提示詞快捷面板_研習用.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/%E6%8F%90%E7%A4%BA%E8%A9%9E%E5%BF%AB%E6%8D%B7%E9%9D%A2%E6%9D%BF_%E7%A0%94%E7%BF%92%E7%94%A8.html"
         }
       ]
     },
@@ -539,7 +539,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "提示詞快捷面板",
-          "url": "../04_實作工具/提示詞快捷面板_研習用.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/%E6%8F%90%E7%A4%BA%E8%A9%9E%E5%BF%AB%E6%8D%B7%E9%9D%A2%E6%9D%BF_%E7%A0%94%E7%BF%92%E7%94%A8.html"
         }
       ]
     },
@@ -620,7 +620,7 @@ window.DYNAMIC_DECK_DATA = {
         },
         {
           "label": "跨平台 Skill 驗證器",
-          "url": "../04_實作工具/04_跨平台Skill驗證器.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/04_%E8%B7%A8%E5%B9%B3%E5%8F%B0Skill%E9%A9%97%E8%AD%89%E5%99%A8.html"
         }
       ]
     },
@@ -825,13 +825,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "上午資源書籤",
       "eyebrow": "BOOKMARKS",
       "section": "上午資源書籤",
-      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://notebook.google.com/\n- https://gemini.google.com/gems/create\n- https://gemini.google.com/app\n- https://github.com/cagoooo/it-cockpit\n- https://cagoooo.github.io/it-cockpit/\n- https://cagoooo.github.io/domain-meeting-go/\n- https://sites.google.com/new\n- https://pages.github.com/\n- https://gg90052.github.io/ezpage/\n[/Sources]",
-      "text": "BOOKMARKS\n上午資源書籤\n上午場｜打造專屬 AI 教學與研究工作室\n47\n研習資源導航（同資料夾）\n../START_HERE_研習資源導航.html\n開啟 Gemini Notebook\nhttps://notebook.google.com/\n建立自訂 Gem\nhttps://gemini.google.com/gems/create\n開啟 Gemini Canvas\nhttps://gemini.google.com/app\n教學駕駛艙 GitHub repo\nhttps://github.com/cagoooo/it-cockpit\n教學駕駛艙公開網站\nhttps://cagoooo.github.io/it-cockpit/\n教師會議紀錄系統（#84）\nhttps://cagoooo.github.io/domain-meeting-go/\n建立 Google Sites\nhttps://sites.google.com/new\n開啟 GitHub Pages\nhttps://pages.github.com/\nEZPage 一鍵部署\nhttps://gg90052.github.io/ezpage/\n上午的終點不是『學會每個工具』，而是完成一條能重複使用的教學與研究產線。",
-      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n[Sources]\n- ../START_HERE_研習資源導航.html\n- https://notebook.google.com/\n- https://gemini.google.com/gems/create\n- https://gemini.google.com/app\n- https://github.com/cagoooo/it-cockpit\n- https://cagoooo.github.io/it-cockpit/\n- https://cagoooo.github.io/domain-meeting-go/\n- https://sites.google.com/new\n- https://pages.github.com/\n- https://gg90052.github.io/ezpage/\n[/Sources]",
+      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Gemini Notebook\n- 公開資源：建立自訂 Gem\n- 公開資源：開啟 Gemini Canvas\n- 公開資源：教學駕駛艙 GitHub repo\n- 公開資源：教學駕駛艙公開網站\n- 公開資源：教師會議紀錄系統（#84）\n- 公開資源：建立 Google Sites\n- 公開資源：開啟 GitHub Pages\n- 公開資源：EZPage 一鍵部署\n[/Sources]",
+      "text": "BOOKMARKS\n上午資源書籤\n上午場｜打造專屬 AI 教學與研究工作室\n47\n研習資源導航\n公開網站資源 ↗\n開啟 Gemini Notebook\n公開網站資源 ↗\n建立自訂 Gem\n公開網站資源 ↗\n開啟 Gemini Canvas\n公開網站資源 ↗\n教學駕駛艙 GitHub repo\n公開網站資源 ↗\n教學駕駛艙公開網站\n公開網站資源 ↗\n教師會議紀錄系統（#84）\n公開網站資源 ↗\n建立 Google Sites\n公開網站資源 ↗\n開啟 GitHub Pages\n公開網站資源 ↗\nEZPage 一鍵部署\n公開網站資源 ↗\n上午的終點不是『學會每個工具』，而是完成一條能重複使用的教學與研究產線。",
+      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Gemini Notebook\n- 公開資源：建立自訂 Gem\n- 公開資源：開啟 Gemini Canvas\n- 公開資源：教學駕駛艙 GitHub repo\n- 公開資源：教學駕駛艙公開網站\n- 公開資源：教師會議紀錄系統（#84）\n- 公開資源：建立 Google Sites\n- 公開資源：開啟 GitHub Pages\n- 公開資源：EZPage 一鍵部署\n[/Sources]",
       "links": [
         {
           "label": "研習資源導航",
-          "url": "../START_HERE_研習資源導航.html"
+          "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/START_HERE_%E7%A0%94%E7%BF%92%E8%B3%87%E6%BA%90%E5%B0%8E%E8%88%AA.html"
         },
         {
           "label": "Gemini Notebook",
