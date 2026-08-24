@@ -4,6 +4,52 @@
 
 ---
 
+## 本輪最新完成：HTML 動態簡報長文字完整呈現（v2026.08.24.04）
+
+- 已修正 09 HTML 動態簡報主畫面把說明文字限制為前 220 字並加上省略號的問題；現在 47 頁上午場與 59 頁下午場均保留完整主說明文字。
+- 主畫面會顯示完整說明內容與段落換行；`[Sources]` 來源網址不塞進主畫面，仍保留於「展開完整文字」逐行面板，避免破壞簡報閱讀層次。
+- 桌機／大型觸控螢幕沿用 `.scene-copy` 垂直捲動容器；手機／平板沿用舞台自然增高與捲動；換頁捲動歸零、水平跑版禁止。這次沒有改動 `08_HTML簡報` 的圖片內容、雙緩衝全螢幕轉場或既有圖檔版設計。
+- `dynamic-deck.css` 補上 `white-space: pre-line`，保留長文段落結構；版本快取提升至 `2026.08.24.04`，同步更新 `version.json` 與 Service Worker。
+- QA 腳本新增 106 頁主說明完整性檢查，並將可捲動容器內的垂直延伸視為可讀取狀態，仍嚴格攔截水平溢位與無捲動容器的裁切。
+- 本輪未輸出 MP4，未寫入 API key、token 或密碼；未處理需阿凱老師決定的重複 PDF、來源納入 Git、PDF 可及性與帳號／方案事項。
+
+本輪本機、正式包與 HyperFrames 證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported: morning=47, afternoon=59
+node sync_dynamic_deck.mjs → exit 0；morning=47、afternoon=59、version=2026.08.24.04
+node --check workshop_suite_src/09_HTML動態簡報/assets/dynamic-deck.js；node --check sync_dynamic_deck.mjs；node --check build_html_deck.mjs；node --check qa_github_pages_site.mjs；node --check qa_html_deck.mjs → exit 0
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=106、directLinks=106、filters=3、afternoonFilter=59、RWD viewports=3；上午／下午場景=282／354；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；長文字完整性 morning checked=47、long=4、mismatches=0；afternoon checked=59、long=9、mismatches=0；公開工具標籤 named=72、numeric=0
+FULLSCREEN_ALL=1 FULLSCREEN_DECK=morning node qa_fullscreen_dynamic.mjs → exit 0；47/47、failures=0
+FULLSCREEN_ALL=1 FULLSCREEN_DECK=afternoon node qa_fullscreen_dynamic.mjs → exit 0；59/59、failures=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、failures=0、pageErrors=[]、activeCount=1
+FULLSCREEN_DECK=afternoon node qa_fullscreen_longrun.mjs → exit 0；59/59、failures=0、pageErrors=[]、activeCount=1
+python -X utf8 qa_qr_codes.py → exit 0；176 個渲染 QR Code 全部解碼
+node qa_ops_checklist.mjs → exit 0；36 個互動項目、桌機／手機版與持久化檢查通過
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題=0、contrast=99/99
+正式包同步 → exit 0；source_root_items=23、formal_root=27
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=540、inventory=539、pdf=6、duplicate_pdf_groups=2
+正式包 HTML_ROOT=正式包/08_HTML簡報 node qa_html_deck.mjs → exit 0；HTML deck QA passed
+正式包 WORKSHOP_ROOT=正式包 node audit_local_links.mjs → exit 0；102 HTML files、183 local references
+正式包 WORKSHOP_ROOT=正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+```
+
+本輪公開部署證據：
+
+```text
+git -C github_pages_site commit -m "修正 HTML 簡報長文字完整呈現" → exit 0；commit=cf18599、12 files changed、84 insertions、83 deletions
+git -C github_pages_site push origin main → exit 0；fb4fd8e..cf18599，main → main
+gh run watch 32692348144 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=9 秒、report-build-status=4 秒、deploy=8 秒
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=20260824-04-long-text' → exit 0；HTTP=200、bytes=202、version=2026.08.24.04
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；公開版長文字完整性 morning=47／long=4／mismatches=0、afternoon=59／long=9／mismatches=0；GitHub Pages site QA passed
+```
+
+---
+
 ## 本輪完成：下午場新增 Gemini Spark 排程教學五頁（v2026.08.24.03）
 
 - 下午場由 54 頁增加為 59 頁；上午維持 47 頁。新增頁面位於原本 Antigravity 實作之後、Remote Control 之前：
