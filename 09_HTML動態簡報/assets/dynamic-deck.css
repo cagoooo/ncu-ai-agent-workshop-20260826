@@ -228,6 +228,14 @@ a { color: inherit; }
 .progress-track { height: 5px; overflow: hidden; border-radius: 99px; background: color-mix(in srgb, var(--rule) 75%, transparent); }
 .progress-bar { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--teal)); transition: width .35s ease; }
 .dynamic-hint { margin: 0; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
+.dynamic-site-footer { width: min(100%, 1280px); margin: 0 auto; padding: 18px clamp(16px, 3vw, 42px) max(18px, env(safe-area-inset-bottom)); border-top: 1px solid color-mix(in srgb, var(--rule) 78%, transparent); background: color-mix(in srgb, var(--bg) 86%, transparent); color: var(--muted); font-size: 12px; }
+.dynamic-hub > .dynamic-site-footer { width: min(100%, 1920px); }
+.dynamic-site-footer__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.dynamic-site-footer__context { font-weight: 700; letter-spacing: .02em; }
+.dynamic-site-footer__credit { display: inline-flex; align-items: center; gap: 5px; flex-wrap: wrap; justify-content: center; font-weight: 700; }
+.dynamic-site-footer__heart { display: inline-block; margin: 0 1px; filter: saturate(1.3); letter-spacing: normal; text-transform: none; vertical-align: -1px; }
+.dynamic-site-footer__author { padding: 1px 3px; border-bottom: 1px dotted currentColor; color: var(--accent); font-weight: 900; text-decoration: none; transition: color .2s ease, border-color .2s ease, background .2s ease; }
+.dynamic-site-footer__author:hover { border-bottom-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
 .immersive-exit { position: fixed; right: 24px; bottom: 24px; z-index: 100; padding: 11px 18px; border: 1px solid var(--accent); border-radius: 999px; background: color-mix(in srgb, var(--panel) 86%, transparent); color: var(--accent); font-weight: 800; }
 
 /* Panels */
@@ -252,6 +260,7 @@ a { color: inherit; }
 
 /* HyperFrames-ready full-screen SSOT. */
 :fullscreen, :-webkit-full-screen, html:fullscreen, html:-webkit-full-screen, body.is-immersive { overflow: hidden !important; background: var(--bg) !important; }
+.dynamic-deck.is-immersive .dynamic-site-footer { display: none !important; }
 :fullscreen .dynamic-toolbar, :-webkit-full-screen .dynamic-toolbar, body.is-immersive .dynamic-toolbar,
 :fullscreen .dynamic-controls, :-webkit-full-screen .dynamic-controls, body.is-immersive .dynamic-controls,
 :fullscreen .dynamic-hint, :-webkit-full-screen .dynamic-hint, body.is-immersive .dynamic-hint,
@@ -721,7 +730,9 @@ a { color: inherit; }
 .overview-card-section { margin: 9px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; overflow-wrap: anywhere; }
 .overview-card-action { margin-top: auto; padding-top: 14px; color: var(--accent); font-size: 12px; font-weight: 900; }
 .overview-slide-card--afternoon .overview-card-action { color: var(--teal); }
-.overview-footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
+.overview-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 12px; }
+.overview-footer__links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.overview-footer .dynamic-site-footer__credit { color: var(--muted); }
 .overview-footer a { color: var(--accent); font-weight: 800; text-decoration: none; }
 .overview-footer a:hover { text-decoration: underline; }
 
@@ -752,7 +763,10 @@ a { color: inherit; }
   .overview-session-open { width: 100%; text-align: center; }
   .overview-card-grid { grid-template-columns: 1fr; }
   .overview-slide-card { min-height: 150px; }
-  .overview-footer { align-items: flex-start; flex-direction: column; }
+  .overview-footer { align-items: center; flex-direction: column; text-align: center; }
+  .overview-footer__links { align-items: center; flex-direction: column; gap: 8px; }
+  .dynamic-site-footer { padding-inline: 12px; text-align: center; }
+  .dynamic-site-footer__inner { justify-content: center; }
 }
 
 /* ───────────────────────────────────────────────────────────────

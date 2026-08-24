@@ -1,3 +1,42 @@
+# HANDOFF.md｜2026-08-24 本輪 Agent 交接（HTML 動態簡報網站 Footer）
+
+稽核時間：2026-08-24（Asia/Taipei；本輪本機／正式包已重驗，公開部署待本輪 push 後確認）
+
+---
+
+## 本輪最新完成：09 HTML 動態簡報頁面 Footer（v2026.08.24.02）
+
+- 09 專區首頁、上午場、下午場與總覽頁新增網站 Footer；Footer 位於網頁內容流最下方，不放入投影片 DOM，也不改變 16:9 投影片版面。
+- 依 `akai-author-footer` 技能規範加入 `Made with ❤️ by 阿凱老師`，連到標準石門國小教師頁；愛心的字距與文字轉換已隔離，避免被全域樣式破壞。
+- 桌機、手機與平板皆採 RWD；手機安全區使用 `env(safe-area-inset-bottom)`。模擬全螢幕會隱藏 Footer，原生投影片舞台全螢幕也不會包含網頁 Footer。
+- 09 專區靜態資產 query 版本升至 `.02`，Service Worker 與 `version.json` 同步；08 圖檔版與投影片內容未改動。
+- 本輪沒有輸出 MP4，也沒有寫入 API key、token 或密碼。
+
+本輪本機與正式包證據：
+
+```text
+node sync_dynamic_deck.mjs → exit 0；上午 47 頁、下午 54 頁、version=2026.08.24.02
+node --check qa_github_pages_site.mjs → exit 0
+node qa_github_pages_site.mjs → exit 0；總覽 cards=101、directLinks=101、filters=3、下午=54；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_html_deck.mjs → exit 0；HTML deck QA passed；上午 named=12、numeric=0；下午 named=12、numeric=0
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 qa_qr_codes.py → exit 0；QR code QA passed: 167 rendered QR codes decoded
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 47/47、下午 54/54、failures=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+FULLSCREEN_DECK=afternoon PREVIEW_PORT=8789 node qa_fullscreen_longrun.mjs → exit 0；54/54、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+正式包 node qa_html_deck.mjs → exit 0；HTML deck QA passed
+正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+正式包 node audit_local_links.mjs → exit 0；87 HTML、183 個可解析內部引用
+正式包 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=512、inventory=511、pdf=6、duplicate_pdf_groups=2
+09 HTML 動態簡報 Footer 靜態稽核 → exit 0；4 個 HTML 頁面、4 個 Footer、4 個作者連結、0 個舊版 `.01` 資產版本引用
+git -C github_pages_site diff --check → exit 0
+```
+
+本輪公開部署證據：待本輪 commit、push 與 GitHub Pages built 後補記。
+
+---
+
 # HANDOFF.md｜2026-08-24 本輪 Agent 交接（移除網站／簡報可見本機路徑）
 
 稽核時間：2026-08-24（Asia/Taipei；本輪本機與正式包已重驗，公開部署待本輪 push 後確認）
