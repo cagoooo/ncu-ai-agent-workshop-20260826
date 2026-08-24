@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.24.02",
-  "buildTime": "2026-08-24T08:00:00+08:00",
-  "title": "新增 HTML 動態簡報網站 Footer",
-  "description": "09 HTML 動態簡報首頁、場次頁與總覽頁新增 RWD 網站 Footer；署名位於頁面內容流底部，不進入投影片，也不遮住全螢幕簡報。"
+  "version": "2026.08.24.03",
+  "buildTime": "2026-08-24T10:09:32+08:00",
+  "title": "新增 Gemini Spark 排程教學與學習歷程",
+  "description": "下午場新增 Gemini Spark、Notebook、Skill、Task 與 Review 的排程教學五頁；同步更新 59 頁圖檔、PPTX、PDF 與 HTML 動態簡報，保留人工複核與既有 Footer／RWD／全螢幕行為。"
 }

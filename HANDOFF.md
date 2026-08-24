@@ -1,3 +1,53 @@
+# HANDOFF.md｜2026-08-24 本輪 Agent 交接（Gemini Spark 排程教學與學習歷程）
+
+稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包已重驗，公開部署待本輪 commit／push 後確認）
+
+---
+
+## 本輪完成：下午場新增 Gemini Spark 排程教學五頁（v2026.08.24.03）
+
+- 下午場由 54 頁增加為 59 頁；上午維持 47 頁。新增頁面位於原本 Antigravity 實作之後、Remote Control 之前：
+  - 第 20 頁：Gemini Spark：讓 Agent 按時上工
+  - 第 21 頁：影片教學法：Notebook → Skill → Task → Review
+  - 第 22 頁：任務、排程、技能：什麼、何時、如何
+  - 第 23 頁：實作｜建立每週教學研究助理排程
+  - 第 24 頁：學習歷程：一次成果變成可重複系統
+- 圖檔版 `08_HTML簡報`、PPTX、PDF、`09_HTML動態簡報`、總覽、QR Code、Footer、RWD、全螢幕與既有動態轉場均已同步；下午 PDF 已由 54 頁更新為 59 頁。
+- HTML 動態版新增五頁與影片／官方說明入口；完整教學文字保留於講者備註與「HTML 完整文字」模式，沒有輸出 MP4。
+- 影片教學來源：[Gemini Spark × Gemini Notebook 教學影片](https://youtu.be/kbAgdV__8Mc?si=b9NH1NDr67lf5CZ_)；官方功能與限制參考：[Google Gemini Apps 說明：Scheduled actions](https://support.google.com/gemini/answer/17094710?hl=zh-HK)。
+- 課程採用的白話模型是「Task／Schedule／Skill＝做什麼／何時做／怎麼做」；同時明確提醒排程可延遲、不可當作即時關鍵任務，功能可用性依帳號／方案／地區而異，並保留人工複核。
+- 影片中的教學歷程整理為：Gemini Notebook 建立知識基礎 → 用自然語言整理 Skill → 建立排程 Task → 產出草稿 → 人工在 Google Docs 檢查與修訂。AI 產出定位為第一版草稿，不取代人的判斷。
+- QR 產生器已納入公開站 `07_Agent_Skills資源庫.html` 與 Gemini Spark 來源；QR 目標 manifest 76 筆、公開站 QR 路由 76 筆。
+- 本輪未修改 08 圖檔版既有全螢幕雙緩衝、CSS SSOT、RWD 與 Footer 設計原則；未寫入 API key、token 或密碼。
+
+本輪本機與正式包證據：
+
+```text
+node --check build_decks.mjs；node --check build_html_deck.mjs；node --check sync_dynamic_deck.mjs → exit 0
+python -X utf8 -m py_compile generate_qr_assets.py qa_qr_codes.py → exit 0
+python -X utf8 qa_qr_codes.py → exit 0；176 個渲染 QR Code 全部解碼
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=106、directLinks=106、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；轉場 settled=true；上午／下午 scenes=282／354；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 47/47、failures=0
+FULLSCREEN_ALL=1 FULLSCREEN_DECK=afternoon node qa_fullscreen_dynamic.mjs → exit 0；下午 59/59、failures=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；47/47、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+FULLSCREEN_DECK=afternoon PREVIEW_PORT=8789 node qa_fullscreen_longrun.mjs → exit 0；59/59、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題 0、contrast=99/99
+正式包 HTML_ROOT=正式包/08_HTML簡報 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+正式包 WORKSHOP_ROOT=正式包 node audit_local_links.mjs → exit 0；102 HTML files、183 local references
+正式包 WORKSHOP_ROOT=正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=540、inventory=539、pdf=6、duplicate_pdf_groups=2
+正式包 PDF pypdf 檢查 → exit 0；上午 47 頁、下午 59 頁、PDF 總數 6
+正式包同步 → exit 0；source_root_items=23、formal_root_items=27、formal_git=False
+```
+
+補充：正式包第一次 HTML deck QA 以舊 `08_HTML簡報` 執行時為 exit 1（第 59 張總覽卡不存在）；已補同步 6 個靜態 HTML 專區項目後重跑，最終 exit 0。此問題已修正，不是內容排版錯誤。
+
+---
+
 # HANDOFF.md｜2026-08-24 本輪 Agent 交接（HTML 動態簡報網站 Footer）
 
 稽核時間：2026-08-24（Asia/Taipei；本輪本機／正式包已重驗，公開部署待本輪 push 後確認）
