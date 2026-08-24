@@ -35,7 +35,19 @@ python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=512、
 git -C github_pages_site diff --check → exit 0
 ```
 
-公開部署確認將在本輪 push 後補記；目前尚未確認。
+本輪公開部署證據：
+
+```text
+git -C github_pages_site diff --cached --check → exit 0
+git -C github_pages_site commit -m "移除網站與簡報可見本機路徑" → exit 0；commit=35097d4、18 files changed、162 insertions、121 deletions
+git -C github_pages_site push origin main → exit 0；91f2cdb..35097d4，main → main
+gh run watch 32676306870 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=97284966677、deploy=97284996649、report=97284966667
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260824-01-local-path → exit 0；HTTP 200、version=2026.08.24.01、title=移除簡報可見本地端路徑
+公開 08_HTML簡報／09_HTML動態簡報 4 個入口檔案掃描 → exit 0；PUBLIC_HTTP_200=4、OLD_CASE_PATH_HITS=0、DRIVE_OR_FILE_URL_HITS=0、SAME_FOLDER_LABEL_HITS=0、PUBLIC_RESOURCE_LABEL_HITS=38
+BASE_URL=https://cagoooo.github.io/ncu-ai-agent-workshop-20260826 node qa_github_pages_site.mjs → exit 0；總覽 101、直達連結 101、篩選 3、下午 54；轉場 samples=2 且 settled=true；上午／下午 scenes=282／324；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；公開工具標籤 named=72、numeric=0
+git -C github_pages_site status --short → exit 0；空白（部署子倉庫乾淨）
+```
 
 ---
 
