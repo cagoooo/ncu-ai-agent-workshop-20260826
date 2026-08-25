@@ -30,6 +30,18 @@ python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=568、
 node --check build_decks.mjs/build_html_deck.mjs/sync_dynamic_deck.mjs/qa_html_deck.mjs/qa_github_pages_site.mjs；git diff --check → exit 0
 ```
 
+本輪公開部署驗證證據：
+
+```text
+git commit -m "修正圖像簡報提醒視窗換頁重置" → exit 0；commit=ec84ffb、12 files changed
+git push origin main → exit 0；06bf816..ec84ffb，main → main
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260825-05-live → exit 0；HTTP=200、version=2026.08.25.05
+公開案例圖片 HTTP 檢查 → exit 0；3/3 HTTP=200，bytes=139,341、96,361、183,173
+公開圖像簡報瀏覽器提醒視窗 QA → exit 0；上午第 5 頁 initial=true、關閉後 visible=false、下一頁 visible=true、返回第 5 頁 visible=true；版本=2026.08.25.05
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=112、directLinks=112、filters=3、下午案例圖片=3/3、場景滾動 capability=300/300、372/372、RWD viewports=3、長文字 mismatches=0、工具 named=72、numeric=0；GitHub Pages site QA passed
+```
+
 ---
 
 ## 本輪最新完成：圖片簡報右上角連結可點擊與上午場第 9 張補齊（v2026.08.25.04）
