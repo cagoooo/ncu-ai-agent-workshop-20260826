@@ -37,7 +37,19 @@ PyMuPDF 由 50 張 2560×1440 PNG 產生正式包上午 PDF → exit 0；PDF=50 
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=557、inventory=556、pdf=6、duplicate_pdf_groups=2
 ```
 
-本輪版本已提升至 `2026.08.25.01`；GitHub Pages 公開部署與 `status=built`、公開 `version.json` 及帶 `BASE_URL` 的公開站 QA，須在本輪 commit／push 後再確認，未確認前不得宣稱已公開完成。未寫入 API key、token 或密碼。
+本輪版本已提升至 `2026.08.25.01`；沒有輸出 MP4，也沒有寫入 API key、token 或密碼。
+
+本輪公開部署證據：
+
+```text
+git commit -m "新增上午場職位邊界模糊化開場三頁" → exit 0；commit=f9fd30b、115 files changed
+git push origin main → exit 0；cf302e3..f9fd30b，main → main
+gh run watch 32793420507 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=15 秒、deploy=8 秒、report-build-status=3 秒，三個 job 成功
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json → exit 0；HTTP=200、bytes=327、version=2026.08.25.01
+Invoke-WebRequest 公開上午圖檔 HTML／上午 PDF／上午 HTML composition／上午 dynamic data／HTML 總覽 → exit 0；5/5 HTTP=200；PDF=8,655,997 bytes、dynamic data=90,526 bytes
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=109、directLinks=109、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；場景轉場 settled=true、overflow=0；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；長文字 morning=50／long=6／mismatches=0、afternoon=59／long=9／mismatches=0；工具 named=72、numeric=0；GitHub Pages site QA passed
+```
 
 稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
