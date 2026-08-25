@@ -102,17 +102,47 @@ const CONCEPT_MAP = {
       title: "Antigravity vs Codex vs Claude Code 的 Harness 設計差異",
       content: "• Antigravity：Google 開發環境 Harness，具備多模態 Artifacts 即時渲染與自主規劃循環；• Codex：OpenAI 強悍沙盒 Harness，精準掌控終端執行與資料分析；• Claude Code：極致嚴謹的終端 Harness 與上下文壓縮。"
     },
-    23: {
+    15: {
+      badge: "🗄️ 後端資料基礎",
+      title: "Agent 做事之外，還要把資料留下來",
+      content: "前端讓人操作、Agent 負責推進、後端保存資料與權限；三者一起設計，工具才不會只在展示時會動。"
+    },
+    16: {
+      badge: "🟨 Google 原生後端",
+      title: "GAS：先用熟悉的 Sheets 把資料接起來",
+      content: "Google Apps Script 可以串起 Sheets、Forms、Drive、通知與排程；先從小型工具的資料流開始，再逐步升級。"
+    },
+    17: {
+      badge: "🧩 Skill 化 GAS 開發",
+      title: "CLASP Skill：把一次成功變成下次可重跑",
+      content: "把需求、程式、資料、部署與驗收寫成工作流，Agent 才能在下一個班級或下一個工具重複使用。"
+    },
+    18: {
+      badge: "🔥 即時資料與權限",
+      title: "Firebase：多人同步之前，先把規則寫清楚",
+      content: "Firestore、登入與後端邏輯可以一起規劃；真正的完成條件包含資料結構、權限規則與錯誤回報。"
+    },
+    19: {
+      badge: "🟩 SQL 型後端選擇",
+      title: "Supabase：Postgres、Auth 與 API 的另一條路",
+      content: "需要關聯資料與 SQL 彈性時可評估 Supabase；目前公開案例資料尚未確認到明確的阿凱 Supabase 卡片，因此不捏造案例。"
+    },
+    20: {
+      badge: "🧭 後端選型判斷",
+      title: "選資料路線，不是選流行品牌",
+      content: "先問資料關聯、即時同步、登入權限、維護者與驗收證據，再在 GAS、Firebase、Supabase 之間做選擇。"
+    },
+    29: {
       badge: "🎛️ Skill 裝具延伸",
       title: "Agent Skills 的本質：自訂 Harness Extension（承接 Gem 升級）",
       content: "單純的提示詞只是文字建議；Agent Skill 則是透過宣告式 YAML 與命令式工作流程，為 Agent 的 Harness 擴充專屬領域的工具規約與操作 SOP，完整承接上午場「讓 Gem 升級成 SKILLS」的成果！"
     },
-    24: {
+    30: {
       badge: "🎛️ 跨 Agent 可攜標準",
       title: "一處定義、三家通用：.agents/skills/ 可攜標準結構",
       content: "遵循 SKILL.md（流程規範）+ scripts/（Python精算）+ references/（參考格式）標準層級，同一份技能可在 Google Antigravity、OpenAI Codex 與 Anthropic Claude Code 之間 100% 無縫共用！"
     },
-    26: {
+    32: {
       badge: "🎛️ 11 大加值實戰",
       title: "Agent Skill 11 大加值維度落地實踐",
       content: "透過檔案讀寫（input/output）、確定性精算、DOCX/HTML 直接產出與格式品質驗收器，把原本只能聊天的 Gem 徹底進化為具備生產力的自動化助手。"
