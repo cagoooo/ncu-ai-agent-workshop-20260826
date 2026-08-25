@@ -2,6 +2,47 @@
 
 ---
 
++## 本輪最新完成：下午場新增後端資料單元與正式包同步（v2026.08.25.06）
+
+本輪確認並完成下午場的後端教學大綱，新增 6 頁並維持上午場 50 頁不變；下午場由 62 頁更新為 68 頁，總覽由 112 頁更新為 118 頁。新增頁面依教學順序為：
+
+- 第 15 頁：Agent 做事之外，還要把資料留下來——建立前端、Agent、後端與資料／權限／同步的共同語言。
+- 第 16 頁：GAS：Google 生態系的原生後端——以 Sheets 作資料後臺，連接 Apps Script 與公開 GAS 案例。
+- 第 17 頁：CLASP Skill——把 GAS 的需求、產碼、資料連動、部署驗收與 Skill 留存變成可重複工作流。
+- 第 18 頁：Firebase——介紹即時同步、登入、權限與託管，並加入 #48、#93、#109 的具名工具卡片入口。
+- 第 19 頁：Supabase——介紹 Postgres、Auth、Storage、API 與 Realtime；目前公開 123 個案例資料未確認到明確的阿凱 Supabase 工具卡片，因此只放官方入口與阿凱專區，不捏造案例。
+- 第 20 頁：GAS／Firebase／Supabase 選擇比較——以資料關聯、即時同步、登入權限、維護者與驗收證據做選擇。
+
+新增頁面的 HTML 動態版、圖檔版、QR Code、透明連結 Hotspot、PPTX、PDF 與正式包均已同步；既有 08 圖檔版設計、全螢幕雙緩衝、RWD、長文字捲軸與 09 動態轉場架構保留。公開引用採用 [Google Apps Script 官方文件](https://developers.google.com/apps-script)、[Firebase 官方文件](https://firebase.google.com/docs)、[Supabase 官方文件](https://supabase.com/docs) 與公開工具卡片入口。
+
+本輪本機、正式包與公開站驗證證據：
+
+```text
+node build_decks.mjs → exit 0；PNG／PPTX 上午 50 頁、下午 68 頁
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=68
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=68、version=2026.08.25.06
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=17、numeric=0；全螢幕連結與 QR/platform 通過；spotlight reset 兩場通過
+python -X utf8 qa_qr_codes.py → exit 0；191 個渲染 QR Code 全部解碼
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_github_pages_site.mjs → exit 0；本機總覽 cards=118、directLinks=118、下午=68、motion settled=true、場景捲軸能力=300/300、408/408、RWD 垂直捲動=6/6、長文字 mismatches=0、工具 named=92、numeric=0
+pypdf PDF 頁數檢查 → exit 0；正式包上午 50 頁、下午 68 頁
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=580、inventory=579、pdf=8、duplicate_pdf_groups=4
+node --check qa_github_pages_site.mjs; git diff --check → exit 0
+```
+
+本輪提交與公開部署驗證：
+
+```text
+git commit -m "新增下午場後端資料單元" → exit 0；commit=3c4b86d，206 files changed
+git push origin main → exit 0；main → main
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260825-06-live → exit 0；HTTP=200、version=2026.08.25.06
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=118、directLinks=118、下午篩選=68、下午案例圖片=3/3（第 4、5、6 頁）、motion settled=true、場景捲軸能力=300/300、408/408、RWD 垂直捲動=6/6、長文字 mismatches=0、工具 named=92、numeric=0；GitHub Pages site QA passed
+公開 afternoon.js → HTTP=200；slides=68；新增第 16、17、18、19、20 頁 links=3/2/3/2/3
+```
+
+---
+
 ## 本輪最新完成：圖像簡報提醒視窗換頁自動重置（v2026.08.25.05）
 
 本輪修正「下方註記／提醒小視窗關閉後，切換到其他頁面便不再出現」的狀態管理問題：
