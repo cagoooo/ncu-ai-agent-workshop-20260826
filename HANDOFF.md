@@ -24,6 +24,18 @@ node qa_github_pages_site.mjs → exit 0；總覽 cards=112、directLinks=112、
 正式包同步 → exit 0；08／09 專區與根目錄版本檔同步完成
 ```
 
+本輪公開部署驗證證據：
+
+```text
+git commit -m "修正圖片簡報連結與QR熱區" → exit 0；commit=d962161、18 files changed
+git push origin main → exit 0；1b5fa2a..d962161，main → main
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260825-04-live → exit 0；HTTP=200、version=2026.08.25.04
+Invoke-WebRequest 公開上午第 9 張 2K PNG → exit 0；HTTP=200、147,048 bytes
+公開 URL 瀏覽器命中測試 → exit 0；第 9 張 current=9、fullscreen=true、QR=2/2、platform=2/2、qrHit=true、platformHit=true；網址為 Typeless 與 Gemini Notebook
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=112、directLinks=112、RWD viewports=3、上午／下午長文字 mismatches=0、GitHub Pages site QA passed
+```
+
 ---
 ---
 
