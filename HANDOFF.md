@@ -2,6 +2,36 @@
 
 ---
 
+## 本輪最新完成：圖像簡報提醒視窗換頁自動重置（v2026.08.25.05）
+
+本輪修正「下方註記／提醒小視窗關閉後，切換到其他頁面便不再出現」的狀態管理問題：
+
+- `build_html_deck.mjs` 與 `08_HTML簡報/assets/deck.js` 改用依頁面索引管理的關閉狀態；關閉只會暫時隱藏目前頁面的提醒，不會把整份簡報的提醒功能關掉。
+- 切換到下一頁、上一頁或其他頁面時，會清除離開頁面的關閉狀態；回到原頁時，該頁提醒會再次自動顯示。新頁若有對應概念，也會立即顯示。
+- 不使用 `localStorage` 或永久記憶，因此重新開啟簡報時仍維持原本「有概念就自動提示」的行為。
+- 只調整圖像簡報的提醒視窗生命週期；投影片圖片、版型、QR Code、超連結熱區、全螢幕雙緩衝切換與 RWD 均保留。`09_HTML動態簡報` 僅同步版本號，未改動其內容呈現。
+- `08_HTML簡報`、`09_HTML動態簡報` 與正式包 `研習正式包_v1.0` 已同步至 `2026.08.25.05`；沒有輸出 MP4，也未寫入 API key、token 或密碼。
+
+本輪本機與正式包驗證證據：
+
+```text
+node --check build_html_deck.mjs; node --check qa_html_deck.mjs; node --check bump_site_version.mjs → exit 0
+node bump_site_version.mjs → exit 0；公開站與 QA cache-busting 版本更新為 2026.08.25.05
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=62
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=62、version=2026.08.25.05
+node qa_html_deck.mjs → exit 0；上午／下午 spotlight reset 均為 initial=true、closed=true、next=true、return=true；HTML deck QA passed
+公開 08_HTML簡報 HTML_ROOT node qa_html_deck.mjs → exit 0；上午／下午全螢幕連結 QR/platform 均 true；spotlight reset 兩場均通過
+node qa_github_pages_site.mjs → exit 0；總覽 cards=112、directLinks=112、filters=3、RWD viewports=3、上午／下午場景滾動能力=300/300、372/372、長文字 mismatches=0、工具 named=72、numeric=0；GitHub Pages site QA passed
+python -X utf8 qa_qr_codes.py → exit 0；178 個渲染 QR Code 全部解碼
+正式包 HTML_ROOT node qa_html_deck.mjs → exit 0；spotlight reset 兩場均通過；HTML deck QA passed
+正式包 WORKSHOP_ROOT node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+正式包 WORKSHOP_ROOT node audit_local_links.mjs → exit 0；103 HTML files、189 local references
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=568、inventory=567、pdf=8、duplicate_pdf_groups=4
+node --check build_decks.mjs/build_html_deck.mjs/sync_dynamic_deck.mjs/qa_html_deck.mjs/qa_github_pages_site.mjs；git diff --check → exit 0
+```
+
+---
+
 ## 本輪最新完成：圖片簡報右上角連結可點擊與上午場第 9 張補齊（v2026.08.25.04）
 
 本輪針對「圖片檔簡報右上角部分超連結／QR Code 點不到」以及「上午場第 9 張右上角 QR Code 與超連結消失」完成修正：

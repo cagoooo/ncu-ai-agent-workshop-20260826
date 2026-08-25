@@ -21,7 +21,7 @@ const spotlight = document.getElementById("concept-spotlight");
 const spotlightBadge = document.getElementById("spotlight-badge");
 const spotlightTitle = document.getElementById("spotlight-title");
 const spotlightContent = document.getElementById("spotlight-content");
-let spotlightVisible = true;
+const spotlightDismissed = new Set();
 
 const CONCEPT_MAP = {
   morning: {
@@ -125,7 +125,7 @@ function updateSpotlight(index) {
   const sessionKey = document.body.classList.contains("theme-morning") ? "morning" : "afternoon";
   const slideNum = index + 1;
   const concept = CONCEPT_MAP[sessionKey]?.[slideNum];
-  if (concept && spotlightVisible) {
+  if (concept && !spotlightDismissed.has(index)) {
     spotlightBadge.textContent = concept.badge;
     spotlightTitle.textContent = concept.title;
     spotlightContent.textContent = concept.content;
@@ -136,11 +136,15 @@ function updateSpotlight(index) {
 }
 
 function toggleSpotlight(force) {
-  spotlightVisible = typeof force === "boolean" ? force : !spotlightVisible;
-  if (spotlight) {
-    if (!spotlightVisible) spotlight.hidden = true;
-    else updateSpotlight(activeIndex);
+  if (typeof force === "boolean") {
+    if (force) spotlightDismissed.delete(activeIndex);
+    else spotlightDismissed.add(activeIndex);
+  } else if (spotlightDismissed.has(activeIndex)) {
+    spotlightDismissed.delete(activeIndex);
+  } else {
+    spotlightDismissed.add(activeIndex);
   }
+  updateSpotlight(activeIndex);
 }
 
 let activeIndex = 0;
@@ -309,6 +313,9 @@ function show(index, direction = 1, updateHash = true, isInitial = false) {
   const nextIndex = Math.max(0, Math.min(slides.length - 1, index));
   const current = stage.children[nextIndex];
   if (!current) return;
+
+  // 關閉提醒只作用於當前頁；離頁後清除狀態，回到該頁時重新提示。
+  if (activeIndex !== nextIndex) spotlightDismissed.delete(activeIndex);
 
   const previous = stage.querySelector(".is-active");
 
