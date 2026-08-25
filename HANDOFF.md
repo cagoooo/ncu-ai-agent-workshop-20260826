@@ -1,5 +1,30 @@
-# HANDOFF.md｜2026-08-25 本輪 Agent 交接（DNS 實戰截圖接入 HTML 動態版）
+# HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
+---
+
+## 本輪最新完成：圖片簡報右上角連結可點擊與上午場第 9 張補齊（v2026.08.25.04）
+
+本輪針對「圖片檔簡報右上角部分超連結／QR Code 點不到」以及「上午場第 9 張右上角 QR Code 與超連結消失」完成修正：
+
+- `build_decks.mjs` 已為上午場第 9 張（渲染檔 `slide-09`）補上 `Typeless` 與 `Gemini Notebook` 的右上角顯示文字、超連結與 QR panel；原本的標題、雙卡片、頁尾與既有視覺版式不變。
+- `build_html_deck.mjs` 已修正平台連結熱區的分割方式，改以中英文混排與 `↗` 實際字寬估算，從左側覆蓋可見文字，避免熱區只落在文字右側。
+- 標準 QR Code 的 HTML 點擊熱區同步涵蓋下方名稱標籤；圖片與標籤均可開啟同一網址。案例頁與資源頁的既有 QR 版面不變。
+- `08_HTML簡報` 公開圖檔版、`09_HTML動態簡報` 資料與正式包 `研習正式包_v1.0` 已同步；未輸出 MP4，也未寫入 API key、token 或密碼。
+- 版本由 `2026.08.25.03` 提升為 `2026.08.25.04`，同步更新 HTML cache-busting、`version.json` 與 Service Worker。
+
+本輪本機驗證證據：
+
+```text
+node build_decks.mjs → exit 0；上午／下午渲染與 inspect 檔均完成，上午第 9 張 PNG=147,048 bytes（2K）
+python -X utf8 qa_qr_codes.py → exit 0；178 個渲染 QR Code 全部解碼
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=62
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=62、version=2026.08.25.04
+node qa_html_deck.mjs → exit 0；上午第 9／17 張與下午第 15 張全螢幕 QR/platform 命中均為 true；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；總覽 cards=112、directLinks=112、RWD viewports=3、長文字 mismatches=0、工具 named=72、numeric=0；GitHub Pages site QA passed
+正式包同步 → exit 0；08／09 專區與根目錄版本檔同步完成
+```
+
+---
 ---
 
 ## 本輪最新完成：09 HTML 動態簡報接入 DNS 遷移三張實戰截圖（v2026.08.25.03）
