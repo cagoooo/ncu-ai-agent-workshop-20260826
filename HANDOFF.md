@@ -34,6 +34,18 @@ node qa_github_pages_site.mjs → exit 0；總覽 cards=112、directLinks=112、
 python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=565、inventory=564、pdf=8、duplicate_pdf_groups=4
 ```
 
+本輪公開部署證據：
+
+```text
+git commit -m "新增下午場 DNS 遷移 147 個 PDF 實戰案例" → exit 0；commit=75e0186、144 files changed
+git push origin main → exit 0；5b1d33c..75e0186，main → main
+gh run watch 32800114672 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=13 秒、deploy=10 秒、report-build-status=4 秒，三個 job 成功
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json → exit 0；HTTP=200、bytes=365、version=2026.08.25.02
+Invoke-WebRequest 公開下午圖檔 HTML／案例第 6 頁 2K 圖／備援頁／下午 HTML composition／下午 dynamic data／HTML 總覽 → exit 0；6/6 HTTP=200
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=112、directLinks=112、filters=3、afternoonFilter=62、RWD viewports=3、長文字 mismatches=0、工具 named=72、numeric=0；GitHub Pages site QA passed
+```
+
 ---
 
 ## 本輪最新完成：上午場新增「職位邊界模糊化」開場三頁（v2026.08.25.01）
