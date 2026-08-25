@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.25.01",
-  "buildTime": "2026-08-24T14:03:35+08:00",
-  "title": "新增研習資源導航 favicon 與社群分享卡片",
-  "description": "上午場新增職位邊界變薄與跨職位協作開場三頁；同步更新圖檔版、HTML 動態版、QR 對應、總覽頁與 GitHub Pages 快取版本。"
+  "version": "2026.08.25.02",
+  "buildTime": "2026-08-25T09:36:31+08:00",
+  "title": "新增下午場 DNS 遷移 147 個 PDF 批次下載實戰",
+  "description": "下午場新增 DNS 遷移與 147 個 PDF 批次下載案例三頁，加入新校網公告最終成果連結；同步更新圖檔版、HTML 動態版、QR、總覽與 GitHub Pages 快取版本。"
 }

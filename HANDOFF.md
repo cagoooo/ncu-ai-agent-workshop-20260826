@@ -2,6 +2,40 @@
 
 ---
 
+## 本輪最新完成：下午場新增 DNS 遷移 147 個 PDF 批次下載實戰與新校網成果連結（v2026.08.25.02）
+
+本輪依使用者提供的三張實戰截圖與提示詞，將「舊站 DNS 遷移後，批次修正 PDF 連結並下載 147 個檔案」放在下午場 Agent 介紹前，形成「痛點 → 規則 → Agent 執行 → 成果發布」的課程流程：
+
+- 第 4 頁：`147 個 PDF：DNS 遷移留下的重複性痛點`，放入 `assets/dns-migration-case/01-pdf-mountain.png`。
+- 第 5 頁：`把規則說清楚，Agent 就能一次接手`，放入 `assets/dns-migration-case/02-agent-result.png`，保留 4 分 6 秒、147/147、有效 PDF 147/147、失敗 0 等驗收證據。
+- 第 6 頁：`4 分 6 秒：147 個檔案一次到位`，放入 `assets/dns-migration-case/03-147-pdfs-ok.png`，並在簡報下方加入「查看新校網公告最終成果 ↗」：
+  `https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=6&zone_id=0&page_id=46&content_id=119&type=news`
+- `08_HTML簡報` 圖檔版與 `09_HTML動態簡報` HTML 版同步更新；沒有輸出 MP4，也沒有寫入 API key、token 或密碼。
+- 頁數由上午 50、下午 59 更新為上午 50、下午 62，總覽為 112 頁；原有 QR、透明連結 Hotspot、雙緩衝全螢幕切換與 RWD 皆保留。
+
+本輪本機與正式包驗證證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=62
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=62、version=2026.08.25.02
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+python -X utf8 qa_qr_codes.py → exit 0；176 個渲染 QR Code 全部解碼
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+npx hyperframes lint; npx hyperframes validate; npx hyperframes check → exit 0；lint/runtime=0、layout=0（9 samples）、motion=0、contrast=99/99
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 50/50、failures=0
+FULLSCREEN_DECK=afternoon node qa_fullscreen_dynamic.mjs → exit 0；水平溢位=0、failures=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；checked=50/50、failures=0、pageErrors=[]
+FULLSCREEN_DECK=afternoon node qa_fullscreen_longrun.mjs → exit 0；checked=62/62、failures=0、pageErrors=[]
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=[]
+node qa_github_pages_site.mjs → exit 0；總覽 cards=112、directLinks=112、filters=3、afternoonFilter=62、RWD viewports=3、長文字 mismatches=0、工具 named=72、numeric=0
+正式包 HTML_ROOT=08_HTML簡報 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0
+正式包 WORKSHOP_ROOT node audit_local_links.mjs → exit 0；103 HTML files、189 local references
+正式包 WORKSHOP_ROOT node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=565、inventory=564、pdf=8、duplicate_pdf_groups=4
+```
+
+---
+
 ## 本輪最新完成：上午場新增「職位邊界模糊化」開場三頁（v2026.08.25.01）
 
 本輪依課程邏輯，將新內容放在上午場原本的「Vibe Coding、Vibe Working 與 AI 三個 Level」之後、文組 AI 大航海時代之前，新增三頁：
