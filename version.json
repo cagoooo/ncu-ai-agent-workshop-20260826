@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.24.05",
+  "version": "2026.08.25.01",
   "buildTime": "2026-08-24T14:03:35+08:00",
   "title": "新增研習資源導航 favicon 與社群分享卡片",
-  "description": "研習資源導航新增專用 favicon、Apple Touch Icon、PWA manifest 與 1200×630 Open Graph 分享預覽圖，補齊 LINE、Facebook 與 GitHub Pages 所需的繁體中文 meta 標籤。"
+  "description": "上午場新增職位邊界變薄與跨職位協作開場三頁；同步更新圖檔版、HTML 動態版、QR 對應、總覽頁與 GitHub Pages 快取版本。"
 }

@@ -1,5 +1,44 @@
 # HANDOFF.md｜2026-08-24 本輪 Agent 交接（Gemini Spark 排程教學與學習歷程）
 
+---
+
+## 本輪最新完成：上午場新增「職位邊界模糊化」開場三頁（v2026.08.25.01）
+
+本輪依課程邏輯，將新內容放在上午場原本的「Vibe Coding、Vibe Working 與 AI 三個 Level」之後、文組 AI 大航海時代之前，新增三頁：
+
+- 第 5 頁：`職位邊界正在變薄：每個人都能往前多走一步`，說明 PM、專業者、工程師與跨界協作角色的變化。
+- 第 6 頁：`PM × AI Agent：先驗證，再協作正式化`，用「過去協作路徑／現在快速迭代」對照，明確保留工程品質與正式化工作的必要性。
+- 第 7 頁：`工程師也要走進現場：深度技術 × 橫向理解`，說明工程師需要理解客戶、教師、學生與同事的工作脈絡；文案避免把工程師人格定性為不想接觸人，而是聚焦工作內容正在改變。
+
+`08_HTML簡報` 已沿用原本的投影片點陣圖、QR、Hotspot、雙緩衝切換與全螢幕設計；`09_HTML動態簡報` 則以 HTML／CSS／GSAP 呈現相同三頁，沒有輸出 MP4。上午由 47 頁增加為 50 頁，下午維持 59 頁，總覽由 106 張更新為 109 張。
+
+本輪本機、正式包與功能驗證證據：
+
+```text
+node build_decks.mjs → exit 0；inspectSlides/png：上午 50/50、下午 59/59
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=59
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=59、version=2026.08.25.01
+node --check build_html_deck.mjs；node --check sync_dynamic_deck.mjs；node --check qa_html_deck.mjs；node --check qa_github_pages_site.mjs → exit 0
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 qa_qr_codes.py → exit 0；176 個渲染 QR Code 全部解碼
+npx --yes hyperframes lint "github_pages_site/09_HTML動態簡報" --json → exit 0；errorCount=0、warningCount=0、filesScanned=3
+npx --yes hyperframes check "github_pages_site/09_HTML動態簡報" --json → exit 0；runtime/layout/motion 問題=0、contrast=99/99
+node qa_fullscreen_animation.mjs → exit 0；4 個方向、16 個取樣、failures=0、pageErrors=0
+FULLSCREEN_ALL=1 node qa_fullscreen_dynamic.mjs → exit 0；上午 50/50、failures=0、horizontalOverflow=0
+FULLSCREEN_DECK=afternoon node qa_fullscreen_dynamic.mjs → exit 0；下午 59/59、failures=0、horizontalOverflow=0
+FULLSCREEN_DECK=morning node qa_fullscreen_longrun.mjs → exit 0；50/50、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+FULLSCREEN_DECK=afternoon node qa_fullscreen_longrun.mjs → exit 0；59/59、failures=0、pageErrors=[]、activeCount=1、previousCount=1
+node qa_github_pages_site.mjs → exit 0；總覽 cards=109、directLinks=109、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；長文字 morning=50／long=6／mismatches=0、afternoon=59／long=9／mismatches=0；工具 named=72、numeric=0
+PyMuPDF 由 50 張 2560×1440 PNG 產生正式包上午 PDF → exit 0；PDF=50 頁、960×540、8,655,997 bytes
+正式包 HTML_ROOT=正式包/08_HTML簡報 node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0
+正式包 WORKSHOP_ROOT=正式包 node audit_local_links.mjs → exit 0；103 HTML files、189 local references
+正式包 WORKSHOP_ROOT=正式包 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=557、inventory=556、pdf=6、duplicate_pdf_groups=2
+```
+
+本輪版本已提升至 `2026.08.25.01`；GitHub Pages 公開部署與 `status=built`、公開 `version.json` 及帶 `BASE_URL` 的公開站 QA，須在本輪 commit／push 後再確認，未確認前不得宣稱已公開完成。未寫入 API key、token 或密碼。
+
 稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---

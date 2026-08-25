@@ -25,47 +25,57 @@ let spotlightVisible = true;
 
 const CONCEPT_MAP = {
   morning: {
-    14: {
+    5: {
+      badge: "🧭 跨界協作新常態",
+      title: "職位邊界變薄：每個人都要多走一步",
+      content: "AI Agent 讓 PM 能先做原型，也讓工程師更需要理解使用者與情境；未來競爭力不只在職稱，而在能否跨界協作、驗證並交付成果。"
+    },
+    6: {
+      badge: "🧪 PM 原型力",
+      title: "PM 先做出能用的版本，再和工程師共作",
+      content: "Agent 可以把需求快速推成可操作原型，幫助 PM 釐清想法、邀請使用者試用與收斂需求；正式產品仍需要工程專業的架構、資安與維護把關。"
+    },
+    7: {
+      badge: "🤝 工程師的現場力",
+      title: "深度技術之外，還要理解人與工作脈絡",
+      content: "當工具降低製作門檻，各角色都要往使用者與跨部門走近；工程師的價值不只是寫程式，也包括理解問題、設計方案與對成果負責。"
+    },
+    17: {
       badge: "🛡️ RAG 產線底座",
       title: "RAG（檢索增強生成）打造專屬教學與研究知識庫",
       content: "大模型幻覺的起因是預訓練機率接字補全。本產線將 Gemini Notebook 作為私有 RAG 知識庫，以真實上傳文獻為事實邊界（Grounding Data），先檢索切片再增強生成，從架構層面根治 AI 幻覺。"
     },
-    15: {
+    18: {
       badge: "🛡️ RAG 核心公式",
       title: "RAG 檢索增強生成：知識庫錨定架構",
       content: "【真實來源切片】+【向量檢索 (Retrieve)】+【上下文增強 (Augment)】=【零幻覺可驗證生成】。不讓 AI 自由發揮，而是強制在教授提供的文獻庫範圍內推論與引用。"
     },
-    16: {
+    19: {
       badge: "🛡️ RAG 防幻覺機制",
       title: "一般對話 vs RAG 資料庫模式：可追查鏈（Audit Trail）",
       content: "一般聊天容易『一本正經胡說八道』；RAG 資料庫模式下，AI 的每一句結論都必須綁定原文引用腳註（In-line Citations）。來源未記載時明確標示『來源無相關資料』，絕不捏造！"
     },
-    17: {
+    20: {
       badge: "🛡️ RAG 建庫原則",
       title: "RAG 知識庫 3-2-1 原則：高密度、高相關、少雜訊",
       content: "優質的 RAG 資料庫講求『3 份核心文獻、2 種互補觀點、1 個明確教學/研究目的』。避免塞入海量無關雜訊文件，以確保向量檢索精準度。"
     },
-    17: {
-      badge: "⚡ Google 最新 Spark",
-      title: "Google 生態系新前沿：Gemini Spark 24/7 雲端主動秘書",
-      content: "Google 最新推出的 Gemini Spark (Beta) 讓 AI 從『等你提問』進化為『關機也能自主做事』！專為 Google Pro/Ultra 會員打造，全自動深度串聯 Gmail、Drive、Docs、Sheets 與 Calendar 全家桶。使用者只要設定好工作流或定時排程，即使電腦休眠，AI 也會在雲端主動幫教授整理文獻、分類信件、彙整研究進度並提醒重要會議！"
-    },
-    19: {
+    22: {
       badge: "🛡️ RAG 實戰檢驗",
       title: "RAG 防幻覺邊界測試（Boundary Check）",
       content: "實作防幻覺三部曲：① 檢索事實數據 → ② 跨篇綜合比對 → ③ 故意提問來源未記載的問題，測試系統是否具備誠實拒答的防幻覺邊界。"
     },
-    23: {
+    26: {
       badge: "🛡️ Gem 角色固化",
       title: "自訂 Gem：系統提示詞 ＋ RAG 知識庫綁定",
       content: "單純 Prompt 會隨對話輪數增加而發生『角色遺忘』或『幻覺漂移』；自訂 Gem 在系統層鎖定教學方法、評量規準與引用約束，確保輸出始終穩定可靠。"
     },
-    27: {
+    30: {
       badge: "🚀 觀念躍升：Gems 不是被淘汰，是該升級！",
       title: "從自訂 Gem 邁向專屬 Agent Skill：讓 Gem 升級成 SKILLS",
       content: "『Gems 不會消失，是該升級成 Skill！』Skill 說穿了就是一份寫給 Agent 看的標準使用說明書（SOP），只要是重複做的流程都能變成技能。結合五層記憶架構：『記憶讓 Agent 知道背景；Skill 讓 Agent 知道方法』，將原本受限於線上純聊天的 Gem（語意記憶），升級為具備檔案讀寫與自主流程的專屬 Skill（程序記憶）！"
     },
-    28: {
+    31: {
       badge: "🚀 實戰三部曲 SOP",
       title: "讓 Gem 升級成 SKILLS：備份・升級・分享 完整落地指南",
       content: "① 備份：免費用戶透過 Google Takeout 完整匯出 Gem 系統提示詞與附件；付費用戶由 Spark 自動打包至 Drive → ② 升級：丟 GitHub 套件連結給 Agent 自動盤點＋挑選 11 大能力加值（實例：英文偵錯密碼 Gem 升級為互動闖關網頁）→ ③ 分享：上傳 GitHub repo（.agents/skills/），跨平台換 Agent（Antigravity/Codex/Claude）一鍵安裝，全校共用！"
