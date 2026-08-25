@@ -51,6 +51,17 @@ Invoke-WebRequest 公開上午圖檔 HTML／上午 PDF／上午 HTML composition
 $env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=109、directLinks=109、filters=3、afternoonFilter=59、CodexSearch=32、RWD viewports=3；場景轉場 settled=true、overflow=0；垂直捲動各 6/6；捲動重設各 6/6、maxResidual=0；長文字 morning=50／long=6／mismatches=0、afternoon=59／long=9／mismatches=0；工具 named=72、numeric=0；GitHub Pages site QA passed
 ```
 
+部署後入口文案一致性修正：
+
+```text
+git commit -m "修正簡報頁數文案一致性" → exit 0；commit=7acaa74、2 files changed
+git push origin main → exit 0；36ff690..7acaa74，main → main
+gh run watch 32794086709 --repo cagoooo/ncu-ai-agent-workshop-20260826 --exit-status → exit 0；build=12 秒、deploy=10 秒、report-build-status=5 秒，三個 job 成功
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json → exit 0；HTTP=200、bytes=327、version=2026.08.25.01；公開首頁／備援頁 HTTP=200，頁數文案上午 50、下午 59、總覽 109
+git status --short → exit 0；公開 Git repo status entries=0
+```
+
 稽核時間：2026-08-24（Asia/Taipei；本輪本機、正式包與公開部署均已重驗）
 
 ---
