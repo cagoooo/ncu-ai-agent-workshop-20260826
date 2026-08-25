@@ -6,7 +6,7 @@
 
 ## 內容
 
-- 上午場：Vibe Coding、Vibe Working、AI 三個 Level、Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas 與網站部署實作（47 頁）
+- 上午場：Vibe Coding、Vibe Working、AI 三個 Level、Typeless、ChatGPT／Codex Voice、Gemini Notebook、Gem、Canvas 與網站部署實作（50 頁）
 - 下午場：Antigravity、Gemini Spark 排程教學、DNS 遷移 147 個 PDF 批次下載實戰、Codex、Agent Skills、資料分析實戰與 Agent 時代人生反思（62 頁；含手機遠端控制更新）
 - 桌機首頁滿版寬欄場次導覽：主內容上限 1800px，放大主標、摘要、分支卡片與左右雙欄入口；手機／平板自動堆疊並保留 RWD
 - 主導覽板新增 10 個研習分支入口：資源導航、任務書、PIRLS、Skill 驗證、123 案例、部署精靈、提示詞面板、場務手冊、備援與 Canvas 起始站
@@ -19,7 +19,7 @@
 - 「立即更新」會啟用 waiting worker、等待 controllerchange，再以 cache-busted URL 載入最新版
 - `START_HERE_研習資源導航.html`：線上教材、123 個案例（含 12 張精選）、實作工具與下載入口
 - `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
-- `09_HTML動態簡報/index.html`：上午 50 頁、下午 62 頁的 HTML 原生文字場景，含 Vibe Coding、Vibe Working、AI 三個 Level、職位邊界模糊化與跨職位協作開場三頁、DNS 遷移 147 個 PDF 批次下載實戰三頁、Gemini Spark 排程教學五頁與 Antigravity Remote Control 更新，預留 HyperFrames／Remotion 動態化結構
+- `09_HTML動態簡報/index.html`：上午 50 頁、下午 62 頁的 HTML 原生文字場景，含 Vibe Coding、Vibe Working、AI 三個 Level、職位邊界模糊化與跨職位協作開場三頁、DNS 遷移 147 個 PDF 批次下載實戰三頁（第 4–6 頁同步呈現三張實戰截圖）、Gemini Spark 排程教學五頁與 Antigravity Remote Control 更新，預留 HyperFrames／Remotion 動態化結構
 - `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄
 - `04_實作工具/04_跨平台Skill驗證器.html`：驗證 `SKILL.md`、資料夾或 ZIP 的跨平台可攜性與安全邊界
 - `04_實作工具/05_123個案例需求導向篩選器.html`：依教學／研究需求搜尋 123 筆 Akai 工具案例，提供卡片與應用雙入口

@@ -1,4 +1,26 @@
-# HANDOFF.md｜2026-08-24 本輪 Agent 交接（Gemini Spark 排程教學與學習歷程）
+# HANDOFF.md｜2026-08-25 本輪 Agent 交接（DNS 實戰截圖接入 HTML 動態版）
+
+---
+
+## 本輪最新完成：09 HTML 動態簡報接入 DNS 遷移三張實戰截圖（v2026.08.25.03）
+
+本輪針對「08 圖檔版已看得到、09 HTML 動態版看不到」的落差完成修正：
+
+- `08_HTML簡報` 圖檔版維持原設計與三張已渲染截圖；下午第 4、5、6 頁的 2K 圖片仍分別保留排山倒海的 PDF、Agent 4 分 6 秒結果與 147 個檔案完成畫面。
+- `09_HTML動態簡報` 下午第 4、5、6 頁新增原始 PNG 媒體卡片，使用 `scene-case-media` 呈現，含 `alt` 文字與案例標題，不改動其他頁面的純 HTML 文字場景。
+- 圖片來源放在 `09_HTML動態簡報/assets/dns-migration-case/`，共 3 檔、總計 418,875 bytes；動態資料只在第 4、5、6 頁掛載圖片欄位。
+- 圖片卡片具備桌機、手機／平板與大型螢幕全螢幕限制；長文與圖片同樣沿用既有可捲動容器，不覆蓋簡報核心內容。
+- 修正組合頁 `<base>` 路徑解析，確保 GitHub Pages 與本機組合頁都從 `09_HTML動態簡報/assets/...` 載入圖片；不輸出 MP4，也未寫入 API key、token 或密碼。
+
+本輪本機驗證證據：
+
+```text
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=62
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=62、version=2026.08.25.03
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=12、numeric=0；HTML deck QA passed
+node qa_github_pages_site.mjs → exit 0；case image morning=0、afternoon=3、pages=4,5,6、loaded=true；總覽 cards=112、directLinks=112、RWD viewports=3、長文字 mismatches=0、工具 named=72、numeric=0；GitHub Pages site QA passed
+瀏覽器圖片載入診斷 → exit 0；第 4 頁 1529×922、第 5 頁 1031×701、第 6 頁 1640×980，三張 naturalWidth 均大於 0
+```
 
 ---
 

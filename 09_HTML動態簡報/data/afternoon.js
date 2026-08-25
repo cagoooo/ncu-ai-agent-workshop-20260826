@@ -42,7 +42,10 @@ window.DYNAMIC_DECK_DATA = {
       "notes": "這是一個真實的網站 DNS 遷移痛點：公告頁裡累積大量會計室 PDF，原本的下載連結仍指向 www.smes.tyc.edu.tw；當 DNS 與站台調整後，逐一打開、改網址、下載與確認，會變成重複又毫無效率的工作。\n\n這一頁先不急著講工具，而是先讓大家看見「值得被自動化」的痛點：高頻、規則明確、數量很大，而且每一個檔案都需要留下結果。\n\n[Sources]\n- https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187\n[/Sources]",
       "text": "REAL PAIN · DNS MIGRATION\n147 個 PDF：DNS 遷移留下的重複性痛點\n下午場｜打造會做事的 AI 教學與研究夥伴\n04\n痛點：排山倒海的 PDF\n• 舊站連結仍指向 www，DNS 遷移後無法直接下載。\n\n• 人工逐一找檔、改網址、下載，重複又毫無效率。\n\n• 做到懷疑人生：這正是 Agent 值得接手的工作。",
       "description": "這是一個真實的網站 DNS 遷移痛點：公告頁裡累積大量會計室 PDF，原本的下載連結仍指向 www.smes.tyc.edu.tw；當 DNS 與站台調整後，逐一打開、改網址、下載與確認，會變成重複又毫無效率的工作。\n\n這一頁先不急著講工具，而是先讓大家看見「值得被自動化」的痛點：高頻、規則明確、數量很大，而且每一個檔案都需要留下結果。\n\n[Sources]\n- https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187\n[/Sources]",
-      "links": []
+      "links": [],
+      "caseImage": "assets/dns-migration-case/01-pdf-mountain.png",
+      "caseImageAlt": "使用者提供的截圖一：公告頁中排山倒海的 PDF 檔案",
+      "caseImageCaption": "截圖一｜排山倒海的 PDF 痛點"
     },
     {
       "index": 5,
@@ -52,7 +55,10 @@ window.DYNAMIC_DECK_DATA = {
       "notes": "我把需求交給 Agent：讀取 https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187，找出頁面中的全部 PDF；因為 DNS 遷移，下載連結前綴要把 www.smes.tyc.edu.tw 改成 web.smes.tyc.edu.tw。\n\n舊格式的連結會依 files_sn 改寫成 /uploads/tadnews/tmp/{files_sn}/檔名.pdf；例如 files_sn=2544 的檔案，就改成 web.smes.tyc.edu.tw/uploads/tadnews/tmp/2544/檔名.pdf。\n\n提示詞不能只說「幫我下載」，還要交代來源、轉換規則、保存資料夾與驗收條件：總數、成功數、有效 PDF、失敗數、總大小，以及是否留下 .part 殘檔。截圖中的結果面板就是 Agent 回報的可檢查證據。\n\n[Sources]\n- https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187\n[/Sources]",
       "text": "PROMPT → PLAN → VERIFY\n把規則說清楚，Agent 就能一次接手\n下午場｜打造會做事的 AI 教學與研究夥伴\n05\n提示詞：來源 → 轉換 → 驗收\n• 來源：讀取公告 nsn=3187，找出頁面中的全部 PDF。\n\n• 轉換：www.smes.tyc.edu.tw → web.smes.tyc.edu.tw，依 files_sn 組出新路徑。\n\n• 驗收：逐一下載、確認 PDF 有效，統計成功／失敗與殘檔。",
       "description": "我把需求交給 Agent：讀取 https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187，找出頁面中的全部 PDF；因為 DNS 遷移，下載連結前綴要把 www.smes.tyc.edu.tw 改成 web.smes.tyc.edu.tw。\n\n舊格式的連結會依 files_sn 改寫成 /uploads/tadnews/tmp/{files_sn}/檔名.pdf；例如 files_sn=2544 的檔案，就改成 web.smes.tyc.edu.tw/uploads/tadnews/tmp/2544/檔名.pdf。\n\n提示詞不能只說「幫我下載」，還要交代來源、轉換規則、保存資料夾與驗收條件：總數、成功數、有效 PDF、失敗數、總大小，以及是否留下 .part 殘檔。截圖中的結果面板就是 Agent 回報的可檢查證據。\n\n[Sources]\n- https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187\n[/Sources]",
-      "links": []
+      "links": [],
+      "caseImage": "assets/dns-migration-case/02-agent-result.png",
+      "caseImageAlt": "使用者提供的截圖二：Agent 在 4 分 6 秒完成 147 個 PDF 批次下載",
+      "caseImageCaption": "截圖二｜Agent 4 分 6 秒完成批次下載"
     },
     {
       "index": 6,
@@ -67,7 +73,10 @@ window.DYNAMIC_DECK_DATA = {
           "label": "新校網公告最終成果",
           "url": "https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=6&zone_id=0&page_id=46&content_id=119&type=news"
         }
-      ]
+      ],
+      "caseImage": "assets/dns-migration-case/03-147-pdfs-ok.png",
+      "caseImageAlt": "使用者提供的截圖三：檔案總管顯示 147 個 PDF 已批次下載完成",
+      "caseImageCaption": "截圖三｜147 個檔案批次下載完成"
     },
     {
       "index": 7,

@@ -287,6 +287,16 @@ function renderTranscript(item) {
   </details>`;
 }
 
+function renderCaseMedia(item) {
+  if (!item.caseImage) return "";
+  const caption = item.caseImageCaption || "案例實戰截圖";
+  const alt = item.caseImageAlt || caption;
+  return `<figure class="scene-case-media">
+    <img src="${escapeHtml(item.caseImage)}" alt="${escapeHtml(alt)}" loading="eager" decoding="async">
+    <figcaption><span>CASE STUDY</span><strong>${escapeHtml(caption)}</strong></figcaption>
+  </figure>`;
+}
+
 function createSlide(item, index) {
   const blocks = cleanBodyBlocks(item);
   const layout = layoutFor(item, blocks);
@@ -299,7 +309,7 @@ function createSlide(item, index) {
   const current = String(item.index).padStart(2, "0");
   const article = document.createElement("article");
   article.id = `slide-${item.index}`;
-  article.className = `dynamic-slide layout-${layout}`;
+  article.className = `dynamic-slide layout-${layout}${item.caseImage ? " has-case-media" : ""}`;
   article.dataset.start = String(index * SLIDE_DURATION);
   article.dataset.duration = String(SLIDE_DURATION);
   article.dataset.trackIndex = "0";
@@ -318,7 +328,7 @@ function createSlide(item, index) {
           <p class="scene-description">${escapeHtml(fullDescription(item))}</p>
           <div class="scene-rail"><span>SECTION</span><strong>${escapeHtml(item.section || "工作坊場景")}</strong></div>
         </div>
-        <div class="scene-body">${blockMarkup}</div>
+        <div class="scene-body">${renderCaseMedia(item)}${blockMarkup}</div>
       </div>
       <div class="scene-bottom">
         <div class="scene-footer">${renderLinks(item.links)}</div>

@@ -187,6 +187,11 @@ a { color: inherit; }
 .scene-rail span { font: 800 11px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .16em; }
 .scene-rail strong { color: var(--ink); font-size: clamp(16px, 1.3vw, 24px); }
 .scene-body { display: grid; align-content: start; grid-auto-rows: minmax(min-content, auto); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; min-width: 0; min-height: 0; overflow-x: hidden; overflow-y: auto; padding: 6px; scrollbar-gutter: auto; overscroll-behavior: contain; }
+.scene-case-media { position: relative; grid-column: 1 / -1; width: 100%; height: clamp(180px, 30vh, 360px); min-width: 0; min-height: clamp(180px, 30vh, 360px); max-height: clamp(180px, 30vh, 360px); margin: 0; overflow: hidden; border: 1px solid color-mix(in srgb, var(--rule) 90%, transparent); border-radius: 16px; background: #09121f; box-shadow: 0 12px 28px rgba(0,0,0,.16); }
+.scene-case-media img { display: block; width: 100%; height: 100%; object-fit: contain; background: #09121f; }
+.scene-case-media figcaption { position: absolute; right: 12px; bottom: 10px; left: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 10px; background: linear-gradient(90deg, rgba(5,13,24,.86), rgba(5,13,24,.5)); color: #fff; font-size: clamp(10px, .8vw, 14px); line-height: 1.35; pointer-events: none; }
+.scene-case-media figcaption span { color: var(--teal); font: 800 10px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; }
+.scene-case-media figcaption strong { font-weight: 800; }
 .content-block { position: relative; min-height: 84px; padding: 20px 20px 18px 54px; border: 1px solid color-mix(in srgb, var(--rule) 92%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--panel-strong) 78%, transparent); box-shadow: 0 10px 24px rgba(0,0,0,.1); transition: border-color .28s ease, box-shadow .28s ease, background-color .28s ease; }
 .theme-morning .content-block { background: #f8fafc; box-shadow: 0 8px 22px rgba(15,30,46,.07); }
 .content-block:hover { border-color: color-mix(in srgb, var(--accent) 68%, var(--rule)); box-shadow: 0 14px 30px rgba(0,0,0,.14); }
@@ -355,6 +360,8 @@ a { color: inherit; }
   body.interactive-mode .scene-description { max-width: none; margin-top: 14px; font-size: 16px; line-height: 1.65; }
   body.interactive-mode .scene-rail { margin-top: 18px; padding-top: 14px; }
   body.interactive-mode .scene-body, body.interactive-mode .layout-steps .scene-body { display: grid; grid-auto-rows: auto; grid-template-columns: 1fr; align-content: start; min-height: 0; overflow: visible; padding: 0; scrollbar-gutter: auto; }
+  body.interactive-mode .scene-case-media { height: min(42svh, 300px); min-height: min(42svh, 300px); max-height: min(42svh, 300px); }
+  body.interactive-mode .scene-case-media figcaption { right: 8px; bottom: 8px; left: 8px; padding: 7px 8px; font-size: 11px; }
   body.interactive-mode .content-block { min-height: 0; overflow: visible; padding: 14px 14px 14px 44px; }
   body.interactive-mode .content-block::before { top: 18px; left: 14px; width: 14px; }
   body.interactive-mode .content-block p { font-size: 15px; line-height: 1.6; }
@@ -472,6 +479,14 @@ a { color: inherit; }
   body.is-immersive .scene-body {
     gap: clamp(14px, 1.2vw, 22px) !important;
     padding: clamp(4px, .4vw, 8px) !important;
+  }
+
+  :fullscreen .scene-case-media,
+  :-webkit-full-screen .scene-case-media,
+  body.is-immersive .scene-case-media {
+    height: clamp(190px, 30vh, 420px) !important;
+    min-height: clamp(190px, 30vh, 420px) !important;
+    max-height: clamp(190px, 30vh, 420px) !important;
   }
 
   :fullscreen .content-block,
@@ -1118,6 +1133,13 @@ body.is-immersive .scene-transcript {
     padding: 4px;
     align-content: stretch;
     grid-auto-rows: minmax(120px, 1fr);
+  }
+  .layout-editorial.has-case-media .scene-body {
+    align-content: start;
+    grid-auto-rows: minmax(min-content, auto);
+  }
+  .layout-editorial.has-case-media .content-block {
+    height: auto;
   }
   .layout-editorial .content-block {
     display: flex;
