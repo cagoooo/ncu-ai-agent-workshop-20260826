@@ -20,7 +20,7 @@
 - `START_HERE_研習資源導航.html`：線上教材、123 個案例（含 12 張精選）、實作工具與下載入口
 - `07_備援/index.html`：公開 PDF、PowerPoint、HTML 簡報與學員任務書備援入口
 - `09_HTML動態簡報/index.html`：上午 50 頁、下午 68 頁的 HTML 原生文字場景，含 Vibe Coding、Vibe Working、AI 三個 Level、職位邊界模糊化與跨職位協作開場三頁、GAS／CLASP、Firebase、Supabase 後端資料單元、DNS 遷移 147 個 PDF 批次下載實戰三頁（第 4–6 頁同步呈現三張實戰截圖）、Gemini Spark 排程教學五頁與 Antigravity Remote Control 更新，預留 HyperFrames／Remotion 動態化結構
-- `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄
+- `04_實作工具/提示詞快捷面板_研習用.html`：桌機滿寬三欄、放大字級；手機／平板自動切換成觸控友善單欄；內建 52 筆提示詞，既有瀏覽器資料會自動補入新紀錄
 - `04_實作工具/04_跨平台Skill驗證器.html`：驗證 `SKILL.md`、資料夾或 ZIP 的跨平台可攜性與安全邊界
 - `04_實作工具/05_123個案例需求導向篩選器.html`：依教學／研究需求搜尋 123 筆 Akai 工具案例，提供卡片與應用雙入口
 - `04_實作工具/06_部署選擇詳細教學引導解說精靈.html`：比較 Google Sites、GitHub Pages、EZPage 並產出部署計畫
