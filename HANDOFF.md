@@ -2,6 +2,40 @@
 
 ---
 
+## 本輪最新完成：提示詞快捷面板補入截圖對應的 `/AGENT` 交接紀錄（v2026.08.26.01）
+
+本輪已對齊截圖中的同一筆紀錄，不是另建 `/takeover`：
+
+- 觸發代號：`/AGENT`
+- 名稱：`換AGENT繼續加油`
+- 分類：`開發流程`
+- 開頭保留：「我這邊的 token 額度快用完了，要換另一個 AGENT 接手（Claude Code／Codex／Antigravity）」；後續包含交接文件閱讀順序、實際測試、Git 狀態、Pages 部署與秘密資訊禁止寫入等完整流程。
+- 內建提示詞由 51 筆增為 52 筆。既有瀏覽器 `localStorage` 若仍是舊清單，載入時會依 trigger 差集自動補入新紀錄；使用者自訂與已編輯內容保留。截圖中的 54 筆可理解為 52 筆內建加 2 筆個人紀錄，不在網站中硬編碼 54。
+- 原始來源、公開站與正式包的面板 HTML 已同步；未輸入 API key、token 或密碼。
+
+本輪驗證證據：
+
+```text
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node --check qa_github_pages_site.mjs → exit 0
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=118、directLinks=118、下午篩選=68、CodexSearch=32、RWD viewports=3；上午／下午案例圖片 loaded=true（下午第 4、5、6 頁共 3 張）；motion samples=2、settled=true、overflow=0；場景捲軸能力=300/300、408/408；RWD 垂直捲動=6/6、6/6；換頁重置 maxResidual=0、0；長文字 mismatches=0、0；工具 named=92、numeric=0；GitHub Pages site QA passed
+公開面板 Playwright 搜尋 /AGENT → exit 0；rowCount=1、名稱=換AGENT繼續加油
+python -X utf8 qa_qr_codes.py → exit 1；目前 Python 環境缺少 cv2，QR Code 全量解碼未確認
+$env:WORKSHOP_ROOT='.../workshop_suite_src'; node audit_local_links.mjs → exit 1；5/167 個參照是 08 圖像簡報指向部署根目錄 pwa-register.js 的既有來源稽核缺口，未於本輪擴大修改
+python rebuild_release_manifest.py <正式包> → exit 0；total=580、inventory=579、pdf=8、duplicate_pdf_groups=4
+```
+
+本輪提交與公開部署驗證：
+
+```text
+git commit -m "更新換 AGENT 接手提示詞與版本快取" → exit 0；commit=f1ea9e1，12 files changed
+git push origin main → exit 0；main → main
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260826120002 → exit 0；HTTP=200、version=2026.08.26.01
+```
+
+---
+
 +## 本輪最新完成：下午場新增後端資料單元與正式包同步（v2026.08.25.06）
 
 本輪確認並完成下午場的後端教學大綱，新增 6 頁並維持上午場 50 頁不變；下午場由 62 頁更新為 68 頁，總覽由 112 頁更新為 118 頁。新增頁面依教學順序為：
