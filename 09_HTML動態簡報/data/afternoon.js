@@ -246,7 +246,7 @@ window.DYNAMIC_DECK_DATA = {
       "eyebrow": "GOOGLE APPS SCRIPT",
       "section": "後端資料與 Agent 應用",
       "notes": "Google Apps Script 是雲端 JavaScript 平台，可以整合與自動化 Google 產品；Google 官方也把按鈕、使用者行動與時間排程列為常見自動化入口。工作坊可先用 Sheets 當資料後臺，再用 Apps Script 處理表單、通知、排程與 Web App 介面。公開案例中，#90『繪本→Google表單一條龍工作坊』與 #106『石門國小第103屆畢業典禮』可作為 GAS 路線的觀察入口。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://cagoooo.github.io/Akai/tool/90/\n- https://cagoooo.github.io/storytell/\n- https://cagoooo.github.io/Akai/tool/106/\n- https://cagoooo.github.io/smes-graduation-103/\n[/Sources]",
-      "text": "GOOGLE APPS SCRIPT\nGAS：Google 生態系的原生後端\n下午場｜打造會做事的 AI 教學與研究夥伴\n16\n01\nSheets 當資料後臺\n先用熟悉的試算表保存欄位、紀錄與狀態；小型教學工具很快就能開始。\n02\nApps Script 接流程\n用表單、通知、排程與 doGet／doPost 串起 Google 工具，讓資料不只停在畫面上。\n03\n從公開案例學架構\n繪本→Google 表單一條龍、畢業祝福牆都是可觀察的 GAS 路線；先看資料流，再決定要不要升級。\n繪本→Google表單一條龍 · 工具卡片 ↗  ·  畢業祝福牆 · 工具卡片 ↗  ·  CLASP／GAS Skill ↗\n繪本→Google表單一\n畢業祝福牆\nCLASP／GAS Sk",
+      "text": "GOOGLE APPS SCRIPT\nGAS：Google 生態系的原生後端\n下午場｜打造會做事的 AI 教學與研究夥伴\n16\n01\nSheets 當資料後臺\n先用熟悉的試算表保存欄位、紀錄與狀態；小型教學工具很快就能開始。\n02\nApps Script 接流程\n用表單、通知、排程與 doGet／doPost 串起 Google 工具，讓資料不只停在畫面上。\n03\n從公開案例學架構\n繪本→Google 表單一條龍、畢業祝福牆都是可觀察的 GAS 路線；先看資料流，再決定要不要升級。\n繪本→Google表單一條龍 · 工具卡片 ↗  ·  畢業祝福牆 · 工具卡片 ↗  ·  Codex 懶人包主 Repo（GAS／CLASP 延伸）↗\n繪本→Google表單一\n畢業祝福牆\nCodex 懶人包主 R",
       "description": "Google Apps Script 是雲端 JavaScript 平台，可以整合與自動化 Google 產品；Google 官方也把按鈕、使用者行動與時間排程列為常見自動化入口。工作坊可先用 Sheets 當資料後臺，再用 Apps Script 處理表單、通知、排程與 Web App 介面。公開案例中，#90『繪本→Google表單一條龍工作坊』與 #106『石門國小第103屆畢業典禮』可作為 GAS 路線的觀察入口。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://cagoooo.github.io/Akai/tool/90/\n- https://cagoooo.github.io/storytell/\n- https://cagoooo.github.io/Akai/tool/106/\n- https://cagoooo.github.io/smes-graduation-103/\n[/Sources]",
       "links": [
         {
@@ -258,8 +258,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://cagoooo.github.io/Akai/tool/106/"
         },
         {
-          "label": "CLASP／GAS Skill",
-          "url": "https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas"
+          "label": "Codex 懶人包主 Repo（GAS／CLASP 延伸）",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs"
         }
       ]
     },
@@ -268,13 +268,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "CLASP Skill：把 GAS 開發變成可重複工作流",
       "eyebrow": "GAS SKILL WORKFLOW",
       "section": "後端資料與 Agent 應用",
-      "notes": "CLASP Skill 的教學重點不是背指令，而是把 GAS 的建立、更新、部署與驗收變成可重複的工作流：先說清資料欄位與權限，再讓 Agent 產出程式，最後留下測試結果與可重跑的 Skill。這樣下次換一個表單或班級，不必從零開始。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas\n[/Sources]",
-      "text": "GAS SKILL WORKFLOW\nCLASP Skill：把 GAS 開發變成可重複工作流\n下午場｜打造會做事的 AI 教學與研究夥伴\n17\n1\n說清需求\n欄位、使用者、規則\n→\n2\n產出程式\nGAS／API／觸發器\n→\n3\n連動資料\nSheets 作資料表\n→\n4\n部署驗收\n權限、網址、測試\n→\n5\n留下 Skill\n下次可重跑、可修改\n每一步都留下可檢查的成果\nCLASP／GAS Skill ↗  ·  Google Apps Script 官方 ↗\nCLASP／GAS Sk\nApps Script",
-      "description": "CLASP Skill 的教學重點不是背指令，而是把 GAS 的建立、更新、部署與驗收變成可重複的工作流：先說清資料欄位與權限，再讓 Agent 產出程式，最後留下測試結果與可重跑的 Skill。這樣下次換一個表單或班級，不必從零開始。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas\n[/Sources]",
+      "notes": "CLASP Skill 的教學重點不是背指令，而是把 GAS 的建立、更新、部署與驗收變成可重複的工作流：先說清資料欄位與權限，再讓 Agent 產出程式，最後留下測試結果與可重跑的 Skill。這樣下次換一個表單或班級，不必從零開始。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://github.com/mathruffian-dot/codex-lazy-packs\n[/Sources]",
+      "text": "GAS SKILL WORKFLOW\nCLASP Skill：把 GAS 開發變成可重複工作流\n下午場｜打造會做事的 AI 教學與研究夥伴\n17\n1\n說清需求\n欄位、使用者、規則\n→\n2\n產出程式\nGAS／API／觸發器\n→\n3\n連動資料\nSheets 作資料表\n→\n4\n部署驗收\n權限、網址、測試\n→\n5\n留下 Skill\n下次可重跑、可修改\n每一步都留下可檢查的成果\nCodex 懶人包主 Repo（GAS／CLASP 延伸）↗  ·  Google Apps Script 官方 ↗\nCodex 懶人包主 R\nApps Script",
+      "description": "CLASP Skill 的教學重點不是背指令，而是把 GAS 的建立、更新、部署與驗收變成可重複的工作流：先說清資料欄位與權限，再讓 Agent 產出程式，最後留下測試結果與可重跑的 Skill。這樣下次換一個表單或班級，不必從零開始。\n\n[Sources]\n- https://developers.google.com/apps-script\n- https://github.com/mathruffian-dot/codex-lazy-packs\n[/Sources]",
       "links": [
         {
-          "label": "CLASP／GAS Skill",
-          "url": "https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas"
+          "label": "Codex 懶人包主 Repo（GAS／CLASP 延伸）",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs"
         },
         {
           "label": "Google Apps Script 官方",
@@ -609,9 +609,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "Codex",
       "eyebrow": "開啟 Codex ↗",
       "section": "Codex",
-      "notes": "轉場：下午用同一個任務進入 Codex，比較工作方式與成果證據，而不是比較誰的回答比較像人。桌面版 ChatGPT Voice 可在 Work／Codex 中直接口述、插話與追問進度；模型與方案會變動，本次仍以 GPT-5.6 Luna＋Max 作為講師的成本效益示範取向。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://learn.chatgpt.com/docs/build-skills\n- https://openai.com/index/gpt-5-6/\n- https://developers.openai.com/api/docs/models/gpt-5.6-luna\n[/Sources]",
+      "notes": "轉場：下午用同一個任務進入 Codex，比較工作方式與成果證據，而不是比較誰的回答比較像人。桌面版 ChatGPT Voice 可在 Work／Codex 中直接口述、插話與追問進度；模型與方案會變動，本次仍以 GPT-5.6 Luna＋Max 作為講師的成本效益示範取向。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n- https://openai.com/index/gpt-5-6/\n- https://developers.openai.com/api/docs/models/gpt-5.6-luna\n[/Sources]",
       "text": "02\nCodex\nChatGPT Voice 可在桌面版 Work／Codex 中直接口述任務、追問進度與協調 Agent；Codex 也能讀取工作區脈絡、修改檔案、執行檢查並交付可追查成果。\n動手\n做\n<>\nCodex\nChatGPT Agent 工作區\n下午場｜打造會做事的 AI 教學與研究夥伴\n36\n開啟 Codex ↗\nCodex",
-      "description": "轉場：下午用同一個任務進入 Codex，比較工作方式與成果證據，而不是比較誰的回答比較像人。桌面版 ChatGPT Voice 可在 Work／Codex 中直接口述、插話與追問進度；模型與方案會變動，本次仍以 GPT-5.6 Luna＋Max 作為講師的成本效益示範取向。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://learn.chatgpt.com/docs/build-skills\n- https://openai.com/index/gpt-5-6/\n- https://developers.openai.com/api/docs/models/gpt-5.6-luna\n[/Sources]",
+      "description": "轉場：下午用同一個任務進入 Codex，比較工作方式與成果證據，而不是比較誰的回答比較像人。桌面版 ChatGPT Voice 可在 Work／Codex 中直接口述、插話與追問進度；模型與方案會變動，本次仍以 GPT-5.6 Luna＋Max 作為講師的成本效益示範取向。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n- https://openai.com/index/gpt-5-6/\n- https://developers.openai.com/api/docs/models/gpt-5.6-luna\n[/Sources]",
       "links": [
         {
           "label": "開啟 Codex",
@@ -624,9 +624,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "Codex 實作工作流：先定位，再修改",
       "eyebrow": "WORKFLOW",
       "section": "Codex",
-      "notes": "示範如何把一個模糊要求改成可驗證任務。強調 Codex 可以處理檔案與專案工作，桌面版也能用 Voice 口述任務；使用者仍需界定範圍、麥克風與工作區權限。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "notes": "示範如何把一個模糊要求改成可驗證任務。強調 Codex 可以處理檔案與專案工作，桌面版也能用 Voice 口述任務；使用者仍需界定範圍、麥克風與工作區權限。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "text": "WORKFLOW\nCodex 實作工作流：先定位，再修改\n下午場｜打造會做事的 AI 教學與研究夥伴\n37\n1\n開啟工作區／語音\n素材、麥克風與權限\n→\n2\n描述任務\n目標、限制、驗收\n→\n3\n觀察進度\n計畫、讀檔、工具使用\n→\n4\n檢查成果\n檔案、測試、畫面、差異\n→\n5\n決定下一步\n接受、修正或停止\n每一步都留下可檢查的成果\n開啟 Codex ↗\nCodex",
-      "description": "示範如何把一個模糊要求改成可驗證任務。強調 Codex 可以處理檔案與專案工作，桌面版也能用 Voice 口述任務；使用者仍需界定範圍、麥克風與工作區權限。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "description": "示範如何把一個模糊要求改成可驗證任務。強調 Codex 可以處理檔案與專案工作，桌面版也能用 Voice 口述任務；使用者仍需界定範圍、麥克風與工作區權限。\n\n[Sources]\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "links": [
         {
           "label": "開啟 Codex",
@@ -684,17 +684,17 @@ window.DYNAMIC_DECK_DATA = {
       "title": "Antigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗",
       "eyebrow": "Antigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗",
       "section": "Agent Skills",
-      "notes": "轉場：提示詞解決這一次；Skill 保存一套可重複、可維護、可驗證的做法。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "notes": "轉場：提示詞解決這一次；Skill 保存一套可重複、可維護、可驗證的做法。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "text": "03\nAgent Skills\n把反覆使用的提示詞、規則、範例與檢查方式，封裝成 Agent 需要時才載入的專業工作包。\n動手\n做\n下午場｜打造會做事的 AI 教學與研究夥伴\n41\nAntigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗\nAntigravity\nCodex Skills\nSkills 資源庫",
-      "description": "轉場：提示詞解決這一次；Skill 保存一套可重複、可維護、可驗證的做法。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "description": "轉場：提示詞解決這一次；Skill 保存一套可重複、可維護、可驗證的做法。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "links": [
         {
           "label": "Antigravity Skills",
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -707,17 +707,17 @@ window.DYNAMIC_DECK_DATA = {
       "title": "Skills：像《駭客任務》灌入，也像寶可夢裝卡",
       "eyebrow": "SKILL AS A POWER-UP",
       "section": "Agent Skills",
-      "notes": "用電影與遊戲把抽象概念變具體：Skill 很像《駭客任務》裡可以載入的能力模組，也像寶可夢取得技能卡或道具後學會新招式。\n\n但「安裝」不是結束，也不是保證完全符合需求。可以先從大神、官方團隊或社群公開的 Skill 開始，再和 Agent 持續對話，補上自己的資料、規則、輸出格式、授權邊界與驗收方式。每一輪修正都會讓 Skill 更貼合自己的課程、研究、工作場域與生活習慣。\n\n所以 Skill 會進化，而且每個人的版本都可以不同：下載的是起點，能否變成自己的工作方法，才是最有趣的地方。\n\n[Sources]\n- https://agentskills.io/home\n- https://github.com/anthropics/skills\n- https://github.com/mathruffian-dot/opencode-lazy-packs\n[/Sources]",
+      "notes": "用電影與遊戲把抽象概念變具體：Skill 很像《駭客任務》裡可以載入的能力模組，也像寶可夢取得技能卡或道具後學會新招式。\n\n但「安裝」不是結束，也不是保證完全符合需求。可以先從大神、官方團隊或社群公開的 Skill 開始，再和 Agent 持續對話，補上自己的資料、規則、輸出格式、授權邊界與驗收方式。每一輪修正都會讓 Skill 更貼合自己的課程、研究、工作場域與生活習慣。\n\n所以 Skill 會進化，而且每個人的版本都可以不同：下載的是起點，能否變成自己的工作方法，才是最有趣的地方。\n\n[Sources]\n- https://agentskills.io/home\n- https://github.com/anthropics/skills\n- https://github.com/mathruffian-dot/codex-lazy-packs\n[/Sources]",
       "text": "SKILL AS A POWER-UP\nSkills：像《駭客任務》灌入，也像寶可夢裝卡\n下午場｜打造會做事的 AI 教學與研究夥伴\n42\n《駭客任務》：技能像能力模組\nNeo 原本不會空手道；技能灌入後，立刻進入新的行動方式。\n\nAgent 裝上 Skill，也能學會一套可重複的工作流程。\n《寶可夢》：技能卡只是起點\n裝上招式後，還要練習、對戰與升級。\n\n把大神的 Skill 抓進來，再和 Agent 對話修正，才會進化成你的版本。\nAntigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗\nAntigravity\nCodex Skills\nSkills 資源庫",
-      "description": "用電影與遊戲把抽象概念變具體：Skill 很像《駭客任務》裡可以載入的能力模組，也像寶可夢取得技能卡或道具後學會新招式。\n\n但「安裝」不是結束，也不是保證完全符合需求。可以先從大神、官方團隊或社群公開的 Skill 開始，再和 Agent 持續對話，補上自己的資料、規則、輸出格式、授權邊界與驗收方式。每一輪修正都會讓 Skill 更貼合自己的課程、研究、工作場域與生活習慣。\n\n所以 Skill 會進化，而且每個人的版本都可以不同：下載的是起點，能否變成自己的工作方法，才是最有趣的地方。\n\n[Sources]\n- https://agentskills.io/home\n- https://github.com/anthropics/skills\n- https://github.com/mathruffian-dot/opencode-lazy-packs\n[/Sources]",
+      "description": "用電影與遊戲把抽象概念變具體：Skill 很像《駭客任務》裡可以載入的能力模組，也像寶可夢取得技能卡或道具後學會新招式。\n\n但「安裝」不是結束，也不是保證完全符合需求。可以先從大神、官方團隊或社群公開的 Skill 開始，再和 Agent 持續對話，補上自己的資料、規則、輸出格式、授權邊界與驗收方式。每一輪修正都會讓 Skill 更貼合自己的課程、研究、工作場域與生活習慣。\n\n所以 Skill 會進化，而且每個人的版本都可以不同：下載的是起點，能否變成自己的工作方法，才是最有趣的地方。\n\n[Sources]\n- https://agentskills.io/home\n- https://github.com/anthropics/skills\n- https://github.com/mathruffian-dot/codex-lazy-packs\n[/Sources]",
       "links": [
         {
           "label": "Antigravity Skills",
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -754,8 +754,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -777,8 +777,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -791,17 +791,17 @@ window.DYNAMIC_DECK_DATA = {
       "title": "Skill 資料夾：主文保持短，細節分層放",
       "eyebrow": "FOLDER ANATOMY",
       "section": "Agent Skills",
-      "notes": "不是每個 Skill 都要四個資料夾。先從 SKILL.md 開始，只有當內容能降低重複、提高穩定性時才增加 references、scripts 或 assets。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "notes": "不是每個 Skill 都要四個資料夾。先從 SKILL.md 開始，只有當內容能降低重複、提高穩定性時才增加 references、scripts 或 assets。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "text": "FOLDER ANATOMY\nSkill 資料夾：主文保持短，細節分層放\n下午場｜打造會做事的 AI 教學與研究夥伴\n46\n1\nSKILL.md\n名稱、描述、核心流程\n→\n2\nreferences/\n規範、知識、長篇範例\n→\n3\nscripts/\n可重複執行的檢查與轉換\n→\n4\nassets/\n範本、圖片、輸出骨架\n每一步都留下可檢查的成果\nAntigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗\nAntigravity\nCodex Skills\nSkills 資源庫",
-      "description": "不是每個 Skill 都要四個資料夾。先從 SKILL.md 開始，只有當內容能降低重複、提高穩定性時才增加 references、scripts 或 assets。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "description": "不是每個 Skill 都要四個資料夾。先從 SKILL.md 開始，只有當內容能降低重複、提高穩定性時才增加 references、scripts 或 assets。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "links": [
         {
           "label": "Antigravity Skills",
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -814,17 +814,17 @@ window.DYNAMIC_DECK_DATA = {
       "title": "---\nname: course-site-quality-check\ndescription: 檢查課程網站的手機版、無障礙、連結與部署狀態；當使用者要求網站上線前總檢時使用。\n---\n\n# 課程網站上線前總檢\n\n1. 先唯讀檢查現況，不直接發布。\n2. 依序檢查手機版、鍵盤操作、連結與隱私。\n3. 對每項標示：通過／失敗／未確認。\n4. 只有在使用者明確授權後才部署。\n5. 交付檢查表、證據與下一步。",
       "eyebrow": "AGENT SKILL",
       "section": "Agent Skills",
-      "notes": "本工作坊採跨平台相容規格：YAML frontmatter 只放 name 與 description。正文用命令式步驟，並把人工授權邊界寫明。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "notes": "本工作坊採跨平台相容規格：YAML frontmatter 只放 name 與 description。正文用命令式步驟，並把人工授權邊界寫明。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "text": "AGENT SKILL\n跨平台 SKILL.md：最小而清楚\n下午場｜打造會做事的 AI 教學與研究夥伴\n47\n---\nname: course-site-quality-check\ndescription: 檢查課程網站的手機版、無障礙、連結與部署狀態；當使用者要求網站上線前總檢時使用。\n---\n\n# 課程網站上線前總檢\n\n1. 先唯讀檢查現況，不直接發布。\n2. 依序檢查手機版、鍵盤操作、連結與隱私。\n3. 對每項標示：通過／失敗／未確認。\n4. 只有在使用者明確授權後才部署。\n5. 交付檢查表、證據與下一步。\nFrontmatter\n為跨 Antigravity 與 Codex 使用，只保留 name、description。\n描述要能觸發\n寫清楚何時使用，以及它解決什麼工作。\n流程要能驗收\n步驟、狀態與授權邊界都可檢查。\nAntigravity Skills ↗  ·  Codex Skills ↗  ·  Skills 資源庫 ↗\nAntigravity\nCodex Skills\nSkills 資源庫",
-      "description": "本工作坊採跨平台相容規格：YAML frontmatter 只放 name 與 description。正文用命令式步驟，並把人工授權邊界寫明。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://learn.chatgpt.com/docs/build-skills\n[/Sources]",
+      "description": "本工作坊採跨平台相容規格：YAML frontmatter 只放 name 與 description。正文用命令式步驟，並把人工授權邊界寫明。\n\n[Sources]\n- https://codelabs.developers.google.com/getting-started-with-antigravity-skills\n- https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md\n[/Sources]",
       "links": [
         {
           "label": "Antigravity Skills",
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -846,8 +846,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -869,8 +869,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -892,8 +892,8 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Codex Skills",
-          "url": "https://learn.chatgpt.com/docs/build-skills"
+          "label": "Codex 必裝 Skills／Plugins",
+          "url": "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md"
         },
         {
           "label": "Skills 資源庫",
@@ -1183,9 +1183,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "下午資源書籤",
       "eyebrow": "BOOKMARKS",
       "section": "下午資源書籤",
-      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：三師爸與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
-      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n68\n研習資源導航\n公開網站資源 ↗\n開啟 Google Antigravity\n公開網站資源 ↗\n開啟 Codex\n公開網站資源 ↗\n開啟 Claude\n公開網站資源 ↗\nAgent Skills 官方教學\n公開網站資源 ↗\nAgent Skills 資源庫：三師爸與國際公開 Skills\n公開網站資源 ↗\n提示詞快捷面板\n公開網站資源 ↗\n教育科技創新專區\n公開網站資源 ↗\nPIRLS 2026 評分規劃\n公開網站資源 ↗\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
-      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：三師爸與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
+      "notes": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：Codex 懶人包與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
+      "text": "BOOKMARKS\n下午資源書籤\n下午場｜打造會做事的 AI 教學與研究夥伴\n68\n研習資源導航\n公開網站資源 ↗\n開啟 Google Antigravity\n公開網站資源 ↗\n開啟 Codex\n公開網站資源 ↗\n開啟 Claude\n公開網站資源 ↗\nAgent Skills 官方教學\n公開網站資源 ↗\nAgent Skills 資源庫：Codex 懶人包與國際公開 Skills\n公開網站資源 ↗\n提示詞快捷面板\n公開網站資源 ↗\n教育科技創新專區\n公開網站資源 ↗\nPIRLS 2026 評分規劃\n公開網站資源 ↗\n好的教學與研究 Agent 不只會做事；它會在正確邊界內做事，並留下你能檢查的證據。",
+      "description": "請參與者先把資源頁加入書籤，再用手機拍下最後一句。若現場時間不足，部署與 Skill 擴寫可依此清單回家續作。\n\n本頁資源皆為公開網站入口，請依卡片名稱點擊或掃描 QR Code 開啟。\n\n[Sources]\n- 公開資源：研習資源導航\n- 公開資源：開啟 Google Antigravity\n- 公開資源：開啟 Codex\n- 公開資源：開啟 Claude\n- 公開資源：Agent Skills 官方教學\n- 公開資源：Agent Skills 資源庫：Codex 懶人包與國際公開 Skills\n- 公開資源：提示詞快捷面板\n- 公開資源：教育科技創新專區\n- 公開資源：PIRLS 2026 評分規劃\n[/Sources]",
       "links": [
         {
           "label": "研習資源導航",
@@ -1208,7 +1208,7 @@ window.DYNAMIC_DECK_DATA = {
           "url": "https://codelabs.developers.google.com/getting-started-with-antigravity-skills"
         },
         {
-          "label": "Agent Skills 資源庫：三師爸與國際公開 Skills",
+          "label": "Agent Skills 資源庫：Codex 懶人包與國際公開 Skills",
           "url": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
         },
         {

@@ -239,136 +239,156 @@
     "file": "qr/qr-a3774dd42c41.png",
     "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/60/"
   },
-  "https://github.com/mathruffian-dot/opencode-lazy-packs": {
-    "file": "qr/qr-bac4bc7d531d.png",
+  "https://github.com/mathruffian-dot/codex-lazy-packs": {
+    "file": "qr/qr-d4da40cfd571.png",
     "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/61/"
   },
-  "https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas": {
-    "file": "qr/qr-990b6454cb24.png",
+  "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md": {
+    "file": "qr/qr-7ea8c1cd5019.png",
     "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/00-install-all": {
+    "file": "qr/qr-bd76acfa7f3a.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/63/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/01-notebooklm": {
+    "file": "qr/qr-2a40f9218922.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/64/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/02-essentials": {
+    "file": "qr/qr-17cbbaa24aa4.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/65/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/03-github": {
+    "file": "qr/qr-50c758e066ed.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/07-supabase": {
+    "file": "qr/qr-c43290ae3dfd.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+  },
+  "https://github.com/mathruffian-dot/codex-lazy-packs/tree/master/skills/08-firebase": {
+    "file": "qr/qr-66d7e2f7f70b.png",
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/68/"
   },
   "https://github.com/openclaw/openclaw": {
     "file": "qr/qr-c6fd25b449cf.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/63/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/"
   },
   "https://github.com/openclaw/openclaw/blob/main/docs/cli/mcp.md": {
     "file": "qr/qr-4249879c7332.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/64/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/"
   },
   "https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex": {
     "file": "qr/qr-2c1bceab9bff.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/65/"
-  },
-  "https://learn.chatgpt.com/docs/build-skills": {
-    "file": "qr/qr-d8ef5ab86ec3.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
   },
   "https://notebook.google.com/": {
     "file": "qr/qr-710a892cb3e5.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
   },
   "https://openai.com/index/gpt-5-6/": {
     "file": "qr/qr-b930913fb0d8.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/68/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/"
   },
   "https://openclaw.ai/": {
     "file": "qr/qr-b9c5c3e4da8d.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/74/"
   },
   "https://pages.github.com/": {
     "file": "qr/qr-bcb9d050683f.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/"
   },
   "https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/": {
     "file": "qr/qr-965677e3ecfc.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
   },
   "https://sites.google.com/new": {
     "file": "qr/qr-18af5d0b5d03.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
   },
   "https://supabase.com/": {
     "file": "qr/qr-d88af2e66da3.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/"
   },
   "https://supabase.com/docs": {
     "file": "qr/qr-22e770dd6c95.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/74/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/79/"
   },
   "https://support.google.com/gemini/answer/15235603?hl=zh-Hant": {
     "file": "qr/qr-471ca4742d40.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/80/"
   },
   "https://support.google.com/gemini/answer/16047321?hl=en": {
     "file": "qr/qr-e0624b6ad827.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/81/"
   },
   "https://support.google.com/gemini/answer/17094710?hl=zh-HK": {
     "file": "qr/qr-da9bbd97a3d9.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
   },
   "https://support.google.com/gemininotebook/answer/16164461?hl=zh-Hant": {
     "file": "qr/qr-4c591593d7c0.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/83/"
   },
   "https://support.google.com/gemininotebook/answer/16206563?hl=zh-Hant": {
     "file": "qr/qr-b84477bc61db.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/79/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/84/"
   },
   "https://support.google.com/sites/answer/6372878?hl=zh-Hant": {
     "file": "qr/qr-67e5818b1fdb.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/80/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/85/"
   },
   "https://timssandpirls.bc.edu/timss2019/methods/pdf/TIMSS-2019-MP-Technical-Report.pdf": {
     "file": "qr/qr-9006a4ca0253.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/81/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/86/"
   },
   "https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187": {
     "file": "qr/qr-bd4f425bb5e6.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/87/"
   },
   "https://web.smes.tyc.edu.tw/modules/tadnews/index.php?nsn=3187，找出頁面中的全部": {
     "file": "qr/qr-dc044c3f7ddc.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/83/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/88/"
   },
   "https://www.anthropic.com/news/claude-fable-5-mythos-5": {
     "file": "qr/qr-147a989f3e59.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/84/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/89/"
   },
   "https://www.anthropic.com/news/claude-opus-4-8": {
     "file": "qr/qr-918121c45d59.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/85/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/90/"
   },
   "https://www.anthropic.com/news/claude-sonnet-5": {
     "file": "qr/qr-0f764e9bc764.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/86/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/"
   },
   "https://www.iea.nl/publications/teachers-resources/putting-pirls-use-classrooms-across-globe": {
     "file": "qr/qr-c11eef354b3a.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/87/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/92/"
   },
   "https://www.iea.nl/sites/default/files/2024-04/Operational-Automatic-Scoring-of-Text-Responses-ePIRLS.pdf": {
     "file": "qr/qr-f64347d7f6af.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/88/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
   },
   "https://www.iea.nl/sites/default/files/2025-10/GA66_PIRLS%202026.pdf": {
     "file": "qr/qr-f7fac2878932.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/89/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/94/"
   },
   "https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=6&zone_id=0&page_id=46&content_id=119&type=news": {
     "file": "qr/qr-bcbc3680aa51.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/90/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/95/"
   },
   "https://www.typeless.com/refer?code=LZTOQFT": {
     "file": "qr/qr-c576eaab991a.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/"
   },
   "https://www.youtube.com/watch?v=LCEmiRjPEtQ": {
     "file": "qr/qr-acb008d7c58d.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/92/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/97/"
   },
   "https://youtu.be/kbAgdV__8Mc?si=b9NH1NDr67lf5CZ_": {
     "file": "qr/qr-522e9e69f4e6.png",
-    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
+    "scanUrl": "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/98/"
   }
 }

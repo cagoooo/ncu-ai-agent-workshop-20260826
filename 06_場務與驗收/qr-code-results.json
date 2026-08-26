@@ -10,10 +10,10 @@
         "https://www.youtube.com/watch?v=LCEmiRjPEtQ"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/92/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/97/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/92/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/97/"
       ],
       "ok": true
     },
@@ -26,11 +26,11 @@
         "https://gemini.google.com/app"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/"
       ],
       "ok": true
@@ -45,12 +45,12 @@
         "https://antigravity.google/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/4/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/4/"
       ],
@@ -65,12 +65,12 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -83,12 +83,12 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -153,7 +153,7 @@
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/15/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/47/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/14/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/19/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
@@ -161,7 +161,7 @@
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/15/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/47/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/14/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/19/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
@@ -176,11 +176,11 @@
         "https://chatgpt.com/codex/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "ok": true
@@ -194,11 +194,11 @@
         "https://chatgpt.com/codex/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "ok": true
@@ -212,11 +212,11 @@
         "https://chatgpt.com/codex/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/48/"
       ],
       "ok": true
@@ -230,12 +230,12 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/91/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/96/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -247,10 +247,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -262,10 +262,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -277,10 +277,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -294,12 +294,12 @@
         "https://cagoooo.github.io/it-cockpit/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/60/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/60/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
@@ -314,11 +314,11 @@
         "https://cagoooo.github.io/it-cockpit/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/"
       ],
       "ok": true
@@ -331,10 +331,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -346,10 +346,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -361,10 +361,10 @@
         "https://notebook.google.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/"
       ],
       "ok": true
     },
@@ -518,12 +518,12 @@
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "ok": true
     },
@@ -536,11 +536,11 @@
         "https://cagoooo.github.io/domain-meeting-go/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/"
       ],
       "ok": true
@@ -555,13 +555,13 @@
         "https://gg90052.github.io/ezpage/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/58/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/58/"
       ],
       "ok": true
@@ -575,12 +575,12 @@
         "https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "ok": true
     },
@@ -592,10 +592,10 @@
         "https://pages.github.com/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/"
       ],
       "ok": true
     },
@@ -624,14 +624,14 @@
         "https://sites.google.com/mail2.smes.tyc.edu.tw/114teacher/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/71/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/76/"
       ],
       "ok": true
     },
@@ -653,26 +653,26 @@
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/39/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/57/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/60/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/58/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/39/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/57/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/60/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/34/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/31/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/70/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/75/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/58/"
       ],
       "ok": true
@@ -686,12 +686,12 @@
         "https://github.com/openclaw/openclaw"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/63/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/74/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/63/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/74/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/69/"
       ],
       "ok": true
     },
@@ -783,17 +783,17 @@
       "targets": [
         "https://cagoooo.github.io/Akai/tool/90/",
         "https://cagoooo.github.io/Akai/tool/106/",
-        "https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas"
+        "https://github.com/mathruffian-dot/codex-lazy-packs"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/23/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/10/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/61/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/23/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/10/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/61/"
       ],
       "ok": true
     },
@@ -802,15 +802,15 @@
       "slide": 17,
       "mode": "standard",
       "targets": [
-        "https://github.com/mathruffian-dot/opencode-lazy-packs/tree/main/skills/05-sheets-gas",
+        "https://github.com/mathruffian-dot/codex-lazy-packs",
         "https://developers.google.com/apps-script"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/61/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/51/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/61/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/51/"
       ],
       "ok": true
@@ -845,11 +845,11 @@
         "https://cagoooo.github.io/Akai/"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/7/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/7/"
       ],
       "ok": true
@@ -866,12 +866,12 @@
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/51/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/55/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/51/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/55/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/73/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/78/"
       ],
       "ok": true
     },
@@ -1009,13 +1009,13 @@
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/98/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/98/"
       ],
       "ok": true
     },
@@ -1028,12 +1028,12 @@
         "https://youtu.be/kbAgdV__8Mc?si=b9NH1NDr67lf5CZ_"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/98/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/67/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/93/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/72/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/98/"
       ],
       "ok": true
     },
@@ -1045,10 +1045,10 @@
         "https://support.google.com/gemini/answer/17094710?hl=zh-HK"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "ok": true
     },
@@ -1060,10 +1060,10 @@
         "https://support.google.com/gemini/answer/17094710?hl=zh-HK"
       ],
       "expectedScanUrls": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "decoded": [
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "ok": true
     },
@@ -1077,11 +1077,11 @@
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/56/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/77/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/82/"
       ],
       "ok": true
     },
@@ -1196,17 +1196,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1217,17 +1217,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1253,17 +1253,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1274,17 +1274,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1295,17 +1295,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1316,17 +1316,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1337,17 +1337,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1358,17 +1358,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1379,17 +1379,17 @@
       "mode": "standard",
       "targets": [
         "https://codelabs.developers.google.com/getting-started-with-antigravity-skills",
-        "https://learn.chatgpt.com/docs/build-skills",
+        "https://github.com/mathruffian-dot/codex-lazy-packs/blob/master/01.5-Codex%E5%BF%85%E8%A3%9DSkills%E8%88%87Plugins.md",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/04_%E5%AF%A6%E4%BD%9C%E5%B7%A5%E5%85%B7/07_Agent_Skills%E8%B3%87%E6%BA%90%E5%BA%AB.html"
       ],
       "expectedScanUrls": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/50/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/66/",
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/62/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/"
       ],
       "ok": true
@@ -1616,7 +1616,7 @@
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/37/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/7/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/89/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/94/"
       ],
       "decoded": [
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/39/",
@@ -1627,7 +1627,7 @@
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/38/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/37/",
         "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/7/",
-        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/89/"
+        "https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/q/94/"
       ],
       "ok": true
     }

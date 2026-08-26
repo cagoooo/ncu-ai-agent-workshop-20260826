@@ -1,6 +1,75 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新完成：Skills 資源全面改為 Codex 懶人包（v2026.08.26.03）
+
+本輪依使用者指定，將研習網站、圖檔／HTML 簡報、QR Code 目標與正式包中仍使用的 Skills 資源入口，統一改為 Codex 專用的 [Codex 懶人包](https://github.com/mathruffian-dot/codex-lazy-packs)。目前 Codex 入口包含：
+
+- Codex 必裝 Skills／Plugins 指南：`01.5-Codex必裝Skills與Plugins.md`
+- NotebookLM：`skills/01-notebooklm`
+- GitHub：`skills/03-github`
+- Supabase：`skills/07-supabase`
+- Firebase：`skills/08-firebase`
+- Codex 基礎：`skills/02-essentials`
+- 一次安裝集合：`skills/00-install-all`
+
+資源庫頁已改成 Codex 專用說明，並保留 Anthropic、Vercel、Remotion、HyperFrames、Hugging Face 等跨平台公開 Skills 供比較。上游目前沒有 `05-sheets-gas` 專用資料夾，因此 GAS／CLASP 僅標示為 Codex 懶人包主 Repo 的延伸參考，沒有捏造不存在的連結。使用者要求的 Plugin 僅更新為可閱讀／安裝的公開入口，本輪沒有替使用者安裝任何 Plugin。
+
+已同步層級：
+
+- `workshop_suite_src` 建置來源、`github_pages_site` 公開站、正式包 `研習正式包_v1.0`。
+- 08_HTML簡報 的上午 50 頁、下午 68 頁之 HTML／PNG／PPTX／PDF 與 QR 連結。
+- 09_HTML動態簡報 的上午 50 頁、下午 68 頁與總覽 118 張卡片。
+- `assets/qr/manifest.json`、QR PNG、`q/` 短路由及 `qr-code-results.json`。
+
+精確舊連結稽核：在目前使用中的來源、公開站、正式包與 QR／q 產物中，`opencode-lazy-packs`、`learn.chatgpt.com/docs/build-skills`、`skills/05-sheets-gas` 均為 0 個命中檔案；歷史 HANDOFF、ARCHIVE 與備份紀錄沒有改寫。
+
+本輪建置、同步與測試證據：
+
+~~~text
+node --check build_decks.mjs → exit 0
+node --check build_html_deck.mjs → exit 0
+node --check sync_dynamic_deck.mjs → exit 0
+node --check bump_site_version.mjs → exit 0
+node --check qa_html_deck.mjs → exit 0
+node --check qa_github_pages_site.mjs → exit 0
+py -3.12 -m py_compile qa_qr_codes.py generate_qr_assets.py rebuild_release_manifest.py → exit 0
+py -3.12 -X utf8 generate_qr_assets.py → exit 0；98 個 QR 資產
+node bump_site_version.mjs → exit 0；版本由 2026.08.26.02 更新為 2026.08.26.03
+node build_decks.mjs → exit 0；圖檔／PPTX 上午 50 頁、下午 68 頁
+node build_html_deck.mjs → exit 0；HTML morning=50、afternoon=68
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=68、version=2026.08.26.03
+py -3.12 -X utf8 qa_qr_codes.py → exit 0；191 個渲染 QR Code 全部解碼
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=17、numeric=0；全螢幕／QR／平台與 spotlight reset 均通過
+node qa_workshop_suite.mjs → exit 0；來源套件通過
+node qa_workshop_suite.mjs（WORKSHOP_ROOT=正式包）→ exit 0；正式包通過
+node qa_ops_checklist.mjs → exit 0；36 個互動項目、持久化、備註、重設與桌機／手機版通過
+node audit_local_links.mjs（HTML_ROOT=正式包\\08_HTML簡報）→ exit 0；125 個 HTML、189 個本地參照
+node qa_github_pages_site.mjs（含 BASE_URL）→ exit 0；總覽 cards=118、directLinks=118、CodexSearch=34、RWD viewports=3；場景捲軸能力=300/300、408/408；長文字 mismatches=0/0；工具 named=92、numeric=0
+pdfinfo → exit 0；目前 PDF 上午 50 頁、下午 68 頁，尺寸均為 960x540 pt
+tar -tf／頁面計數檢查 → exit 0；正式包目前 PPTX 上午 50 頁、下午 68 頁
+py -3.12 -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=629、inventory=628、pdf=8、duplicate_pdf_groups=4
+git -c core.whitespace=cr-at-eol diff --check → exit 0
+~~~
+
+Codex 懶人包主 Repo、必裝指南及 NotebookLM／GitHub／Supabase／Firebase／Essentials／Install All 7 個 Skills 入口，使用 `Invoke-WebRequest` 即時檢查均為 HTTP 200；外部 Repo 當下結構已確認，但上游未提供專用 GAS／CLASP 子資料夾的狀態仍可能隨上游變動。
+
+工作區與保留事項：
+
+- `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js` 是既有使用者保護修改，本輪未改寫、未納入提交；提交完成後預期仍是唯一未提交的兩個檔案。
+- 本輪更新的是現行內容與產物；正式包內 4 組重複 PDF 仍保留，沒有替使用者刪除任何 PDF。
+- 沒有輸入、寫入或提交 API key、token、密碼，也沒有切換教授帳號、模型方案或外部帳號。
+
+下一個 Agent 接手時，先讀本檔與 AGENTS.md，再執行：
+
+~~~powershell
+Set-Location 'C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826\github_pages_site'
+git status --short
+git log --oneline -10
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}'
+(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=new').Content
+~~~
+
 ## 本輪最新完成：所有簡報 Typeless 連結統一改為邀請網址（v2026.08.26.02）
 
 本輪已完成使用者指定的 Typeless 連結更新，唯一新的公開目標網址為：
