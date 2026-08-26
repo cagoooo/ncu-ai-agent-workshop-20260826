@@ -122,7 +122,7 @@ window.DYNAMIC_DECK_DATA = {
       "links": [
         {
           "label": "Typeless 官方網站",
-          "url": "https://www.typeless.com/"
+          "url": "https://www.typeless.com/refer?code=LZTOQFT"
         },
         {
           "label": "Gemini Notebook",
@@ -155,9 +155,9 @@ window.DYNAMIC_DECK_DATA = {
       "title": "今天的學習弧線",
       "eyebrow": "FROM ASSISTANT TO AGENT",
       "section": "建立 AI 教學與研究工作室",
-      "notes": "用一張圖建立全日心智模型。上午先完成 AI 教學與研究工作室，下午再把同一作品或資料分析任務交給 Agent 擴充、驗證與交付。\n\nTypeless 放在最前面，先把教師腦中的口語想法整理成可複製、可查證、可交給 Gemini Notebook 的文字素材。\n\n[Sources]\n- https://www.typeless.com/\n- https://notebook.google.com/\n[/Sources]",
+      "notes": "用一張圖建立全日心智模型。上午先完成 AI 教學與研究工作室，下午再把同一作品或資料分析任務交給 Agent 擴充、驗證與交付。\n\nTypeless 放在最前面，先把教師腦中的口語想法整理成可複製、可查證、可交給 Gemini Notebook 的文字素材。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://notebook.google.com/\n[/Sources]",
       "text": "FROM ASSISTANT TO AGENT\n今天的學習弧線\n上午場｜打造專屬 AI 教學與研究工作室\n12\n1\n先說清楚\n用 Typeless 把口語想法整理成可用文字\n→\n2\n有根據\n用 Gemini Notebook 整理可信來源\n→\n3\n有角色\n用 Gem 固定教學方法與回覆格式\n→\n4\n有作品\n用 Canvas 做出互動教學原型\n→\n5\n能分享\n用 Sites 或 Pages 發布成果\n每一步都留下可檢查的成果\nTypeless ↗  ·  Gemini Notebook ↗\nTypeless\nNotebook",
-      "description": "用一張圖建立全日心智模型。上午先完成 AI 教學與研究工作室，下午再把同一作品或資料分析任務交給 Agent 擴充、驗證與交付。\n\nTypeless 放在最前面，先把教師腦中的口語想法整理成可複製、可查證、可交給 Gemini Notebook 的文字素材。\n\n[Sources]\n- https://www.typeless.com/\n- https://notebook.google.com/\n[/Sources]",
+      "description": "用一張圖建立全日心智模型。上午先完成 AI 教學與研究工作室，下午再把同一作品或資料分析任務交給 Agent 擴充、驗證與交付。\n\nTypeless 放在最前面，先把教師腦中的口語想法整理成可複製、可查證、可交給 Gemini Notebook 的文字素材。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://notebook.google.com/\n[/Sources]",
       "links": []
     },
     {
@@ -290,13 +290,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "語音輸入有兩條路：Typeless × Codex Voice",
       "eyebrow": "VOICE INPUT OPTIONS",
       "section": "Typeless 語音輸入",
-      "notes": "上午先教兩條語音入口。Typeless 適合把想法整理成可複製文字，再交給 Notebook、Gem 或 Canvas；ChatGPT Voice in Work／Codex 適合在桌面版工作區直接口述任務、追問進度與協調 Agent。兩者不是功能排名，而是依工作情境選擇。\n\n現場請避免直接口述學生姓名、信箱、成績或未公開研究資料；先以合成情境示範。Codex Voice 仍需麥克風與工作區權限，請依帳號與資料控制設定使用。\n\n[Sources]\n- https://www.typeless.com/\n- https://www.typeless.com/downloads\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "notes": "上午先教兩條語音入口。Typeless 適合把想法整理成可複製文字，再交給 Notebook、Gem 或 Canvas；ChatGPT Voice in Work／Codex 適合在桌面版工作區直接口述任務、追問進度與協調 Agent。兩者不是功能排名，而是依工作情境選擇。\n\n現場請避免直接口述學生姓名、信箱、成績或未公開研究資料；先以合成情境示範。Codex Voice 仍需麥克風與工作區權限，請依帳號與資料控制設定使用。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "text": "VOICE INPUT OPTIONS\n語音輸入有兩條路：Typeless × Codex Voice\n上午場｜打造專屬 AI 教學與研究工作室\n20\nA\nTypeless｜跨應用\n在原本的輸入框直接說，先把課程構想、研究問題或行政需求整理成可複製文字。\nB\nCodex Voice｜原生\n在 ChatGPT 桌面版 Work／Codex 內直接口述任務、追問進度，讓 Agent 依工作區與權限協作。\n3\n共同流程\n說清楚對象、痛點、限制與完成標準；再人工檢查，才交給 Notebook 或 Agent。\n4\n隱私選擇\n敏感資料先匿名化。可改用 Codex Voice，但仍要確認麥克風、工作區權限與資料控制設定；不等於離線或零留存。\nTypeless 官方 ↗  ·  Codex Voice ↗\nTypeless\nCodex Voice",
-      "description": "上午先教兩條語音入口。Typeless 適合把想法整理成可複製文字，再交給 Notebook、Gem 或 Canvas；ChatGPT Voice in Work／Codex 適合在桌面版工作區直接口述任務、追問進度與協調 Agent。兩者不是功能排名，而是依工作情境選擇。\n\n現場請避免直接口述學生姓名、信箱、成績或未公開研究資料；先以合成情境示範。Codex Voice 仍需麥克風與工作區權限，請依帳號與資料控制設定使用。\n\n[Sources]\n- https://www.typeless.com/\n- https://www.typeless.com/downloads\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "description": "上午先教兩條語音入口。Typeless 適合把想法整理成可複製文字，再交給 Notebook、Gem 或 Canvas；ChatGPT Voice in Work／Codex 適合在桌面版工作區直接口述任務、追問進度與協調 Agent。兩者不是功能排名，而是依工作情境選擇。\n\n現場請避免直接口述學生姓名、信箱、成績或未公開研究資料；先以合成情境示範。Codex Voice 仍需麥克風與工作區權限，請依帳號與資料控制設定使用。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "links": [
         {
           "label": "Typeless 官方網站",
-          "url": "https://www.typeless.com/"
+          "url": "https://www.typeless.com/refer?code=LZTOQFT"
         },
         {
           "label": "ChatGPT／Codex Voice",
@@ -309,13 +309,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "同一個痛點，兩種語音路徑",
       "eyebrow": "TYPELESS ↔ CODEX VOICE",
       "section": "Typeless 語音輸入",
-      "notes": "示範同一個痛點的兩種走法：Typeless 先把口語整理成可複製文字；Codex Voice 則在 ChatGPT 桌面版的 Work／Codex 工作區直接口述任務，讓 Agent 先提出計畫再行動。兩者都要人工檢查意圖、限制、權限與敏感資料。\n\n[Sources]\n- https://www.typeless.com/\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "notes": "示範同一個痛點的兩種走法：Typeless 先把口語整理成可複製文字；Codex Voice 則在 ChatGPT 桌面版的 Work／Codex 工作區直接口述任務，讓 Agent 先提出計畫再行動。兩者都要人工檢查意圖、限制、權限與敏感資料。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "text": "TYPELESS ↔ CODEX VOICE\n同一個痛點，兩種語音路徑\n上午場｜打造專屬 AI 教學與研究工作室\n21\nTypeless：口述 → 文字\n我想做一個大學教師 AI 研習……呃……先讓大家說出自己的痛點，然後整理資料，最後做一個可以分享的作品。\nCodex Voice：口述 → 任務\n請先閱讀目前工作區的研習素材，整理三個教學／研究痛點，提出可驗證計畫，等我確認後再執行；最後回報變更與證據。\nTypeless 官方 ↗  ·  Codex Voice ↗\nTypeless\nCodex Voice",
-      "description": "示範同一個痛點的兩種走法：Typeless 先把口語整理成可複製文字；Codex Voice 則在 ChatGPT 桌面版的 Work／Codex 工作區直接口述任務，讓 Agent 先提出計畫再行動。兩者都要人工檢查意圖、限制、權限與敏感資料。\n\n[Sources]\n- https://www.typeless.com/\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "description": "示範同一個痛點的兩種走法：Typeless 先把口語整理成可複製文字；Codex Voice 則在 ChatGPT 桌面版的 Work／Codex 工作區直接口述任務，讓 Agent 先提出計畫再行動。兩者都要人工檢查意圖、限制、權限與敏感資料。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "links": [
         {
           "label": "Typeless 官方網站",
-          "url": "https://www.typeless.com/"
+          "url": "https://www.typeless.com/refer?code=LZTOQFT"
         },
         {
           "label": "ChatGPT／Codex Voice",
@@ -328,13 +328,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "實作｜選一條語音路徑說出真實痛點",
       "eyebrow": "HANDS-ON",
       "section": "Typeless 語音輸入",
-      "notes": "每組先從自己的真實痛點開始，不要從漂亮的 AI 題目開始。Typeless 使用者保留『原始口述』與『整理後版本』；Codex Voice 使用者保留『口述任務』與『Agent 計畫』。兩組都要在交給下一個工具前，確認沒有個資、越權要求或未授權發布。\n\n[Sources]\n- https://www.typeless.com/\n- https://www.typeless.com/downloads\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "notes": "每組先從自己的真實痛點開始，不要從漂亮的 AI 題目開始。Typeless 使用者保留『原始口述』與『整理後版本』；Codex Voice 使用者保留『口述任務』與『Agent 計畫』。兩組都要在交給下一個工具前，確認沒有個資、越權要求或未授權發布。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "text": "HANDS-ON\n實作｜選一條語音路徑說出真實痛點\n上午場｜打造專屬 AI 教學與研究工作室\n22\n12\n分鐘\n操作步驟\n1\n選 Typeless 或 ChatGPT 桌面版 Work／Codex Voice\n2\n連續口述 30–60 秒：對象、困難、想完成的改變\n3\nTypeless 複製整理稿；Codex 先要求計畫，暫不直接執行\n4\n人工檢查個資、權限與邊界，再交給 Notebook 或 Codex\n完成條件\n✓ 內容已匿名化\n\n✓ 路徑與工具選擇有記錄\n\n✓ 至少寫出一個可驗證目標\n\n✓ 下一個工具與人工確認點清楚\n下載 Typeless ↗  ·  Codex Voice ↗\n下載 Typeless\nCodex Voice",
-      "description": "每組先從自己的真實痛點開始，不要從漂亮的 AI 題目開始。Typeless 使用者保留『原始口述』與『整理後版本』；Codex Voice 使用者保留『口述任務』與『Agent 計畫』。兩組都要在交給下一個工具前，確認沒有個資、越權要求或未授權發布。\n\n[Sources]\n- https://www.typeless.com/\n- https://www.typeless.com/downloads\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
+      "description": "每組先從自己的真實痛點開始，不要從漂亮的 AI 題目開始。Typeless 使用者保留『原始口述』與『整理後版本』；Codex Voice 使用者保留『口述任務』與『Agent 計畫』。兩組都要在交給下一個工具前，確認沒有個資、越權要求或未授權發布。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n[/Sources]",
       "links": [
         {
           "label": "下載 Typeless",
-          "url": "https://www.typeless.com/downloads"
+          "url": "https://www.typeless.com/refer?code=LZTOQFT"
         },
         {
           "label": "ChatGPT／Codex Voice",
@@ -347,13 +347,13 @@ window.DYNAMIC_DECK_DATA = {
       "title": "語音 → 證據 → 作品：兩條路徑可會合",
       "eyebrow": "VOICE → EVIDENCE → OUTPUT",
       "section": "Typeless 語音輸入",
-      "notes": "這張橋接圖把兩種語音入口放回上午產線：Typeless 負責整理文字，Codex Voice 負責在工作區協調 Agent；兩者都必須留下可檢查的文字、計畫或證據。接著可把問題交給 Gemini Notebook 建立來源包，或交給 Codex／Gem／Canvas 推進作品。\n\n[Sources]\n- https://www.typeless.com/\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://notebook.google.com/\n[/Sources]",
+      "notes": "這張橋接圖把兩種語音入口放回上午產線：Typeless 負責整理文字，Codex Voice 負責在工作區協調 Agent；兩者都必須留下可檢查的文字、計畫或證據。接著可把問題交給 Gemini Notebook 建立來源包，或交給 Codex／Gem／Canvas 推進作品。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://notebook.google.com/\n[/Sources]",
       "text": "VOICE → EVIDENCE → OUTPUT\n語音 → 證據 → 作品：兩條路徑可會合\n上午場｜打造專屬 AI 教學與研究工作室\n23\n1\n選入口\nTypeless 跨應用；Codex Voice 工作區內直接說\n→\n2\n說清楚痛點\n對象、情境、限制與想完成的改變\n→\n3\n留下可檢查文字\n整理稿或 Agent 計畫，先人工確認\n→\n4\n接到工作流\nNotebook 管來源；Codex 管檔案、測試與任務\n→\n5\n做成成果\nGem、Canvas、網站或可追查交付\n每一步都留下可檢查的成果\nTypeless ↗  ·  Codex Voice ↗  ·  Gemini Notebook ↗\nTypeless\nNotebook",
-      "description": "這張橋接圖把兩種語音入口放回上午產線：Typeless 負責整理文字，Codex Voice 負責在工作區協調 Agent；兩者都必須留下可檢查的文字、計畫或證據。接著可把問題交給 Gemini Notebook 建立來源包，或交給 Codex／Gem／Canvas 推進作品。\n\n[Sources]\n- https://www.typeless.com/\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://notebook.google.com/\n[/Sources]",
+      "description": "這張橋接圖把兩種語音入口放回上午產線：Typeless 負責整理文字，Codex Voice 負責在工作區協調 Agent；兩者都必須留下可檢查的文字、計畫或證據。接著可把問題交給 Gemini Notebook 建立來源包，或交給 Codex／Gem／Canvas 推進作品。\n\n[Sources]\n- https://www.typeless.com/refer?code=LZTOQFT\n- https://chatgpt.com/codex/\n- https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex\n- https://notebook.google.com/\n[/Sources]",
       "links": [
         {
           "label": "Typeless 官方網站",
-          "url": "https://www.typeless.com/"
+          "url": "https://www.typeless.com/refer?code=LZTOQFT"
         },
         {
           "label": "ChatGPT／Codex Voice",
