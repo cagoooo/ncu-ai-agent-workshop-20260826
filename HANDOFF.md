@@ -1,6 +1,87 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新完成：所有簡報 Typeless 連結統一改為邀請網址（v2026.08.26.02）
+
+本輪已完成使用者指定的 Typeless 連結更新，唯一新的公開目標網址為：
+
+~~~text
+https://www.typeless.com/refer?code=LZTOQFT
+~~~
+
+已同步的層級如下：
+
+- 建置來源：build_decks.mjs 的 LINKS.typeless 與 LINKS.typelessDownloads。
+- 圖檔簡報：上午 50 頁、下午 68 頁的 PNG／PPTX／PDF，以及透明連結 Hotspot 與 QR Code。
+- HTML 簡報：08_HTML簡報 的上午／下午頁面資料與連結；工具名稱仍保留「Typeless 官方網站」與「下載 Typeless」等原有標籤，只替換實際目標網址。
+- 動態 HTML 專區：09_HTML動態簡報 的資料與所有 Typeless 入口。
+- QR Code：assets/qr/manifest.json、q/91/ 路由與產物；QR Code 仍可直接掃描後導向邀請網址。
+- 公開站與正式包：GitHub Pages 目前版本、HTML／PNG／QR／PPTX／PDF 與正式包均已同步。
+
+目前工作層的精確 URL 稽核結果：
+
+~~~text
+來源層：mentions=155、invite=54、舊根網址=0、舊下載網址=0、含 Typeless 的檔案=4
+公開站：mentions=176、invite=57、舊根網址=0、舊下載網址=0、含 Typeless 的檔案=15
+正式包：mentions=172、invite=57、舊根網址=0、舊下載網址=0、含 Typeless 的檔案=14
+~~~
+
+這裡的舊網址是完整比對 https://www.typeless.com/ 與 https://www.typeless.com/downloads，不把新邀請網址的共同網域前綴誤算為舊網址。歷史備份資料夾中的舊紀錄未改寫，避免破壞歷史交接證據；目前使用中的來源、公開站與正式包皆已移除舊目標。
+
+本輪建置、同步與品質驗證證據：
+
+~~~text
+node bump_site_version.mjs → exit 0；版本由 2026.08.26.01 更新為 2026.08.26.02
+node build_decks.mjs → exit 0；圖檔／PPTX 上午 50 頁、下午 68 頁
+node build_html_deck.mjs → exit 0；HTML decks exported：morning=50、afternoon=68
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=68、version=2026.08.26.02
+同步來源／公開站／正式包 → exit 0；檔案複製 1116 次、HTML slides 每份 236 檔、QR 來源 97、q 路由資料夾 94
+python -X utf8 qa_qr_codes.py → exit 0；191 個渲染 QR Code 全部解碼
+node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_ops_checklist.mjs → exit 0；36 個互動項目、持久化、備註、重設與桌機／手機版通過
+node qa_html_deck.mjs → exit 0；上午 named=12、numeric=0；下午 named=17、numeric=0；全螢幕連結／QR/platform 通過；spotlight reset 兩場通過
+BASE_URL=公開網址 node qa_github_pages_site.mjs → exit 0；總覽 cards=118、directLinks=118、下午篩選=68、CodexSearch=32、RWD viewports=3；motion samples=2 且 entering／transitioning／settled=true、overflow=0；場景捲軸能力=300/300、408/408；RWD 垂直捲動=6/6、6/6；長文字 mismatches=0、0；工具 named=92、numeric=0
+pdfinfo → exit 0；上午 PDF 50 頁、下午 PDF 68 頁，尺寸均為 960x540 pt
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=617、inventory=616、pdf=8、duplicate_pdf_groups=4
+node --check build_decks.mjs/build_html_deck.mjs/sync_dynamic_deck.mjs/qa_html_deck.mjs/qa_github_pages_site.mjs → exit 0
+python -m py_compile qa_qr_codes.py generate_qr_assets.py rebuild_release_manifest.py → exit 0
+git diff --cached --check → exit 0
+~~~
+
+補充：第一次在受限沙箱執行兩支瀏覽器 QA 時，因 GSAP CDN 出現 ERR_NETWORK_ACCESS_DENIED 而 exit 1；改以允許公開網路的同一套測試重跑後均為 exit 0。這是測試環境網路限制，不是頁面 QA 失敗；兩次結果均已保留在本輪工作紀錄中。
+
+本輪提交與公開部署證據：
+
+~~~text
+git commit -m "統一 Typeless 邀請連結並更新簡報產物" → exit 0；commit=244fdfc、211 files changed
+git push origin main → exit 0；2d1569a..244fdfc，main → main
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest 公開 version.json?cb=20260826-typeless-final-2 → exit 0；HTTP=200、version=2026.08.26.02
+公開上午 HTML → HTTP=200；新邀請網址精確出現 29 次
+公開上午動態資料 → HTTP=200；新邀請網址精確出現 19 次
+公開 QR manifest → HTTP=200；93 個目標；Typeless=qr/qr-c576eaab991a.png；scanUrl=/q/91/
+公開 q/91/index.html → HTTP=200；包含新邀請網址，q route 可用
+~~~
+
+工作區與保留事項：
+
+- 原有使用者修改 08_HTML簡報/assets/deck.css 與 08_HTML簡報/assets/deck.js 未納入本輪提交，也未被本輪改寫；這兩個檔案仍是目前唯一需要留意的未提交修改。
+- workshop_suite_src/assets/qr 是既有的同名檔案而非資料夾，本輪為避免破壞既有來源而保留；實際 QR 資料與 manifest 已同步到公開站與正式包的 assets/qr。
+- 正式包仍保留 4 組重複 PDF，沒有刪除任何 PDF；這是刻意不替使用者做不可逆決定的保留項目。
+- 沒有輸入、寫入或提交 API key、token、密碼，也沒有切換教授帳號或模型方案。
+- 目前尚未確認 Typeless 邀請頁本身的第三方轉址內容；本輪已確認所有簡報文字／資料／QR／q 路由均指向指定邀請網址。
+
+下一個 Agent 接手時，先讀本檔與 AGENTS.md，再執行：
+
+~~~powershell
+Set-Location 'C:\Users\smes\Desktop\Cowork\_暫存_可清\ncu_ai_workshop_20260826\github_pages_site'
+git status --short
+git log --oneline -10
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}'
+(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=next-agent').Content
+~~~
+
+不要把歷史備份中的舊 Typeless URL 當成目前網站仍在使用；也不要順手納入 deck.css／deck.js 的既有修改，除非使用者另行要求。
 
 ## 本輪最新完成：提示詞快捷面板補入截圖對應的 `/AGENT` 交接紀錄（v2026.08.26.01）
 
