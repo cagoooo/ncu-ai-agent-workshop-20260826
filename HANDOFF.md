@@ -33,7 +33,7 @@ py -3.12 -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=629�
 
 曾以受限網路執行 `node qa_html_deck.mjs` 與 `node qa_github_pages_site.mjs`，各為 exit 1，錯誤為既有 GSAP CDN 的 `ERR_NETWORK_ACCESS_DENIED`；在允許載入既有 CDN 後已各自重跑並 exit 0。這是測試環境網路限制，非簡報頁面回歸。
 
-目前狀態：本地修正與測試已完成；本段交接紀錄尚待本次 commit、push、Pages `built` 與公開 `.04` 版本驗證完成後補上最終證據。預期 Git 工作區只保留使用者刻意保護、未納入提交的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js`。
+目前狀態：本地修正、提交、push、Pages `built` 與公開 `.04` 版本驗證均已完成。預期 Git 工作區只保留使用者刻意保護、未納入提交的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js`。
 
 ~~~powershell
 Set-Location 'C:\\Users\\smes\\Desktop\\Cowork\\_暫存_可清\\ncu_ai_workshop_20260826\\github_pages_site'
@@ -41,6 +41,17 @@ git -c "safe.directory=C:/Users/smes/Desktop/Cowork/_暫存_可清/ncu_ai_worksh
 git -c "safe.directory=C:/Users/smes/Desktop/Cowork/_暫存_可清/ncu_ai_workshop_20260826/github_pages_site" log --oneline -10
 gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}'
 (Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=new').Content
+~~~
+
+部署後公開驗證：
+
+~~~text
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+Invoke-WebRequest version.json、sw.js、pwa-register.js、根目錄、08_HTML簡報/morning.html、09_HTML動態簡報/index.html → exit 0；6/6 HTTP 200
+公開 version.json → version=2026.08.26.04、buildTime=2026-08-26T22:04:46+08:00、description 含 Codex 懶人包與 Service Worker
+公開 sw.js → BUILD_VERSION=2026.08.26.04；公開 pwa-register.js → updateViaCache="none"、cache="no-store" 均存在
+node qa_github_pages_site.mjs（BASE_URL=公開 URL）→ exit 0；cards=118、directLinks=118、afternoonFilter=68、CodexSearch=34、RWD viewports=3；公開轉場與長文字／捲動／工具標籤檢查通過
+git push origin main → exit 0；3ad5408 → 2a1f09e
 ~~~
 
 ## 本輪最新完成：Skills 資源全面改為 Codex 懶人包（v2026.08.26.03）
