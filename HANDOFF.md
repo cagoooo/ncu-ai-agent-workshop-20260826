@@ -17,9 +17,11 @@
 
 ```text
 node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_html_deck.mjs → exit 0；上午／下午工具名稱 named=12/17、numeric=0；抽查全螢幕 QR／平台連結 5/5 通過；提醒視窗換頁重置 2/2 通過
 node --check qa_github_pages_site.mjs → exit 0
-$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=118、directLinks=118、下午篩選=68、CodexSearch=32、RWD viewports=3；上午／下午案例圖片 loaded=true（下午第 4、5、6 頁共 3 張）；motion samples=2、settled=true、overflow=0；場景捲軸能力=300/300、408/408；RWD 垂直捲動=6/6、6/6；換頁重置 maxResidual=0、0；長文字 mismatches=0、0；工具 named=92、numeric=0；GitHub Pages site QA passed
-公開面板 Playwright 搜尋 /AGENT → exit 0；rowCount=1、名稱=換AGENT繼續加油
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；總覽 cards=118、directLinks=118、下午篩選=68、CodexSearch=32、RWD viewports=3；上午／下午案例圖片 loaded=true（下午第 4、5、6 頁共 3 張）；motion samples=2、entering=true、transitioning=true、settled=true、overflow=0；場景捲軸能力=300/300、408/408；RWD 垂直捲動=6/6、6/6；換頁重置 maxResidual=0、0；長文字 mismatches=0、0；工具 named=92、numeric=0；GitHub Pages site QA passed
+公開面板 Playwright 搜尋 `/AGENT` → exit 0；rowCount=1、名稱=換AGENT繼續加油、trigger=/AGENT、分類=開發流程、contentLength=671、lineCount=30、exactContent=true、pageErrors=0
+Invoke-WebRequest 公開面板 → exit 0；HTTP=200、UTF-8 bytes=66285、exact_intro=True、old_custom_intro=False
 python -X utf8 qa_qr_codes.py → exit 1；目前 Python 環境缺少 cv2，QR Code 全量解碼未確認
 $env:WORKSHOP_ROOT='.../workshop_suite_src'; node audit_local_links.mjs → exit 1；5/167 個參照是 08 圖像簡報指向部署根目錄 pwa-register.js 的既有來源稽核缺口，未於本輪擴大修改
 python rebuild_release_manifest.py <正式包> → exit 0；total=580、inventory=579、pdf=8、duplicate_pdf_groups=4
@@ -28,10 +30,10 @@ python rebuild_release_manifest.py <正式包> → exit 0；total=580、inventor
 本輪提交與公開部署驗證：
 
 ```text
-git commit -m "更新換 AGENT 接手提示詞與版本快取" → exit 0；commit=f1ea9e1，12 files changed
+git commit -m "還原換 AGENT 原始交接提示詞" → exit 0；commit=906f6ee，2 files changed
 git push origin main → exit 0；main → main
 gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status}' → exit 0；status=built
-Invoke-WebRequest 公開 version.json?cb=20260826120002 → exit 0；HTTP=200、version=2026.08.26.01
+Invoke-WebRequest 公開 version.json?cb=2026082601-final → exit 0；HTTP=200、version=2026.08.26.01
 ```
 
 ---
