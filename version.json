@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.26.03",
-  "buildTime": "2026-08-25T11:32:33+08:00",
-  "title": "新增下午場 DNS 遷移 147 個 PDF 批次下載實戰",
-  "description": "所有簡報中的 Typeless 超連結、QR Code 與資源入口已統一更新為邀請連結，並同步更新圖檔版、HTML 版、動態版與 GitHub Pages 快取版本。"
+  "version": "2026.08.26.04",
+  "buildTime": "2026-08-26T22:04:46+08:00",
+  "title": "更新 Codex 懶人包 Skills 資源連結",
+  "description": "Codex 懶人包的 NotebookLM、Firebase、Supabase、GitHub 與必裝 Skills／Plugins 入口已更新，並提升 Service Worker 快取版本，確保公開站載入最新內容。"
 }

@@ -1,6 +1,48 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新修正：Service Worker 更新內容與快取版本已重新對齊（v2026.08.26.04）
+
+本輪針對「SW 更新內容都沒有改變」進行實際診斷。前一版公開站的 `sw.js` 與 `version.json` 仍為 `2026.08.26.03`，因此瀏覽器沒有偵測到新的 Service Worker 快取版本；問題不是使用者端操作錯誤。現在已將現行版本提升至 `2026.08.26.04`，並把版本說明改為本輪 Codex 懶人包 Skills／Plugins 資源更新，同步所有公開 HTML 的 `data-app-version`、資源 query 版本、動態 HTML 資料、來源與正式包。
+
+本輪實際變更：
+
+- `sw.js`：`BUILD_VERSION` 由 `2026.08.26.03` 改為 `2026.08.26.04`，因此 `ncu-ai-workshop-2026.08.26.04` 成為新的快取名稱；保留既有 `skipWaiting`、刪除舊快取、`clients.claim` 與更新提示流程。
+- `version.json`：版本改為 `2026.08.26.04`，內容改為明確說明 Codex 懶人包 Skills／Plugins 與 Service Worker 快取更新。
+- 08_HTML簡報、09_HTML動態簡報、根目錄入口與 `START_HERE_研習資源導航.html`：版本 query／`data-app-version` 已對齊 `.04`。
+- `workshop_suite_src` 與正式包 `研習正式包_v1.0`：已同步本輪公開產物；圖檔版既有使用者保護的 `deck.css`、`deck.js` 未改寫。
+
+本輪建置、同步與測試證據：
+
+~~~text
+node bump_site_version.mjs → exit 0；2026.08.26.03 → 2026.08.26.04
+node build_html_deck.mjs → exit 0；HTML morning=50、afternoon=68
+node sync_dynamic_deck.mjs → exit 0；morning=50、afternoon=68、version=2026.08.26.04
+source／正式包版本同步腳本 → exit 0；複製 58 個檔案
+node --check build_html_deck.mjs sync_dynamic_deck.mjs bump_site_version.mjs qa_html_deck.mjs qa_github_pages_site.mjs github_pages_site\\sw.js github_pages_site\\pwa-register.js → exit 0
+py -3.12 -m py_compile qa_qr_codes.py generate_qr_assets.py rebuild_release_manifest.py → exit 0
+node qa_html_deck.mjs（網路允許環境）→ exit 0；上午 named=12、numeric=0；下午 named=17、numeric=0；全螢幕／QR／平台與 spotlight reset 通過
+node qa_github_pages_site.mjs（網路允許環境）→ exit 0；cards=118、directLinks=118、afternoonFilter=68、CodexSearch=34、RWD viewports=3；轉場 entering=true、transitioning=true、settled=true、overflow=0；場景能力 morning=300/300、afternoon=408/408；垂直捲動 6/6、捲動歸零 6/6、maxResidual=0；長文字 mismatches=0/0；named=92、numeric=0
+node qa_workshop_suite.mjs（來源）→ exit 0
+node qa_workshop_suite.mjs（正式包）→ exit 0
+node qa_ops_checklist.mjs → exit 0；36 個互動項目
+py -3.12 -X utf8 qa_qr_codes.py → exit 0；191 個渲染 QR Code 全部解碼
+node audit_local_links.mjs（正式包）→ exit 0；125 個 HTML、189 個本地參照
+py -3.12 -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=629、inventory=628、pdf=8、duplicate_pdf_groups=4
+~~~
+
+曾以受限網路執行 `node qa_html_deck.mjs` 與 `node qa_github_pages_site.mjs`，各為 exit 1，錯誤為既有 GSAP CDN 的 `ERR_NETWORK_ACCESS_DENIED`；在允許載入既有 CDN 後已各自重跑並 exit 0。這是測試環境網路限制，非簡報頁面回歸。
+
+目前狀態：本地修正與測試已完成；本段交接紀錄尚待本次 commit、push、Pages `built` 與公開 `.04` 版本驗證完成後補上最終證據。預期 Git 工作區只保留使用者刻意保護、未納入提交的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js`。
+
+~~~powershell
+Set-Location 'C:\\Users\\smes\\Desktop\\Cowork\\_暫存_可清\\ncu_ai_workshop_20260826\\github_pages_site'
+git -c "safe.directory=C:/Users/smes/Desktop/Cowork/_暫存_可清/ncu_ai_workshop_20260826/github_pages_site" status --short
+git -c "safe.directory=C:/Users/smes/Desktop/Cowork/_暫存_可清/ncu_ai_workshop_20260826/github_pages_site" log --oneline -10
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}'
+(Invoke-WebRequest -UseBasicParsing 'https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/version.json?cb=new').Content
+~~~
+
 ## 本輪最新完成：Skills 資源全面改為 Codex 懶人包（v2026.08.26.03）
 
 本輪依使用者指定，將研習網站、圖檔／HTML 簡報、QR Code 目標與正式包中仍使用的 Skills 資源入口，統一改為 Codex 專用的 [Codex 懶人包](https://github.com/mathruffian-dot/codex-lazy-packs)。目前 Codex 入口包含：
