@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.26.04",
-  "buildTime": "2026-08-26T22:04:46+08:00",
-  "title": "更新 Codex 懶人包 Skills 資源連結",
-  "description": "Codex 懶人包的 NotebookLM、Firebase、Supabase、GitHub 與必裝 Skills／Plugins 入口已更新，並提升 Service Worker 快取版本，確保公開站載入最新內容。"
+  "version": "2026.08.26.05",
+  "buildTime": "2026-08-26T22:48:54+08:00",
+  "title": "研習資源導航新增返回首頁入口",
+  "description": "研習資源導航頁已新增可見的「回到首頁」按鈕，並同步提升 Service Worker 快取版本，讓 GitHub Pages 與離線正式包保持一致。"
 }

@@ -1,6 +1,37 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新修正：研習資源導航新增「回到首頁」入口（v2026.08.26.05）
+
+本輪依使用者需求，在公開入口 `START_HERE_研習資源導航.html` 的頁首加入清楚可見的「← 回到首頁」按鈕，使用同一層的相對連結 `index.html` 返回網站首頁。按鈕沿用既有 `.back-home` 共用樣式，沒有改動成熟的圖檔簡報版面；桌機與 390px 手機版均納入回歸檢查。
+
+本輪實際變更：
+
+- 入口頁頁首新增 `class="back-home"`、`href="index.html"`、`aria-label="回到網站首頁"` 與「回到首頁」文字。
+- `qa_workshop_suite.mjs` 新增入口頁返回按鈕的可見性、文字、相對路徑與手機版檢查。
+- Service Worker 與公開版本由 `2026.08.26.04` 提升為 `2026.08.26.05`；`version.json` 改為記錄本輪返回首頁功能。
+- HTML 簡報產物重新建置為上午 50 頁、下午 68 頁，來源與正式包均已同步。
+
+本輪建置、同步與測試證據：
+
+~~~text
+node bump_site_version.mjs → exit 0；2026.08.26.04 → 2026.08.26.05
+node build_html_deck.mjs → exit 0；HTML morning=50、afternoon=68
+來源／正式包同步 → exit 0；START_HERE 三份 SHA-256 一致、version.json 三份均為 2026.08.26.05
+node --check bump_site_version.mjs qa_workshop_suite.mjs qa_html_deck.mjs qa_github_pages_site.mjs → exit 0
+node qa_workshop_suite.mjs（來源）→ exit 0
+node qa_workshop_suite.mjs（正式包）→ exit 0
+node qa_html_deck.mjs（網路允許環境）→ exit 0；上午 named=12、numeric=0；下午 named=17、numeric=0；全螢幕／QR／平台與 spotlight reset 通過
+node qa_github_pages_site.mjs（本機公開站）→ exit 0；cards=118、directLinks=118、afternoonFilter=68、CodexSearch=34、RWD viewports=3；轉場 entering=true、transitioning=true、settled=true、overflow=0；長文字 mismatches=0/0；named=92、numeric=0
+node audit_local_links.mjs（正式包）→ exit 0；125 個 HTML、190 個本地參照
+py -3.12 -X utf8 qa_qr_codes.py → exit 0；191 個渲染 QR Code 全部解碼
+py -3.12 -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=629、inventory=628、pdf=8、duplicate_pdf_groups=4
+~~~
+
+測試過程中的已知修正紀錄：第一次執行 `node qa_html_deck.mjs` 為 exit 1，原因是根目錄 `html_deck` 快照仍引用 .04 的 `deck.js`；執行 `node build_html_deck.mjs` exit 0 重建後，重新執行已 exit 0。第一次來源／正式包同步指令因 PowerShell 路徑插值寫法為 exit 1，未覆寫檔案；改用 `Join-Path` 後同步 exit 0，三份檔案雜湊已確認一致。
+
+目前狀態：本地功能、測試與正式包同步已完成；本段尚待本輪 commit、push、Pages `built` 與公開 URL 回讀完成後補上部署證據。既有使用者保護的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js` 仍不可改寫或提交。
+
 ## 本輪最新修正：Service Worker 更新內容與快取版本已重新對齊（v2026.08.26.04）
 
 本輪針對「SW 更新內容都沒有改變」進行實際診斷。前一版公開站的 `sw.js` 與 `version.json` 仍為 `2026.08.26.03`，因此瀏覽器沒有偵測到新的 Service Worker 快取版本；問題不是使用者端操作錯誤。現在已將現行版本提升至 `2026.08.26.04`，並把版本說明改為本輪 Codex 懶人包 Skills／Plugins 資源更新，同步所有公開 HTML 的 `data-app-version`、資源 query 版本、動態 HTML 資料、來源與正式包。
