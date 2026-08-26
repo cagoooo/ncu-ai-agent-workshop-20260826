@@ -30,7 +30,19 @@ py -3.12 -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=629�
 
 測試過程中的已知修正紀錄：第一次執行 `node qa_html_deck.mjs` 為 exit 1，原因是根目錄 `html_deck` 快照仍引用 .04 的 `deck.js`；執行 `node build_html_deck.mjs` exit 0 重建後，重新執行已 exit 0。第一次來源／正式包同步指令因 PowerShell 路徑插值寫法為 exit 1，未覆寫檔案；改用 `Join-Path` 後同步 exit 0，三份檔案雜湊已確認一致。
 
-目前狀態：本地功能、測試與正式包同步已完成；本段尚待本輪 commit、push、Pages `built` 與公開 URL 回讀完成後補上部署證據。既有使用者保護的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js` 仍不可改寫或提交。
+本輪部署已完成：功能 commit `f984158 新增資源導航返回首頁入口` 已推送；因 GitHub Pages 服務短暫部分中斷，後續以 `f2c6e3d 重試研習資源導航公開部署` 重新觸發建置。GitHub Pages 已回報 `status=built`，公開頁面已實際讀到 `2026.08.26.05`、Service Worker `2026.08.26.05` 與「回到首頁」按鈕。既有使用者保護的 `08_HTML簡報/assets/deck.css` 與 `08_HTML簡報/assets/deck.js` 仍不可改寫或提交。
+
+本輪公開部署最終證據：
+
+~~~text
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages --jq '{status:.status,url:.html_url}' → exit 0；status=built
+gh api repos/cagoooo/ncu-ai-agent-workshop-20260826/pages/builds/latest → exit 0；status=built、commit=f2c6e3d
+gh run list --repo cagoooo/ncu-ai-agent-workshop-20260826 → exit 0；run=33019883981、conclusion=success
+Invoke-WebRequest 公開 START_HERE、version.json、sw.js → exit 0；HTTP=200、button=True、version=2026.08.26.05、swVersion=2026.08.26.05、pwaUpdateFlow=True
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'; node qa_github_pages_site.mjs; Remove-Item Env:BASE_URL → exit 0；cards=118、directLinks=118、RWD viewports=3、長文字 mismatches=0/0、工具 named=92、numeric=0；GitHub Pages site QA passed
+~~~
+
+使用者先前看不到 SW 更新提示的原因已確認：當時公開 `version.json` 與 `sw.js` 仍為 `.04`，瀏覽器沒有可偵測的新版本；不是按鈕程式碼未寫入。GitHub 官方服務恢復後重新建置，現在公開版本已更新為 `.05`。若既有分頁仍未收到提示，請重新整理一次或切換回該分頁；之後即可由現行共用註冊器偵測版本差異。
 
 ## 本輪最新修正：Service Worker 更新內容與快取版本已重新對齊（v2026.08.26.04）
 
