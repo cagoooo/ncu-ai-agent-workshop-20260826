@@ -1,6 +1,6 @@
 {
-  "version": "2026.08.26.05",
+  "version": "2026.08.26.06",
   "buildTime": "2026-08-26T22:48:54+08:00",
-  "title": "研習資源導航新增返回首頁入口",
-  "description": "研習資源導航頁已新增可見的「回到首頁」按鈕，並同步提升 Service Worker 快取版本，讓 GitHub Pages 與離線正式包保持一致。"
+  "title": "圖像版簡報全螢幕單一路徑進場優化",
+  "description": "圖像版 HTML 簡報改為先請求原生全螢幕，再於 fullscreenchange 一次套用滿版介面，避免桌機進場時的兩段式舞台縮放。"
 }

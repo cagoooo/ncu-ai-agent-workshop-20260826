@@ -451,14 +451,18 @@ async function toggleFullscreen() {
     return;
   }
   document.body.dataset.fullscreenMode = "pending";
-  // 先立即切換成沉浸式滿版，再等待瀏覽器原生 Fullscreen API 完成。
-  // 部分桌機瀏覽器第一次請求會延遲觸發 fullscreenchange；若此時仍顯示一般工具列，
-  // 使用者會誤以為按鈕沒有作用。原生全螢幕成功後再由事件同步狀態即可。
-  syncFullscreenUi(true);
+  // 先送出原生全螢幕請求，再由 fullscreenchange 一次套用滿版 UI。
+  // 若先套用 is-immersive，舞台會先放大到瀏覽器內容區，原生全螢幕完成後又放大一次，
+  // 桌機上會形成可感知的兩段式縮放。API 不可用時才退回既有沉浸模式。
   const entered = await enterNativeFullscreen();
+  if (entered || nativeFullscreenElement()) {
+    document.body.dataset.fullscreenMode = "native";
+    // 原生模式的版面由 fullscreenchange 接手；避免在瀏覽器自身進場動畫中再觸發一次重排。
+    return;
+  }
   // iOS Safari and embedded browsers may not expose Fullscreen API. Keep a usable
   // touch-friendly immersive mode instead of making the button appear unresponsive.
-  document.body.dataset.fullscreenMode = entered ? "native" : "immersive";
+  document.body.dataset.fullscreenMode = "immersive";
   syncFullscreenUi(true);
 }
 
@@ -492,13 +496,19 @@ fullscreenButtons.forEach((button) => button.addEventListener("click", toggleFul
 const onFullscreenChange = () => {
   const native = Boolean(nativeFullscreenElement());
   const mode = document.body.dataset.fullscreenMode || "";
-  if (!native && mode === "native") {
-    document.body.dataset.fullscreenMode = "";
-    syncFullscreenUi(false);
+  if (!native) {
+    if (mode === "native") {
+      document.body.dataset.fullscreenMode = "";
+      syncFullscreenUi(false);
+      return;
+    }
+    // 原生請求尚在等待時不改變版面；避免先縮放一次再被瀏覽器縮放第二次。
+    if (mode === "pending") return;
+    syncFullscreenUi(mode === "immersive");
     return;
   }
-  if (native) document.body.dataset.fullscreenMode = "native";
-  syncFullscreenUi(native || mode === "immersive" || mode === "pending");
+  document.body.dataset.fullscreenMode = "native";
+  syncFullscreenUi(true);
 };
 document.addEventListener("fullscreenchange", onFullscreenChange);
 document.addEventListener("webkitfullscreenchange", onFullscreenChange);
