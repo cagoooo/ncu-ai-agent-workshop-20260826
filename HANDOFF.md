@@ -1,6 +1,35 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新修正：圖像版簡報原生全螢幕單一路徑進場（v2026.08.26.06）
+
+圖像版 `08_HTML簡報` 先前雖已避免全螢幕閃黑，但桌機點擊「全螢幕」後仍會感到輕微卡頓。瀏覽器事件量測確認：程式原本在呼叫原生 Fullscreen API 前，就先加上 `is-immersive`，舞台會先放大到瀏覽器內容區；約 0.1 秒後原生全螢幕完成，再放大第二次。因此不是圖片重新下載、也不是 QR／Hotspot 渲染問題，而是兩段式縮放。
+
+本輪改為：點擊後立即送出 `requestFullscreen()`；原生 `fullscreenchange` 到達時才一次套用滿版 UI。若 Fullscreen API 不可用，仍維持既有 `immersive` fallback。保留 2K 圖源、`img.decode()`、`is-previous` 雙緩衝與全螢幕 CSS SSOT，沒有恢復會閃黑的動態換圖機制。
+
+本輪實際驗證：
+
+~~~text
+Playwright 原生事件量測 → exit 0；requestFullscreen 呼叫：上午 0.1ms、下午 0.1ms；fullscreenchange：上午 117.7ms、下午 94.9ms；is-immersive 皆在 fullscreenchange 後約 0.2ms 才套用
+$env:HTML_ROOT=<github_pages_site>\08_HTML簡報；$env:HTML_DECKS='morning'；node qa_html_deck.mjs → exit 0；上午工具 named=12、numeric=0；全螢幕 QR／平台熱點 2 頁、spotlight reset 通過
+$env:HTML_ROOT=<github_pages_site>\08_HTML簡報；$env:HTML_DECKS='afternoon'；node qa_html_deck.mjs → exit 0；下午工具 named=17、numeric=0；全螢幕 QR／平台熱點 3 頁、spotlight reset 通過
+$env:HTML_ROOT=<正式包>\08_HTML簡報；$env:HTML_DECKS='morning'／'afternoon'；node qa_html_deck.mjs → 兩次均 exit 0
+$env:WORKSHOP_ROOT=<正式包>；node qa_workshop_suite.mjs → exit 0；Workshop suite QA passed
+node qa_ops_checklist.mjs → exit 0；36 interactive items
+python -X utf8 qa_qr_codes.py → exit 0；191 rendered QR codes decoded
+$env:WORKSHOP_ROOT=<正式包>；node audit_local_links.mjs → exit 0；125 HTML files、190 local references
+node qa_github_pages_site.mjs → exit 0；cards=118、directLinks=118、filters=3、afternoonFilter=68、CodexSearch=34、RWD=3、motion samples=2、overflow=0；上午／下午 scroll capability=300／408、vertical scroll=6/6、reset maxResidual=0、long-text mismatch=0/0、named=92、numeric=0
+git commit -m "優化圖像簡報全螢幕進場流暢度" → exit 0；b2209ba
+git push origin main → exit 0；d9dcbe5..b2209ba
+gh run watch 33033898388 --exit-status → exit 0；pages-build-deployment success
+gh api .../pages → exit 0；status=built
+公開 version.json／deck.js → HTTP 200；version=2026.08.26.06、單一路徑全螢幕規則存在
+$env:BASE_URL='https://cagoooo.github.io/ncu-ai-agent-workshop-20260826'；node qa_github_pages_site.mjs；Remove-Item Env:BASE_URL → exit 0；同上全站 QA 數字全部通過
+~~~
+
+**工作區刻意保留的未提交修改**：`08_HTML簡報/assets/deck.css` 的 142 行手機提示／資源列樣式，以及 `08_HTML簡報/assets/deck.js` 的 1 行 `touchcancel` 重設，均不是本輪全螢幕修正，沒有納入 `b2209ba`，不得在未確認用途前覆寫或順手提交。
+
+---
 ## 本輪最新修正：研習資源導航新增「回到首頁」入口（v2026.08.26.05）
 
 本輪依使用者需求，在公開入口 `START_HERE_研習資源導航.html` 的頁首加入清楚可見的「← 回到首頁」按鈕，使用同一層的相對連結 `index.html` 返回網站首頁。按鈕沿用既有 `.back-home` 共用樣式，沒有改動成熟的圖檔簡報版面；桌機與 390px 手機版均納入回歸檢查。
