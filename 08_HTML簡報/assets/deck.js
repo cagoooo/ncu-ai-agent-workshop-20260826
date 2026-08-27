@@ -190,6 +190,13 @@ function ensureSlideImage(article, priority = "auto") {
     // 只在需要顯示或鄰近預載時才送出請求，避免首次開啟同時競爭所有投影片。
     art.loading = "eager";
     art.fetchPriority = priority;
+    art.addEventListener("error", () => {
+      const fallback = art.dataset.fallbackSrc;
+      if (!fallback || art.dataset.usedFallback === "true") return;
+      art.dataset.usedFallback = "true";
+      art.src = fallback;
+      if (art.decode) art.decode().catch(() => {});
+    }, { once: true });
     art.src = source;
   }
   if (art.decode) {
@@ -218,8 +225,9 @@ function createSlide(item) {
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
   const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
+  const webpImage = item.image.replace(/\.png$/i, ".webp");
   // src 刻意延後交給 ensureSlideImage：首次開啟只載入目前頁與鄰近頁，不讓 50/68 張圖搶首張解碼。
-  article.innerHTML = '<img class="slide-art" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="lazy" decoding="async"><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  article.innerHTML = '<img class="slide-art" data-slide-src="' + webpImage + '" data-fallback-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="lazy" decoding="async"><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
