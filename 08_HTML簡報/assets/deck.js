@@ -182,11 +182,14 @@ let touchStartX = null;
 let touchStartY = null;
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function ensureSlideImage(article) {
+function ensureSlideImage(article, priority = "auto") {
   const art = article?.querySelector(".slide-art");
   const source = art?.dataset.slideSrc || art?.src;
   if (!art || !source) return;
   if (!art.src || art.src.includes("data:image")) {
+    // 只在需要顯示或鄰近預載時才送出請求，避免首次開啟同時競爭所有投影片。
+    art.loading = "eager";
+    art.fetchPriority = priority;
     art.src = source;
   }
   if (art.decode) {
@@ -199,7 +202,7 @@ function preloadSlideImages(centerIndex) {
   for (let offset = -3; offset <= 4; offset++) {
     const target = stage.children[centerIndex + offset];
     if (target) {
-      ensureSlideImage(target);
+      ensureSlideImage(target, offset === 0 ? "high" : "auto");
     }
   }
 }
@@ -215,8 +218,8 @@ function createSlide(item) {
   const alt = (item.session || data.session) + "：" + item.title;
   const escapedAlt = alt.replace(/"/g, "&quot;");
   const hiResImage = item.image.replace(/\.png$/i, "@2k.png");
-  const fetchPriority = item.index <= 4 ? ' fetchpriority="high"' : "";
-  article.innerHTML = '<img class="slide-art" src="' + item.image + '" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="eager" decoding="async"' + fetchPriority + '><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
+  // src 刻意延後交給 ensureSlideImage：首次開啟只載入目前頁與鄰近頁，不讓 50/68 張圖搶首張解碼。
+  article.innerHTML = '<img class="slide-art" data-slide-src="' + item.image + '" data-hires-src="' + hiResImage + '" alt="' + escapedAlt + '" loading="lazy" decoding="async"><div class="slide-vignette" aria-hidden="true"></div><span class="slide-index-badge" aria-hidden="true">' + String(item.index).padStart(2, "0") + '</span><div class="slide-accessible">' + item.eyebrow + '。標題：' + item.title + '。講者備註：' + (item.notes || "無") + '</div>';
   for (const itemHotspot of item.hotspots || []) {
     const anchor = document.createElement("a");
     anchor.className = "slide-hotspot slide-hotspot-" + itemHotspot.kind;
