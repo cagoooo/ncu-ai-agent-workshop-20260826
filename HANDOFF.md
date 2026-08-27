@@ -1,6 +1,44 @@
 # HANDOFF.md｜2026-08-25 本輪 Agent 交接（圖片簡報 QR／超連結熱區修正）
 
 ---
+## 本輪最新修正：圖像版簡報首次載入與解碼加速（v2026.08.26.08）
+
+使用者以無痕視窗開啟圖像版簡報時，首張 PNG 會先露出局部、下方短暫白底。瀏覽器實測確認這不只是首次解碼：舊程式替 50 張上午投影片都設定 `src` 與 `loading="eager"`，在 `DOMContentLoaded` 後同時送出 50 張 PNG 請求；首張 1280×720 PNG 完整解碼量測為 13,269ms。
+
+本輪保留既有 PNG、2K 資訊、`img.decode()`、雙緩衝 `is-previous` 與 Hotspot 架構，改為：
+
+- `deck.js` 僅在目前頁與前後鄰近頁需要時掛載圖片；首開固定為 5 張，而不是上午 50／下午 68 張同時競爭。
+- 第一張以 `<link rel="preload">` 與 `fetchpriority="high"` 優先取得。
+- 新增 118 張 WebP（上午 50、下午 68）作為現代瀏覽器首選圖源；PNG 保留為錯誤／不支援 WebP 時的自動備援。
+- WebP 由 `optimize_deck_images.py` 產生並同步到公開站、`workshop_suite_src`、正式包；基礎投影片總量從 10,928,409 bytes 降至 6,751,462 bytes（節省 4,176,947 bytes，保留 61.78%），其中 `morning-01` 從 733,788 bytes 降至 103,584 bytes。
+
+本輪已實際驗證：
+
+~~~text
+舊公開版 Playwright 冷啟動探針 → exit 0；上午場 src=50、前 1.5 秒僅解碼 2 張；首張 PNG 完整解碼=13,269ms
+新版公開 Playwright 冷啟動探針 → exit 0；首張完整解碼=827ms、requests=5、sourced=5、active=.webp、naturalWidth=1280、未觸發 fallback
+本機正常環境 WebP 探針 → exit 0；sourced=5、active=.webp、naturalWidth=1280
+本機封鎖 WebP 備援探針 → exit 0；active 自動回退 .png、usedFallback=true、naturalWidth=1280
+$env:HTML_ROOT=<公開站>\08_HTML簡報；$env:HTML_DECKS='morning'／'afternoon'；node qa_html_deck.mjs → 兩次均 exit 0；sourced=5、ready=5、activeWidth=1280；上午 named=12、下午 named=17，QR／平台 Hotspot 與 spotlight reset 通過
+$env:HTML_ROOT=<正式包>\08_HTML簡報；$env:HTML_DECKS='morning'／'afternoon'；node qa_html_deck.mjs → 兩次均 exit 0；sourced=5、ready=5、activeWidth=1280
+node qa_workshop_suite.mjs → exit 0；來源套件通過
+$env:WORKSHOP_ROOT=<正式包>；node qa_workshop_suite.mjs → exit 0；正式包通過
+node qa_ops_checklist.mjs → exit 0；36 interactive items
+$env:WORKSHOP_ROOT=<正式包>；node audit_local_links.mjs → exit 0；125 HTML、192 local references
+python -X utf8 qa_qr_codes.py → exit 0；191 rendered QR codes decoded
+python -X utf8 rebuild_release_manifest.py <正式包> → exit 0；total=747、inventory=746、pdf=8、duplicate_pdf_groups=4
+node qa_fullscreen_animation.mjs → exit 0；directions=4、samples=16、failures=0
+node qa_fullscreen_dynamic.mjs（native）→ 上午／下午各 exit 0；horizontalOverflow=0、outside=0
+node qa_fullscreen_longrun.mjs（native）→ 上午 checked=50／failures=0；下午 checked=68／failures=0
+git commit -m "加速圖像簡報首次載入與解碼" → exit 0；14efb6b
+git commit -m "改用 WebP 加速圖像簡報載入" → exit 0；4228973
+git push origin main → 兩次均 exit 0；最新 Pages run 33036612191 success、Pages status=built
+Invoke-WebRequest 公開 version.json／morning.html／morning-01.webp → exit 0；HTTP 200、version=2026.08.26.08、Content-Type=image/webp、bytes=103584
+~~~
+
+**工作區刻意保留的未提交修改**：`08_HTML簡報/assets/deck.css` 的 142 行手機提示／資源列樣式，以及 `08_HTML簡報/assets/deck.js` 的 1 行 `touchcancel` 重設，均不是本輪效能修正，沒有納入 `14efb6b` 或 `4228973`，不得在未確認用途前覆寫或順手提交。
+
+---
 ## 本輪最新修正：圖像版簡報原生全螢幕單一路徑進場（v2026.08.26.06）
 
 圖像版 `08_HTML簡報` 先前雖已避免全螢幕閃黑，但桌機點擊「全螢幕」後仍會感到輕微卡頓。瀏覽器事件量測確認：程式原本在呼叫原生 Fullscreen API 前，就先加上 `is-immersive`，舞台會先放大到瀏覽器內容區；約 0.1 秒後原生全螢幕完成，再放大第二次。因此不是圖片重新下載、也不是 QR／Hotspot 渲染問題，而是兩段式縮放。
