@@ -1,5 +1,7 @@
 # 從 AI 教學與研究助理到 AI Agent
 
+> 📌 **建置版本：2026.08.26.08**（依據 `version.json`）
+
 國立中央大學｜大學教師的生成式 AI 實作工作坊（2026-08-26）
 
 🌐 **線上網站**：https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/
