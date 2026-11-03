@@ -34,3 +34,18 @@
 本 repo 是純靜態網站，可直接由 GitHub Pages 提供，不需要 Node.js 建置。正式研習包的教材、工具、資料與備援檔案均已同步；`08_HTML簡報/` 內保留互動簡報與各項教學工具。
 
 Made with ❤️ by [阿凱老師](https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5) · 桃園市龍潭區石門國民小學
+
+<!-- akai-edu-tools:backlink -->
+
+---
+
+## 🔗 阿凱老師教育工具集
+
+這個專案是[阿凱老師教育工具集](https://cagoooo.github.io/Akai/)的 **#124 從 AI 教學與研究助理到 AI Agent**，由桃園市龍潭區石門國民小學阿凱老師開發。
+
+- 工具介紹頁：[https://cagoooo.github.io/Akai/tool/124/](https://cagoooo.github.io/Akai/tool/124/)
+- 線上使用：[https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/](https://cagoooo.github.io/ncu-ai-agent-workshop-20260826/)
+- 教學情境文章：[https://cagoooo.github.io/Akai/blog/ai-workshop-124-teaching-research-agent/](https://cagoooo.github.io/Akai/blog/ai-workshop-124-teaching-research-agent/)
+- 全部工具（上百個教育工具與原始碼）：[https://cagoooo.github.io/Akai/](https://cagoooo.github.io/Akai/)
+
+想改造成自己的版本？到上面的教學情境文章，按左下角「複製 AI 開發提示詞」，貼給 ChatGPT、Claude、Gemini 等 AI 助手，就能參考這份原始碼開始規劃。
