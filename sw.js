@@ -1,5 +1,7 @@
 const BUILD_VERSION = "2026.08.26.09";
-const CACHE_NAME = "ncu-ai-workshop-" + BUILD_VERSION;
+// 同一網域（cagoooo.github.io）的所有工具共用快取空間，只能清除自己這個前綴的快取
+const CACHE_PREFIX = "ncu-ai-workshop-";
+const CACHE_NAME = CACHE_PREFIX + BUILD_VERSION;
 
 // 精簡核心預載清單：僅快取極輕量的關鍵 HTML、CSS、JS 與小圖示（排除 4MB+ 的 OG 大圖）
 const PRECACHE = [
@@ -66,7 +68,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))))
+      .then((keys) => Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME).map((key) => caches.delete(key))))
       .then(() => self.clients.claim())
       .then(async () => {
         const clients = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
